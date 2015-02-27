@@ -410,16 +410,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.7",
+            "version": "v5.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f46adbb5bc753bd9503ee232e8ce1f4421a78b2a"
+                "reference": "1fa64b8f33f134c0180c1af06df83f1150128e6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f46adbb5bc753bd9503ee232e8ce1f4421a78b2a",
-                "reference": "f46adbb5bc753bd9503ee232e8ce1f4421a78b2a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1fa64b8f33f134c0180c1af06df83f1150128e6f",
+                "reference": "1fa64b8f33f134c0180c1af06df83f1150128e6f",
                 "shasum": ""
             },
             "require": {
@@ -531,7 +531,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-02-25 20:23:22"
+            "time": "2015-02-26 23:45:08"
         },
         {
             "name": "league/flysystem",
@@ -1785,16 +1785,16 @@
         },
         {
             "name": "laracasts/generators",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
-                "reference": "a2691cf922ec55275430c53726932e08649b61a0"
+                "reference": "582022b7734a6e11b7b7ce6240795a96d571a101"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/a2691cf922ec55275430c53726932e08649b61a0",
-                "reference": "a2691cf922ec55275430c53726932e08649b61a0",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/582022b7734a6e11b7b7ce6240795a96d571a101",
+                "reference": "582022b7734a6e11b7b7ce6240795a96d571a101",
                 "shasum": ""
             },
             "require": {
@@ -1825,7 +1825,7 @@
                 "generators",
                 "laravel"
             ],
-            "time": "2015-02-26 06:52:07"
+            "time": "2015-02-26 20:42:41"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

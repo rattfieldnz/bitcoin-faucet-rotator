@@ -22,7 +22,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['user_name',
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'bitcoin_address',
+        'is_admin'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -30,5 +36,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * A method defining the relationship
+     * between a payment user and
+     * associated faucets.
+     */
+    public function faucets()
+    {
+        $this->belongsToMany('App\Faucet', 'referral_info');
+    }
 
 }
