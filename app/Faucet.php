@@ -19,9 +19,11 @@ class Faucet extends Model {
     protected $fillable = ['name',
                            'url',
                            'interval_minutes',
-                           'payout_amount',
+                           'min_payout',
+                           'max_payout',
                            'has_ref_program',
                            'ref_payout_percent',
+                           'comments',
                            'is_paused'];
 
     /**
