@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d892e5cf48aaa4084ee82bdf1261e76",
+    "hash": "dca536f605ba57b393ecbab08956577b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -221,51 +221,6 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
-        },
-        {
-            "name": "flynsarmy/csv-seeder",
-            "version": "v1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Flynsarmy/laravel-csv-seeder.git",
-                "reference": "75ab4a762f1e32df68dff5d1374f2c9b29691e57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Flynsarmy/laravel-csv-seeder/zipball/75ab4a762f1e32df68dff5d1374f2c9b29691e57",
-                "reference": "75ab4a762f1e32df68dff5d1374f2c9b29691e57",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": ">=4.1.0",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Flynsarmy\\CsvSeeder\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Flyn San",
-                    "email": "flynsarmy@gmail.com",
-                    "homepage": "http://www.flynsarmy.com/"
-                }
-            ],
-            "description": "Allows seeding of the database with CSV files",
-            "keywords": [
-                "csv",
-                "laravel",
-                "seed",
-                "seeding",
-                "seeds"
-            ],
-            "time": "2014-07-01 14:22:29"
         },
         {
             "name": "ircmaxell/password-compat",
