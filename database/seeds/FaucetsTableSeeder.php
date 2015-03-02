@@ -15,7 +15,7 @@ class FaucetsTableSeeder extends BaseSeeder {
      */
     public function run()
     {
-        $data = $this->csv_to_array(base_path() . '/database/seeds/faucets.csv');
+        $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/faucets.csv');
         $this->insert_data('faucets', $data);
     }
 
