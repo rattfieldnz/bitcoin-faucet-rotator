@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('PaymentProcessorsTableSeeder');
         $this->call('FaucetPaymentProcessorsTableSeeder');
         $this->call('UsersTableSeeder');
+        $this->call('ReferralInfoTableSeeder');
 	}
 
 }
