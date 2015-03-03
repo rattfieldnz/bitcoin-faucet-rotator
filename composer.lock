@@ -734,16 +734,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.14.0",
+            "version": "1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bb87460c995d97fe55b39e65f6ffb7f64b0a941e"
+                "reference": "48cb9ae6d9436e156316a59d198cb1ca797f8cd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bb87460c995d97fe55b39e65f6ffb7f64b0a941e",
-                "reference": "bb87460c995d97fe55b39e65f6ffb7f64b0a941e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/48cb9ae6d9436e156316a59d198cb1ca797f8cd8",
+                "reference": "48cb9ae6d9436e156316a59d198cb1ca797f8cd8",
                 "shasum": ""
             },
             "require": {
@@ -770,13 +770,13 @@
                 }
             ],
             "description": "A simple API extension for DateTime.",
-            "homepage": "https://github.com/briannesbitt/Carbon",
+            "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2015-02-06 05:07:29"
+            "time": "2015-03-03 03:24:43"
         },
         {
             "name": "nikic/php-parser",
@@ -1785,16 +1785,16 @@
         },
         {
             "name": "laracasts/generators",
-            "version": "1.0.3",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
-                "reference": "d83213c6aacc925996457dddfb5f00988df57d17"
+                "reference": "f1596fa3afc26221fc83549989769322f5cc162d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/d83213c6aacc925996457dddfb5f00988df57d17",
-                "reference": "d83213c6aacc925996457dddfb5f00988df57d17",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/f1596fa3afc26221fc83549989769322f5cc162d",
+                "reference": "f1596fa3afc26221fc83549989769322f5cc162d",
                 "shasum": ""
             },
             "require": {
@@ -1825,7 +1825,7 @@
                 "generators",
                 "laravel"
             ],
-            "time": "2015-02-28 14:43:38"
+            "time": "2015-03-02 19:20:34"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

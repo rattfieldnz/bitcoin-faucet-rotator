@@ -18,7 +18,6 @@ class CreateReferralInfoTable extends Migration {
 			$table->foreign('faucet_id')->references('id')->on('faucets')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('referral_code')->unique();
 		});
 	}
 
