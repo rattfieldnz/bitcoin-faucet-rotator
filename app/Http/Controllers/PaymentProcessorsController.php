@@ -1,12 +1,12 @@
 <?php namespace App\Http\Controllers;
 
-use App\Faucet;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\PaymentProcessor;
 use Illuminate\Http\Request;
 
-class FaucetsController extends Controller {
+class PaymentProcessorsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,7 +15,7 @@ class FaucetsController extends Controller {
 	 */
 	public function index()
 	{
-		return Faucet::all();
+		Return PaymentProcessor::all();
 	}
 
 	/**
@@ -46,7 +46,7 @@ class FaucetsController extends Controller {
 	 */
 	public function show($id)
 	{
-		return Faucet::findOrFail($id);
+		return PaymentProcessor::findOrFail($id);
 	}
 
 	/**
