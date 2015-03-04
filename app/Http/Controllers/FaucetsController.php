@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Faucet;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class FaucetsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return Faucet::all();
 	}
 
 	/**
@@ -45,7 +46,7 @@ class FaucetsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return Faucet::findOrFail($id)->first();
 	}
 
 	/**
