@@ -21,7 +21,9 @@ class FaucetsController extends Controller {
 	{
 		$faucets = Faucet::all();
 
-        return $this->faucetTransformer->transformCollection($faucets->all());
+        //return $this->faucetTransformer->transformCollection($faucets->all());
+
+        return view('faucets.index', compact('faucets'));
 	}
 
 	/**

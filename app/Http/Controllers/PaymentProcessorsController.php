@@ -24,7 +24,7 @@ class PaymentProcessorsController extends Controller {
 	{
 		$payment_processors = PaymentProcessor::all();
 
-        return $this->paymentProcessorTransformer->transformCollection($payment_processors);
+        return $this->paymentProcessorTransformer->transformCollection($payment_processors->all());
 	}
 
 	/**
