@@ -21,8 +21,8 @@
                 <td>{{ $faucet->id }}</td>
                 <td><a href='{{ $faucet->url }}' target='_blank' title='{{ $faucet->name }}'>{{ $faucet->name }}</a></td>
                 <td>{{ $faucet->interval_minutes }}</td>
-                <td>{{ $faucet->min_payout }}</td>
-                <td>{{ $faucet->max_payout }}</td>
+                <td>{{ number_format($faucet->min_payout) }}</td>
+                <td>{{ number_format($faucet->max_payout) }}</td>
                 <td>{{ $faucet->hasRefProgram() }}</td>
                 <td>{{ $faucet->ref_payout_percent }}</td>
                 <td>{{ $faucet->comments }}</td>
