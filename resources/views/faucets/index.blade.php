@@ -23,10 +23,10 @@
                 <td>{{ $faucet->interval_minutes }}</td>
                 <td>{{ $faucet->min_payout }}</td>
                 <td>{{ $faucet->max_payout }}</td>
-                <td>{{ $faucet->has_ref_program }}</td>
+                <td>{{ $faucet->hasRefProgram() }}</td>
                 <td>{{ $faucet->ref_payout_percent }}</td>
                 <td>{{ $faucet->comments }}</td>
-                <td>{{ $faucet->is_paused }}</td>
+                <td>{{ $faucet->status() }}</td>
             </tr>
         @endforeach
         </tbody>
