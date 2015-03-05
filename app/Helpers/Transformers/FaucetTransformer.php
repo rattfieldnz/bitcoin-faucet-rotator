@@ -8,12 +8,22 @@
 
 namespace Helpers\Transformers;
 
-
+/**
+ * Class FaucetTransformer
+ * This class is responsible for showing faucet
+ * related data in a specified format.
+ * @package Helpers\Transformers
+ */
 class FaucetTransformer extends Transformer{
 
+    /**
+     * The method which transforms the faucet
+     * related data.
+     * @param $faucet
+     * @return array
+     */
     public function transform($faucet)
     {
-
         return [
             'id' => (int)$faucet['id'],
             'name' => $faucet['name'],

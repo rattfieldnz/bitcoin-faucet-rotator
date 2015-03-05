@@ -8,8 +8,21 @@
 
 namespace Helpers\Transformers;
 
+/**
+ * Class PaymentProcessorTransformer
+ * This class is responsible for showing
+ * payment processor related data in
+ * a specified format.
+ * @package Helpers\Transformers
+ */
 class PaymentProcessorTransformer extends Transformer{
 
+    /**
+     * The method which transforms the
+     * payment processor related data.
+     * @param $payment_processor
+     * @return array
+     */
     public function transform($payment_processor)
     {
         return [
