@@ -3,17 +3,17 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\PaymentProcessor;
-use Helpers\Transformers\PaymentProcessorTransformer;
+use App\User;
+use Helpers\Transformers\UserTransformer;
 use Illuminate\Http\Request;
 
-class PaymentProcessorsController extends Controller {
+class UsersController extends Controller {
 
-    protected $paymentProcessorTransformer;
+    protected $userTransformer;
 
-    function __construct(PaymentProcessorTransformer $transformer)
+    function __construct(UserTransformer $transformer)
     {
-        $this->paymentProcessorTransformer = $transformer;
+        $this->userTransformer = $transformer;
     }
 	/**
 	 * Display a listing of the resource.
@@ -22,9 +22,9 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function index()
 	{
-		$payment_processors = PaymentProcessor::all();
+		$users = User::all();
 
-        return $this->paymentProcessorTransformer->transformCollection($payment_processors);
+        return $this->userTransformer->transformCollection($users->all());
 	}
 
 	/**
@@ -55,9 +55,9 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function show($id)
 	{
-        $faucet = PaymentProcessor::findOrFail($id);
+		$user = User::find($id);
 
-        return $this->paymentProcessorTransformer->transform($faucet);
+        return $this->userTransformer->transform($user);
 	}
 
 	/**
@@ -92,19 +92,5 @@ class PaymentProcessorsController extends Controller {
 	{
 		//
 	}
-
-    private function transformCollection($payment_processors)
-    {
-        return array_map([$this, 'transform'], $payment_processors->toArray());
-    }
-
-    private function transform($payment_processor)
-    {
-        return [
-            'id' => (int)$payment_processor['id'],
-            'name' => $payment_processor['name'],
-            'url' => $payment_processor['url']
-        ];
-    }
 
 }

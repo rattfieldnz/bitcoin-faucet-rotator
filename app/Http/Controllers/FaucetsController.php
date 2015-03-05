@@ -2,12 +2,16 @@
 
 use App\Faucet;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
+use Helpers\Transformers\FaucetTransformer;
 use Illuminate\Http\Request;
 
 class FaucetsController extends Controller {
 
+    protected $faucetTransformer;
+
+    function __construct(FaucetTransformer $transformer)   {
+        $this->faucetTransformer = $transformer;
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -15,7 +19,9 @@ class FaucetsController extends Controller {
 	 */
 	public function index()
 	{
-		return Faucet::all();
+		$faucets = Faucet::all();
+
+        return $this->faucetTransformer->transformCollection($faucets->all());
 	}
 
 	/**
@@ -25,7 +31,7 @@ class FaucetsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**
@@ -46,7 +52,9 @@ class FaucetsController extends Controller {
 	 */
 	public function show($id)
 	{
-		return Faucet::findOrFail($id);
+        $faucet = Faucet::findOrFail($id);
+
+        return $this->faucetTransformer->transform($faucet);
 	}
 
 	/**
@@ -81,5 +89,26 @@ class FaucetsController extends Controller {
 	{
 		//
 	}
+
+    private function transformCollection($faucets)
+    {
+        return array_map([$this, 'transform'], $faucets->toArray());
+    }
+
+    private function transform($faucet)
+    {
+        return [
+            'id' => (int)$faucet['id'],
+            'name' => $faucet['name'],
+            'url' => $faucet['url'],
+            'interval_minutes' => (int)$faucet['interval_minutes'],
+            'min_payout' => (int)$faucet['min_payout'],
+            'max_payout' => (int)$faucet['max_payout'],
+            'has_ref_program' => (boolean)$faucet['has_ref_program'],
+            'ref_payout_percent' => (double)$faucet['ref_payout_percent'],
+            'comments' => $faucet['comments'],
+            'is_paused' => (boolean)$faucet['is_paused']
+        ];
+    }
 
 }
