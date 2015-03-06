@@ -4,6 +4,7 @@
     <h1 class="page-heading">Current Payment Processors</h1>
 
     <div class="table-responsive">
+        {!! $payment_processors->render() !!}
         <table class="table table-striped table bordered">
             <thead>
             <th>Payment Processor Name</th>
@@ -16,6 +17,7 @@
             @endforeach
             </tbody>
         </table>
+        {!! $payment_processors->render() !!}
     </div>
     <script src="/js/accordion.js"></script>
 @endsection

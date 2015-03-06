@@ -22,7 +22,7 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function index()
 	{
-		$payment_processors = PaymentProcessor::all();
+		$payment_processors = PaymentProcessor::paginate(10);
 
         return view('payment_processors.index', compact('payment_processors'));
 	}

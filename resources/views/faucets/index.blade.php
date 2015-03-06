@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="page-heading">Current Faucets</h1>
-
+    {!! $faucets->render() !!}
     <div class="table-responsive">
         <table class="table table-striped table bordered">
             <thead>
@@ -36,5 +36,6 @@
             @endforeach
             </tbody>
         </table>
+        {!! $faucets->render() !!}
     </div>
 @endsection
