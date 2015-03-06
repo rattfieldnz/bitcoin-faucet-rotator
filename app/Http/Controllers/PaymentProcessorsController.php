@@ -24,7 +24,7 @@ class PaymentProcessorsController extends Controller {
 	{
 		$payment_processors = PaymentProcessor::all();
 
-        return $this->paymentProcessorTransformer->transformCollection($payment_processors->all());
+        return view('payment_processors.index', compact('payment_processors'));
 	}
 
 	/**
@@ -55,9 +55,9 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function show($id)
 	{
-        $faucet = PaymentProcessor::findOrFail($id);
+        $payment_processor = PaymentProcessor::findOrFail($id);
 
-        return $this->paymentProcessorTransformer->transform($faucet);
+        return view('payment_processors.show', compact('payment_processor'));
 	}
 
 	/**

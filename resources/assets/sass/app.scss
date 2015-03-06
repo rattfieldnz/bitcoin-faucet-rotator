@@ -27,6 +27,16 @@ body {
   margin-left: -2em;
 }
 
+.accordion{
+  min-width:13em;
+  max-width:20em;
+}
+
+.table-responsive
+{
+  overflow-x: auto;
+}
+
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;

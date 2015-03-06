@@ -11,7 +11,7 @@ var elixir = require('laravel-elixir');
  |
  */
 var paths = {
-    'bootstrap': './vendor/bower_components/bootstrap-sass-official/assets/'
+    'bootstrap': 'public/bower_components/bootstrap-sass-official/assets/'
 }
 elixir(function(mix) {
     mix.sass('app.scss', 'public/css/', {includePaths: [paths.bootstrap + 'stylesheets/']})
