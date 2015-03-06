@@ -2,6 +2,7 @@
 
 use App\Faucet;
 use App\Http\Requests;
+use App\PaymentProcessor;
 use Helpers\Transformers\FaucetTransformer;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,6 @@ class FaucetsController extends Controller {
 	public function index()
 	{
 		$faucets = Faucet::all();
-
-        //return $this->faucetTransformer->transformCollection($faucets->all());
 
         return view('faucets.index', compact('faucets'));
 	}
@@ -56,7 +55,7 @@ class FaucetsController extends Controller {
 	{
         $faucet = Faucet::findOrFail($id);
 
-        return $this->faucetTransformer->transform($faucet);
+        return view('faucets.show', compact('faucet'));
 	}
 
 	/**

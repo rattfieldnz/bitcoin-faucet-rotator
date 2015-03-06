@@ -136,6 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         'Laracasts\Generators\GeneratorsServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -174,7 +175,9 @@ return [
 		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
 		'Event'     => 'Illuminate\Support\Facades\Event',
 		'File'      => 'Illuminate\Support\Facades\File',
+        'Form'      => 'Collective\Html\FormFacade',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
+        'Html'      => 'Collective\Html\HtmlFacade',
 		'Input'     => 'Illuminate\Support\Facades\Input',
 		'Inspiring' => 'Illuminate\Foundation\Inspiring',
 		'Lang'      => 'Illuminate\Support\Facades\Lang',

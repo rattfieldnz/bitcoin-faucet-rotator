@@ -32,7 +32,7 @@ class Faucet extends Model {
      */
     public function payment_processors()
     {
-        $this->belongsToMany('App\PaymentProcessor', 'faucet_payment_processor');
+        return $this->belongsToMany('App\PaymentProcessor', 'faucet_payment_processor');
     }
 
     /**
@@ -41,7 +41,7 @@ class Faucet extends Model {
      */
     public function users()
     {
-        $this->belongsToMany('App\User', 'referral_info');
+        return $this->belongsToMany('App\User', 'referral_info');
     }
 
     /**
