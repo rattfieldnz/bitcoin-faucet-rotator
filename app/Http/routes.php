@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/', 'FaucetsController@index');
 Route::resource('faucets', 'FaucetsController');
 Route::resource('payment_processors', 'PaymentProcessorsController');
 Route::resource('users', 'UsersController');
