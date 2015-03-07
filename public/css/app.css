@@ -4847,12 +4847,24 @@ html, body {
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 60px;
+  max-height: 4em;
   background-color: #f5f5f5;
   border-top: 2px solid #ddd; }
   #footer .container {
     padding: 1em 1em 0em 1em;
     margin-top: 0em; }
+
+#faucets_table thead, #payment_processors_table thead {
+  border: 1px solid #ddd; }
+  #faucets_table thead th, #payment_processors_table thead th {
+    height: 4em !important;
+    padding-bottom: 1.25em !important; }
+    #faucets_table thead th .headerSortDown, #payment_processors_table thead th .headerSortDown {
+      background-image: url('/table_sorter_themes/blue/desc.gif');
+      background-color: #3399FF; }
+    #faucets_table thead th .headerSortUp, #payment_processors_table thead th .headerSortUp {
+      background-image: url('/table_sorter_themes/blue/asc.gif');
+      background-color: #3399FF; }
 
 
 /*# sourceMappingURL=app.css.map */

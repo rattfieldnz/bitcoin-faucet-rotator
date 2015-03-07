@@ -20,7 +20,8 @@ class FaucetsController extends Controller {
 	 */
 	public function index()
 	{
-		$faucets = Faucet::paginate(5);
+        $count_faucets = count(Faucet::all());
+		$faucets = Faucet::paginate($count_faucets);
 
         return view('faucets.index', compact('faucets'));
 	}

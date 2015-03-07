@@ -39,11 +39,30 @@ body {
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 60px;
+  max-height:4em;
   background-color: #f5f5f5;
   border-top:2px solid #ddd;
   .container {
     padding:1em 1em 0em 1em;
     margin-top:0em;
+  }
+}
+
+#faucets_table, #payment_processors_table
+{
+  thead {
+    border:1px solid #ddd;
+    th {
+      height: 4em !important;
+      padding-bottom: 1.25em !important;
+      .headerSortDown {
+        background-image: url('/table_sorter_themes/blue/desc.gif');
+        background-color: #3399FF;
+      }
+      .headerSortUp {
+        background-image: url('/table_sorter_themes/blue/asc.gif');
+        background-color: #3399FF;
+      }
+    }
   }
 }

@@ -15,7 +15,7 @@ Route::resource('faucets', 'FaucetsController');
 Route::resource('payment_processors', 'PaymentProcessorsController');
 Route::resource('users', 'UsersController');
 
-Route::get('/', 'WelcomeController@index');
+Route::get('payment_processors', 'PaymentProcessorsController@index');
 
 Route::get('home', 'HomeController@index');
 

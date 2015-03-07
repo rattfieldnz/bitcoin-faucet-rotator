@@ -4,7 +4,7 @@
     <h1 class="page-heading">Current Faucets</h1>
     {!! $faucets->render() !!}
     <div class="table-responsive">
-        <table class="table table-striped table bordered">
+        <table class="table table-striped bordered tablesorter" id="faucets_table">
             <thead>
                 <th>Faucet Name</th>
                 <th>Interval (minutes)</th>
@@ -20,8 +20,8 @@
                 <tr>
                     <td>{!! link_to_route('faucets.show', $faucet->name, array($faucet->id)) !!}</td>
                     <td>{{ $faucet->interval_minutes }}</td>
-                    <td>{{ number_format($faucet->min_payout) }}</td>
-                    <td>{{ number_format($faucet->max_payout) }}</td>
+                    <td>{{ $faucet->min_payout }}</td>
+                    <td>{{ $faucet->max_payout }}</td>
                     <td>
                         <ul class="faucet-payment-processors">
                             @foreach($faucet->payment_processors as $payment_processor)
@@ -38,4 +38,7 @@
         </table>
         {!! $faucets->render() !!}
     </div>
+
+    <script src="/js/jquery.tablesorter.min.js"></script>
+    <script src="/js/tablesorter.js"></script>
 @endsection

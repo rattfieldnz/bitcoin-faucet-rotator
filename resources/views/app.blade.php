@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="/bower_components/jquery-ui/themes/dark-hive/jquery-ui.min.css">
 	<link href="/css/app.css" rel="stylesheet">
+    <link href="/table_sorter_themes/blue/style.css" rel="stylesheet">
     <!-- Scripts -->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>

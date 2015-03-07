@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\PaymentProcessor;
 use Helpers\Transformers\PaymentProcessorTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class PaymentProcessorsController extends Controller {
 
@@ -22,7 +23,8 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function index()
 	{
-		$payment_processors = PaymentProcessor::paginate(10);
+        $count_payment_processors = count(PaymentProcessor::all());
+        $payment_processors = PaymentProcessor::paginate($count_payment_processors);
 
         return view('payment_processors.index', compact('payment_processors'));
 	}
