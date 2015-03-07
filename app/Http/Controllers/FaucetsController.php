@@ -67,8 +67,10 @@ class FaucetsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
-	}
+        $faucet = Faucet::findOrFail($id);
+
+        return view('faucets.edit', compact('faucet'));
+    }
 
 	/**
 	 * Update the specified resource in storage.
