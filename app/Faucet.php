@@ -26,6 +26,8 @@ class Faucet extends Model {
                            'comments',
                            'is_paused'];
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     /**
      * A method defining the relationship between
      * a faucet and payment processors.

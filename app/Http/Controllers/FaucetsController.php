@@ -5,6 +5,9 @@ use App\Http\Requests;
 use App\PaymentProcessor;
 use Helpers\Transformers\FaucetTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class FaucetsController extends Controller {
 
@@ -67,9 +70,35 @@ class FaucetsController extends Controller {
 	 */
 	public function edit($id)
 	{
+        //Grab the faucet to edit
         $faucet = Faucet::findOrFail($id);
 
-        return view('faucets.edit', compact('faucet'));
+        //Obtain payment processors associated with the faucet.
+        $payment_processors = PaymentProcessor::lists('name', 'id');
+        $faucet_payment_processors = $faucet->payment_processors;
+
+        //Get tinyint value (a bool) indicating the faucet
+        //has a referral program.
+        $faucet_has_ref_program = (int)$faucet->has_ref_program;
+
+        //Get tinyint value (a bool) indicating the faucet
+        //is paused or not (not active or active).
+        $faucet_is_paused = (int)$faucet->is_paused;
+
+        //Retrieve ids of associated payment processors,
+        //and putting them into an array.
+        $payment_processor_ids = array();
+        foreach($faucet_payment_processors as $payment_processor)
+        {
+            array_push($payment_processor_ids, (int)$payment_processor->id);
+        }
+
+        //Return the faucets edit view, with fields pre-populated.
+        return view('faucets.edit', compact(['faucet',
+                                             'payment_processors',
+                                             'payment_processor_ids',
+                                             'faucet_has_ref_program',
+                                             'faucet_is_paused']));
     }
 
 	/**
@@ -80,7 +109,36 @@ class FaucetsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        //Retrieve faucet to be updated.
+        $faucet = Faucet::findOrFail($id);
+
+        //Get all input from edit/update request,
+        //then populate th faucet with the given
+        //data.
+        $faucet->fill(Input::all());
+
+        //Retrieve payment processor ids from update.
+        $payment_processor_ids = Input::get('faucet_payment_processors');
+
+        //Below logic disables foreign key checking before
+        //updating many-to-many table (faucet_payment_processor)
+        //that ties instances of faucets to instances of payment
+        //processors. The retrieved payment processor ids are
+        //iterated through, then synced with the current faucet in
+        // the many-many table. Then foreign key checking is re-enabled.
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        $faucet->payment_processors()->detach();
+        foreach($payment_processor_ids as $payment_processor_id)
+        {
+            $faucet->payment_processors()->attach((int)$payment_processor_id);
+        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+        //Save the changes made to the faucet.
+        $faucet->save();
+
+        //Redirect to the faucet's page
+        return Redirect::to('/faucets/' . $id);
 	}
 
 	/**

@@ -1,4 +1,9 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+* {
+  margin: 0;
+}
 
 body{
   margin-bottom:4em;
@@ -11,10 +16,6 @@ html {
 
 body, label, .checkbox label {
 	font-weight: 300;
-}
-
-* {
-  margin: 0;
 }
 
 .container, .container-fluid .row{
