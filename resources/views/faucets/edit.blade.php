@@ -48,17 +48,9 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('has_referral_program', 'Has Referral Program?', ['class' => 'col-lg-2 control-label']) !!}
+            {!! Form::label('has_ref_program', 'Has Referral Program?', ['class' => 'col-lg-2 control-label'] )  !!}
             <div class="col-lg-10">
-                <div class="radio">
-                    {!! Form::label('choice_yes', 'Yes', ['class' => 'col-lg-2']) !!}
-                    {!! Form::radio('has_referral_program', 1, ($faucet->has_ref_program == 1) ? true : false, ['id' => 'choice_yes']) !!}
-
-                </div>
-                <div class="radio">
-                    {!! Form::label('choice_no', 'No', ['class' => 'col-lg-2']) !!}
-                    {!! Form::radio('has_referral_program', 0, ($faucet->has_ref_program == 0) ? true : false, ['id' => 'choice_no']) !!}
-                </div>
+                {!!  Form::select('has_ref_program', [1 => 'Yes', 0 => 'No'], null, ['class' => 'form-control' ]) !!}
             </div>
         </div>
 
@@ -77,23 +69,15 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('is_paused', 'Is The Faucet Paused?', ['class' => 'col-lg-2 control-label']) !!}
+            {!! Form::label('is_paused', 'Is The Faucet Paused?', ['class' => 'col-lg-2 control-label'] )  !!}
             <div class="col-lg-10">
-                <div class="radio">
-                    {!! Form::label('choice_yes', 'Yes', ['class' => 'col-lg-2']) !!}
-                    {!! Form::radio('is_paused', 1, $faucet_is_paused == 1, ['id' => 'choice_yes']) !!}
-
-                </div>
-                <div class="radio">
-                    {!! Form::label('choice_no', 'No', ['class' => 'col-lg-2']) !!}
-                    {!! Form::radio('is_paused', 0, $faucet_is_paused == 0, ['id' => 'choice_no']) !!}
-                </div>
+                {!!  Form::select('is_paused', [1 => 'Yes', 0 => 'No'], null, ['class' => 'form-control' ]) !!}
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                {!! Form::submit('Update/Edit Faucet', ['class' => 'btn btn-lg btn-info pull-left'] ) !!}
+                {!! Form::submit('Update/Edit Faucet', ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
             </div>
         </div>
 
