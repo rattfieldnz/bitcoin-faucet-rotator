@@ -36,7 +36,9 @@ class FaucetsController extends Controller {
 	 */
 	public function create()
 	{
-
+        $payment_processors = PaymentProcessor::lists('name', 'id');
+        $form_heading = "Create a new faucet";
+        return view('faucets.create', compact(['payment_processors', 'form_heading']));
 	}
 
 	/**
@@ -77,14 +79,6 @@ class FaucetsController extends Controller {
         $payment_processors = PaymentProcessor::lists('name', 'id');
         $faucet_payment_processors = $faucet->payment_processors;
 
-        //Get tinyint value (a bool) indicating the faucet
-        //has a referral program.
-        $faucet_has_ref_program = (int)$faucet->has_ref_program;
-
-        //Get tinyint value (a bool) indicating the faucet
-        //is paused or not (not active or active).
-        $faucet_is_paused = (int)$faucet->is_paused;
-
         //Retrieve ids of associated payment processors,
         //and putting them into an array.
         $payment_processor_ids = array();
@@ -96,9 +90,7 @@ class FaucetsController extends Controller {
         //Return the faucets edit view, with fields pre-populated.
         return view('faucets.edit', compact(['faucet',
                                              'payment_processors',
-                                             'payment_processor_ids',
-                                             'faucet_has_ref_program',
-                                             'faucet_is_paused']));
+                                             'payment_processor_ids']));
     }
 
 	/**
