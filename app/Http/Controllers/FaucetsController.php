@@ -41,14 +41,15 @@ class FaucetsController extends Controller {
         return view('faucets.create', compact(['payment_processors', 'form_heading']));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
 	public function store()
 	{
-		//
+		//https://scotch.io/tutorials/simple-laravel-crud-with-resource-controllers
 	}
 
 	/**
