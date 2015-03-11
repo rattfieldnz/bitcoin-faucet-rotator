@@ -7,8 +7,8 @@
     @endif
     <p>{!! link_to('faucets', '&laquo; Back to list of faucets') !!}</p>
     <p>{!! link_to('payment_processors', '&laquo; Back to list of payment processors') !!}</p>
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @if (Session::has('success_message'))
+        <div class="alert alert-success">{{ Session::get('success_message') }}</div>
     @endif
 
     <div class="table-responsive">

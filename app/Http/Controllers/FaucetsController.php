@@ -3,7 +3,7 @@
 use App\Faucet;
 use App\Http\Requests;
 use App\PaymentProcessor;
-use Helpers\Transformers\FaucetTransformer;
+use Helpers\Validators\FaucetValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Validator;
 
 class FaucetsController extends Controller {
 
-    protected $faucetTransformer;
-
-    function __construct(FaucetTransformer $transformer)   {
-        $this->faucetTransformer = $transformer;
+    function __construct()   {
+        $this->middleware('auth');
+        $this->beforeFilter('auth', array('except' => array('index', 'show')));
     }
 	/**
 	 * Display a listing of the resource.
@@ -53,22 +52,7 @@ class FaucetsController extends Controller {
      */
 	public function store()
 	{
-		//https://scotch.io/tutorials/simple-laravel-crud-with-resource-controllers
-
-        $validation_rules = [
-            'name' => 'required|unique:faucets,name|min:10',
-            'url' => 'required|unique:faucets,url',
-            'interval_minutes' => 'required|integer',
-            'min_payout' => 'required|numeric',
-            'max_payout' => 'required|numeric',
-            'faucet_payment_processors[]' => 'each:exists,faucet_payment_processors, id',
-            'has_ref_program' => 'required|boolean',
-            'ref_payout_percent' => 'required|numeric|between:0,100',
-            'comments' => 'text',
-            'is_paused' => 'required|boolean'
-        ];
-
-        $validator = Validator::make(Input::all(), $validation_rules);
+		$validator = Validator::make(Input::all(), FaucetValidator::validationRulesNew());
 
         if($validator->fails()){
             return Redirect::to('faucets/create')
@@ -76,15 +60,8 @@ class FaucetsController extends Controller {
                 ->withInput(Input::all());
         } else {
             $faucet = new Faucet;
-            $faucet->name = Input::get('name');
-            $faucet->url = Input::get('url');
-            $faucet->interval_minutes = Input::get('interval_minutes');
-            $faucet->min_payout = Input::get('min_payout');
-            $faucet->max_payout = Input::get('max_payout');
-            $faucet->has_ref_program = Input::get('has_ref_program');
-            $faucet->ref_payout_percent = Input::get('ref_payout_percent');
-            $faucet->comments = Input::get('comments');
-            $faucet->is_paused = Input::get('is_paused');
+
+            $faucet->fill(Input::except('faucet_payment_processors'));
 
             $payment_processor_ids = Input::get('faucet_payment_processors');
 
@@ -100,7 +77,7 @@ class FaucetsController extends Controller {
             DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
             //Redirect to the faucet's page
-            Session::flash('message', 'The faucet has successfully been created and stored!');
+            Session::flash('success_message', 'The faucet has successfully been created and stored!');
             return Redirect::to('/faucets/' . $faucet->id);
         }
 	}
@@ -161,33 +138,43 @@ class FaucetsController extends Controller {
         //Retrieve faucet to be updated.
         $faucet = Faucet::findOrFail($id);
 
-        //Get all input from edit/update request,
-        //then populate th faucet with the given
-        //data.
-        $faucet->fill(Input::all());
+        $validator = Validator::make(Input::all(), FaucetValidator::validationRulesEdit($id));
 
-        //Retrieve payment processor ids from update.
-        $payment_processor_ids = Input::get('faucet_payment_processors');
+        if($validator->fails()){
+            return Redirect::to('faucets/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        } else {
 
-        //Below logic disables foreign key checking before
-        //updating many-to-many table (faucet_payment_processor)
-        //that ties instances of faucets to instances of payment
-        //processors. The retrieved payment processor ids are
-        //iterated through, then synced with the current faucet in
-        // the many-many table. Then foreign key checking is re-enabled.
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        $faucet->payment_processors()->detach();
-        foreach($payment_processor_ids as $payment_processor_id)
-        {
-            $faucet->payment_processors()->attach((int)$payment_processor_id);
+            //Get all input from edit/update request,
+            //then populate the faucet with the given
+            //data.
+            $faucet->fill(Input::all());
+
+            //Retrieve payment processor ids from update.
+            $payment_processor_ids = Input::get('faucet_payment_processors');
+
+            //Below logic disables foreign key checking before
+            //updating many-to-many table (faucet_payment_processor)
+            //that ties instances of faucets to instances of payment
+            //processors. The retrieved payment processor ids are
+            //iterated through, then synced with the current faucet in
+            // the many-many table. Then foreign key checking is re-enabled.
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            $faucet->payment_processors()->detach();
+            foreach ($payment_processor_ids as $payment_processor_id) {
+                $faucet->payment_processors()->attach((int)$payment_processor_id);
+            }
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+            //Save the changes made to the faucet.
+            $faucet->save();
+
+            Session::flash('success_message', 'The faucet has successfully been updated!');
+
+            //Redirect to the faucet's page
+            return Redirect::to('/faucets/' . $id);
         }
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-
-        //Save the changes made to the faucet.
-        $faucet->save();
-
-        //Redirect to the faucet's page
-        return Redirect::to('/faucets/' . $id);
 	}
 
 	/**
