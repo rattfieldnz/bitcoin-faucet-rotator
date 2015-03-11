@@ -7,6 +7,9 @@
     @endif
     <p>{!! link_to('faucets', '&laquo; Back to list of faucets') !!}</p>
     <p>{!! link_to('payment_processors', '&laquo; Back to list of payment processors') !!}</p>
+    @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
 
     <div class="table-responsive">
         <table class="table table-striped table bordered">
@@ -25,8 +28,8 @@
                 <tr>
                     <td>{!! link_to($faucet->url, $faucet->name, ['target' => 'blank']) !!}</td>
                     <td>{{ $faucet->interval_minutes }}</td>
-                    <td>{{ number_format($faucet->min_payout) }}</td>
-                    <td>{{ number_format($faucet->max_payout) }}</td>
+                    <td>{{ $faucet->min_payout }}</td>
+                    <td>{{ $faucet->max_payout }}</td>
                     <td>
                         <ul class="faucet-payment-processors">
                         @foreach($faucet->payment_processors as $payment_processor)
@@ -43,6 +46,16 @@
         </table>
     </div>
 
-    <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="{{ $faucet->url }}" id="faucet-iframe"></iframe>
+    @if($faucet->is_paused == false)
+        <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="{{ $faucet->url }}" id="faucet-iframe"></iframe>
+    @else
+        <p>This faucet has been paused from showing in rotation.</p>
+
+        @if(Auth::user())
+            <p>You can {!! link_to('/faucets/' . $faucet->id . '/edit', 'edit this faucet') !!} to re-enable it in rotation.</p>
+        @else
+            <p>Please contact the administrator if you would like this faucet re-enabled.</p>
+        @endif
+    @endif
 
 @endsection

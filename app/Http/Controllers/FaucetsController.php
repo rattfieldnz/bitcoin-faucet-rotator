@@ -5,9 +5,12 @@ use App\Http\Requests;
 use App\PaymentProcessor;
 use Helpers\Transformers\FaucetTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class FaucetsController extends Controller {
 
@@ -38,7 +41,8 @@ class FaucetsController extends Controller {
 	{
         $payment_processors = PaymentProcessor::lists('name', 'id');
         $form_heading = "Create a new faucet";
-        return view('faucets.create', compact(['payment_processors', 'form_heading']));
+        $submit_button_text = "Submit Faucet";
+        return view('faucets.create', compact(['payment_processors', 'form_heading', 'submit_button_text']));
 	}
 
     /**
@@ -50,6 +54,55 @@ class FaucetsController extends Controller {
 	public function store()
 	{
 		//https://scotch.io/tutorials/simple-laravel-crud-with-resource-controllers
+
+        $validation_rules = [
+            'name' => 'required|unique:faucets,name|min:10',
+            'url' => 'required|unique:faucets,url',
+            'interval_minutes' => 'required|integer',
+            'min_payout' => 'required|numeric',
+            'max_payout' => 'required|numeric',
+            'faucet_payment_processors[]' => 'each:exists,faucet_payment_processors, id',
+            'has_ref_program' => 'required|boolean',
+            'ref_payout_percent' => 'required|numeric|between:0,100',
+            'comments' => 'text',
+            'is_paused' => 'required|boolean'
+        ];
+
+        $validator = Validator::make(Input::all(), $validation_rules);
+
+        if($validator->fails()){
+            return Redirect::to('faucets/create')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        } else {
+            $faucet = new Faucet;
+            $faucet->name = Input::get('name');
+            $faucet->url = Input::get('url');
+            $faucet->interval_minutes = Input::get('interval_minutes');
+            $faucet->min_payout = Input::get('min_payout');
+            $faucet->max_payout = Input::get('max_payout');
+            $faucet->has_ref_program = Input::get('has_ref_program');
+            $faucet->ref_payout_percent = Input::get('ref_payout_percent');
+            $faucet->comments = Input::get('comments');
+            $faucet->is_paused = Input::get('is_paused');
+
+            $payment_processor_ids = Input::get('faucet_payment_processors');
+
+            $faucet->save();
+
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            foreach ($payment_processor_ids as $payment_processor_id) {
+                $faucet->payment_processors()->attach((int)$payment_processor_id);
+            }
+
+            $faucet->users()->attach(Auth::user()->id);
+
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+            //Redirect to the faucet's page
+            Session::flash('message', 'The faucet has successfully been created and stored!');
+            return Redirect::to('/faucets/' . $faucet->id);
+        }
 	}
 
 	/**
@@ -88,10 +141,13 @@ class FaucetsController extends Controller {
             array_push($payment_processor_ids, (int)$payment_processor->id);
         }
 
+        $submit_button_text = "Submit Changes";
+
         //Return the faucets edit view, with fields pre-populated.
         return view('faucets.edit', compact(['faucet',
                                              'payment_processors',
-                                             'payment_processor_ids']));
+                                             'payment_processor_ids',
+                                             'submit_button_text']));
     }
 
 	/**

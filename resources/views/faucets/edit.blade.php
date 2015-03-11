@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-    {{ $submit_button_text = "Submit Changes" }}
     <fieldset>
         <legend>
             <h1 class="page-heading">Edit '{{ $faucet->name }}'</h1>
