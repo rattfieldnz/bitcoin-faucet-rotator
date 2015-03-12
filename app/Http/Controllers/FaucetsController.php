@@ -52,31 +52,46 @@ class FaucetsController extends Controller {
      */
 	public function store()
 	{
+        //Create the validator to process input for validation.
 		$validator = Validator::make(Input::all(), FaucetValidator::validationRulesNew());
 
+        //If validator fails, return to the create page -
+        //with input still in form, and accompanied with
+        //the relevant errors.
         if($validator->fails()){
             return Redirect::to('faucets/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {
+
+            //Declare and instantiate a new faucet.
             $faucet = new Faucet;
 
+            //Assign input from the form to the faucet's properties -
+            //except payment processors as this needs to be done separately.
             $faucet->fill(Input::except('faucet_payment_processors'));
 
+            //Retrieve payment processor ids from multi-select dropdown
             $payment_processor_ids = Input::get('faucet_payment_processors');
 
+            //Save the faucet, with the filled-in data.
             $faucet->save();
 
+            //Now we have saved a faucet, we can begin inserting associated
+            //payment processors from input - in a many-many relationship.
             DB::statement('SET FOREIGN_KEY_CHECKS = 0');
             foreach ($payment_processor_ids as $payment_processor_id) {
                 $faucet->payment_processors()->attach((int)$payment_processor_id);
             }
 
+            //Associated the currently logged in user with the new faucet.
             $faucet->users()->attach(Auth::user()->id);
 
+            // Re-enable foreign key checks after inserting
+            //many-many records.
             DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
-            //Redirect to the faucet's page
+            //Redirect to the faucet's page, with a success message.
             Session::flash('success_message', 'The faucet has successfully been created and stored!');
             return Redirect::to('/faucets/' . $faucet->id);
         }
@@ -90,8 +105,11 @@ class FaucetsController extends Controller {
 	 */
 	public function show($id)
 	{
+        //Retrieve faucet by given id.
         $faucet = Faucet::findOrFail($id);
 
+        //Return the view which shows faucet details,
+        //with the retrieved faucet bring passe in the view.
         return view('faucets.show', compact('faucet'));
 	}
 
@@ -138,8 +156,14 @@ class FaucetsController extends Controller {
         //Retrieve faucet to be updated.
         $faucet = Faucet::findOrFail($id);
 
+        //Pass input into the validator -
+        //with current faucet id, so
+        //'not unique' errors won't be displayed
+        //when updating.
         $validator = Validator::make(Input::all(), FaucetValidator::validationRulesEdit($id));
 
+        //If validation fails, redirect back to the
+        //editing page - with input and relevant errors.
         if($validator->fails()){
             return Redirect::to('faucets/' . $id . '/edit')
                 ->withErrors($validator)

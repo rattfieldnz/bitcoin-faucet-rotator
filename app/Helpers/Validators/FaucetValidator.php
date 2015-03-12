@@ -12,8 +12,19 @@ namespace Helpers\Validators;
 use App\Faucet;
 use Illuminate\Validation\Validator;
 
+/**
+ * Class FaucetValidator
+ *
+ * This class is used to validate faucet
+ * entries and updates.
+ * @package Helpers\Validators
+ */
 class FaucetValidator extends Validator{
 
+    /**
+     * Validates new faucet entries.
+     * @return array
+     */
     public static function validationRulesNew()
     {
         return [
@@ -30,6 +41,15 @@ class FaucetValidator extends Validator{
         ];
     }
 
+    /**
+     * Validates updates to a faucet.
+     * I.D is used so unchanged unique attributes can
+     * still be submitted without any duplication
+     * errors.
+     *
+     * @param $faucet_id
+     * @return array
+     */
     public static function validationRulesEdit($faucet_id)
     {
         return [
