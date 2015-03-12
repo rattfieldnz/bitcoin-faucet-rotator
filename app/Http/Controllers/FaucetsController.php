@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class FaucetsController extends Controller {
 
     function __construct()   {
-        $this->middleware('auth');
-        $this->beforeFilter('auth', array('except' => array('index', 'show')));
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 	/**
 	 * Display a listing of the resource.
