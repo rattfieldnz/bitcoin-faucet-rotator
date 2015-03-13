@@ -983,16 +983,16 @@
         },
         {
             "name": "jeremeamia/SuperClosure",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeremeamia/super_closure.git",
-                "reference": "ac4394c7e21777ac48543190fb0872b2fc7f17af"
+                "reference": "b712f39c671e5ead60c7ebfe662545456aade833"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/ac4394c7e21777ac48543190fb0872b2fc7f17af",
-                "reference": "ac4394c7e21777ac48543190fb0872b2fc7f17af",
+                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/b712f39c671e5ead60c7ebfe662545456aade833",
+                "reference": "b712f39c671e5ead60c7ebfe662545456aade833",
                 "shasum": ""
             },
             "require": {
@@ -1006,7 +1006,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -1037,20 +1037,20 @@
                 "serialize",
                 "tokenizer"
             ],
-            "time": "2015-01-26 23:07:39"
+            "time": "2015-03-11 20:06:43"
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.14",
+            "version": "v5.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f61e0098151c73db9068a6be6d86bfc60b01de25"
+                "reference": "ec3a166c504acedffd8ed878b08481f9cb1497fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f61e0098151c73db9068a6be6d86bfc60b01de25",
-                "reference": "f61e0098151c73db9068a6be6d86bfc60b01de25",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ec3a166c504acedffd8ed878b08481f9cb1497fb",
+                "reference": "ec3a166c504acedffd8ed878b08481f9cb1497fb",
                 "shasum": ""
             },
             "require": {
@@ -1158,11 +1158,12 @@
                 }
             ],
             "description": "The Laravel Framework.",
+            "homepage": "http://laravel.com",
             "keywords": [
                 "framework",
                 "laravel"
             ],
-            "time": "2015-03-07 03:18:10"
+            "time": "2015-03-12 14:09:40"
         },
         {
             "name": "laravelcollective/html",

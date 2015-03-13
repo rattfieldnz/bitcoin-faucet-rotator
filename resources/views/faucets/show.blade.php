@@ -3,7 +3,44 @@
 @section('content')
     <h1 class="page-heading">{{ $faucet->name }}</h1>
     @if (Auth::user())
-        <p>{!! link_to_route('faucets.edit', 'Edit this faucet', $faucet->id) !!}</p><br>
+        <script>
+            window.csrfToken = '<?php echo csrf_token(); ?>';
+        </script>
+        <p>{!! link_to_route('faucets.edit', 'Edit this faucet', $faucet->id, ['class' => 'btn btn-primary btn-width']) !!}</p>
+        <p><button class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet" data-id="{{ $faucet->id }}">Delete this faucet</button></p><br>
+
+        <!-- Modal -->
+        <div class="modal fade" id="delFaucet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel"><span class="ui-icon ui-icon-alert">     </span> <p id="id"></p> ARE YOU SURE you want to delete {!! link_to($faucet->url, $faucet->name, ['target' => '_blank']) !!} ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        If you delete this faucet, it will be permanently removed from the system!
+                    </div>
+                    <div class="modal-footer">
+                        <div id="delmodelcontainer" style="float:right">
+
+                            <div id="yes" style="float:left; padding-right:10px">
+                                {!! Form::open(array('action' => array('FaucetsController@destroy', $faucet->id), 'method' => 'DELETE')) !!}
+
+                                {!! Form::submit('Yes', array('class' => 'btn btn-primary')) !!}
+
+                                {!! Form::close() !!}
+                            </div> <!-- end yes -->
+
+                            <div id="no" style="float:left;">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                            </div><!-- end no -->
+
+                        </div> <!-- end delmodelcontainer -->
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     @endif
     <p>{!! link_to('faucets', '&laquo; Back to list of faucets') !!}</p>
     <p>{!! link_to('payment_processors', '&laquo; Back to list of payment processors') !!}</p>

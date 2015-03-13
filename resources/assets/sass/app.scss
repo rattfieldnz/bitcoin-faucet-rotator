@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 * {
   margin: 0;
@@ -28,6 +29,9 @@ body, label, .checkbox label {
   border: 2px solid #ddd;
 }
 
+.btn-width{
+  min-width:10em;
+}
 
 .faucet-payment-processors{
   margin-left: -2em;
@@ -65,10 +69,10 @@ body, label, .checkbox label {
       height: 4em !important;
       padding-bottom: 1.25em !important;
       .headerSortDown {
-        background-image: url('/table_sorter_themes/blue/desc.gif');
+        background-image: url('../table_sorter_themes/blue/desc.gif');
       }
       .headerSortUp {
-        background-image: url('/table_sorter_themes/blue/asc.gif');
+        background-image: url('../table_sorter_themes/blue/asc.gif');
       }
     }
   }

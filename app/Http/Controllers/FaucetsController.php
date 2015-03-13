@@ -208,7 +208,16 @@ class FaucetsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$faucet = Faucet::findOrFail($id);
+        $faucet_name = $faucet->name;
+        $faucet_url = $faucet->url;
+        $faucet->payment_processors()->detach();
+        $faucet->users()->detach();
+        $faucet->delete();
+
+        Session::flash('success_message', 'The faucet"' .  $faucet_name . '" with URL "' . $faucet_url . '" has successfully been deleted!');
+
+        return Redirect::to('/faucets/');
 	}
 
 }

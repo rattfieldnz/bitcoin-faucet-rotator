@@ -7,7 +7,7 @@
 	<title>Bitcoin Faucet Rotator</title>
 
     <link rel="stylesheet" href="/bower_components/jquery-ui/themes/dark-hive/jquery-ui.min.css">
-	<link href="/css/app.css" rel="stylesheet">
+	<link href="/css/master-final.min.css" rel="stylesheet">
     <link href="/table_sorter_themes/blue/style.css" rel="stylesheet">
     <!-- Scripts -->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>

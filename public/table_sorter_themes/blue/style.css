@@ -6,7 +6,7 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	padding: 4px;
 }
 table.tablesorter thead tr .header {
-	background-image: url('/table_sorter_themes/blue/bg.gif');
+	background-image: url('bg.gif');
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
