@@ -2,7 +2,12 @@
 
 @section('content')
     <h1 class="page-heading">Current Faucets</h1>
-    {!! $faucets->render() !!}
+    @if (Session::has('success_message_delete'))
+        <div class="alert alert-success">
+            <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
+            {{ Session::get('success_message_delete') }}
+        </div>
+    @endif
     <div class="table-responsive">
         <table class="table table-striped bordered tablesorter" id="faucets_table">
             <thead>
@@ -36,7 +41,6 @@
             @endforeach
             </tbody>
         </table>
-        {!! $faucets->render() !!}
     </div>
 
     <script src="/js/jquery.tablesorter.min.js"></script>

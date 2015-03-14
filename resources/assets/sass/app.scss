@@ -30,7 +30,7 @@ body, label, .checkbox label {
 }
 
 .btn-width{
-  min-width:10em;
+  width:14em;
 }
 
 .faucet-payment-processors{
@@ -45,6 +45,14 @@ body, label, .checkbox label {
 .table-responsive
 {
   overflow-x: auto;
+}
+
+.space-right{
+  margin-right: 0.5em;
+}
+
+.button-font-size{
+  font-size:1.3em;
 }
 
 /* Set the fixed height of the footer here */

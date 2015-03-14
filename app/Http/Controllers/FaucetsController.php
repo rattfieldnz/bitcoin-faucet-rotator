@@ -215,7 +215,7 @@ class FaucetsController extends Controller {
         $faucet->users()->detach();
         $faucet->delete();
 
-        Session::flash('success_message', 'The faucet"' .  $faucet_name . '" with URL "' . $faucet_url . '" has successfully been deleted!');
+        Session::flash('success_message_delete', 'The faucet "' .  $faucet_name . '" with URL "' . $faucet_url . '" has successfully been deleted!');
 
         return Redirect::to('/faucets/');
 	}

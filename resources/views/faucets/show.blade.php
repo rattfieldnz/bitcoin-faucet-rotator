@@ -6,8 +6,15 @@
         <script>
             window.csrfToken = '<?php echo csrf_token(); ?>';
         </script>
-        <p>{!! link_to_route('faucets.edit', 'Edit this faucet', $faucet->id, ['class' => 'btn btn-primary btn-width']) !!}</p>
-        <p><button class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet" data-id="{{ $faucet->id }}">Delete this faucet</button></p><br>
+        <p>
+            <a class="btn btn-primary btn-width" href="/faucets/{{ $faucet->id}}/edit/">
+                <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit this faucet</span>
+            </a>
+            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet" data-id="{{ $faucet->id }}">
+                <span class="fa fa-trash fa-1x space-right"></span>
+                <span class="button-font-size">Delete this faucet</span>
+            </a>
+        </p>
 
         <!-- Modal -->
         <div class="modal fade" id="delFaucet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -15,7 +22,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel"><span class="ui-icon ui-icon-alert">     </span> <p id="id"></p> ARE YOU SURE you want to delete {!! link_to($faucet->url, $faucet->name, ['target' => '_blank']) !!} ?</h4>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="fa fa-warning fa-3x"></span>
+                            <span id="id"></span>
+                            <span style="padding-left: 2em;">
+                                ARE YOU SURE you want to delete {!! link_to($faucet->url, $faucet->name, ['target' => '_blank']) !!} ?
+                            </span>
+                        </h4>
                     </div>
                     <div class="modal-body">
                         If you delete this faucet, it will be permanently removed from the system!
@@ -45,7 +58,10 @@
     <p>{!! link_to('faucets', '&laquo; Back to list of faucets') !!}</p>
     <p>{!! link_to('payment_processors', '&laquo; Back to list of payment processors') !!}</p>
     @if (Session::has('success_message'))
-        <div class="alert alert-success">{{ Session::get('success_message') }}</div>
+        <div class="alert alert-success">
+            <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
+            {{ Session::get('success_message') }}
+        </div>
     @endif
 
     <div class="table-responsive">
