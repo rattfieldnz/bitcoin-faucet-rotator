@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\PaymentProcessor;
 use Helpers\Transformers\PaymentProcessorTransformer;
 use Helpers\Validators\PaymentProcessorValidator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -78,9 +79,15 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function show($id)
 	{
-        $payment_processor = PaymentProcessor::findOrFail($id);
+        try {
+            $payment_processor = PaymentProcessor::findOrFail($id);
 
-        return view('payment_processors.show', compact('payment_processor'));
+            return view('payment_processors.show', compact('payment_processor'));
+        }
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
 	}
 
 	/**
@@ -91,12 +98,18 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$payment_processor = PaymentProcessor::findOrFail($id);
+        try {
+            $payment_processor = PaymentProcessor::findOrFail($id);
 
-        $submit_button_text = "Submit Changes";
+            $submit_button_text = "Submit Changes";
 
-        //Return the faucets edit view, with fields pre-populated.
-        return view('payment_processors.edit', compact(['payment_processor', 'submit_button_text']));
+            //Return the faucets edit view, with fields pre-populated.
+            return view('payment_processors.edit', compact(['payment_processor', 'submit_button_text']));
+        }
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
 	}
 
 	/**
@@ -135,7 +148,24 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        try {
+            $payment_processor = PaymentProcessor::findOrFail($id);
+
+            $payment_processor_name = $payment_processor->name;
+            $payment_processor_url = $payment_processor->url;
+
+            $payment_processor->faucets()->detach();
+            $payment_processor->delete();
+
+            Session::flash('success_message_delete', 'The payment processor "' . $payment_processor_name . '" with URL "' . $payment_processor_url . '" has successfully been deleted!');
+            Session::flash('success_message_alert', 'Any faucets associated with the deleted payment processor will need to have another payment processor/s added to it.');
+            return Redirect::to('/payment_processors/');
+        }
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
+
 	}
 
 }

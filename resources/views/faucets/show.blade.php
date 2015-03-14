@@ -8,11 +8,11 @@
         </script>
         <p>
             <a class="btn btn-primary btn-width" href="/faucets/{{ $faucet->id}}/edit/">
-                <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit this faucet</span>
+                <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit</span>
             </a>
             <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet" data-id="{{ $faucet->id }}">
                 <span class="fa fa-trash fa-1x space-right"></span>
-                <span class="button-font-size">Delete this faucet</span>
+                <span class="button-font-size">Delete</span>
             </a>
         </p>
 
@@ -84,11 +84,15 @@
                     <td>{{ $faucet->min_payout }}</td>
                     <td>{{ $faucet->max_payout }}</td>
                     <td>
-                        <ul class="faucet-payment-processors">
-                        @foreach($faucet->payment_processors as $payment_processor)
-                            <li>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank']) !!}</li>
-                        @endforeach
-                        </ul>
+                        @if(count($faucet->payment_processors) == 0)
+                            None. Please add one (or more) for this faucet
+                        @else
+                            <ul class="faucet-payment-processors">
+                            @foreach($faucet->payment_processors as $payment_processor)
+                                <li>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank']) !!}</li>
+                            @endforeach
+                            </ul>
+                        @endif
                     </td>
                     <td>{{ $faucet->hasRefProgram() }}</td>
                     <td>{{ $faucet->ref_payout_percent }}</td>

@@ -3,6 +3,20 @@
 @section('content')
     <h1 class="page-heading">Current Payment Processors</h1>
 
+    @if (Session::has('success_message_delete'))
+        <div class="alert alert-success">
+            <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
+            {{ Session::get('success_message_delete') }}
+        </div>
+    @endif
+
+    @if (Session::has('success_message_alert'))
+        <div class="alert alert-info">
+            <span class="fa fa-warning fa-2x space-right"></span>
+            {{ Session::get('success_message_alert') }}
+        </div>
+    @endif
+
     <div class="table-responsive">
 
         <table class="table table-striped bordered tablesorter" id="payment_processors_table">

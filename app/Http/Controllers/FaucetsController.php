@@ -127,28 +127,33 @@ class FaucetsController extends Controller {
 	 */
 	public function edit($id)
 	{
-        //Grab the faucet to edit
-        $faucet = Faucet::findOrFail($id);
+        try {
+            //Grab the faucet to edit
+            $faucet = Faucet::findOrFail($id);
 
-        //Obtain payment processors associated with the faucet.
-        $payment_processors = PaymentProcessor::lists('name', 'id');
-        $faucet_payment_processors = $faucet->payment_processors;
+            //Obtain payment processors associated with the faucet.
+            $payment_processors = PaymentProcessor::lists('name', 'id');
+            $faucet_payment_processors = $faucet->payment_processors;
 
-        //Retrieve ids of associated payment processors,
-        //and putting them into an array.
-        $payment_processor_ids = array();
-        foreach($faucet_payment_processors as $payment_processor)
-        {
-            array_push($payment_processor_ids, (int)$payment_processor->id);
+            //Retrieve ids of associated payment processors,
+            //and putting them into an array.
+            $payment_processor_ids = array();
+            foreach ($faucet_payment_processors as $payment_processor) {
+                array_push($payment_processor_ids, (int)$payment_processor->id);
+            }
+
+            $submit_button_text = "Submit Changes";
+
+            //Return the faucets edit view, with fields pre-populated.
+            return view('faucets.edit', compact(['faucet',
+                'payment_processors',
+                'payment_processor_ids',
+                'submit_button_text']));
         }
-
-        $submit_button_text = "Submit Changes";
-
-        //Return the faucets edit view, with fields pre-populated.
-        return view('faucets.edit', compact(['faucet',
-                                             'payment_processors',
-                                             'payment_processor_ids',
-                                             'submit_button_text']));
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
     }
 
 	/**
