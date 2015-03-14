@@ -5,16 +5,18 @@ use App\Http\Controllers\Controller;
 
 use App\PaymentProcessor;
 use Helpers\Transformers\PaymentProcessorTransformer;
+use Helpers\Validators\PaymentProcessorValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentProcessorsController extends Controller {
 
-    protected $paymentProcessorTransformer;
-
-    function __construct(PaymentProcessorTransformer $transformer)
+    function __construct()
     {
-        $this->paymentProcessorTransformer = $transformer;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 	/**
 	 * Display a listing of the resource.
@@ -36,7 +38,9 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $form_heading = "Add a new payment processor";
+        $submit_button_text = "Submit Payment Processor";
+        return view('payment_processors.create', compact(['form_heading', 'submit_button_text']));
 	}
 
 	/**
@@ -46,7 +50,24 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesNew());
+
+        if($validator->fails()){
+            return Redirect::to('payment_processors/create')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+        else{
+
+            $payment_processor = new PaymentProcessor;
+
+            $payment_processor->fill(Input::all());
+
+            $payment_processor->save();
+
+            Session::flash('success_message', 'The payment processor has successfully been created and stored!');
+            return Redirect::to('/payment_processors/' . $payment_processor->id);
+        }
 	}
 
 	/**
@@ -70,7 +91,12 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$payment_processor = PaymentProcessor::findOrFail($id);
+
+        $submit_button_text = "Submit Changes";
+
+        //Return the faucets edit view, with fields pre-populated.
+        return view('payment_processors.edit', compact(['payment_processor', 'submit_button_text']));
 	}
 
 	/**
@@ -81,7 +107,24 @@ class PaymentProcessorsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$payment_processor = PaymentProcessor::findOrFail($id);
+
+        $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesEdit($id));
+
+        if($validator->fails()){
+            return Redirect::to('/payment_processors/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+        else{
+            $payment_processor->fill(Input::all());
+
+            $payment_processor->save();
+
+            Session::flash('success_message', 'The payment processor has successfully been updated!');
+
+            return Redirect::to('/payment_processors/' . $id);
+        }
 	}
 
 	/**
@@ -94,19 +137,5 @@ class PaymentProcessorsController extends Controller {
 	{
 		//
 	}
-
-    private function transformCollection($payment_processors)
-    {
-        return array_map([$this, 'transform'], $payment_processors->toArray());
-    }
-
-    private function transform($payment_processor)
-    {
-        return [
-            'id' => (int)$payment_processor['id'],
-            'name' => $payment_processor['name'],
-            'url' => $payment_processor['url']
-        ];
-    }
 
 }

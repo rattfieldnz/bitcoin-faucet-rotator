@@ -11,6 +11,8 @@ class PaymentProcessor extends Model {
      */
     protected $table = 'payment_processors';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *

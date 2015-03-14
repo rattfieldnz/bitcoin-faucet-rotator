@@ -17,6 +17,7 @@
                 <li><a href="/payment_processors">Payment Processors</a></li>
                 @if (Auth::user())
                     <li><a href="/faucets/create">New Faucet</a></li>
+                    <li><a href="/payment_processors/create">New Payment Processor</a></li>
                 @endif
             </ul>
 

@@ -5,7 +5,6 @@
 
     <div class="table-responsive">
 
-        {!! $payment_processors->render() !!}
         <table class="table table-striped bordered tablesorter" id="payment_processors_table">
             <thead>
             <th>Payment Processor Name</th>
@@ -18,7 +17,7 @@
             @endforeach
             </tbody>
         </table>
-        {!! $payment_processors->render() !!}
+
     </div>
     <script src="/js/accordion.js"></script>
     <script src="/js/jquery.tablesorter.min.js"></script>

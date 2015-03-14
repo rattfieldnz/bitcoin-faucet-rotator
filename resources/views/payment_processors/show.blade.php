@@ -4,6 +4,14 @@
     <h1 class="page-heading">{{ $payment_processor->name }}</h1>
     <p>{!! link_to('faucets', '&laquo; Back to list of faucets') !!}</p>
     <p>{!! link_to('payment_processors', '&laquo; Back to list of payment processors') !!}</p>
+
+    @if (Session::has('success_message'))
+        <div class="alert alert-success">
+            <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
+            {{ Session::get('success_message') }}
+        </div>
+    @endif
+
     <div class="table-responsive">
         <table class="table table-striped table bordered">
             <thead>
