@@ -4,6 +4,7 @@ use App\Faucet;
 use App\Http\Requests;
 use App\PaymentProcessor;
 use Helpers\Validators\FaucetValidator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -104,12 +105,18 @@ class FaucetsController extends Controller {
 	 */
 	public function show($id)
 	{
-        //Retrieve faucet by given id.
-        $faucet = Faucet::findOrFail($id);
+        try {
+            //Retrieve faucet by given id.
+            $faucet = Faucet::findOrFail($id);
 
-        //Return the view which shows faucet details,
-        //with the retrieved faucet bring passe in the view.
-        return view('faucets.show', compact('faucet'));
+            //Return the view which shows faucet details,
+            //with the retrieved faucet bring passe in the view.
+            return view('faucets.show', compact('faucet'));
+        }
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
 	}
 
 	/**
@@ -208,16 +215,22 @@ class FaucetsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$faucet = Faucet::findOrFail($id);
-        $faucet_name = $faucet->name;
-        $faucet_url = $faucet->url;
-        $faucet->payment_processors()->detach();
-        $faucet->users()->detach();
-        $faucet->delete();
+        try {
+            $faucet = Faucet::findOrFail($id);
+            $faucet_name = $faucet->name;
+            $faucet_url = $faucet->url;
+            $faucet->payment_processors()->detach();
+            $faucet->users()->detach();
+            $faucet->delete();
 
-        Session::flash('success_message_delete', 'The faucet "' .  $faucet_name . '" with URL "' . $faucet_url . '" has successfully been deleted!');
+            Session::flash('success_message_delete', 'The faucet "' . $faucet_name . '" with URL "' . $faucet_url . '" has successfully been deleted!');
 
-        return Redirect::to('/faucets/');
+            return Redirect::to('/faucets/');
+        }
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
 	}
 
 }
