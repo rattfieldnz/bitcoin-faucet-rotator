@@ -29,7 +29,7 @@ class PaymentProcessorValidator extends Validator{
     {
         return [
             'name' => 'required|unique:faucets,name|min:3',
-            'url' => 'required|unique:faucets,url',
+            'url' => 'required|url|active_url|unique:faucets,url',
         ];
     }
 
@@ -46,7 +46,7 @@ class PaymentProcessorValidator extends Validator{
     {
         return [
             'name' => 'required|unique:faucets,name, ' . $payment_processor_id . '|min:3',
-            'url' => 'required|unique:faucets,url, ' . $payment_processor_id
+            'url' => 'required|url|active_url|unique:faucets,url, ' . $payment_processor_id
         ];
     }
 }

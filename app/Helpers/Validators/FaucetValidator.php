@@ -29,7 +29,7 @@ class FaucetValidator extends Validator{
     {
         return [
             'name' => 'required|unique:faucets,name|min:5',
-            'url' => 'required|unique:faucets,url',
+            'url' => 'required|url|active_url|unique:faucets,url',
             'interval_minutes' => 'required|integer',
             'min_payout' => 'required|numeric',
             'max_payout' => 'required|numeric',
@@ -54,7 +54,7 @@ class FaucetValidator extends Validator{
     {
         return [
                 'name' => 'required|unique:faucets,name, ' . $faucet_id . '|min:5',
-                'url' => 'required|unique:faucets,url, ' . $faucet_id,
+                'url' => 'required|url|active_url|unique:faucets,url, ' . $faucet_id,
                 'interval_minutes' => 'required|integer',
                 'min_payout' => 'required|numeric',
                 'max_payout' => 'required|numeric',
