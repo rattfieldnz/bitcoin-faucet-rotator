@@ -13,11 +13,27 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="/faucets">Faucets</a></li>
-                <li><a href="/payment_processors">Payment Processors</a></li>
                 @if (Auth::user())
-                    <li><a href="/faucets/create">New Faucet</a></li>
-                    <li><a href="/payment_processors/create">New Payment Processor</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Faucets <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/faucets">View Faucets</a></li>
+                            <li><a href="/faucets/create">Add New Faucet</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li><a href="/faucets">Faucets</a></li>
+                @endif
+                @if (Auth::user())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Payment Processors<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/payment_processors">View Payment Processors</a></li>
+                            <li><a href="/payment_processors/create">Add New Payment Processor</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li><a href="/payment_processors">Faucets</a></li>
                 @endif
             </ul>
 
