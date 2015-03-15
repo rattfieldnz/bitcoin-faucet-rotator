@@ -1,0 +1,45 @@
+[2015-03-15 21:34:16] production.ERROR: exception 'Exception' with message 'Serialization of 'Closure' is not allowed' in /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php:95
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(95): serialize(Object(Illuminate\Routing\RouteCollection))
+#1 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(65): Illuminate\Foundation\Console\RouteCacheCommand->buildRouteCacheFile(Object(Illuminate\Routing\RouteCollection))
+#2 [internal function]: Illuminate\Foundation\Console\RouteCacheCommand->fire()
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Container/Container.php(523): call_user_func_array(Array, Array)
+#4 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#5 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(253): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteCacheCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(90): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 {main}  
+[2015-03-15 21:34:24] production.ERROR: exception 'Exception' with message 'Serialization of 'Closure' is not allowed' in /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php:95
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(95): serialize(Object(Illuminate\Routing\RouteCollection))
+#1 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(65): Illuminate\Foundation\Console\RouteCacheCommand->buildRouteCacheFile(Object(Illuminate\Routing\RouteCollection))
+#2 [internal function]: Illuminate\Foundation\Console\RouteCacheCommand->fire()
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Container/Container.php(523): call_user_func_array(Array, Array)
+#4 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#5 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(253): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteCacheCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(90): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 {main}  
+[2015-03-15 21:37:39] production.ERROR: exception 'Exception' with message 'Serialization of 'Closure' is not allowed' in /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php:95
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(95): serialize(Object(Illuminate\Routing\RouteCollection))
+#1 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(65): Illuminate\Foundation\Console\RouteCacheCommand->buildRouteCacheFile(Object(Illuminate\Routing\RouteCollection))
+#2 [internal function]: Illuminate\Foundation\Console\RouteCacheCommand->fire()
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Container/Container.php(523): call_user_func_array(Array, Array)
+#4 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#5 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(253): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteCacheCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(90): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 {main}  
