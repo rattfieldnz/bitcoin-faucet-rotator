@@ -3,6 +3,7 @@
 use App\Faucet;
 use App\Http\Requests;
 use App\PaymentProcessor;
+use App\User;
 use Helpers\Validators\FaucetValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -25,9 +26,15 @@ class FaucetsController extends Controller {
 	 */
 	public function index()
 	{
-        $count_faucets = count(Faucet::all());
-		$faucets = Faucet::paginate($count_faucets);
+        if(Auth::user())
+        {
+            $faucets_user_id = Auth::user()->id;
+        }
+        else {
+            $faucets_user_id = (int)User::where('is_admin', '=', true)->firstOrFail()->id;
+        }
 
+        $faucets = User::find($faucets_user_id)->faucets;
         return view('faucets.index', compact('faucets'));
 	}
 

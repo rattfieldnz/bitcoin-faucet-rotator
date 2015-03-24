@@ -1,19 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 use App\User;
-use Helpers\Transformers\UserTransformer;
-use Illuminate\Http\Request;
 
 class UsersController extends Controller {
 
-    protected $userTransformer;
-
-    function __construct(UserTransformer $transformer)
+    function __construct()
     {
-        $this->userTransformer = $transformer;
+
     }
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +19,7 @@ class UsersController extends Controller {
 	{
 		$users = User::all();
 
-        return $this->userTransformer->transformCollection($users->all());
+        return view('users.index', compact('users'));
 	}
 
 	/**

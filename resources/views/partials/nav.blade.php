@@ -33,7 +33,7 @@
                         </ul>
                     </li>
                 @else
-                    <li><a href="/payment_processors">Faucets</a></li>
+                    <li><a href="/payment_processors">Payment Processors</a></li>
                 @endif
             </ul>
 

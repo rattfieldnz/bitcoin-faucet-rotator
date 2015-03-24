@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'FaucetsController@index');
 Route::resource('faucets', 'FaucetsController');
 Route::resource('users', 'UsersController');

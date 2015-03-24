@@ -46,14 +46,14 @@ class Handler extends ExceptionHandler {
 
         if($e instanceOf ModelNotFoundException)
         {
-            Log::useFiles(storage_path('/logs/laravel.log'));
+            Log::useFiles(storage_path() . '/logs/laravel.log');
             $view_log->addInfo('A 404 error (ModelNotFoundException) has been encountered, details are as follows:\n\n' . $e->getMessage());
             Log::error('A 404 error (ModelNotFoundException) has been encountered, details are as follows:\n\n' . $e->getMessage());
             abort(404);
         }
         if($e instanceof ErrorException)
         {
-            Log::useFiles(storage_path('/logs/laravel.log'));
+            Log::useFiles(storage_path() . '/logs/laravel.log');
             $view_log->addInfo('A 500 error (ErrorException) has been encountered, details are as follows:\n\n' . $e->getMessage());
             Log::error('A 500 error (ErrorException) has been encountered, details are as follows:\n\n' . $e->getMessage());
 

@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function faucets()
     {
-        $this->belongsToMany('App\Faucet', 'referral_info');
+        return $this->belongsToMany('App\Faucet', 'referral_info');
     }
 
 }
