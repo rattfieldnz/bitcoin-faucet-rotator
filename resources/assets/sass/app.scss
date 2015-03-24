@@ -55,6 +55,10 @@ body, label, .checkbox label {
   font-size:1.3em;
 }
 
+.admin-details{
+  width:40%;
+}
+
 /* Set the fixed height of the footer here */
 .footer {
   position: absolute;
@@ -69,7 +73,7 @@ body, label, .checkbox label {
   }
 }
 
-#faucets_table, #payment_processors_table, #users_table
+#faucets_table, #payment_processors_table
 {
   thead {
     border:1px solid #ddd;

@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FaucetsController@index');
 Route::resource('faucets', 'FaucetsController');
-Route::resource('users', 'UsersController');
+Route::get('admin/admin', 'AdminController@index');
+Route::get('admin/overview', 'AdminController@overview');
 Route::resource('payment_processors', 'PaymentProcessorsController');
 
 Route::get('payment_processors', 'PaymentProcessorsController@index');

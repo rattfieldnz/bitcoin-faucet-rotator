@@ -6579,6 +6579,9 @@ body, label, .checkbox label {
 .button-font-size {
   font-size: 1.3em; }
 
+.admin-details {
+  width: 40%; }
+
 /* Set the fixed height of the footer here */
 .footer {
   position: absolute;
@@ -6591,14 +6594,14 @@ body, label, .checkbox label {
     padding: 1em 1em 0em 1em;
     margin-top: 0em; }
 
-#faucets_table thead, #payment_processors_table thead, #users_table thead {
+#faucets_table thead, #payment_processors_table thead {
   border: 1px solid #ddd; }
-  #faucets_table thead th, #payment_processors_table thead th, #users_table thead th {
+  #faucets_table thead th, #payment_processors_table thead th {
     height: 4em !important;
     padding-bottom: 1.25em !important; }
-    #faucets_table thead th .headerSortDown, #payment_processors_table thead th .headerSortDown, #users_table thead th .headerSortDown {
+    #faucets_table thead th .headerSortDown, #payment_processors_table thead th .headerSortDown {
       background-image: url('../table_sorter_themes/blue/desc.gif'); }
-    #faucets_table thead th .headerSortUp, #payment_processors_table thead th .headerSortUp, #users_table thead th .headerSortUp {
+    #faucets_table thead th .headerSortUp, #payment_processors_table thead th .headerSortUp {
       background-image: url('../table_sorter_themes/blue/asc.gif'); }
 
 
