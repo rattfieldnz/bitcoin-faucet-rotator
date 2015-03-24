@@ -228,7 +228,7 @@ class FaucetsController extends Controller {
 	public function destroy($id)
 	{
         try {
-            $faucet = Faucet::findOrFail($id);
+            $faucet = User::find(Auth::user()->id)->faucets->find($id);
             $faucet_name = $faucet->name;
             $faucet_url = $faucet->url;
             $faucet->payment_processors()->detach();
