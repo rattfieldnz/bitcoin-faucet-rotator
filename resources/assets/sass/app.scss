@@ -23,14 +23,32 @@ body, label, .checkbox label {
   margin-top:3em;
 }
 
-#faucet-iframe{
+#faucet-iframe, #rotator-iframe{
   width:100%;
   height:50em;
   border: 2px solid #ddd;
 }
 
+#nav_buttons
+{
+  width:inherit;
+  text-align:center;
+  margin-left:-1em;
+  margin-top:0.5em;
+
+  .horizontal_list {
+    li {
+      display: inline;
+    }
+  }
+}
+
 .btn-width{
   width:7em;
+}
+
+.btn-width-small{
+  width:5em;
 }
 
 .faucet-payment-processors{
@@ -53,6 +71,10 @@ body, label, .checkbox label {
 
 .button-font-size{
   font-size:1.3em;
+}
+
+.button-font-small{
+  font-size:1em;
 }
 
 .admin-details{

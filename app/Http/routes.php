@@ -13,6 +13,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::group(['prefix' => 'api/v1'], function()
+{
+    Route::get('faucets', 'ApiController@faucets');
+    Route::get('faucets/{id}', 'ApiController@faucet');
+});
+
+Route::get('rotator', 'RotatorController@index');
 Route::get('/', 'FaucetsController@index');
 Route::resource('faucets', 'FaucetsController');
 Route::get('admin/admin', 'AdminController@index');

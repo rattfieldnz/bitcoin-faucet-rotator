@@ -23,7 +23,21 @@
             <tbody>
             @foreach($faucets as $faucet)
                 <tr>
-                    <td>{!! link_to_route('faucets.show', $faucet->name, array($faucet->id)) !!}</td>
+                    <td>
+                        {!! link_to_route('faucets.show', $faucet->name, array($faucet->id)) !!}
+                        @if(Auth::check())
+                            <br><a class="btn btn-primary btn-width-small" href="/faucets/{{ $faucet->id}}/edit/">
+                                <span class="button-font-small">Edit</span>
+                            </a>
+
+                            <a class="btn btn-primary btn-width-small" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet{{ $faucet->id}}" data-id="{{ $faucet->id }}">
+                                <span class="button-font-small">Delete</span>
+                            </a>
+                            <?php $id = $faucet->id ?>
+                            @include('faucets/partials/_modal_delete_faucet')
+                        @endif
+
+                    </td>
                     <td>{{ $faucet->interval_minutes }}</td>
                     <td>{{ $faucet->min_payout }}</td>
                     <td>{{ $faucet->max_payout }}</td>
@@ -42,6 +56,10 @@
             </tbody>
         </table>
     </div>
+
+    @if(Auth::check())
+
+    @endif
 
     <script src="/js/jquery.tablesorter.min.js"></script>
     <script src="/js/tablesorter_custom_code.js"></script>
