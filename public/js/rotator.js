@@ -50,6 +50,11 @@ $(function(){
                 $('#rotator-iframe').attr('src', arr[clickCount].url);
                 $('#current').attr('href', arr[clickCount].url);
             });
+
+            $('#reload_current').click(function(event) {
+                event.preventDefault();
+                $('#rotator-iframe').attr('src', arr[clickCount].url);
+            });
         }
     });
 });
