@@ -23,34 +23,6 @@ class AdminController extends Controller {
         return view('admin.index', compact('user'));
 	}
 
-    public function overview()
-    {
-        $faucets_user_id = Auth::user()->id;
-        $faucets = User::find($faucets_user_id)->faucets;
-
-        return view('admin.overview');
-    }
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
 	/**
 	 * Display the specified resource.
 	 *

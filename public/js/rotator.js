@@ -1,28 +1,55 @@
-/**
- * Created by robattfield on 28-Jun-2015.
- */
-
-function faucets(){
-
-    var faucets = [];
-    $.getJSON('/api/v1/faucets', function(data){
-        for(var i = 0; i , data.length; i++){
-            console.log(data[i]);
-        }
-    });
-    return faucets;
-}
-
-function getFaucets(){
-
-    for(var i = 0; i < faucets().length; i++){
-        console.log(faucets()[i]);
-    }
-}
-
 $(function(){
 
-    //getFaucets();
-    faucets();
+    var clickCount = 0;
+    $.ajax('http://faucet_rotator.dev:8888/api/v1/faucets', {
+        success: function(data) {
+            //set first url upon first view
+            var arr = $.map(data, function(el) { return el; });
+            $('#rotator-iframe').attr('src', arr[0].url);
+            $('#current').attr('href', arr[0].url);
 
+            //Set iframe src to first faucet in array
+            $('#first_faucet').click(function(event) {
+                event.preventDefault();
+                $('#rotator-iframe').attr('src', arr[0].url);
+                $('#current').attr('href', arr[arr.length + clickCount].url);
+            });
+
+            $('#next_faucet').click(function(event) {
+                event.preventDefault();
+                clickCount += 1;
+
+                if(clickCount > arr.length - 1) {
+                    $('#rotator-iframe').attr('src', arr[0].url);
+                    $('#current').attr('href', arr[0].url);
+                }
+                else{
+                    $('#rotator-iframe').attr('src', arr[clickCount].url);
+                    $('#current').attr('href', arr[clickCount].url);
+                }
+            });
+
+            $('#previous_faucet').click(function(event) {
+                event.preventDefault();
+                clickCount -= 1;
+
+                if(clickCount <= 0) {
+                    //If click count is negative, start at end of faucets array and
+                    //work way backwards.
+                    $('#rotator-iframe').attr('src', arr[arr.length + clickCount].url);
+                    $('#current').attr('href', arr[arr.length + clickCount].url);
+                }else{
+                    $('#rotator-iframe').attr('src', arr[clickCount].url);
+                    $('#current').attr('href', arr[clickCount].url);
+                }
+            });
+
+            $('#last_faucet').click(function(event) {
+                event.preventDefault();
+                clickCount = arr.length - 1;
+                $('#rotator-iframe').attr('src', arr[clickCount].url);
+                $('#current').attr('href', arr[clickCount].url);
+            });
+        }
+    });
 });

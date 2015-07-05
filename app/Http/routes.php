@@ -19,8 +19,7 @@ Route::group(['prefix' => 'api/v1'], function()
     Route::get('faucets/{id}', 'ApiController@faucet');
 });
 
-Route::get('rotator', 'RotatorController@index');
-Route::get('/', 'FaucetsController@index');
+Route::get('/', 'RotatorController@index');
 Route::resource('faucets', 'FaucetsController');
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
