@@ -1,4 +1,6 @@
 <?php
+use App\PaymentProcessor;
+
 /**
  * Created by PhpStorm.
  * User: robattfield
@@ -16,7 +18,15 @@ class PaymentProcessorsTableSeeder extends BaseSeeder {
     public function run()
     {
         $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/payment_processors.csv');
-        $this->insert_data('payment_processors', $data);
+
+        foreach($data as $d) {
+            $payment_processor = new PaymentProcessor([
+                'name' => $d['name'],
+                'url' => $d['url'],
+            ]);
+
+            $payment_processor->save();
+        }
     }
 
 }

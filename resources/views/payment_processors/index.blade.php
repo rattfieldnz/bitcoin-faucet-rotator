@@ -26,7 +26,7 @@
             <tbody>
             @foreach($payment_processors as $payment_processor)
                 <tr>
-                    <td>{!! link_to_route('payment_processors.show', $payment_processor->name, array($payment_processor->id)) !!}</td>
+                    <td>{!! link_to_route('payment_processors.show', $payment_processor->name, array($payment_processor->slug)) !!}</td>
                 </tr>
             @endforeach
             </tbody>

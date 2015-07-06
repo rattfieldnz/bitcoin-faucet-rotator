@@ -1844,3 +1844,15 @@ Stack trace:
 #20 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #21 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #22 {main}  
+[2015-07-06 22:53:54] production.ERROR: exception 'RuntimeException' with message 'Too many arguments.' in /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php:181
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php(90): Symfony\Component\Console\Input\ArgvInput->parseArgument('class=FaucetsTa...')
+#1 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Input/Input.php(61): Symfony\Component\Console\Input\ArgvInput->parse()
+#2 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(229): Symfony\Component\Console\Input\Input->bind(Object(Symfony\Component\Console\Input\InputDefinition))
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\SeedCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 {main}  

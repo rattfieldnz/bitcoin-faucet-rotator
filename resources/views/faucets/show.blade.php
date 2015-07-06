@@ -44,7 +44,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{!! link_to($faucet->url, $faucet->name, ['target' => 'blank']) !!}</td>
+                    <td>
+                        {!! link_to($faucet->url, $faucet->name, ['target' => 'blank']) !!}
+                    </td>
                     <td>{{ $faucet->interval_minutes }}</td>
                     <td>{{ $faucet->min_payout }}</td>
                     <td>{{ $faucet->max_payout }}</td>

@@ -104,17 +104,19 @@ class FaucetsController extends Controller {
         }
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param $slug
+     * @return Response
+     * @internal param int $id
+     */
+	public function show($slug)
 	{
         try {
             //Retrieve faucet by given id.
-            $faucet = Faucet::findOrFail($id);
+            //$faucet = Faucet::findOrFail($slug);
+            $faucet = Faucet::findBySlugOrId($slug);
 
             //Return the view which shows faucet details,
             //with the retrieved faucet bring passe in the view.

@@ -71,16 +71,18 @@ class PaymentProcessorsController extends Controller {
         }
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param $slug
+     * @return Response
+     * @internal param int $id
+     */
+	public function show($slug)
 	{
         try {
-            $payment_processor = PaymentProcessor::findOrFail($id);
+            //$payment_processor = PaymentProcessor::findOrFail($id);
+            $payment_processor = PaymentProcessor::findBySlugOrId($slug);
 
             return view('payment_processors.show', compact('payment_processor'));
         }

@@ -84,7 +84,7 @@
                         <div>
                             <ul class="faucet-payment-processors">
                                 @foreach($payment_processor->faucets as $faucet)
-                                    <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->id)) !!}</li>
+                                    <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->slug)) !!}</li>
                                 @endforeach
                             </ul>
                         </div>
