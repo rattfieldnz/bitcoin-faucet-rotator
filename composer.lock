@@ -193,16 +193,16 @@
         },
         {
             "name": "cviebrock/eloquent-sluggable",
-            "version": "3.0.0-beta",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "0b56831be599ccc8f73c51943f43b6765bfe4d7a"
+                "reference": "eaf7b573d7c82f004fc3efde0e0f9f63200d4c32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/0b56831be599ccc8f73c51943f43b6765bfe4d7a",
-                "reference": "0b56831be599ccc8f73c51943f43b6765bfe4d7a",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/eaf7b573d7c82f004fc3efde0e0f9f63200d4c32",
+                "reference": "eaf7b573d7c82f004fc3efde0e0f9f63200d4c32",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
                 "laravel",
                 "slug"
             ],
-            "time": "2015-06-13 03:54:26"
+            "time": "2015-07-06 15:09:35"
         },
         {
             "name": "danielstjules/stringy",
@@ -1323,31 +1323,27 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.4",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "56862959b45131ad33e5a7727a25db19f2cf090b"
+                "reference": "b58431785768abbb4f00c10e66a065095a0693ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/56862959b45131ad33e5a7727a25db19f2cf090b",
-                "reference": "56862959b45131ad33e5a7727a25db19f2cf090b",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b58431785768abbb4f00c10e66a065095a0693ef",
+                "reference": "b58431785768abbb4f00c10e66a065095a0693ef",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
                 "php": ">=5.4.0"
             },
             "require-dev": {
                 "ext-fileinfo": "*",
-                "league/phpunit-coverage-listener": "~1.1",
                 "mockery/mockery": "~0.9",
-                "phpspec/phpspec": "~2.0",
+                "phpspec/phpspec": "^2.2",
                 "phpspec/prophecy-phpunit": "~1.0",
-                "phpunit/phpunit": "~4.1",
-                "predis/predis": "~1.0",
-                "tedivm/stash": "~0.12.0"
+                "phpunit/phpunit": "~4.1"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -1361,8 +1357,7 @@
                 "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
                 "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
                 "league/flysystem-webdav": "Allows you to use WebDAV storage",
-                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
-                "predis/predis": "Allows you to use Predis for caching"
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
             },
             "type": "library",
             "extra": {
@@ -1385,10 +1380,11 @@
                     "email": "info@frenky.net"
                 }
             ],
-            "description": "Many filesystems, one API.",
+            "description": "Filesystem abstraction: Many filesystems, one API.",
             "keywords": [
                 "Cloud Files",
                 "WebDAV",
+                "abstraction",
                 "aws",
                 "cloud",
                 "copy.com",
@@ -1396,6 +1392,7 @@
                 "file systems",
                 "files",
                 "filesystem",
+                "filesystems",
                 "ftp",
                 "rackspace",
                 "remote",
@@ -1403,7 +1400,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-06-07 21:27:37"
+            "time": "2015-07-11 14:58:06"
         },
         {
             "name": "linusu/bitcoin-address-validator",

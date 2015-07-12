@@ -26,11 +26,11 @@
                     <td>
                         {!! link_to_route('faucets.show', $faucet->name, array($faucet->slug)) !!}
                         @if(Auth::check())
-                            <br><a class="btn btn-primary btn-width-small" href="/faucets/{{ $faucet->id}}/edit/">
+                            <br><a class="btn btn-primary btn-width-small" href="/faucets/{{ $faucet->slug}}/edit/">
                                 <span class="button-font-small">Edit</span>
                             </a>
 
-                            <a class="btn btn-primary btn-width-small" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet{{ $faucet->id}}" data-id="{{ $faucet->id }}">
+                            <a class="btn btn-primary btn-width-small" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet{{ $faucet->slug}}" data-id="{{ $faucet->slug }}">
                                 <span class="button-font-small">Delete</span>
                             </a>
                             <?php $id = $faucet->id ?>
