@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class SiteWideMeta extends Model {
+class MainMeta extends Model {
 
     protected $table = 'site_wide_meta';
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSiteWideMetaTable extends Migration {
+class CreateMainMetaTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSiteWideMetaTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('site_wide_meta', function(Blueprint $table)
+		Schema::create('main_meta', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('title', 70)->nullable();
@@ -30,7 +30,7 @@ class CreateSiteWideMetaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('site_wide_meta');
+		Schema::drop('main_meta');
 	}
 
 }
