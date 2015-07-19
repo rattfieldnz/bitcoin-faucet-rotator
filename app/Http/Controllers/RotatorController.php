@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\MainMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -15,7 +16,8 @@ class RotatorController extends Controller {
 	 */
 	public function index()
 	{
-		return view('rotator.index');
+		$main_meta = MainMeta::firstOrFail();
+		return view('rotator.index', compact('main_meta'));
 	}
 
 }

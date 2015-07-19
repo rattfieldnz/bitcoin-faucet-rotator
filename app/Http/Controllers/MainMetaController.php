@@ -13,7 +13,9 @@ use App\MainMeta;
 use Illuminate\Http\Request;
 
 class MainMetaController extends Controller {
-
+    function __construct()   {
+        $this->middleware('auth');
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -33,65 +35,63 @@ class MainMetaController extends Controller {
 
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
         //Create the validator to process input for validation.
-        $validator = Validator::make(Input::all(), MainMetaValidator::validationRulesNew());
+        $input = Input::except('_token');
+        $validator = Validator::make($input, MainMetaValidator::validationRules());
 
         if($validator->fails()){
-            return Redirect::to('faucets/create')
+            return Redirect::to('main_meta')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput($input);
         }
         else{
             $main_meta = new MainMeta();
-
-            $main_meta->fill(Input::all());
+            $main_meta->fill($input);
 
             $main_meta->save();
 
-            Session::flash('success_message', 'The main meta has successfully been created and stored!');
+            Session::flash('success_message_add', 'The main meta has successfully been created and stored!');
 
             return Redirect::to('/main_meta');
         }
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param MainMeta $main_meta
+     * @return Response
+     * @internal param int $id
+     */
+	public function update(MainMeta $main_meta)
 	{
-		//
-	}
+        $main_meta = $main_meta::firstOrFail();
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+        $input = Input::except('_token');
+        $validator = Validator::make($input, MainMetaValidator::validationRules());
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+        if($validator->fails()){
+            return Redirect::to('main_meta')
+                ->withErrors($validator)
+                ->withInput($input);
+        }
+        else{
+            $main_meta->fill($input);
+
+            $main_meta->save();
+
+            Session::flash('success_message_update', 'The main meta has successfully been updated!');
+
+            return Redirect::to('/main_meta/');
+
+        }
 	}
 
 }

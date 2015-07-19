@@ -1,5 +1,17 @@
 @extends('app')
 
+@section('title')
+    {{ $main_meta->title }}
+@stop
+
+@section('description')
+    {{ $main_meta->description }}
+@stop
+
+@section('keywords')
+    {{ $main_meta->keywords }}
+@stop
+
 @section('content')
     <h1 class="page-heading" style="text-align: center;">Welcome to the Faucet Rotator</h1>
 
