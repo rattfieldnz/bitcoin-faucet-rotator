@@ -21,6 +21,7 @@ Route::group(['prefix' => 'api/v1'], function()
 
 Route::get('/', 'RotatorController@index');
 Route::resource('faucets', 'FaucetsController');
+Route::resource('main_meta', 'MainMetaController');
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
 Route::resource('payment_processors', 'PaymentProcessorsController');

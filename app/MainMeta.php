@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MainMeta extends Model {
 
-    protected $table = 'site_wide_meta';
+    protected $table = 'main_meta';
 
     /**
      * The attributes that are mass assignable.

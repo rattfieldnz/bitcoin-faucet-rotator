@@ -1,8 +1,15 @@
 <?php namespace App\Http\Controllers;
 
+use app\Helpers\Validators\MainMetaValidator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
+
+use App\MainMeta;
 use Illuminate\Http\Request;
 
 class MainMetaController extends Controller {
@@ -14,17 +21,16 @@ class MainMetaController extends Controller {
 	 */
 	public function index()
 	{
-		//
-	}
+		$main_meta = MainMeta::all();
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+        if(count($main_meta) == 0) {
+            return view('main_meta.create');
+        }
+        else{
+            $main_meta = MainMeta::first();
+            return view('main_meta.edit', compact('main_meta'));
+        }
+
 	}
 
 	/**
@@ -34,7 +40,25 @@ class MainMetaController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        //Create the validator to process input for validation.
+        $validator = Validator::make(Input::all(), MainMetaValidator::validationRulesNew());
+
+        if($validator->fails()){
+            return Redirect::to('faucets/create')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+        else{
+            $main_meta = new MainMeta();
+
+            $main_meta->fill(Input::all());
+
+            $main_meta->save();
+
+            Session::flash('success_message', 'The main meta has successfully been created and stored!');
+
+            return Redirect::to('/main_meta');
+        }
 	}
 
 	/**
@@ -66,17 +90,6 @@ class MainMetaController extends Controller {
 	 * @return Response
 	 */
 	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
 	{
 		//
 	}

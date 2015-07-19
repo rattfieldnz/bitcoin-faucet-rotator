@@ -10,7 +10,7 @@ namespace app\Helpers\Validators;
 use Illuminate\Validation\Validator;
 
 
-class SiteWideMetaTableValidator extends Validator
+class MainMetaValidator extends Validator
 {
     public static function validationRules()
     {
