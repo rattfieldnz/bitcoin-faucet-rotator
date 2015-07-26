@@ -20,6 +20,13 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('google_analytics_id', 'Google Analytics ID:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('google_analytics_id', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
         {!! Form::submit("Submit", ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
     </div>
