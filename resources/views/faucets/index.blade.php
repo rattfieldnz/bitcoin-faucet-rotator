@@ -1,5 +1,11 @@
 @extends('app')
 
+@section('title', 'List of Bitcoin Faucets (' . count($faucets).') | FreeBTC.website')
+
+@section('description', 'This page lists all bitcoin faucets currently on the system, with sortable columns. There are ' . count($faucets) . ' faucets listed.')
+
+@section('keywords', 'Free Bitcoins, Bitcoin Faucets, Get Free Bitcoins, Satoshis, Free BTC Website')
+
 @section('content')
     <h1 id="page-heading">Current Faucets</h1>
     @if (Session::has('success_message_delete'))

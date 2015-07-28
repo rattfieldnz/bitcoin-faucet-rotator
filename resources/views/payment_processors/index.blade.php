@@ -1,5 +1,11 @@
 @extends('app')
 
+@section('title', 'List of Payment Processors ('. count($payment_processors) . ') | FreeBTC.website')
+
+@section('description', "This page lists all bitcoin faucets' payment processors currently on the system, with sortable columns. There are " . count($faucets) . " processors listed.")
+
+@section('keywords', 'Free Bitcoins, Bitcoin Faucets, Xapo, MicroWallet, BlockChain, Paytoshi, FaucetBox')
+
 @section('content')
     <h1 id="page-heading">Current Payment Processors</h1>
 
