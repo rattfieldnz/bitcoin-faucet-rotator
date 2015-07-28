@@ -2,8 +2,9 @@
 
 @section('content')
     <fieldset>
+        <h1 class="page-heading">Manage Main Meta</h1>
         <legend>
-            <h1 class="page-heading">Manage Main Meta</h1>
+
         </legend>
 
         @include('main_meta/partials/_errors')

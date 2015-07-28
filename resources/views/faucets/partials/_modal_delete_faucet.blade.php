@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="delFaucet{{$id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="delFaucet{{$slug}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +19,7 @@
                 <div id="delmodelcontainer" style="float:right">
 
                     <div id="yes" style="float:left; padding-right:10px">
-                        {!! Form::open(array('action' => array('FaucetsController@destroy', $faucet->id), 'method' => 'DELETE')) !!}
+                        {!! Form::open(array('action' => array('FaucetsController@destroy', $faucet->slug), 'method' => 'DELETE')) !!}
 
                         {!! Form::submit('Yes', array('class' => 'btn btn-primary')) !!}
 

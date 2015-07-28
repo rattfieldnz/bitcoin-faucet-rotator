@@ -16,9 +16,9 @@ bower = require('gulp-bower');
 
 var paths = {
     'bootstrap': 'public/bower_components/bootstrap-sass-official/assets/',
-    'fontawesome': 'public/bower_components/fontawesome/',
+    'fontawesome': 'public/bower_components/font-awesome/',
     'tablesorter' : 'public/table_sorter_themes/'
-}
+};
 
 elixir(function(mix) {
     mix.sass('app.scss', 'public/css/', {includePaths:
@@ -32,6 +32,6 @@ elixir(function(mix) {
         /* run gulp --production to minify css file. */
     ], 'public/css/master-final.min.css', 'public/css');
 
-    mix.copy('public/bower_components/fontawesome/fonts/*', 'public/fonts');
+    mix.copy('public/bower_components/font-awesome/fonts/*', 'public/fonts');
 
 });

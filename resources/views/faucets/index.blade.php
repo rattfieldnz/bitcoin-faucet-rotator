@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1 class="page-heading">Current Faucets</h1>
+    <h1 id="page-heading">Current Faucets</h1>
     @if (Session::has('success_message_delete'))
         <div class="alert alert-success">
             <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
@@ -33,7 +33,7 @@
                             <a class="btn btn-primary btn-width-small" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet{{ $faucet->slug}}" data-id="{{ $faucet->slug }}">
                                 <span class="button-font-small">Delete</span>
                             </a>
-                            <?php $id = $faucet->id ?>
+                            <?php $slug = $faucet->slug ?>
                             @include('faucets/partials/_modal_delete_faucet')
                         @endif
 
@@ -64,3 +64,7 @@
     <script src="/js/jquery.tablesorter.min.js"></script>
     <script src="/js/tablesorter_custom_code.js"></script>
 @endsection
+
+@section('google_analytics')
+    @include('partials.google_analytics')
+@stop

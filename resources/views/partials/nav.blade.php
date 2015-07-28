@@ -20,10 +20,6 @@
                             <li><a href="/faucets/create">Add New Faucet</a></li>
                         </ul>
                     </li>
-                @else
-                    <li><a href="/faucets">Faucets</a></li>
-                @endif
-                @if (Auth::user())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Payment Processors<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -31,7 +27,11 @@
                             <li><a href="/payment_processors/create">Add New Payment Processor</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="/main_meta">Manage Main Meta</a>
+                    </li>
                 @else
+                    <li><a href="/faucets">Faucets</a></li>
                     <li><a href="/payment_processors">Payment Processors</a></li>
                 @endif
             </ul>

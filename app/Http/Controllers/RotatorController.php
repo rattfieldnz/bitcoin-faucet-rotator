@@ -16,7 +16,7 @@ class RotatorController extends Controller {
 	 */
 	public function index()
 	{
-		$main_meta = MainMeta::firstOrFail();
+		$main_meta = MainMeta::firstOrFail() != null ? MainMeta::firstOrFail() : null;
 		return view('rotator.index', compact('main_meta'));
 	}
 

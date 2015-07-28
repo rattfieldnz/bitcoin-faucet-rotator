@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('FaucetPaymentProcessorsTableSeeder');
         $this->call('UsersTableSeeder');
         $this->call('ReferralInfoTableSeeder');
+		$this->call('MainMetaTableSeeder');
 	}
 
 }

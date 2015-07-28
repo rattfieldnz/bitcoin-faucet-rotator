@@ -100,7 +100,7 @@ class FaucetsController extends Controller {
 
             //Redirect to the faucet's page, with a success message.
             Session::flash('success_message', 'The faucet has successfully been created and stored!');
-            return Redirect::to('/faucets/' . $faucet->id);
+            return Redirect::to('/faucets/' . $faucet->slug);
         }
 	}
 
@@ -134,11 +134,11 @@ class FaucetsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($slug)
 	{
         try {
             //Grab the faucet to edit
-            $faucet = Faucet::findOrFail($id);
+            $faucet = Faucet::findBySlugOrId($slug);
 
             //Obtain payment processors associated with the faucet.
             $payment_processors = PaymentProcessor::lists('name', 'id');
@@ -171,10 +171,10 @@ class FaucetsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($slug)
 	{
         //Retrieve faucet to be updated.
-        $faucet = Faucet::findOrFail($id);
+        $faucet = Faucet::findBySlugOrId($slug);
 
         //Pass input into the validator -
         //with current faucet id, so
@@ -221,16 +221,17 @@ class FaucetsController extends Controller {
         }
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $slug
+     * @return Response
+     * @internal param int $id
+     */
+	public function destroy($slug)
 	{
         try {
-            $faucet = User::find(Auth::user()->id)->faucets->find($id);
+            $faucet = Faucet::findBySlugOrId($slug);
             $faucet_name = $faucet->name;
             $faucet_url = $faucet->url;
             $faucet->payment_processors()->detach();
@@ -239,7 +240,7 @@ class FaucetsController extends Controller {
 
             Session::flash('success_message_delete', 'The faucet "' . $faucet_name . '" with URL "' . $faucet_url . '" has successfully been deleted!');
 
-            return Redirect::to('/faucets/');
+            return Redirect::to('faucets');
         }
         catch(ModelNotFoundException $e)
         {

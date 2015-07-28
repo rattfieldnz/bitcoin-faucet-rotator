@@ -33,6 +33,6 @@
     </div>
 
     @include('partials.footer')
-	@yield('google_analytics')
+    @yield('google_analytics')
 </body>
 </html>

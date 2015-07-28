@@ -20,6 +20,7 @@ Route::group(['prefix' => 'api/v1'], function()
 });
 
 Route::get('/', 'RotatorController@index');
+Route::get('faucets/{slug}/edit', 'FaucetsController@edit');
 Route::resource('faucets', 'FaucetsController');
 Route::resource('main_meta', 'MainMetaController');
 Route::get('admin/admin', 'AdminController@index');

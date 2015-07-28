@@ -83,3 +83,7 @@
     @endif
 
 @endsection
+
+@section('google_analytics')
+    @include('partials.google_analytics')
+@stop

@@ -21,7 +21,7 @@ class CreateFaucetsTable extends Migration {
             $table->integer('min_payout');;
             $table->integer('max_payout');
             $table->boolean('has_ref_program')->default(0);
-            $table->decimal('ref_payout_percent',5,2);
+            $table->smallInteger('ref_payout_percent')->default(0);
             $table->text('comments')->nullable();
             $table->boolean('is_paused')->default(0);
 			$table->timestamps();

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1 class="page-heading">{{ $payment_processor->name }}</h1>
+    <h1 id="page-heading">{{ $payment_processor->name }}</h1>
 
     @if (Auth::user())
         <script>

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1 class="page-heading">Current Payment Processors</h1>
+    <h1 id="page-heading">Current Payment Processors</h1>
 
     @if (Session::has('success_message_delete'))
         <div class="alert alert-success">
@@ -37,3 +37,7 @@
     <script src="/js/jquery.tablesorter.min.js"></script>
     <script src="/js/tablesorter_custom_code.js"></script>
 @endsection
+
+@section('google_analytics')
+    @include('partials.google_analytics')
+@stop

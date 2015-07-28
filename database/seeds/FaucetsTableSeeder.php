@@ -23,11 +23,11 @@ class FaucetsTableSeeder extends BaseSeeder {
            $faucet = new Faucet([
                 'name' => $d['name'],
                 'url' => $d['url'],
-                'interval_minutes' => $d['interval_minutes'],
-                'min_payout' => $d['min_payout'],
-                'max_payout' => $d['max_payout'],
+                'interval_minutes' => (int)$d['interval_minutes'],
+                'min_payout' => (int)$d['min_payout'],
+                'max_payout' => (int)$d['max_payout'],
                 'has_ref_program' => $d['has_ref_program'],
-                'ref_payout_percent' => $d['has_ref_program'],
+                'ref_payout_percent' => (int)$d['ref_payout_percent'],
                 'comments' => $d['comments'],
                 'is_paused' => $d['comments'],
             ]);
