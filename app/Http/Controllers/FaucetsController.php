@@ -165,16 +165,18 @@ class FaucetsController extends Controller {
         }
     }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $slug
+     * @return Response
+     * @internal param int $id
+     */
 	public function update($slug)
 	{
         //Retrieve faucet to be updated.
         $faucet = Faucet::findBySlugOrId($slug);
+        $id = $faucet->id;
 
         //Pass input into the validator -
         //with current faucet id, so
@@ -185,7 +187,7 @@ class FaucetsController extends Controller {
         //If validation fails, redirect back to the
         //editing page - with input and relevant errors.
         if($validator->fails()){
-            return Redirect::to('faucets/' . $id . '/edit')
+            return Redirect::to('faucets/' . $slug . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {

@@ -76,7 +76,7 @@
         <p>This faucet has been paused from showing in rotation.</p>
 
         @if(Auth::user())
-            <p>You can {!! link_to('/faucets/' . $faucet->id . '/edit', 'edit this faucet') !!} to re-enable it in rotation.</p>
+            <p>You can {!! link_to('/faucets/' . $faucet->slug . '/edit', 'edit this faucet') !!} to re-enable it in rotation.</p>
         @else
             <p>Please contact the administrator if you would like this faucet re-enabled.</p>
         @endif

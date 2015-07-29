@@ -18,11 +18,24 @@ class ApiController extends BaseController{
         return Faucet::all();
     }
 
-    public function faucet($id){
-        $faucet = Faucet::find($id);
+    public function faucet($slug){
+        $faucet = Faucet::find($slug);
         if($faucet == null || !$faucet){
             return [404 => 'Not Found'];
         }
         return $faucet;
+    }
+
+    public function activeFaucets(){
+        $faucets = Faucet::all();
+        $active_faucets = [];
+
+        foreach($faucets as $f){
+            if($f->is_paused == false){
+                array_push($active_faucets, $f);
+            }
+        }
+
+        return $active_faucets;
     }
 }
