@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "015544d6ee84125e54b02e995ffd37e9",
+    "hash": "e39858fdd1017a98c90562fb04146107",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1867,6 +1867,50 @@
                 "shell"
             ],
             "time": "2015-03-26 18:43:54"
+        },
+        {
+            "name": "rattfieldnz/url-validation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rattfieldnz/url-validation.git",
+                "reference": "ff44a463a9119fa3bea9bd7fef3d44b7e6f9a44c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rattfieldnz/url-validation/zipball/ff44a463a9119fa3bea9bd7fef3d44b7e6f9a44c",
+                "reference": "ff44a463a9119fa3bea9bd7fef3d44b7e6f9a44c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.1.*",
+                "phpspec/phpspec": "~2.1",
+                "phpunit/php-invoker": "dev-master",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "RattfieldNz\\UrlValidation": "src/"
+                },
+                "psr-4": {
+                    "RattfieldNz\\UrlValidation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Rob Attfield",
+                    "email": "emailme@robertattfield.com",
+                    "homepage": "http://www.robertattfield.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a Laravel composer package for validating URL's.",
+            "time": "2015-03-23 10:03:04"
         },
         {
             "name": "raven/raven",
@@ -3933,7 +3977,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "cviebrock/eloquent-sluggable": 10
+        "cviebrock/eloquent-sluggable": 10,
+        "rattfieldnz/url-validation": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
