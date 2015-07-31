@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class AddFaucetsSlugColumn extends Migration {
+class AddMetaToFaucets extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -15,7 +15,9 @@ class AddFaucetsSlugColumn extends Migration {
 	{
 		Schema::table('faucets', function(Blueprint $table)
 		{
-			$table->string('slug')->nullable();
+			$table->string('meta_title', 70)->nullable();
+			$table->string('meta_description', 160)->nullable();
+			$table->string('meta_keywords', 255)->nullable();
 		});
 	}
 
@@ -28,7 +30,9 @@ class AddFaucetsSlugColumn extends Migration {
 	{
 		Schema::table('faucets', function(Blueprint $table)
 		{
-			$table->dropColumn('slug');
+			$table->dropColumn('meta_title');
+			$table->dropColumn('meta_description');
+			$table->dropColumn('meta_keywords');
 		});
 	}
 
