@@ -13,6 +13,27 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('meta_title', 'Faucet Meta Title:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('meta_title', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('meta_description', 'Faucet Meta Description:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('meta_description', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('meta_keywords', 'Faucet Meta Keywords (comma separated):', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('meta_keywords', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('interval_minutes', 'Interval (minutes):', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
         {!! Form::number('interval_minutes', null, ['class' => 'form-control', 'min' => 0]) !!}

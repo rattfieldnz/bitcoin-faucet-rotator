@@ -32,7 +32,10 @@ class Faucet extends Model implements SluggableInterface {
                            'has_ref_program',
                            'ref_payout_percent',
                            'comments',
-                           'is_paused'];
+                           'is_paused',
+                           'meta_title',
+                           'meta_description',
+                           'meta_keywords'];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

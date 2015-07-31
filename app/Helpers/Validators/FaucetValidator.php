@@ -37,7 +37,10 @@ class FaucetValidator extends Validator{
             'has_ref_program' => 'required|boolean',
             'ref_payout_percent' => 'required|numeric|min:0',
             'comments' => 'text',
-            'is_paused' => 'required|boolean'
+            'is_paused' => 'required|boolean',
+            'meta_title' => 'string|max:70',
+            'meta_description'  => 'string|max:160',
+            'meta_keywords' => 'string'
         ];
     }
 
@@ -62,7 +65,10 @@ class FaucetValidator extends Validator{
                 'has_ref_program' => 'required|boolean',
                 'ref_payout_percent' => 'required|numeric|min:0',
                 'comments' => 'text',
-                'is_paused' => 'required|boolean'
+                'is_paused' => 'required|boolean',
+                'meta_title' => 'string|max:70',
+                'meta_description'  => 'string|max:160',
+                'meta_keywords' => 'string'
         ];
     }
 }
