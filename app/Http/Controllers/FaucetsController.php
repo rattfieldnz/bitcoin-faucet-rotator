@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use RattfieldNz\UrlValidation\UrlValidation;
 
 class FaucetsController extends Controller {
 
@@ -249,5 +250,43 @@ class FaucetsController extends Controller {
             abort(404);
         }
 	}
+
+    public function checkFaucetsStatus(){
+
+        //Retrieve faucets to be updated.
+        $faucets = Faucet::all();
+
+        $paused_faucets = [];
+        $activated_faucets = [];
+        foreach($faucets as $f){
+
+            if(UrlValidation::urlExists($f->url) != true && $f->is_paused == false){
+                $f->is_paused = true;
+                $f->save();
+                array_push($paused_faucets, $f->name);
+            }
+            else if(UrlValidation::urlExists($f->url) != false && $f->is_paused == true){
+                $f->is_paused = false;
+                $f->save();
+                array_push($activated_faucets, $f->name);
+            }
+        }
+        if(count($paused_faucets) > 0) {
+            Session::flash(
+                'success_message_update_faucet_statuses_paused',
+                'The following faucets\' have been paused:<br><br>' . implode(",", $paused_faucets)
+            );
+        }
+        if(count($activated_faucets) > 0) {
+            Session::flash(
+                'success_message_update_faucet_statuses_activated',
+                'The following faucets\' have been activated:<br><br>' . implode(",", $activated_faucets)
+            );
+        }
+        if(count($paused_faucets) == 0 || count($activated_faucets) == 0){
+            Session::flash('success_message_update_faucet_statuses_none', 'No faucets have been updated.');
+        }
+        return Redirect::to('faucets');
+    }
 
 }

@@ -5,7 +5,7 @@
 
     @include('faucets/partials/_errors')
 
-    {!! Form::model( $faucet, ['method' => 'PATCH', 'route' => ['faucets.update', $faucet->id],'class' => 'form-horizontal']); !!}
+    {!! Form::model( $faucet, ['method' => 'PATCH', 'route' => ['faucets.update', $faucet->slug],'class' => 'form-horizontal']) !!}
     @include('faucets/partials/_form')
     {!! Form::close() !!}
 @endsection

@@ -8,11 +8,28 @@
 
 @section('content')
     <h1 id="page-heading">Current Faucets</h1>
-    @if (Session::has('success_message_delete'))
-        <div class="alert alert-success">
-            <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
-            {{ Session::get('success_message_delete') }}
+
+    @include('faucets/partials/_session_messages')
+
+    @if(Auth::check())
+        <h2>Check Statuses of Faucets</h2>
+        <p>If faucet URLs are problematic, or report errors, they will be paused.</p>
+
+        {!! Form::open(
+            [
+                'route' => 'checkFaucetsStatus',
+                'method' => 'PATCH',
+                'class' => 'form-horizontal',
+                'id' => 'check_faucets_status'
+            ]
+        ) !!}
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                {!! Form::submit("Check Faucets", ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
+            </div>
         </div>
+        {!! Form::close() !!}
+        <p>Progress: <span id="progress">0</span></p>
     @endif
     <div class="table-responsive">
         <table class="table table-striped bordered tablesorter" id="faucets_table">
@@ -70,6 +87,8 @@
     <script src="/js/jquery.tablesorter.min.js"></script>
     <script src="/js/tablesorter_custom_code.js"></script>
 @endsection
+
+
 
 @section('google_analytics')
     @include('partials.google_analytics')
