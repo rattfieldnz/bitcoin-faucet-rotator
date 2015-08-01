@@ -1,5 +1,11 @@
 @extends('app')
 
+@section('title', $faucet->meta_title)
+
+@section('description', $faucet->meta_description)
+
+@section('keywords', $faucet->meta_keywords)
+
 @section('content')
     <h1 class="page-heading">{{ $faucet->name }}</h1>
     @if (Auth::user())
