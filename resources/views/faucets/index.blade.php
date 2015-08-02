@@ -12,8 +12,6 @@
     @include('faucets/partials/_session_messages')
 
     @if(Auth::check())
-        <h2>Check Statuses of Faucets</h2>
-        <p>If faucet URLs are problematic, or report errors, they will be paused.</p>
 
         {!! Form::open(
             [
@@ -24,12 +22,14 @@
             ]
         ) !!}
         <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                {!! Form::submit("Check Faucets", ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
+            <div class="col-lg-12">
+                <p>
+                    {!! Form::submit("Check Faucets", ['class' => 'btn btn-lg btn-primary'] ) !!}
+                    (If faucet URLs are problematic, or report errors, they will be paused.)
+                </p>
             </div>
         </div>
         {!! Form::close() !!}
-        <p>Progress: <span id="progress">0</span></p>
     @endif
     <div class="table-responsive">
         <table class="table table-striped bordered tablesorter" id="faucets_table">

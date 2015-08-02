@@ -1,5 +1,6 @@
 <?php namespace App\Console;
 
+use App\Helpers\Functions\Faucets;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,6 +25,10 @@ class Kernel extends ConsoleKernel {
 	{
 		$schedule->command('inspire')
 				 ->hourly();
+
+        $schedule->call(function () {
+            Faucets::checkUpdateStatuses();
+        })->hourly();
 	}
 
     /**

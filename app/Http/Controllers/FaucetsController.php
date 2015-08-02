@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Faucet;
+use App\Helpers\Functions\Faucets;
 use App\Http\Requests;
 use App\PaymentProcessor;
 use App\User;
@@ -253,39 +254,7 @@ class FaucetsController extends Controller {
 
     public function checkFaucetsStatus(){
 
-        //Retrieve faucets to be updated.
-        $faucets = Faucet::all();
-
-        $paused_faucets = [];
-        $activated_faucets = [];
-        foreach($faucets as $f){
-
-            if(UrlValidation::urlExists($f->url) != true && $f->is_paused == false){
-                $f->is_paused = true;
-                $f->save();
-                array_push($paused_faucets, $f->name);
-            }
-            else if(UrlValidation::urlExists($f->url) != false && $f->is_paused == true){
-                $f->is_paused = false;
-                $f->save();
-                array_push($activated_faucets, $f->name);
-            }
-        }
-        if(count($paused_faucets) > 0) {
-            Session::flash(
-                'success_message_update_faucet_statuses_paused',
-                'The following faucets\' have been paused:<br><br>' . implode(",", $paused_faucets)
-            );
-        }
-        if(count($activated_faucets) > 0) {
-            Session::flash(
-                'success_message_update_faucet_statuses_activated',
-                'The following faucets\' have been activated:<br><br>' . implode(",", $activated_faucets)
-            );
-        }
-        if(count($paused_faucets) == 0 || count($activated_faucets) == 0){
-            Session::flash('success_message_update_faucet_statuses_none', 'No faucets have been updated.');
-        }
+        Faucets::checkUpdateStatuses();
         return Redirect::to('faucets');
     }
 
