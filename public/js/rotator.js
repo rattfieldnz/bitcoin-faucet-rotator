@@ -6,13 +6,13 @@ $(function(){
             //set first url upon first view
             var arr = $.map(data, function(el) { return el; });
             $('#rotator-iframe').attr('src', arr[0].url);
-            $('#current').attr('href', arr[0].url);
+            $('#current').attr('href', '/faucets/' + arr[0].slug);
 
             //Set iframe src to first faucet in array
             $('#first_faucet').click(function(event) {
                 event.preventDefault();
                 $('#rotator-iframe').attr('src', arr[0].url);
-                $('#current').attr('href', arr[arr.length + clickCount].url);
+                $('#current').attr('href', '/faucets/' + arr[arr.length + clickCount].slug);
             });
 
             $('#next_faucet').click(function(event) {
@@ -21,11 +21,11 @@ $(function(){
 
                 if(clickCount > arr.length - 1) {
                     $('#rotator-iframe').attr('src', arr[0].url);
-                    $('#current').attr('href', arr[0].url);
+                    $('#current').attr('href', '/faucets/' + arr[0].slug);
                 }
                 else{
                     $('#rotator-iframe').attr('src', arr[clickCount].url);
-                    $('#current').attr('href', arr[clickCount].url);
+                    $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
                 }
             });
 
@@ -37,10 +37,10 @@ $(function(){
                     //If click count is negative, start at end of faucets array and
                     //work way backwards.
                     $('#rotator-iframe').attr('src', arr[arr.length + clickCount].url);
-                    $('#current').attr('href', arr[arr.length + clickCount].url);
+                    $('#current').attr('href', '/faucets/' + arr[arr.length + clickCount].slug);
                 }else{
                     $('#rotator-iframe').attr('src', arr[clickCount].url);
-                    $('#current').attr('href', arr[clickCount].url);
+                    $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
                 }
             });
 
@@ -48,7 +48,7 @@ $(function(){
                 event.preventDefault();
                 clickCount = arr.length - 1;
                 $('#rotator-iframe').attr('src', arr[clickCount].url);
-                $('#current').attr('href', arr[clickCount].url);
+                $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
             });
 
             $('#reload_current').click(function(event) {
