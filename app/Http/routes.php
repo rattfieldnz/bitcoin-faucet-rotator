@@ -24,6 +24,9 @@ Route::get('/', 'RotatorController@index');
 Route::patch('faucets/checkFaucetsStatus', [
     'as' => 'checkFaucetsStatus', 'uses' => 'FaucetsController@checkFaucetsStatus'
 ]);
+Route::patch('faucets/{$slug}', [
+    'as' => 'faucetLowBalance', 'uses' => 'FaucetsController@faucetLowBalance'
+]);
 Route::patch('checkFaucetsStatus', 'FaucetsController@checkFaucetsStatus');
 Route::get('faucets/progress', 'FaucetsController@progress' );
 Route::resource('faucets', 'FaucetsController');

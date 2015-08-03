@@ -5,6 +5,7 @@ use App\Helpers\Functions\Faucets;
 use App\Http\Requests;
 use App\PaymentProcessor;
 use App\User;
+use Exception;
 use Helpers\Validators\FaucetValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -221,7 +222,7 @@ class FaucetsController extends Controller {
             Session::flash('success_message', 'The faucet has successfully been updated!');
 
             //Redirect to the faucet's page
-            return Redirect::to('/faucets/' . $id);
+            return Redirect::to('/faucets/' . $slug);
         }
 	}
 
@@ -256,6 +257,10 @@ class FaucetsController extends Controller {
 
         Faucets::checkUpdateStatuses();
         return Redirect::to('faucets');
+    }
+
+    public function faucetLowBalance($slug){
+        Faucets::lowBalance($slug);
     }
 
 }

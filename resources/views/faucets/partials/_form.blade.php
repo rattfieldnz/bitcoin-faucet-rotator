@@ -90,6 +90,13 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('has_low_balance', 'Balance below 10,000 Satoshis?', ['class' => 'col-lg-2 control-label'] )  !!}
+    <div class="col-lg-10">
+        {!!  Form::select('has_low_balance', [1 => 'Yes', 0 => 'No'], null, ['class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+<div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
         {!! Form::submit($submit_button_text, ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
     </div>

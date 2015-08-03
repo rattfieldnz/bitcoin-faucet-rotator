@@ -36,7 +36,8 @@ class FaucetsTableSeeder extends BaseSeeder {
                     'is_paused' => $d['comments'],
                     'meta_title' => $meta->title(),
                     'meta_description' => $meta->description(),
-                    'meta_keywords' => $meta->keywords()
+                    'meta_keywords' => $meta->keywords(),
+                    'has_low_balance' => false
                 ]);
 
                 $faucet->save();

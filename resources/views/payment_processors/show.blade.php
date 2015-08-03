@@ -58,7 +58,6 @@
         </div><!-- /.modal -->
     @endif
 
-    <p>{!! link_to('faucets', '&laquo; Back to list of faucets') !!}</p>
     <p>{!! link_to('payment_processors', '&laquo; Back to list of payment processors') !!}</p>
 
     @if (Session::has('success_message'))
@@ -67,7 +66,7 @@
             {{ Session::get('success_message') }}
         </div>
     @endif
-
+    @include('partials.ads')
     <div class="table-responsive">
         <table class="table table-striped table bordered">
             <thead>

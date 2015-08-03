@@ -26,12 +26,12 @@ class ApiController extends BaseController{
         return $faucet;
     }
 
-    public function activeFaucets(){
+    public function activeFaucets($has_low_balance = false){
         $faucets = Faucet::all();
         $active_faucets = [];
 
         foreach($faucets as $f){
-            if($f->is_paused == false){
+            if($f->is_paused == false && $f->has_low_balance == $has_low_balance){
                 array_push($active_faucets, $f);
             }
         }

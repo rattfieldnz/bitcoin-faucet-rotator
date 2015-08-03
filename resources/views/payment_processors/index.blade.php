@@ -17,12 +17,12 @@
     @endif
 
     @if (Session::has('success_message_alert'))
-        <div class="alert alert-info">
+        <div class="alert alert-info">-
             <span class="fa fa-warning fa-2x space-right"></span>
             {{ Session::get('success_message_alert') }}
         </div>
     @endif
-
+    @include('partials.ads')
     <div class="table-responsive">
 
         <table class="table table-striped bordered tablesorter" id="payment_processors_table">

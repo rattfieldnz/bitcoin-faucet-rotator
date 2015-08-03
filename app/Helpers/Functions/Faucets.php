@@ -10,6 +10,10 @@ namespace App\Helpers\Functions;
 
 
 use App\Faucet;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use RattfieldNz\UrlValidation\UrlValidation;
 
@@ -51,6 +55,32 @@ class Faucets
                     'The following faucets have been activated: ' . implode(",", $activated_faucets)
                 );
             }
+        }
+    }
+
+    public static function lowBalance($faucet_slug){
+        try {
+            $lowBalanceStatus = Input::get('has_low_balance');
+            $faucet = Faucet::findBySlugOrId($faucet_slug);
+            $faucet->has_low_balance = $lowBalanceStatus;
+            $faucet->save();
+
+            Session::flash(
+                'success_message_update_faucet_low_balance_status',
+                'The faucet has been paused due to low balance (less than 10,000 Satoshis).'
+            );
+
+            return Redirect::to('faucets/' . $faucet_slug);
+        }
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
+        }
+        catch(Exception $e){
+            return Redirect::to('faucets/' . $faucet_slug)
+                ->withErrors(['There was a problem changing low balance status, please try again.'])
+                ->withInput(Input::get('has_low_balance'));
+
         }
     }
 }

@@ -8,7 +8,7 @@
 
 @section('content')
 <h1 id="page-heading">Welcome to the Bitcoin Faucet Rotator</h1>
-
+@include('partials.ads')
 <nav id="navcontainer">
     <ul id="navlist">
         <li><a class="btn btn-primary btn-lg" id="first_faucet" title="First Faucet" role="button">First</a></li>

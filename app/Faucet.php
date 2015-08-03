@@ -35,7 +35,8 @@ class Faucet extends Model implements SluggableInterface {
                            'is_paused',
                            'meta_title',
                            'meta_description',
-                           'meta_keywords'];
+                           'meta_keywords',
+                           'has_low_balance'];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -84,6 +85,14 @@ class Faucet extends Model implements SluggableInterface {
             return 'Paused';
         }
         return 'Active';
+    }
+
+    public function lowBalanceStatus(){
+        if($this->attributes['has_low_balance'] == true)
+        {
+            return 'Yes';
+        }
+        return 'No';
     }
 
 }

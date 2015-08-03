@@ -6072,5 +6072,8 @@ body, label, .checkbox label {
   text-align: center;
   margin-top: 1em; }
 
+#check_faucet_low_balance_status {
+  border: 2px solid #ddd; }
+
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=master-final.min.css.map */

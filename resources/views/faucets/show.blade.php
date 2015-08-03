@@ -9,11 +9,12 @@
 @section('content')
     <h1 class="page-heading">{{ $faucet->name }}</h1>
     @if (Auth::user())
+
         <script>
             window.csrfToken = '<?php echo csrf_token(); ?>';
         </script>
         <p>
-            <a class="btn btn-primary btn-width" href="/faucets/{{ $faucet->id}}/edit/">
+            <a class="btn btn-primary btn-width" href="/faucets/{{ $faucet->slug}}/edit/">
                 <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit</span>
             </a>
             <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet" data-id="{{ $faucet->id }}">
@@ -33,7 +34,13 @@
             {{ Session::get('success_message') }}
         </div>
     @endif
-
+    @if (Session::has('success_message_update_faucet_low_balance_status'))
+        <div class="alert alert-success">
+            <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
+            {{ Session::get('success_message_update_faucet_low_balance_status') }}
+        </div>
+    @endif
+    @include('partials.ads')
     <div class="table-responsive">
         <table class="table table-striped table bordered">
             <thead>
@@ -46,6 +53,7 @@
                 <th>Ref. Payout %</th>
                 <th>Comments</th>
                 <th>Status</th>
+                <th>Low Balance <br><small>(less than 10,000 SAT)</small></th>
             </thead>
             <tbody>
                 <tr>
@@ -70,11 +78,11 @@
                     <td>{{ $faucet->ref_payout_percent }}</td>
                     <td>{{ $faucet->comments }}</td>
                     <td>{{ $faucet->status() }}</td>
+                    <td>{{ $faucet->lowBalanceStatus() }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-
     @if($faucet->is_paused == false)
         <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="{{ $faucet->url }}" id="faucet-iframe"></iframe>
     @else
