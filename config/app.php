@@ -138,6 +138,7 @@ return [
         'Laracasts\Generators\GeneratorsServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Roumen\Sitemap\SitemapServiceProvider',
 
 		/*
 		 * Application Service Providers...

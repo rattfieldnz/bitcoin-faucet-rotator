@@ -15,7 +15,8 @@
 		"doctrine/dbal": "~2.5",
 		"way/generators": "~3.0",
 		"cviebrock/eloquent-sluggable": ">=3.0.0-beta",
-		"rattfieldnz/url-validation": "dev-master"
+		"rattfieldnz/url-validation": "dev-master",
+		"roumen/sitemap": "^2.5"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
