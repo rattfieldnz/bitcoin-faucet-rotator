@@ -1,5 +1,7 @@
 <?php
 
+const ROOT_DOMAIN = "http://faucet_rotator.dev:8888";
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,7 +13,9 @@
 |
 */
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 Route::group(['prefix' => 'api/v1'], function()
 {
@@ -38,6 +42,45 @@ Route::resource('payment_processors', 'PaymentProcessorsController');
 Route::get('payment_processors', 'PaymentProcessorsController@index');
 
 Route::get('home', 'HomeController@index');
+
+Route::get('sitemap', function(){
+
+    // create new sitemap object
+    $sitemap = App::make("sitemap");
+
+    // set cache (key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean))
+    // by default cache is disabled
+    $sitemap->setCache('laravel.sitemap', 3600);
+
+    // check if there is cached sitemap and build new only if is not
+    if (!$sitemap->isCached())
+    {
+        // add item to the sitemap (url, date, priority, freq)
+        $sitemap->add(URL::to('/'), '2012-08-25T20:10:00+02:00', '1.0', 'daily');
+
+        // get all posts from db
+        $faucets = DB::table('faucets')->orderBy('created_at', 'desc')->get();
+
+        // add every post to the sitemap
+        foreach ($faucets as $f)
+        {
+            $url = URL::to("/faucets/" . $f->slug);
+            $sitemap->add($url, $f->updated_at, '1.0', 'daily');
+        }
+
+        $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
+
+        foreach ($payment_processors as $p)
+        {
+            $url = URL::to("/payment_processors/" . $p->slug);
+            $sitemap->add($url, $p->updated_at, '1.0', 'daily');
+        }
+    }
+
+    // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
+    return $sitemap->render('xml');
+
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

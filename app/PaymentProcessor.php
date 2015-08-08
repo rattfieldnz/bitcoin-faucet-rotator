@@ -28,6 +28,8 @@ class PaymentProcessor extends Model implements SluggableInterface {
      */
     protected $fillable = ['name', 'url'];
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     /**
      * A method defining the relationship
      * between a payment processor and
