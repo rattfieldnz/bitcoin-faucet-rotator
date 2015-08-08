@@ -12,6 +12,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li class="addthis_sharing_toolbox" style="margin-top:0.5em;"></li>
                 @if (Auth::user())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Faucets <span class="caret"></span></a>

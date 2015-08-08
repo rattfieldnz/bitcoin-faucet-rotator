@@ -33,6 +33,8 @@
     </div>
 
     @include('partials.footer')
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50b996b14942b1fb" async="async"></script>
     @yield('google_analytics')
 </body>
 </html>
