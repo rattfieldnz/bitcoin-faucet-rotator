@@ -50,7 +50,7 @@ Route::get('sitemap', function(){
 
     // set cache (key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean))
     // by default cache is disabled
-    $sitemap->setCache('laravel.sitemap', 3600);
+    $sitemap->setCache('laravel.sitemap', 15);
 
     // check if there is cached sitemap and build new only if is not
     if (!$sitemap->isCached())
