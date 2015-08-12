@@ -58,6 +58,8 @@ Route::get('sitemap', function(){
     {
         // add item to the sitemap (url, date, priority, freq)
         $sitemap->add(URL::to('/'), Carbon::now(), '1.0', 'daily');
+        $sitemap->add(URL::to('/faucets'), Carbon::now(), '1.0', 'daily');
+        $sitemap->add(URL::to('/payment_processors'), Carbon::now(), '1.0', 'daily');
 
         // get all faucets from db
         $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
