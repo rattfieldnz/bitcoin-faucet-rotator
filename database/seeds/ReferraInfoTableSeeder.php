@@ -17,7 +17,7 @@ class ReferralInfoTableSeeder extends Seeder{
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('referral_info')->truncate();
 
-        $user_id = User::where('user_name', 'admin')->first()->id;
+        $user_id = User::where('user_name', env('ADMIN_USERNAME'))->first()->id;
         $faucets = Faucet::all();
 
         foreach($faucets as $faucet)
