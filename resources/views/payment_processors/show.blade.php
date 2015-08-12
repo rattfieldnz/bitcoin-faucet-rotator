@@ -1,5 +1,11 @@
 @extends('app')
 
+@section('title', $payment_processor->meta_title)
+
+@section('description', $payment_processor->meta_description)
+
+@section('keywords', $payment_processor->meta_keywords)
+
 @section('content')
     <h1 id="page-heading">{{ $payment_processor->name }}</h1>
 
@@ -8,10 +14,10 @@
             window.csrfToken = '<?php echo csrf_token(); ?>';
         </script>
         <p>
-            <a class="btn btn-primary btn-width" href="/payment_processors/{{ $payment_processor->id}}/edit/">
+            <a class="btn btn-primary btn-width" href="/payment_processors/{{ $payment_processor->slug}}/edit/">
                 <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit</span>
             </a>
-            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delPaymentProcessor" data-id="{{ $payment_processor->id }}">
+            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delPaymentProcessor" data-id="{{ $payment_processor->slug }}">
                 <span class="fa fa-trash fa-1x space-right"></span>
                 <span class="button-font-size">Delete</span>
             </a>
@@ -39,7 +45,7 @@
                         <div id="delmodelcontainer" style="float:right">
 
                             <div id="yes" style="float:left; padding-right:10px">
-                                {!! Form::open(array('action' => array('PaymentProcessorsController@destroy', $payment_processor->id), 'method' => 'DELETE')) !!}
+                                {!! Form::open(array('action' => array('PaymentProcessorsController@destroy', $payment_processor->slug), 'method' => 'DELETE')) !!}
 
                                 {!! Form::submit('Yes', array('class' => 'btn btn-primary')) !!}
 

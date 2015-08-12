@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use RattfieldNz\UrlValidation\UrlValidation;
@@ -131,12 +132,12 @@ class FaucetsController extends Controller {
         }
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $slug
+     * @return Response
+     */
 	public function edit($slug)
 	{
         try {

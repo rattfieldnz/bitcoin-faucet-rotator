@@ -28,8 +28,11 @@ class PaymentProcessorValidator extends Validator{
     public static function validationRulesNew()
     {
         return [
-            'name' => 'required|unique:faucets,name|min:3',
-            'url' => 'required|url|active_url|unique:faucets,url',
+            'name' => 'required|unique:payment_processors,name|min:3',
+            'url' => 'required|url|active_url|unique:payment_processors,url',
+            'meta_title' => 'string|max:70|unique:payment_processors,meta_title',
+            'meta_description' => 'string|max:160|unique:payment_processors,meta_description',
+            'meta_keywords' => 'string|max:255|unique:payment_processors,meta_keywords'
         ];
     }
 
@@ -39,14 +42,17 @@ class PaymentProcessorValidator extends Validator{
      * still be submitted without any duplication
      * errors.
      *
-     * @param $faucet_id
+     * @param $payment_processor_id
      * @return array
      */
     public static function validationRulesEdit($payment_processor_id)
     {
         return [
-            'name' => 'required|unique:faucets,name, ' . $payment_processor_id . '|min:3',
-            'url' => 'required|url|active_url|unique:faucets,url, ' . $payment_processor_id
+            'name' => 'required|unique:payment_processors,name,' . $payment_processor_id . '|min:3',
+            'url' => 'required|url|active_url|unique:payment_processors,url,' . $payment_processor_id,
+            'meta_title' => 'string|max:70|unique:payment_processors,meta_title,' . $payment_processor_id,
+            'meta_description' => 'string|max:160|unique:payment_processors,meta_description,' . $payment_processor_id,
+            'meta_keywords' => 'string|max:255|unique:payment_processors,meta_keywords,' . $payment_processor_id,
         ];
     }
 }

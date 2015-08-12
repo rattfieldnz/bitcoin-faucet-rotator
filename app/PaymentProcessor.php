@@ -24,7 +24,13 @@ class PaymentProcessor extends Model implements SluggableInterface {
      *
      * @var array
      */
-    protected $fillable = ['name', 'url'];
+    protected $fillable = [
+        'name',
+        'url',
+        'meta_title',
+        'meta_description',
+        'meta_keywords'
+    ];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

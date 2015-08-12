@@ -92,16 +92,16 @@ class PaymentProcessorsController extends Controller {
         }
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $slug
+     * @return Response
+     */
+	public function edit($slug)
 	{
         try {
-            $payment_processor = PaymentProcessor::findOrFail($id);
+            $payment_processor = PaymentProcessor::findBySlugOrId($slug);
 
             $submit_button_text = "Submit Changes";
 
@@ -114,20 +114,21 @@ class PaymentProcessorsController extends Controller {
         }
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $slug
+     * @return Response
+     */
+	public function update($slug)
 	{
-		$payment_processor = PaymentProcessor::findOrFail($id);
+		$payment_processor = PaymentProcessor::findBySlugOrId($slug);
+        $id = $payment_processor->id;
 
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesEdit($id));
 
         if($validator->fails()){
-            return Redirect::to('/payment_processors/' . $id . '/edit')
+            return Redirect::to('/payment_processors/' . $slug . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
@@ -138,20 +139,20 @@ class PaymentProcessorsController extends Controller {
 
             Session::flash('success_message', 'The payment processor has successfully been updated!');
 
-            return Redirect::to('/payment_processors/' . $id);
+            return Redirect::to('/payment_processors/' . $slug);
         }
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $slug
+     * @return Response
+     */
+	public function destroy($slug)
 	{
         try {
-            $payment_processor = PaymentProcessor::findOrFail($id);
+            $payment_processor = PaymentProcessor::findBySlugOrId($slug);
 
             $payment_processor_name = $payment_processor->name;
             $payment_processor_url = $payment_processor->url;
