@@ -58,7 +58,7 @@
             <tbody>
                 <tr>
                     <td>
-                        {!! link_to($faucet->url, $faucet->name, ['target' => 'blank']) !!}
+                        {!! link_to($faucet->url, $faucet->name, ['target' => 'blank', 'title' => $faucet->name]) !!}
                     </td>
                     <td>{{ $faucet->interval_minutes }}</td>
                     <td>{{ $faucet->min_payout }}</td>
@@ -69,7 +69,7 @@
                         @else
                             <ul class="faucet-payment-processors">
                             @foreach($faucet->payment_processors as $payment_processor)
-                                <li>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank']) !!}</li>
+                                <li>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank', 'title' => $payment_processor->name]) !!}</li>
                             @endforeach
                             </ul>
                         @endif

@@ -81,7 +81,7 @@
             </thead>
             <tbody>
             <tr>
-                <td>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank']) !!}</td>
+                <td>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank', 'title' => $payment_processor->name]) !!}</td>
                 <td>
 
                     <div class="accordion">
@@ -89,7 +89,7 @@
                         <div>
                             <ul class="faucet-payment-processors">
                                 @foreach($payment_processor->faucets as $faucet)
-                                    <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->slug)) !!}</li>
+                                    <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->slug), ['title' => $faucet->name]) !!}</li>
                                 @endforeach
                             </ul>
                         </div>

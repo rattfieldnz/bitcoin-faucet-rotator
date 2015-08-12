@@ -53,7 +53,7 @@
             @foreach($faucets as $faucet)
                 <tr>
                     <td>
-                        {!! link_to_route('faucets.show', $faucet->name, array($faucet->slug)) !!}
+                        {!! link_to_route('faucets.show', $faucet->name, array($faucet->slug), ['title' => $faucet->name]) !!}
                         @if(Auth::check())
                             <br><a class="btn btn-primary btn-width-small" href="/faucets/{{ $faucet->slug}}/edit/">
                                 <span class="button-font-small">Edit</span>
