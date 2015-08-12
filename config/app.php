@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://faucet-rotator.dev',
+	'url' => env('ROOT_URL'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 

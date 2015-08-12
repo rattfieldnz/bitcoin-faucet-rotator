@@ -19,8 +19,6 @@ class PaymentProcessor extends Model implements SluggableInterface {
         'save_to'    => 'slug',
     ];
 
-    public $timestamps = false;
-
     /**
      * The attributes that are mass assignable.
      *
