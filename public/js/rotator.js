@@ -1,7 +1,7 @@
 $(function(){
 
     var clickCount = 0;
-    $.ajax('http://faucet_rotator.dev:8888/api/v1/active_faucets', {
+    $.ajax('http://freebtc.website/api/v1/active_faucets', {
         success: function(data) {
             //set first url upon first view
             var arr = $.map(data, function(el) { return el; });
