@@ -53,7 +53,8 @@ $(function(){
 
             $('#reload_current').click(function(event) {
                 event.preventDefault();
-                $('#rotator-iframe').contentWindow.location.reload(true);
+                //$('#rotator-iframe').contentWindow.location.reload(true);
+                $('#rotator-iframe').attr('src', arr[clickCount].url);
             });
         }
     });
