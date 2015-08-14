@@ -1,6 +1,6 @@
 name,url,interval_minutes,min_payout,max_payout,has_ref_program,ref_payout_percent,comments,is_paused,created_at,updated_at
-Moon Bitcoin,http://moonbit.co.in?ref=08d76823021c,1,50,3000,1,50,Max payout based on 168 hours of accumulation.,0,,
 BitVisits,http://www.bitvisits.com/?i=478,1,200,1000,1,50,,0,,
+Moon Bitcoin,http://moonbit.co.in?ref=08d76823021c,1,50,3000,1,50,Max payout based on 168 hours of accumulation.,0,,
 Bitz Free Bitcoin,https://bitzfree.com/?ref=ZlJ0blRHas52ifeJWYyJndmVCbbzenZ0B2chRWZj0tr,1,50,500,1,50,,0,,
 Donald Coin,http://donaldcoin.com/index.php?ref=bitcoinlover,1,4,4,1,20,,0,,
 Fantasy BTC,http://fantasybtc.com/index.php?ref=bitcoinlover,1,8,16,1,20,"500 Satoshis per hour, capped to 1000 per hour for free members.",0,,
