@@ -56,6 +56,19 @@ $(function(){
                 //$('#rotator-iframe').contentWindow.location.reload(true);
                 $('#rotator-iframe').attr('src', arr[clickCount].url);
             });
+
+            $('#random').click(function(event) {
+                event.preventDefault();
+                var min = 0;
+                var max = arr.length - 1;
+                var randomFaucetIndex = randomInt(min, max);
+                $('#rotator-iframe').attr('src', arr[randomFaucetIndex].url);
+            });
         }
     });
 });
+
+function randomInt(min, max)
+{
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}

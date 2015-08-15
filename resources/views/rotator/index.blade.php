@@ -17,6 +17,7 @@
         <li><a class="btn btn-primary btn-lg" id="reload_current" title="Reload Current Faucet" role="button">Reload Current</a></li>
         <li><a class="btn btn-primary btn-lg" id="next_faucet" title="Next Faucet" role="button">Next</a></li>
         <li><a class="btn btn-primary btn-lg" id="last_faucet" title="Last Faucet" role="button">Last</a></li>
+        <li><a class="btn btn-primary btn-lg" id="random" title="Random Faucet" role="button">Random</a></li>
         <li><a class="btn btn-primary btn-lg" id="list_of_faucets" href="/faucets" title="List of Faucets" role="button">List of Faucets</a></li>
     </ul>
 </nav>
