@@ -67,7 +67,7 @@ class PaymentProcessorsController extends Controller {
             $payment_processor->save();
 
             Session::flash('success_message', 'The payment processor has successfully been created and stored!');
-            return Redirect::to('/payment_processors/' . $payment_processor->id);
+            return Redirect::to('/payment_processors/' . $payment_processor->slug);
         }
 	}
 

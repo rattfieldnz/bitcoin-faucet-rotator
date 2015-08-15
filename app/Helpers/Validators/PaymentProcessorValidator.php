@@ -30,9 +30,9 @@ class PaymentProcessorValidator extends Validator{
         return [
             'name' => 'required|unique:payment_processors,name|min:3',
             'url' => 'required|url|active_url|unique:payment_processors,url',
-            'meta_title' => 'string|max:70|unique:payment_processors,meta_title',
-            'meta_description' => 'string|max:160|unique:payment_processors,meta_description',
-            'meta_keywords' => 'string|max:255|unique:payment_processors,meta_keywords'
+            'meta_title' => 'string|max:70',
+            'meta_description' => 'string|max:160',
+            'meta_keywords' => 'string|max:255'
         ];
     }
 
