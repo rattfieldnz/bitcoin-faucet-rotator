@@ -66,9 +66,9 @@ class FaucetValidator extends Validator{
                 'ref_payout_percent' => 'required|numeric|min:0',
                 'comments' => 'text',
                 'is_paused' => 'required|boolean',
-                'meta_title' => 'string|max:70|unique:faucets,meta_title,' . $faucet_id,
-                'meta_description'  => 'string|max:160|unique:faucets,meta_description,' . $faucet_id,
-                'meta_keywords' => 'string|max:255|unique:faucets,meta_keywords,' . $faucet_id,
+                'meta_title' => 'string|max:70',
+                'meta_description'  => 'string|max:160',
+                'meta_keywords' => 'string|max:255',
         ];
     }
 }
