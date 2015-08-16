@@ -23,7 +23,7 @@
 </nav>
 
 <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="" id="rotator-iframe"></iframe>
-<script src="js/rotator.js"></script>
+<script src="js/rotator.js?{{ rand()}}"></script>
 @endsection
 
 @section('google_analytics')
