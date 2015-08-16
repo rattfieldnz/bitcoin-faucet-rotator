@@ -1,7 +1,4 @@
 <?php
-
-const ROOT_DOMAIN = "http://faucet_rotator.dev:8888";
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
