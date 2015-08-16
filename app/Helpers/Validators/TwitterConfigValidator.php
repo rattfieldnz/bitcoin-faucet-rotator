@@ -31,16 +31,15 @@ class TwitterConfigValidator extends Validator
 
     /**
      * Validates new twitter config entries.
-     * @param $user_id
      * @return array
      */
-    public static function validationRulesEdit($user_id)
+    public static function validationRulesEdit()
     {
         return [
-            'consumer_key' => 'required|unique:twitter_config,consumer_key,' . $user_id . '|max:255',
-            'consumer_key_secret' => 'required|unique:twitter_config,consumer_key_secret,' . $user_id . '|max:255',
-            'access_token' => 'required|unique:twitter_config,access_token,' . $user_id . '|max:255',
-            'access_token_secret' => 'required|unique:twitter_config,access_token_secret,' . $user_id . '|max:255',
+            'consumer_key' => 'required|max:255',
+            'consumer_key_secret' => 'required|max:255',
+            'access_token' => 'required|max:255',
+            'access_token_secret' => 'required|max:255',
             'user_id' => 'required|integer'
         ];
     }

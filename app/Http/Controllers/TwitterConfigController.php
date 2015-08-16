@@ -118,7 +118,7 @@ class TwitterConfigController extends Controller {
     {
 
         $input = Input::except('_token');
-        $validator = Validator::make($input, TwitterConfigValidator::validationRulesEdit($input['user_id']));
+        $validator = Validator::make($input, TwitterConfigValidator::validationRulesEdit());
 
         if($validator->fails()){
             return Redirect::to('admin/twitter_config')
