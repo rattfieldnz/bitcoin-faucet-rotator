@@ -29,22 +29,12 @@ class TwitterConfigController extends Controller {
 	{
         $twitterConfig = User::find(Auth::user()->id)->twitterConfig;
 
-        if(!$twitterConfig || count($twitterConfig) == 0) {
+        if(count($twitterConfig) == 0) {
             return view('twitter_config.create');
         }
         else{
             return view('twitter_config.edit', compact('twitterConfig'));
         }
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
 	}
 
 	/**
@@ -56,7 +46,7 @@ class TwitterConfigController extends Controller {
 	{
 	    //Create the validator to process input for validation.
         $input = Input::except('_token');
-        $validator = Validator::make($input, TwitterConfigValidator::validationRulesNew());
+        $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
         if($validator->fails()){
             return Redirect::to('admin/twitter_config')
@@ -80,28 +70,6 @@ class TwitterConfigController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
@@ -116,9 +84,9 @@ class TwitterConfigController extends Controller {
      */
     public function update(TwitterConfig $twitterConfig)
     {
-
+        $twitterConfig = $twitterConfig::firstOrFail();
         $input = Input::except('_token');
-        $validator = Validator::make($input, TwitterConfigValidator::validationRulesEdit());
+        $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
         if($validator->fails()){
             return Redirect::to('admin/twitter_config')
@@ -126,6 +94,7 @@ class TwitterConfigController extends Controller {
                 ->withInput($input);
         }
         else{
+            //die(var_dump($input));
             $twitterConfig->fill($input);
 
             $twitterConfig->save();
@@ -136,16 +105,5 @@ class TwitterConfigController extends Controller {
 
         }
     }
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

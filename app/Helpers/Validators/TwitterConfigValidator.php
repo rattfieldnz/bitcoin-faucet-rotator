@@ -18,28 +18,13 @@ class TwitterConfigValidator extends Validator
      * Validates new twitter config entries.
      * @return array
      */
-    public static function validationRulesNew()
+    public static function validationRules()
     {
         return [
-            'consumer_key' => 'required|unique:twitter_config,consumer_key|max:255',
-            'consumer_key_secret' => 'required|unique:twitter_config,consumer_key_secret|max:255',
-            'access_token' => 'required|unique:twitter_config,access_token|max:255',
-            'access_token_secret' => 'required|unique:twitter_config,access_token_secret|max:255',
-            'user_id' => 'required|integer'
-        ];
-    }
-
-    /**
-     * Validates new twitter config entries.
-     * @return array
-     */
-    public static function validationRulesEdit()
-    {
-        return [
-            'consumer_key' => 'required|max:255',
-            'consumer_key_secret' => 'required|max:255',
-            'access_token' => 'required|max:255',
-            'access_token_secret' => 'required|max:255',
+            'consumer_key' => 'max:255',
+            'consumer_key_secret' => 'max:255',
+            'access_token' => 'max:255',
+            'access_token_secret' => 'max:255',
             'user_id' => 'required|integer'
         ];
     }

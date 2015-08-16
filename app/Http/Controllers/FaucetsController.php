@@ -64,7 +64,7 @@ class FaucetsController extends Controller {
 	public function store()
 	{
         //Create the validator to process input for validation.
-		$validator = Validator::make(Input::all(), FaucetValidator::validationRulesNew());
+		$validator = Validator::make(Input::except('send_tweet'), FaucetValidator::validationRulesNew());
 
         //If validator fails, return to the create page -
         //with input still in form, and accompanied with
@@ -80,7 +80,7 @@ class FaucetsController extends Controller {
 
             //Assign input from the form to the faucet's properties -
             //except payment processors as this needs to be done separately.
-            $faucet->fill(Input::except('faucet_payment_processors'));
+            $faucet->fill(Input::except('faucet_payment_processors', 'send_tweet'));
 
             //Retrieve payment processor ids from multi-select dropdown
             $payment_processor_ids = Input::get('faucet_payment_processors');
@@ -186,14 +186,14 @@ class FaucetsController extends Controller {
         //with current faucet id, so
         //'not unique' errors won't be displayed
         //when updating.
-        $validator = Validator::make(Input::all(), FaucetValidator::validationRulesEdit($id));
+        $validator = Validator::make(Input::except('send_tweet'), FaucetValidator::validationRulesEdit($id));
 
         //If validation fails, redirect back to the
         //editing page - with input and relevant errors.
         if($validator->fails()){
             return Redirect::to('faucets/' . $slug . '/edit')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput(Input::except('send_tweet'));
         } else {
 
             //Get all input from edit/update request,
