@@ -37,10 +37,10 @@ class TwitterConfigValidator extends Validator
     public static function validationRulesEdit($user_id)
     {
         return [
-            'consumer_key' => 'required|unique:twitter_config,consumer_key' . $user_id . '|max:255',
-            'consumer_key_secret' => 'required|unique:twitter_config,consumer_key_secret' . $user_id . '|max:255',
-            'access_token' => 'required|unique:twitter_config,access_token' . $user_id . '|max:255',
-            'access_token_secret' => 'required|unique:twitter_config,access_token_secret' . $user_id . '|max:255',
+            'consumer_key' => 'required|unique:twitter_config,consumer_key,' . $user_id . '|max:255',
+            'consumer_key_secret' => 'required|unique:twitter_config,consumer_key_secret,' . $user_id . '|max:255',
+            'access_token' => 'required|unique:twitter_config,access_token,' . $user_id . '|max:255',
+            'access_token_secret' => 'required|unique:twitter_config,access_token_secret,' . $user_id . '|max:255',
             'user_id' => 'required|integer'
         ];
     }
