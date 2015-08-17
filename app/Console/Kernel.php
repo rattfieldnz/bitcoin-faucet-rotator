@@ -8,7 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Auth;
 
 class Kernel extends ConsoleKernel {
-    
+
 	/**
 	 * The Artisan commands provided by your application.
 	 *
