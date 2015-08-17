@@ -96,6 +96,8 @@
     </div>
 </div>
 
+@include('faucets/partials/_social_config')
+
 <div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
         {!! Form::submit($submit_button_text, ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}

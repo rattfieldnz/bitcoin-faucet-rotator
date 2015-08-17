@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('UsersTableSeeder');
         $this->call('ReferralInfoTableSeeder');
 		$this->call('MainMetaTableSeeder');
+		$this->call('TwitterConfigTableSeeder');
 	}
 
 }

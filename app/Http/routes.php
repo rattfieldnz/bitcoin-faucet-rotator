@@ -33,6 +33,8 @@ Route::patch('checkFaucetsStatus', 'FaucetsController@checkFaucetsStatus');
 Route::get('faucets/progress', 'FaucetsController@progress' );
 Route::resource('faucets', 'FaucetsController');
 Route::resource('main_meta', 'MainMetaController');
+Route::resource('admin/twitter_config', 'TwitterConfigController');
+Route::get('/admin/twitter_config', 'TwitterConfigController@index');
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
 Route::resource('payment_processors', 'PaymentProcessorsController');

@@ -47,4 +47,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('App\Faucet', 'referral_info');
     }
 
+    public function twitterConfig(){
+        return $this->hasOne('App\TwitterConfig', 'user_id');
+    }
+
 }
