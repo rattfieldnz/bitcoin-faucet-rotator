@@ -8,7 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Auth;
 
 class Kernel extends ConsoleKernel {
-
+    
 	/**
 	 * The Artisan commands provided by your application.
 	 *
@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel {
             $user = User::where('is_admin', '=', true)->firstOrFail();
             $twitter = new Twitter($user);
             $twitter->sendRandomFaucetTweet();
-        })->cron('* */3 * * *'); //every 3 hours
+        })->cron('1 */3 * * *'); //every 3 hours
 	}
 
     /**
