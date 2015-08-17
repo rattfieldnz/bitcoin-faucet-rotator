@@ -21,10 +21,8 @@ use RattfieldNz\UrlValidation\UrlValidation;
 
 class FaucetsController extends Controller {
 
-    private $twitter;
     function __construct()   {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->twitter = new Twitter(User::find(Auth::user()->id));
     }
 	/**
 	 * Display a listing of the resource.
@@ -107,12 +105,15 @@ class FaucetsController extends Controller {
 
             //Redirect to the faucet's page, with a success message.
             Session::flash('success_message', 'The faucet has successfully been created and stored!');
+
             $faucetUrl = url('/faucets/' . $faucet->slug);
 
-            $this->twitter->sendTweet(
-                "Hey everyone! Just added another #Bitcoin faucet (". $faucet->name . ") @ " . $faucetUrl .
-                " Get between " . $faucet->min_payout . " and " . $faucet->max_payout . " every " .
-                $faucet->interval_minutes . " minute/s. #FreeBTCWebsite"
+            $user = User::find(Auth::user()->id);
+            $twitter = new Twitter($user);
+
+            $twitter->sendTweet(
+                "Hey everyone, just added another #Bitcoin faucet @ " . $faucetUrl .
+                ". Check it out now! #FreeBTCWebsite"
             );
 
             return Redirect::to('/faucets/' . $faucet->slug);
@@ -204,13 +205,13 @@ class FaucetsController extends Controller {
         if($validator->fails()){
             return Redirect::to('faucets/' . $slug . '/edit')
                 ->withErrors($validator)
-                ->withInput(Input::except('send_tweet'));
+                ->withInput(Input::all());
         } else {
 
             //Get all input from edit/update request,
             //then populate the faucet with the given
             //data.
-            $faucet->fill(Input::all());
+            $faucet->fill(Input::except('send_tweet'));
 
             //Retrieve payment processor ids from update.
             $payment_processor_ids = Input::get('faucet_payment_processors');
@@ -232,10 +233,13 @@ class FaucetsController extends Controller {
             $faucet->save();
 
             $faucetUrl = url('/faucets/' . $faucet->slug);
-            $this->twitter->sendTweet(
+
+            $user = User::find(Auth::user()->id);
+            $twitter = new Twitter($user);
+
+            $twitter->sendTweet(
                 "Hey everyone! Just updated #Bitcoin faucet (". $faucet->name . ") @ " . $faucetUrl .
-                " Get between " . $faucet->min_payout . " and " . $faucet->max_payout . " every " .
-                $faucet->interval_minutes . " minute/s. #FreeBTCWebsite"
+                " #FreeBTCWebsite"
             );
 
             Session::flash('success_message', 'The faucet has successfully been updated!');

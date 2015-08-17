@@ -9,7 +9,7 @@
 namespace App\Helpers\Social;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\User;
+use \App\User;
 
 class Twitter
 {
@@ -36,7 +36,7 @@ class Twitter
 
     public function sendTweet($message)
     {
-            $this->connection->post("statuses/update", array("status" => $message));
+        $this->connection->post("statuses/update", array("status" => $message));
     }
 
     public function getKeys()
