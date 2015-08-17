@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel {
         })->hourly();
 
         $schedule->call(function(){
-            $user = User::where('is_admin', '=', true)->firstOrFail()->id;
+            $user = User::where('is_admin', '=', true)->firstOrFail();
             $twitter = new Twitter($user);
             $twitter->sendRandomFaucetTweet();
         })->cron('* */3 * * *'); //every 3 hours
