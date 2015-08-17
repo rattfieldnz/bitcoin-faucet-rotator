@@ -106,15 +106,17 @@ class FaucetsController extends Controller {
             //Redirect to the faucet's page, with a success message.
             Session::flash('success_message', 'The faucet has successfully been created and stored!');
 
-            $faucetUrl = url('/faucets/' . $faucet->slug);
+            if(Input::get('send_tweet') == 1) {
+                $faucetUrl = url('/faucets/' . $faucet->slug);
 
-            $user = User::find(Auth::user()->id);
-            $twitter = new Twitter($user);
+                $user = User::find(Auth::user()->id);
+                $twitter = new Twitter($user);
 
-            $twitter->sendTweet(
-                "Hey everyone, just added another #Bitcoin faucet @ " . $faucetUrl .
-                ". Check it out now! #FreeBTCWebsite"
-            );
+                $twitter->sendTweet(
+                    "Hey everyone, just added another #Bitcoin faucet @ " . $faucetUrl .
+                    ". Check it out now! #FreeBTCWebsite"
+                );
+            }
 
             return Redirect::to('/faucets/' . $faucet->slug);
         }
@@ -232,15 +234,17 @@ class FaucetsController extends Controller {
             //Save the changes made to the faucet.
             $faucet->save();
 
-            $faucetUrl = url('/faucets/' . $faucet->slug);
+            if(Input::get('send_tweet') == 1) {
+                $faucetUrl = url('/faucets/' . $faucet->slug);
 
-            $user = User::find(Auth::user()->id);
-            $twitter = new Twitter($user);
+                $user = User::find(Auth::user()->id);
+                $twitter = new Twitter($user);
 
-            $twitter->sendTweet(
-                "Hey everyone! Just updated #Bitcoin faucet (". $faucet->name . ") @ " . $faucetUrl .
-                " #FreeBTCWebsite"
-            );
+                $twitter->sendTweet(
+                    "Hey everyone! Just updated #Bitcoin faucet (" . $faucet->name . ") @ " . $faucetUrl .
+                    " #FreeBTCWebsite"
+                );
+            }
 
             Session::flash('success_message', 'The faucet has successfully been updated!');
 
