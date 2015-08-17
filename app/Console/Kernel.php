@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel {
     private $twitter;
 
     public function __construct(){
-        $user = User::find(Auth::user()->id);
+        $user = User::where('is_admin', '=', true)->firstOrFail()->id;
         $this->twitter = new Twitter($user);
     }
 	/**
