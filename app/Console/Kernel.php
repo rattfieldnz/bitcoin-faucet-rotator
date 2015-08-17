@@ -1,11 +1,20 @@
 <?php namespace App\Console;
 
 use App\Helpers\Functions\Faucets;
+use App\Helpers\Social\Twitter;
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Auth;
 
 class Kernel extends ConsoleKernel {
 
+    private $twitter;
+
+    public function __construct(){
+        $user = User::find(Auth::user()->id);
+        $this->twitter = new Twitter($user);
+    }
 	/**
 	 * The Artisan commands provided by your application.
 	 *
@@ -23,12 +32,17 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
+
 		$schedule->command('inspire')
 				 ->hourly();
 
         $schedule->call(function () {
             Faucets::checkUpdateStatuses();
         })->hourly();
+
+        $schedule->call(function(){
+            $this->twitter->sendRandomFaucetTweet();
+        })->cron('* */3 * * *'); //every 3 hours
 	}
 
     /**
