@@ -31,6 +31,9 @@
                     <li>
                         <a href="/main_meta">Manage Main Meta</a>
                     </li>
+                    <li>
+                        <a href="/admin/twitter_config">Manage Twitter Config</a>
+                    </li>
                 @else
                     <li><a href="/faucets">Faucets</a></li>
                     <li><a href="/payment_processors">Payment Processors</a></li>
