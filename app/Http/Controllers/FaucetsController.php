@@ -2,6 +2,7 @@
 
 use App\Faucet;
 use App\Helpers\Functions\Faucets;
+use App\Helpers\Social\Twitter;
 use App\Http\Requests;
 use App\PaymentProcessor;
 use App\User;
@@ -64,7 +65,7 @@ class FaucetsController extends Controller {
 	public function store()
 	{
         //Create the validator to process input for validation.
-		$validator = Validator::make(Input::all(), FaucetValidator::validationRulesNew());
+		$validator = Validator::make(Input::except('send_tweet'), FaucetValidator::validationRulesNew());
 
         //If validator fails, return to the create page -
         //with input still in form, and accompanied with
@@ -80,7 +81,7 @@ class FaucetsController extends Controller {
 
             //Assign input from the form to the faucet's properties -
             //except payment processors as this needs to be done separately.
-            $faucet->fill(Input::except('faucet_payment_processors'));
+            $faucet->fill(Input::except('faucet_payment_processors', 'send_tweet'));
 
             //Retrieve payment processor ids from multi-select dropdown
             $payment_processor_ids = Input::get('faucet_payment_processors');
@@ -104,6 +105,17 @@ class FaucetsController extends Controller {
 
             //Redirect to the faucet's page, with a success message.
             Session::flash('success_message', 'The faucet has successfully been created and stored!');
+
+            $faucetUrl = url('/faucets/' . $faucet->slug);
+
+            $user = User::find(Auth::user()->id);
+            $twitter = new Twitter($user);
+
+            $twitter->sendTweet(
+                "Hey everyone, just added another #Bitcoin faucet @ " . $faucetUrl .
+                ". Check it out now! #FreeBTCWebsite"
+            );
+
             return Redirect::to('/faucets/' . $faucet->slug);
         }
 	}
@@ -186,7 +198,7 @@ class FaucetsController extends Controller {
         //with current faucet id, so
         //'not unique' errors won't be displayed
         //when updating.
-        $validator = Validator::make(Input::all(), FaucetValidator::validationRulesEdit($id));
+        $validator = Validator::make(Input::except('send_tweet'), FaucetValidator::validationRulesEdit($id));
 
         //If validation fails, redirect back to the
         //editing page - with input and relevant errors.
@@ -199,7 +211,7 @@ class FaucetsController extends Controller {
             //Get all input from edit/update request,
             //then populate the faucet with the given
             //data.
-            $faucet->fill(Input::all());
+            $faucet->fill(Input::except('send_tweet'));
 
             //Retrieve payment processor ids from update.
             $payment_processor_ids = Input::get('faucet_payment_processors');
@@ -219,6 +231,16 @@ class FaucetsController extends Controller {
 
             //Save the changes made to the faucet.
             $faucet->save();
+
+            $faucetUrl = url('/faucets/' . $faucet->slug);
+
+            $user = User::find(Auth::user()->id);
+            $twitter = new Twitter($user);
+
+            $twitter->sendTweet(
+                "Hey everyone! Just updated #Bitcoin faucet (". $faucet->name . ") @ " . $faucetUrl .
+                " #FreeBTCWebsite"
+            );
 
             Session::flash('success_message', 'The faucet has successfully been updated!');
 
