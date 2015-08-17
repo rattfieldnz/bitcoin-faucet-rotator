@@ -8,13 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Auth;
 
 class Kernel extends ConsoleKernel {
-
-    private $twitter;
-
-    public function __construct(){
-        $user = User::where('is_admin', '=', true)->firstOrFail()->id;
-        $this->twitter = new Twitter($user);
-    }
+    
 	/**
 	 * The Artisan commands provided by your application.
 	 *
@@ -41,7 +35,9 @@ class Kernel extends ConsoleKernel {
         })->hourly();
 
         $schedule->call(function(){
-            $this->twitter->sendRandomFaucetTweet();
+            $user = User::where('is_admin', '=', true)->firstOrFail()->id;
+            $twitter = new Twitter($user);
+            $twitter->sendRandomFaucetTweet();
         })->cron('* */3 * * *'); //every 3 hours
 	}
 
