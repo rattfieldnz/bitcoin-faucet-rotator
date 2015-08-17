@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\PaymentProcessor;
 use App\User;
 use Exception;
+use Helpers\Social\Twitter;
 use Helpers\Validators\FaucetValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -20,8 +21,10 @@ use RattfieldNz\UrlValidation\UrlValidation;
 
 class FaucetsController extends Controller {
 
+    private $twitter;
     function __construct()   {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->twitter = new Twitter(User::find(Auth::user()->id));
     }
 	/**
 	 * Display a listing of the resource.
