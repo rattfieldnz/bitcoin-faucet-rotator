@@ -9,6 +9,7 @@
 namespace App\Helpers\Social;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Faucet;
 use \App\User;
 
 class Twitter
@@ -37,6 +38,23 @@ class Twitter
     public function sendTweet($message)
     {
         $this->connection->post("statuses/update", array("status" => $message));
+    }
+
+    public function sendRandomFaucetTweet(){
+        $faucet_count = count(Faucet::all());
+        if($faucet_count > 0) {
+            $numbers = range(0, $faucet_count - 1);
+            shuffle($numbers);
+            $random_number = array_slice($numbers, 0,1);
+
+            $faucet = Faucet::find($random_number[0]);
+
+            $message = "Earn between " . $faucet->min_payout . " and "
+                . $faucet->max_payout . " satoshis every " . $faucet->interval_minutes
+                . " minute/s from " . url('/faucets/' . $faucet->slug) . " for free :).";
+
+            $this->sendTweet($message);
+        }
     }
 
     public function getKeys()
