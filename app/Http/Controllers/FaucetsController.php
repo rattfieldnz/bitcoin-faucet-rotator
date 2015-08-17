@@ -2,11 +2,11 @@
 
 use App\Faucet;
 use App\Helpers\Functions\Faucets;
+use App\Helpers\Social\Twitter;
 use App\Http\Requests;
 use App\PaymentProcessor;
 use App\User;
 use Exception;
-use Helpers\Social\Twitter;
 use Helpers\Validators\FaucetValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -107,6 +107,14 @@ class FaucetsController extends Controller {
 
             //Redirect to the faucet's page, with a success message.
             Session::flash('success_message', 'The faucet has successfully been created and stored!');
+            $faucetUrl = url('/faucets/' . $faucet->slug);
+
+            $this->twitter->sendTweet(
+                "Hey everyone! Just added another #Bitcoin faucet (". $faucet->name . ") @ " . $faucetUrl .
+                " Get between " . $faucet->min_payout . " and " . $faucet->max_payout . " every " .
+                $faucet->interval_minutes . " minute/s. #FreeBTCWebsite"
+            );
+
             return Redirect::to('/faucets/' . $faucet->slug);
         }
 	}
@@ -222,6 +230,13 @@ class FaucetsController extends Controller {
 
             //Save the changes made to the faucet.
             $faucet->save();
+
+            $faucetUrl = url('/faucets/' . $faucet->slug);
+            $this->twitter->sendTweet(
+                "Hey everyone! Just updated #Bitcoin faucet (". $faucet->name . ") @ " . $faucetUrl .
+                " Get between " . $faucet->min_payout . " and " . $faucet->max_payout . " every " .
+                $faucet->interval_minutes . " minute/s. #FreeBTCWebsite"
+            );
 
             Session::flash('success_message', 'The faucet has successfully been updated!');
 
