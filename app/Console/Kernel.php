@@ -32,13 +32,14 @@ class Kernel extends ConsoleKernel {
 
         $schedule->call(function () {
             Faucets::checkUpdateStatuses();
-        })->hourly();
+        })->hourly()->environments('production');
 
         $schedule->call(function(){
             $user = User::where('is_admin', '=', true)->firstOrFail();
             $twitter = new Twitter($user);
             $twitter->sendRandomFaucetTweet();
-        })->cron('1 */3 * * *'); //every 3 hours
+        })->hourly()->environments('production');
+		
 	}
 
     /**
