@@ -12,7 +12,9 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="addthis_sharing_toolbox" style="margin-top:0.5em;"></li>
+                @if(Auth::guest())
+                    <li class="addthis_sharing_toolbox" style="margin-top:0.5em;"></li>
+                @endif
                 @if (Auth::user())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Faucets <span class="caret"></span></a>
@@ -37,6 +39,10 @@
                 @else
                     <li><a href="/faucets">Faucets</a></li>
                     <li><a href="/payment_processors">Payment Processors</a></li>
+                    <li>
+                        <a href="https://twitter.com/FreeBTCWebsite" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @FreeBTCWebsite</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </li>
                 @endif
             </ul>
 
