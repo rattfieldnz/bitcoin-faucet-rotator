@@ -24,6 +24,48 @@
 
 <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="" id="rotator-iframe"></iframe>
 <script src="js/rotator.js?{{ rand()}}"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 id="whatisbitcoin">Huh? What is this 'Bitcoin' thing?</h2>
+
+        <p>There are a wealth of resources out there on Bitcoins - how they are made, why they were made, and how they are used. Bitcoins are a form of digital currency that isn't centralised (like banks), and are created by (sometimes) powerful machines (commonly called 'mining rigs') that perform numerous mathematical and algorithmic calculations. Below are some resources that will explain Bitcoins:</p>
+
+        <ul id="bitcoin-info-links">
+            <li><a href="http://bitcoin.org/en/" title="The Official Bitcoin Website" target="_blank">The Official Bitcoin Website</a></li>
+            <li><a href="http://www.weusecoins.com/" title="What is Bitcoin? - We Use Coins" target="_blank">What is Bitcoin? - We Use Coins</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" title="The Bitcoin Wiki" target="_blank">The Bitcoin Wiki</a></li>
+            <li><a href="https://bitcoinfoundation.org/" title="The Bitcoin Foundation" target="_blank">The Bitcoin Foundation</a></li>
+            <li><a href="http://bitcoin.stackexchange.com/" title="Bitcoin Stack Exchange Q and A Site" target="_blank">Bitcoin Stack Exchange Q and A Site</a></li>
+            <li><a href="https://bitcointalk.org/" title="Bitcoin Talk Forum" target="_blank">Bitcoin Talk Forum</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row" id="bitcoin-wallets">
+    <div class="col-lg-12">
+        <h2>Needing a Bitcoin Wallet?</h2>
+
+        <p>In order to receive bitcoins, you usually need a bitcoin address for the sender to send them to. You are able to select one of the providers below to create your bitcoin wallet/address:</p>
+
+        <h3>Web-based Wallet Providers</h3>
+        <ul class="bitcoin-wallet-links">
+            <li><a href="https://coinbase.com/?r=52b3ca3962893c879300002e&utm_campaign=user-referral&src=referral-link" title="CoinBase.com" target="_blank">CoinBase.com</a></li>
+            <li><a href="https://www.microwallet.org/" title="MicroWallet" target="_blank">MicroWallet</a></li>
+            <li><a href="https://blockchain.info/wallet" title="BlockChain" target="_blank">BlockChain</a></li>
+            <li><a href="https://coinkite.com/">CoinKite</a></li>
+        </ul>
+
+        <h3>Bitcoin Wallet Clients - Install On Your Computer</h3>
+        <ul class="bitcoin-wallet-links">
+            <li><a href="http://bitcoin.org/en/download" title="Bitcoin Qt" target="_blank">Bitcoin Qt (the original client)</a></li>
+            <li><a href="https://bitcoinarmory.com/" title="Bitcoin Armory" target="_blank">Bitcoin Armory</a></li>
+            <li><a href="https://multibit.org/" title="MultiBit" target="_blank">MultiBit</a></li>
+        </ul>
+    </div>
+</div>
+
+
 @endsection
 
 @section('google_analytics')
