@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function faucets()
     {
-        return $this->belongsToMany('App\Faucet', 'referral_info');
+        return $this->belongsToMany('App\Faucet', 'referral_info')->orderBy('interval_minutes', 'asc');
     }
 
     public function twitterConfig(){

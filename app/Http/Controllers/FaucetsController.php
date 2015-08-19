@@ -40,6 +40,7 @@ class FaucetsController extends Controller {
         }
 
         $faucets = User::find($faucets_user_id)->faucets;
+
         return view('faucets.index', compact('faucets'));
 	}
 
