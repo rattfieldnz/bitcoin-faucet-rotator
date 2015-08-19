@@ -39,7 +39,7 @@ class FaucetsController extends Controller {
             $faucets_user_id = (int)User::where('is_admin', '=', true)->firstOrFail()->id;
         }
 
-        $faucets = User::find($faucets_user_id)->faucets;
+        $faucets = User::find($faucets_user_id)->faucets->orderBy('interval_minutes', 'asc');
         return view('faucets.index', compact('faucets'));
 	}
 
