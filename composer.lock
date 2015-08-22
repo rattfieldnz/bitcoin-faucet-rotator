@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "21802cc3f6151332a25dfbb5631e6494",
+    "hash": "7026943ed0dbf110d9d945dce15c4f4f",
     "packages": [
         {
             "name": "abraham/twitteroauth",
-            "version": "0.5.3",
+            "version": "0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abraham/twitteroauth.git",
-                "reference": "c72c778c043220e29b81edbc0b521a5dd553e891"
+                "reference": "1c05f38b7780c9e6d3938b3f2ac2f3fd9d810825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/c72c778c043220e29b81edbc0b521a5dd553e891",
-                "reference": "c72c778c043220e29b81edbc0b521a5dd553e891",
+                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/1c05f38b7780c9e6d3938b3f2ac2f3fd9d810825",
+                "reference": "1c05f38b7780c9e6d3938b3f2ac2f3fd9d810825",
                 "shasum": ""
             },
             "require": {
@@ -25,9 +25,9 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpmd/phpmd": "2.*",
-                "phpunit/phpunit": "4.*",
-                "squizlabs/php_codesniffer": "2.*"
+                "phpmd/phpmd": "2.2.*",
+                "phpunit/phpunit": "4.7.*",
+                "squizlabs/php_codesniffer": "2.3.*"
             },
             "type": "library",
             "autoload": {
@@ -58,7 +58,7 @@
                 "social",
                 "twitter"
             ],
-            "time": "2015-03-31 15:39:00"
+            "time": "2015-08-18 15:56:04"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2063,6 +2063,57 @@
             "time": "2015-07-03 13:48:55"
         },
         {
+            "name": "roumen/feed",
+            "version": "v2.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RoumenDamianoff/laravel-feed.git",
+                "reference": "91a7af5e7252f95d2fa8694f214f50e2866c1e59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RoumenDamianoff/laravel-feed/zipball/91a7af5e7252f95d2fa8694f214f50e2866c1e59",
+                "reference": "91a7af5e7252f95d2fa8694f214f50e2866c1e59",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "2.2.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Roumen\\Feed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@dawebs.com",
+                    "homepage": "https://roumen.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple feed generator for Laravel.",
+            "homepage": "https://roumen.it/projects/laravel-feed",
+            "keywords": [
+                "atom",
+                "feed",
+                "generator",
+                "laravel",
+                "rss"
+            ],
+            "time": "2015-06-12 15:24:49"
+        },
+        {
             "name": "roumen/sitemap",
             "version": "dev-master",
             "source": {
@@ -3074,6 +3125,61 @@
             "time": "2015-06-14 21:17:01"
         },
         {
+            "name": "facebook/php-sdk-v4",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
+                "reference": "b5d7e5c8b85419f9031b08a161e9030dca35f5a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/b5d7e5c8b85419f9031b08a161e9030dca35f5a1",
+                "reference": "b5d7e5c8b85419f9031b08a161e9030dca35f5a1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2015-07-08 19:08:57"
+        },
+        {
             "name": "laracasts/generators",
             "version": "1.1.1",
             "source": {
@@ -3531,16 +3637,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.4",
+            "version": "4.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7"
+                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b7417edaf28059ea63d86be941e6004dbfcc0cc",
+                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc",
                 "shasum": ""
             },
             "require": {
@@ -3599,24 +3705,24 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-15 04:21:23"
+            "time": "2015-08-19 09:20:57"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42"
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.2",
+                "doctrine/instantiator": "^1.0.2",
                 "php": ">=5.3.3",
                 "phpunit/php-text-template": "~1.2",
                 "sebastian/exporter": "~1.2"
@@ -3655,7 +3761,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-07-10 06:54:24"
+            "time": "2015-08-19 09:14:08"
         },
         {
             "name": "sebastian/comparator",

@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use Roumen\Feed\Facades\Feed;
 
 Route::group(['prefix' => 'api/v1'], function()
 {
@@ -82,6 +83,65 @@ Route::get('sitemap', function(){
     // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
     return $sitemap->render('xml');
 
+});
+
+Route::get('feed', function() {
+
+    // create new feed
+    $feed = Feed::make();
+
+    // cache the feed for 60 minutes (second parameter is optional)
+    $feed->setCache(60, 'laravelFeedKey');
+
+    // check if there is cached feed and build new only if is not
+    if (!$feed->isCached()) {
+        // creating rss feed with our most recent 20 posts
+        $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
+
+        // set your feed's title, description, link, pubdate and language
+        $feed->title = 'FreeBTC.Website Bitcoin Faucet Rotator Feed';
+        $feed->description = 'The Atom/RSS feed which shows the latest bitcoin faucets.';
+        $feed->link = URL::to('feed');
+        $feed->setDateFormat('datetime'); // 'datetime', 'timestamp' or 'carbon'
+        $feed->pubdate = $faucets[0]->created_at;
+        $feed->lang = 'en';
+        $feed->setShortening(true); // true or false
+        $feed->setTextLimit(100); // maximum length of description text
+
+        foreach ($faucets as $faucet) {
+            $title = isset($faucet->meta_title) == true ? $faucet->meta_title : $faucet->name;
+
+            // set item's title, author, url, pubdate, description and content
+            $feed->add(
+                $title,
+                'FreeBTC.Website Bitcoin Faucet Rotator',
+                URL::to('/faucets/' . $faucet->slug),
+                $faucet->created_at,
+                str_replace('&', ' and ', $faucet->meta_description),
+                $faucet->meta_description
+            );
+        }
+
+        $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
+
+        foreach ($payment_processors as $p) {
+            $title = isset($p->meta_title) == true ? $p->meta_title : $p->name;
+
+            // set item's title, author, url, pubdate, description and content
+            $feed->add(
+                $title,
+                'FreeBTC.Website Bitcoin Faucet Rotator',
+                URL::to('/payment_processors/' . $p->slug),
+                $p->created_at,
+                str_replace('&', ' and ', $p->meta_description),
+                $p->meta_description
+            );
+        }
+
+
+        return $feed->render('atom');
+
+    }
 });
 
 Route::controllers([

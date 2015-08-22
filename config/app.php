@@ -139,7 +139,7 @@ return [
         'Collective\Html\HtmlServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Roumen\Sitemap\SitemapServiceProvider',
-
+		'Roumen\Feed\FeedServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */
@@ -177,6 +177,7 @@ return [
 		'DB'        => 'Illuminate\Support\Facades\DB',
 		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
 		'Event'     => 'Illuminate\Support\Facades\Event',
+		'Feed'      => 'Roumen\Feed\Facades\Feed',
 		'File'      => 'Illuminate\Support\Facades\File',
         'Form'      => 'Collective\Html\FormFacade',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
