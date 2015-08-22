@@ -23562,3 +23562,43 @@ Stack trace:
 #46 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(84): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #47 /var/www/faucet_rotator/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #48 {main}  
+[2015-08-19 23:06:16] production.ERROR: exception 'Illuminate\Session\TokenMismatchException' in /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php:46
+Stack trace:
+#0 /var/www/faucet_rotator/app/Http/Middleware/VerifyCsrfToken.php(17): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#1 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): App\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#2 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(55): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#4 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#5 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#6 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#7 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(40): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#10 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(42): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(101): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#14 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(115): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#15 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(84): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#16 /var/www/faucet_rotator/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#17 {main}  
+[2015-08-21 05:54:43] production.ERROR: exception 'Illuminate\Session\TokenMismatchException' in /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php:46
+Stack trace:
+#0 /var/www/faucet_rotator/app/Http/Middleware/VerifyCsrfToken.php(17): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#1 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): App\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#2 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(55): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#4 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#5 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#6 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#7 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(40): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#10 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(42): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(125): Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(101): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#14 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(115): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#15 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(84): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#16 /var/www/faucet_rotator/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#17 {main}  

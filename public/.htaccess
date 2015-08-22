@@ -16,6 +16,10 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+    
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} ^104\.131\.154\.101$
+    RewriteRule ^(.*)$ http://freebtc.website/$1 [L,R=301]
 </IfModule>
 
 # ------------------------------------------------------------------------------
