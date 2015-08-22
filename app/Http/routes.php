@@ -94,7 +94,7 @@ Route::get('feed', function() {
     $feed->setCache(60, 'laravelFeedKey');
 
     // check if there is cached feed and build new only if is not
-    if (!$feed->isCached()) {
+    //if (!$feed->isCached()) {
         // creating rss feed with our most recent 20 posts
         $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
 
@@ -141,7 +141,7 @@ Route::get('feed', function() {
 
         return $feed->render('atom');
 
-    }
+    //}
 });
 
 Route::controllers([
