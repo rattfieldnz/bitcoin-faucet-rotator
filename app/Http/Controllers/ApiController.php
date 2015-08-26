@@ -31,7 +31,8 @@ class ApiController extends BaseController{
         $active_faucets = [];
 
         foreach($faucets as $f){
-            if($f->is_paused == false && $f->has_low_balance == $has_low_balance){
+            if($f->is_paused == false &&
+                $f->has_low_balance == $has_low_balance){
                 array_push($active_faucets, $f);
             }
         }

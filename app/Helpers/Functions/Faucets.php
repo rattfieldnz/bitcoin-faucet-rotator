@@ -27,12 +27,16 @@ class Faucets
         $activated_faucets = [];
         foreach($faucets as $f){
 
-            if(UrlValidation::urlExists($f->url) != true && $f->is_paused == false){
+            if(UrlValidation::urlExists($f->url) != true &&
+                $f->is_paused == false &&
+                $f->has_low_balance == false){
                 $f->is_paused = true;
                 $f->save();
                 array_push($paused_faucets, $f->name);
             }
-            else if(UrlValidation::urlExists($f->url) != false && $f->is_paused == true){
+            else if(UrlValidation::urlExists($f->url) != false &&
+                $f->is_paused == true &&
+                $f->has_low_balance == false){
                 $f->is_paused = false;
                 $f->save();
                 array_push($activated_faucets, $f->name);

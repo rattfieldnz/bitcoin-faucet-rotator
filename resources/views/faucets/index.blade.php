@@ -48,6 +48,7 @@
                 <th>Referral Program?</th>
                 <th>Ref. Payout %</th>
                 <th>Status</th>
+                <th>Balance < 10K SAT</th>
             </thead>
             <tbody>
             @foreach($faucets as $faucet)
@@ -80,6 +81,7 @@
                     <td>{{ $faucet->hasRefProgram() }}</td>
                     <td>{{ $faucet->ref_payout_percent }}</td>
                     <td>{{ $faucet->status() }}</td>
+                    <td>{{ $faucet->lowBalanceStatus() }}</td>
                 </tr>
             @endforeach
             </tbody>
