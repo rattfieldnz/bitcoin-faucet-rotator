@@ -78,22 +78,20 @@
             <thead>
             <th>Payment Processor</th>
             <th>Associated Faucets</th>
+            <th>Rotator</th>
             </thead>
             <tbody>
             <tr>
                 <td>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank', 'title' => $payment_processor->name]) !!}</td>
                 <td>
-
-                    <div class="accordion">
-                        <h3>See Faucets</h3>
-                        <div>
-                            <ul class="faucet-payment-processors">
-                                @foreach($payment_processor->faucets as $faucet)
-                                    <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->slug), ['title' => $faucet->name]) !!}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+                    <ul class="faucet-payment-processors">
+                        @foreach($payment_processor->faucets as $faucet)
+                            <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->slug), ['title' => $faucet->name]) !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-lg" id="rotator" href="/payment_processors/{{ $payment_processor->slug }}/rotator" title="View the faucet rotator for '{{ $payment_processor->name }}' faucets." role="button">Go to Rotator</a>
                 </td>
             </tr>
             </tbody>

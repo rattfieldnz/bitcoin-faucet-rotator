@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\Faucet;
+use App\PaymentProcessor;
+use Exception;
 use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Pagination\Paginator;
 
@@ -27,16 +29,44 @@ class ApiController extends BaseController{
     }
 
     public function activeFaucets($has_low_balance = false){
-        $faucets = Faucet::all();
-        $active_faucets = [];
 
-        foreach($faucets as $f){
-            if($f->is_paused == false &&
-                $f->has_low_balance == $has_low_balance){
-                array_push($active_faucets, $f);
+        try {
+            $faucets = Faucet::all();
+            $active_faucets = [];
+
+            foreach($faucets as $f){
+                if($f->is_paused == false &&
+                    $f->has_low_balance == $has_low_balance){
+                    array_push($active_faucets, $f);
+                }
             }
+            return $active_faucets;
         }
+        catch(Exception $e){
+            return null;
+        }
+    }
 
-        return $active_faucets;
+    public function paymentProcessorFaucets($paymentProcessorSlug){
+
+        try {
+            $paymentProcessor = PaymentProcessor::findBySlugOrId($paymentProcessorSlug);
+
+            $faucets = $paymentProcessor->faucets;
+
+            $active_faucets = [];
+
+            foreach ($faucets as $f) {
+                if ($f->is_paused == false &&
+                    $f->has_low_balance == false
+                ) {
+                    array_push($active_faucets, $f);
+                }
+            }
+            return $active_faucets;
+        }
+        catch(Exception $e){
+            return null;
+        }
     }
 }

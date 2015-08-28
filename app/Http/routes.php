@@ -21,6 +21,7 @@ Route::group(['prefix' => 'api/v1'], function()
     Route::get('faucets', 'ApiController@faucets');
     Route::get('active_faucets', 'ApiController@activeFaucets');
     Route::get('faucets/{id}', 'ApiController@faucet');
+    Route::get('payment_processors/{paymentProcessorSlug}/faucets', 'ApiController@paymentProcessorFaucets');
 });
 
 Route::get('/', 'RotatorController@index');
@@ -31,16 +32,20 @@ Route::patch('faucets/{$slug}', [
     'as' => 'faucetLowBalance', 'uses' => 'FaucetsController@faucetLowBalance'
 ]);
 Route::patch('checkFaucetsStatus', 'FaucetsController@checkFaucetsStatus');
+
 Route::get('faucets/progress', 'FaucetsController@progress' );
 Route::resource('faucets', 'FaucetsController');
+
 Route::resource('main_meta', 'MainMetaController');
+
 Route::resource('admin/twitter_config', 'TwitterConfigController');
 Route::get('/admin/twitter_config', 'TwitterConfigController@index');
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
-Route::resource('payment_processors', 'PaymentProcessorsController');
 
+Route::resource('payment_processors', 'PaymentProcessorsController');
 Route::get('payment_processors', 'PaymentProcessorsController@index');
+Route::get('payment_processors/{paymentProcessorSlug}/rotator', 'PaymentProcessorsController@faucets');
 
 Route::get('home', 'HomeController@index');
 

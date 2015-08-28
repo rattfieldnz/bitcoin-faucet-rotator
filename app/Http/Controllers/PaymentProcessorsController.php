@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\PaymentProcessor;
+use Exception;
 use Helpers\Transformers\PaymentProcessorTransformer;
 use Helpers\Validators\PaymentProcessorValidator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -170,5 +171,28 @@ class PaymentProcessorsController extends Controller {
         }
 
 	}
+
+    public function faucets($paymentProcessorSlug){
+
+        try {
+            $paymentProcessor = PaymentProcessor::findBySlugOrId($paymentProcessorSlug);
+
+            $faucets = $paymentProcessor->faucets;
+
+            $activeFaucets = [];
+
+            foreach ($faucets as $f) {
+                if ($f->is_paused == false &&
+                    $f->has_low_balance == false
+                ) {
+                    array_push($activeFaucets, $f);
+                }
+            }
+            return view('payment_processors.rotator.index', compact('paymentProcessor','activeFaucets'));
+        }
+        catch(Exception $e){
+            return null;
+        }
+    }
 
 }
