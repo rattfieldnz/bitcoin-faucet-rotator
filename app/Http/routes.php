@@ -82,6 +82,9 @@ Route::get('sitemap', function(){
         {
             $url = URL::to("/payment_processors/" . $p->slug);
             $sitemap->add($url, $p->updated_at, '1.0', 'daily');
+
+            $rotator = URL::to("/payment_processors/" . $p->slug . '/rotator');
+            $sitemap->add($rotator, $p->updated_at, '1.0', 'daily');
         }
     }
 

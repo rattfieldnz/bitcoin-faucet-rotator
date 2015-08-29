@@ -1,5 +1,11 @@
 @extends('app')
 
+@section('title', $paymentProcessor->name . ' Faucet Rotator (' . count($paymentProcessor->faucets) . ' available faucet/s) | FreeBTC.Website')
+
+@section('description', 'Come and get free satoshis from around ' . count($paymentProcessor->faucets) . ' faucets in the ' . $paymentProcessor->name . ' Faucet Rotator.')
+
+@section('keywords', $paymentProcessor->meta_keywords)
+
 @section('content')
 <h1 id="page-heading">{{ $paymentProcessor->name }} Faucet Rotator</h1>
 <span property="{{ $paymentProcessor->slug }}" id="faucet_slug"></span>
