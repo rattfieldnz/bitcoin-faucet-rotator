@@ -28,11 +28,13 @@
         <table class="table table-striped bordered tablesorter" id="payment_processors_table">
             <thead>
             <th>Payment Processor Name</th>
+            <th>Associated Faucet Rotator</th>
             </thead>
             <tbody>
             @foreach($payment_processors as $payment_processor)
                 <tr>
                     <td>{!! link_to_route('payment_processors.show', $payment_processor->name, array($payment_processor->slug), ['title' => $payment_processor->name]) !!}</td>
+                    <td><a class="btn btn-primary btn-lg" href="{!! URL::to('/payment_processors/' . $payment_processor->slug . '/rotator/') !!}" title="Surf {{ $payment_processor->name }} Faucets" role="button">Surf {{ $payment_processor->name }} Faucets</a></td>
                 </tr>
             @endforeach
             </tbody>
