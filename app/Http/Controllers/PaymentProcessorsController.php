@@ -176,7 +176,6 @@ class PaymentProcessorsController extends Controller {
 
         try {
             $paymentProcessor = PaymentProcessor::findBySlugOrId($paymentProcessorSlug);
-
             $faucets = $paymentProcessor->faucets;
 
             $activeFaucets = [];
@@ -188,10 +187,11 @@ class PaymentProcessorsController extends Controller {
                     array_push($activeFaucets, $f);
                 }
             }
-            return view('payment_processors.rotator.index', compact('paymentProcessor','activeFaucets'));
+            return view('payment_processors.rotator.index', compact('paymentProcessor', 'activeFaucets'));
         }
-        catch(Exception $e){
-            return null;
+        catch(ModelNotFoundException $e)
+        {
+            abort(404);
         }
     }
 
