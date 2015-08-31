@@ -18,7 +18,7 @@ class PaymentProcessorsController extends Controller {
 
     function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'faucets']]);
     }
 	/**
 	 * Display a listing of the resource.
