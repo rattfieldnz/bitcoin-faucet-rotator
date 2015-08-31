@@ -1,2 +1,4 @@
+Sitemap: /sitemap
 User-agent: *
-Disallow:
+Disallow: /auth/login
+
