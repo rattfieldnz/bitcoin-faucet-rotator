@@ -46,6 +46,10 @@
 					<li style="margin-top:1em; margin-left:0.75em;">
 						<div class="fb-follow" data-href="https://www.facebook.com/freebtc.website" data-layout="button_count" data-show-faces="true"></div>
 					</li>
+					<li>
+						<div id="btc-quote"></div>
+						<script type="text/javascript" src="https://www.weusecoins.com/embed.js"></script>
+					</li>
                 @endif
             </ul>
 
