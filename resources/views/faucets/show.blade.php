@@ -69,7 +69,7 @@
                         @else
                             <ul class="faucet-payment-processors">
                             @foreach($faucet->payment_processors as $payment_processor)
-                                <li>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank', 'title' => $payment_processor->name]) !!}</li>
+                                <li>{!! link_to('payment_processors/' . $payment_processor->slug, $payment_processor->name, ['target' => 'blank', 'title' => $payment_processor->name]) !!}</li>
                             @endforeach
                             </ul>
                         @endif
