@@ -23602,3 +23602,26 @@ Stack trace:
 #15 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(84): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #16 /var/www/faucet_rotator/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #17 {main}  
+[2015-09-06 10:01:40] production.ERROR: exception 'Abraham\TwitterOAuth\TwitterOAuthException' with message 'Resolving timed out after 5515 milliseconds' in /var/www/faucet_rotator/vendor/abraham/twitteroauth/src/TwitterOAuth.php:344
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/abraham/twitteroauth/src/TwitterOAuth.php(278): Abraham\TwitterOAuth\TwitterOAuth->request('https://api.twi...', 'POST', 'Authorization: ...', Array)
+#1 /var/www/faucet_rotator/vendor/abraham/twitteroauth/src/TwitterOAuth.php(249): Abraham\TwitterOAuth\TwitterOAuth->oAuthRequest('https://api.twi...', 'POST', Array)
+#2 /var/www/faucet_rotator/vendor/abraham/twitteroauth/src/TwitterOAuth.php(191): Abraham\TwitterOAuth\TwitterOAuth->http('POST', 'https://api.twi...', 'statuses/update', Array)
+#3 /var/www/faucet_rotator/app/Helpers/Social/Twitter.php(40): Abraham\TwitterOAuth\TwitterOAuth->post('statuses/update', Array)
+#4 /var/www/faucet_rotator/app/Helpers/Social/Twitter.php(56): App\Helpers\Social\Twitter->sendTweet('Earn between  a...')
+#5 /var/www/faucet_rotator/app/Console/Kernel.php(40): App\Helpers\Social\Twitter->sendRandomFaucetTweet()
+#6 [internal function]: App\Console\Kernel->App\Console\{closure}()
+#7 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Container/Container.php(526): call_user_func_array(Object(Closure), Array)
+#8 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Scheduling/CallbackEvent.php(57): Illuminate\Container\Container->call(Object(Closure), Array)
+#9 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Scheduling/ScheduleRunCommand.php(54): Illuminate\Console\Scheduling\CallbackEvent->run(Object(Illuminate\Foundation\Application))
+#10 [internal function]: Illuminate\Console\Scheduling\ScheduleRunCommand->fire()
+#11 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Container/Container.php(526): call_user_func_array(Array, Array)
+#12 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#13 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(257): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Console\Scheduling\ScheduleRunCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /var/www/faucet_rotator/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 {main}  

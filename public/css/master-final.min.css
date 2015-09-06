@@ -6087,7 +6087,7 @@ legend.border {
   border-bottom: none; }
 
 #btc-quote {
-  margin-left: 0.5em; }
+  margin-left: 1em !important; }
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=master-final.min.css.map */
