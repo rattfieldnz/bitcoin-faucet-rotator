@@ -25,7 +25,17 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<meta name = 'yandex-verification' content = '6bd366f4a927b8e4' />
-	<meta name="msvalidate.01" content="01CE0CA0B4512F8EF0B231C935E124E1" />
+	<meta name="msvalidate.01" content="01CE0CA0B4512F8EF0B231C935E124E1" /><!-- Hotjar Tracking Code for freebtc.website -->
+	<script>
+		(function(h,o,t,j,a,r){
+			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+			h._hjSettings={hjid:72229,hjsv:5};
+			a=o.getElementsByTagName('head')[0];
+			r=o.createElement('script');r.async=1;
+			r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+			a.appendChild(r);
+		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+	</script>
 </head>
 <body>
 
