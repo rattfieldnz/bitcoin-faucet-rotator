@@ -24,6 +24,25 @@ Route::group(['prefix' => 'api/v1'], function()
     Route::get('payment_processors/{paymentProcessorSlug}/faucets', 'ApiController@paymentProcessorFaucets');
 });
 
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
+
+    Route::group(['middleware' => 'guest'], function(){
+        // Login
+        Route::get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
+        Route::post('login', ['as' => 'auth.login.store', 'before' => 'throttle:2,60', 'uses' => 'AuthController@postLogin']);
+
+        // Register
+        //Route::get('register', ['as' => 'auth.register', 'uses' => 'AuthController@getRegister']);
+        //Route::post('register', ['as' => 'auth.register.store', 'uses' => 'AuthController@postRegister']);
+    });
+
+    Route::group(['middleware' => 'auth'], function(){
+        // Logout
+        Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
+    });
+
+});
+
 Route::get('/', 'RotatorController@index');
 Route::patch('faucets/checkFaucetsStatus', [
     'as' => 'checkFaucetsStatus', 'uses' => 'FaucetsController@checkFaucetsStatus'
