@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "f0e6e77c322d79e2b0dbf518d9fe5d72",
+    "content-hash": "86f69cf00157be102ac13c9e71867d45",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -2226,12 +2227,12 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
+                "url": "git@github.com:symfony/Console.git",
                 "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/9ff9032151186bd66ecee727d728f1319f52d1d8",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/f1f7376766394f409b9b33a57a5675a52f8aad93",
                 "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8",
                 "shasum": ""
             },

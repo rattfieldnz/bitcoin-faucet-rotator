@@ -20,6 +20,12 @@
     RewriteBase /
     RewriteCond %{HTTP_HOST} ^104\.131\.154\.101$
     RewriteRule ^(.*)$ http://freebtc.website/$1 [L,R=301]
+
+    RewriteCond %{HTTP_HOST} .
+    RewriteCond %{HTTP_HOST} !freebtc\.website$
+    RewriteRule ^ - [F] 
+    RewriteCond %{HTTP_HOST} !^(freebtc\.website)?$
+    RewriteRule (.*) http://freebtc.website/$1 [R=301,L]
 </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -541,6 +547,7 @@ FileETag None
 	SetEnvIfNoCase Referer sturmans.com.au spambot=yes
 	SetEnvIfNoCase Referer e-buyeasy.com spambot=yes
 	SetEnvIfNoCase Referer chinese-amezon.com spambot=yes
+        SetEnvIfNoCase Referer 99girls.com spambot=yes
 
 	Order allow,deny
 	Allow from all
