@@ -15,8 +15,8 @@ return [
 	*/
 
 	'mailgun' => [
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'mg.freebtc.website',
+		'secret' => 'key-bf8955d889432187fc788b86de8c7191',
 	],
 
 	'mandrill' => [

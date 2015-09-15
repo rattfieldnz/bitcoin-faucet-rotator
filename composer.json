@@ -16,7 +16,7 @@
         "laravelcollective/html": "~5.1",
         "linusu/bitcoin-address-validator": "0.1.2",
 		"raven/raven": "0.10.*",
-		"guzzlehttp/guzzle": "~5.2",
+		"guzzlehttp/guzzle": "^6.1",
 		"michelf/php-markdown": "~1.5",
 		"barryvdh/laravel-ide-helper": "~2.0",
 		"doctrine/dbal": "~2.5",
