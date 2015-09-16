@@ -16,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Roumen\Feed\Facades\Feed;
 
+Route::get('/sendmail', function() 
+{
+$data = array('name' => 'Jordan');
+
+Mail::send('emails.welcome', $data, function($message)
+{
+$message->to('emailme@robertattfield.com')
+->subject('Hi there!  Laravel sent me!');
+});
+});
+
 Route::group(['prefix' => 'api/v1'], function()
 {
     Route::get('faucets', 'ApiController@faucets');

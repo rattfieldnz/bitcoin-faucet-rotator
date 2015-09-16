@@ -15,7 +15,7 @@ return [
 	*/
 
 	'mailgun' => [
-		'domain' => 'mg.freebtc.website',
+		'domain' => 'sandbox617ba3b396d04cdc87767b8105bdab6a.mailgun.org',
 		'secret' => 'key-bf8955d889432187fc788b86de8c7191',
 	],
 
