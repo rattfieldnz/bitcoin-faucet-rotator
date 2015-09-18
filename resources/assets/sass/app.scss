@@ -76,6 +76,9 @@ body, label, .checkbox label {
   .container {
     padding:1em 1em 0em 1em;
     margin-top:0em;
+	.center{
+	  text-align:center !important;
+	}
   }
 }
 
@@ -114,6 +117,15 @@ body, label, .checkbox label {
   margin-top:1em;
 }
 
+
+div
+{
+  #vote{
+	li {
+	  list-style-type: none !important;
+	}
+  }
+}
 fieldset.border {
   border: 2px groove #ddd !important;
   padding: 0 1.4em 1.4em 1.4em !important;

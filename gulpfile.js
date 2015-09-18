@@ -9,9 +9,9 @@
  |
  */
 var elixir = require('laravel-elixir');
-var gulp = require('gulp'), 
-sass = require('gulp-ruby-sass') 
-notify = require("gulp-notify") 
+var gulp = require('gulp'),
+sass = require('gulp-ruby-sass')
+notify = require("gulp-notify")
 bower = require('gulp-bower');
 
 var paths = {

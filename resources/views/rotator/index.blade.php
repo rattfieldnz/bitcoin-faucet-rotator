@@ -65,6 +65,18 @@
     </div>
 </div>
 
+<div class="row" id="vote-for-us">
+    <div class="col-lg-12">
+	    <h2>Vote For Us!</h2>
+		
+	    <p>We are listed in the following crypto directories - please vote for us if you find our site useful!</p>
+		
+		<p><a href="http://top-faucets.com/"><img src="http://top-faucets.com/button.php?u=freebtc-website" alt="Top Faucets - Best of all cryptocurreny faucets!" border="0" /></a></p>
+		<p><a target="_blank" href="http://www.freecrypto.co/vote.php?id=155"><img src="http://www.freecrypto.co/images/468x60.png" alt="Vote for FreeBTC.Website on FreeCrypto!" /></a></p>
+		
+	</div>
+</div>
+
 
 @endsection
 

@@ -56,6 +56,10 @@
     <FilesMatch "\.(eot|otf|tt[cf]|woff)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
+	
+	<FilesMatch "\.(cur|gif|ico|jpe?g|png|svgz?|webp)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
 </IfModule>
 
 # ##############################################################################
@@ -427,7 +431,6 @@ FileETag None
     AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
 </ifmodule>
 #End Gzip
-
 
 <ifmodule mod_setenvif.c>
 	SetEnvIfNoCase Referer semalt.com spambot=yes
