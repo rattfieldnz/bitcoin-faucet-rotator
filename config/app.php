@@ -140,6 +140,7 @@ return [
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Roumen\Sitemap\SitemapServiceProvider',
 		'Roumen\Feed\FeedServiceProvider',
+        'Chromabits\Purifier\PurifierServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */

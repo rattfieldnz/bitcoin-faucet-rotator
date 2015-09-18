@@ -16,17 +16,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Roumen\Feed\Facades\Feed;
 
-Route::get('/sendmail', function() 
-{
-$data = array('name' => 'Jordan');
-
-Mail::send('emails.welcome', $data, function($message)
-{
-$message->to('emailme@robertattfield.com')
-->subject('Hi there!  Laravel sent me!');
-});
-});
-
 Route::group(['prefix' => 'api/v1'], function()
 {
     Route::get('faucets', 'ApiController@faucets');
@@ -70,6 +59,10 @@ Route::resource('main_meta', 'MainMetaController');
 
 Route::resource('admin/twitter_config', 'TwitterConfigController');
 Route::get('/admin/twitter_config', 'TwitterConfigController@index');
+
+Route::resource('admin/ad_block_config', 'AdBlockController');
+Route::get('/admin/ad_block_config', 'AdBlockController@index');
+
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
 

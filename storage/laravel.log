@@ -23643,3 +23643,24 @@ Stack trace:
 #13 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(100): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #14 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #15 {main}  
+[2015-09-18 16:16:48] local.ERROR: exception 'RuntimeException' with message 'The "--table" option does not exist.' in /var/www/faucet_rotator/vendor/symfony/console/Input/ArgvInput.php:213
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/symfony/console/Input/ArgvInput.php(152): Symfony\Component\Console\Input\ArgvInput->addLongOption('table', 'ad_block')
+#1 /var/www/faucet_rotator/vendor/symfony/console/Input/ArgvInput.php(86): Symfony\Component\Console\Input\ArgvInput->parseLongOption('--table=ad_bloc...')
+#2 /var/www/faucet_rotator/vendor/symfony/console/Input/Input.php(61): Symfony\Component\Console\Input\ArgvInput->parse()
+#3 /var/www/faucet_rotator/vendor/symfony/console/Command/Command.php(231): Symfony\Component\Console\Input\Input->bind(Object(Symfony\Component\Console\Input\InputDefinition))
+#4 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Console/Command.php(136): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /var/www/faucet_rotator/vendor/symfony/console/Application.php(878): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/faucet_rotator/vendor/symfony/console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ModelMakeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/faucet_rotator/vendor/symfony/console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(100): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 {main}  
+[2015-09-18 18:06:58] local.ERROR: exception 'InvalidArgumentException' with message 'There are no commands defined in the "bundle" namespace.' in /var/www/faucet_rotator/vendor/symfony/console/Application.php:501
+Stack trace:
+#0 /var/www/faucet_rotator/vendor/symfony/console/Application.php(535): Symfony\Component\Console\Application->findNamespace('bundle')
+#1 /var/www/faucet_rotator/vendor/symfony/console/Application.php(192): Symfony\Component\Console\Application->find('bundle:install')
+#2 /var/www/faucet_rotator/vendor/symfony/console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/faucet_rotator/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(100): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/faucet_rotator/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main}  

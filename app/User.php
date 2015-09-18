@@ -51,4 +51,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasOne('App\TwitterConfig', 'user_id');
     }
 
+    public function adBlock(){
+        return $this->hasOne('App\AdBlock', 'user_id');
+    }
+
 }

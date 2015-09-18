@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b5f14a6d1ffd867690bfca98bf3f69c6",
-    "content-hash": "c4d37356cc1cbc4be2c4ee0353948b32",
+    "hash": "b5bcc4e6f117a3c6994a8b0587fa5baa",
+    "content-hash": "0cde8468c8b66f8c0e382fce27d75e45",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -123,6 +123,61 @@
                 "sublime"
             ],
             "time": "2015-08-13 11:40:00"
+        },
+        {
+            "name": "chromabits/purifier",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/etcinit/purifier.git",
+                "reference": "64dc2a580d02df5deef25e36b8d335216120c42d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/etcinit/purifier/zipball/64dc2a580d02df5deef25e36b8d335216120c42d",
+                "reference": "64dc2a580d02df5deef25e36b8d335216120c42d",
+                "shasum": ""
+            },
+            "require": {
+                "ezyang/htmlpurifier": "4.6.*",
+                "laravel/framework": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Chromabits\\Purifier\\": "src/Chromabits/Purifier/",
+                    "Chromabits\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERIN",
+                    "email": "me@mewebstudio.com"
+                },
+                {
+                    "name": "Eduardo Trujillo",
+                    "email": "ed@chromabits.com"
+                }
+            ],
+            "description": "HTMLPurifier package for Laravel 5",
+            "homepage": "http://github.com/etcinit/purifier",
+            "keywords": [
+                "Purifier",
+                "htmlpurifier",
+                "l5",
+                "laravel",
+                "laravel 5"
+            ],
+            "time": "2015-02-24 20:24:20"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -847,6 +902,50 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "6f389f0f25b90d0b495308efcfa073981177f0fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/6f389f0f25b90d0b495308efcfa073981177f0fd",
+                "reference": "6f389f0f25b90d0b495308efcfa073981177f0fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2013-11-30 08:25:19"
         },
         {
             "name": "guzzlehttp/guzzle",
