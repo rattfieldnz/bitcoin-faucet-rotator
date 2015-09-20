@@ -139,7 +139,7 @@ class FaucetsController extends Controller {
 
             //Return the view which shows faucet details,
             //with the retrieved faucet bring passe in the view.
-            return view('faucets.show', compact('faucet'));
+            return view('faucets.show', compact('faucet', 'slug'));
         }
         catch(ModelNotFoundException $e)
         {

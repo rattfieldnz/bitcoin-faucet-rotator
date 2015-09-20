@@ -6070,7 +6070,7 @@ body, label, .checkbox label {
       display: inline;
       list-style-type: none; }
 
-#page-heading {
+#page-heading, #comments {
   text-align: center;
   margin-top: 1em; }
 

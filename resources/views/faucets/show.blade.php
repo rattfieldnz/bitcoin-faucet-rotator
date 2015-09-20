@@ -8,6 +8,7 @@
 
 @section('content')
     <h1 class="page-heading">{{ $faucet->name }}</h1>
+    <p><small><a href="#disqus_thread">See comments</a></small></p>
     @if (Auth::user())
 
         <script>
@@ -95,6 +96,9 @@
         @endif
     @endif
 
+    <hr>
+        @include('faucets.partials.disqus')
+    <hr>
 @endsection
 
 @section('google_analytics')

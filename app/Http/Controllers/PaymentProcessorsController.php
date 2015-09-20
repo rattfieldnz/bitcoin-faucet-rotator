@@ -85,7 +85,7 @@ class PaymentProcessorsController extends Controller {
             //$payment_processor = PaymentProcessor::findOrFail($id);
             $payment_processor = PaymentProcessor::findBySlugOrId($slug);
 
-            return view('payment_processors.show', compact('payment_processor'));
+            return view('payment_processors.show', compact('payment_processor', 'slug'));
         }
         catch(ModelNotFoundException $e)
         {
@@ -187,7 +187,7 @@ class PaymentProcessorsController extends Controller {
                     array_push($activeFaucets, $f);
                 }
             }
-            return view('payment_processors.rotator.index', compact('paymentProcessor', 'activeFaucets'));
+            return view('payment_processors.rotator.index', compact('paymentProcessor', 'activeFaucets', 'paymentProcessorSlug'));
         }
         catch(ModelNotFoundException $e)
         {

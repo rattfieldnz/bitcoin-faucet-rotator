@@ -8,6 +8,7 @@
 
 @section('content')
     <h1 id="page-heading">{{ $payment_processor->name }}</h1>
+    <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
 
     @if (Auth::user())
         <script>
@@ -97,5 +98,14 @@
             </tbody>
         </table>
     </div>
+
+    <hr>
+        @include('payment_processors.partials.disqus')
+    <hr>
+
     <script src="/js/accordion.js"></script>
 @endsection
+
+@section('google_analytics')
+    @include('partials.google_analytics')
+@stop
