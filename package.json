@@ -11,6 +11,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-phpunit": "^0.8.1",
     "gulp-ruby-sass": "^1.0.5",
-    "laravel-elixir": "*"
+    "laravel-elixir": "*", 
+	"bootstrap-sass": "^3.0.0"
   }
 }
