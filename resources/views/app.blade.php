@@ -7,13 +7,12 @@
 	<title>@yield('title')</title>
 	<meta name="description" content="@yield('description')">
 	<meta name="keywords" content="@yield('keywords')">
-    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/dark-hive/jquery-ui.min.css">
-	<link href="/css/master-final.min.css" rel="stylesheet">
-    <link href="/table_sorter_themes/blue/style.css" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
-    <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min.js"></script>
+
+    @if(env('APP_ENV') == 'local')
+        <link rel="stylesheet" href="/assets/css/freebtc.css?{{ rand()}}">
+    @elseif(env('APP_ENV') == 'production')
+        <link rel="stylesheet" href="/assets/css/freebtc.min.css?{{ rand()}}">
+    @endif
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -25,7 +24,8 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<meta name = 'yandex-verification' content = '6bd366f4a927b8e4' />
-	<meta name="msvalidate.01" content="01CE0CA0B4512F8EF0B231C935E124E1" /><!-- Hotjar Tracking Code for freebtc.website -->
+	<meta name="msvalidate.01" content="01CE0CA0B4512F8EF0B231C935E124E1" />
+	<!-- Hotjar Tracking Code for freebtc.website -->
 	<script>
 		(function(h,o,t,j,a,r){
 			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -55,8 +55,15 @@
     </div>
 
     @include('partials.footer')
+
+    @if(env('APP_ENV') == 'local')
+        <script src="/assets/js/freebtc.js?{{ rand()}}"></script>
+    @elseif(env('APP_ENV') == 'production')
+        <script src="/assets/js/freebtc.min.js?{{ rand()}}"></script>
+    @endif
 	<!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50b996b14942b1fb" async="async"></script>
+    @yield('faucet_rotator_script')
     @yield('google_analytics')
 </body>
 </html>

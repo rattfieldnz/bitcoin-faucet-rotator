@@ -110,8 +110,6 @@
         comments powered by <span class="logo-disqus">Disqus</span>
     </a>
 
-    <script src="/js/jquery.tablesorter.min.js"></script>
-    <script src="/js/tablesorter_custom_code.js"></script>
 @endsection
 
 

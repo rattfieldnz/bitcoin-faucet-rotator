@@ -25,7 +25,6 @@
 </nav>
 
 <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="" id="rotator-iframe"></iframe>
-<script src="/js/paymentProcessorRotator.js?{{ rand()}}"></script>
 
 <hr>
 <div class="container">
@@ -34,7 +33,14 @@
     </div>
 </div>
 <hr>
+@endsection
 
+@section('faucet_rotator_script')
+    @if(env('APP_ENV') == 'local')
+        <script src="/assets/js/paymentProcessorRotator.js?{{ rand()}}"></script>
+    @elseif(env('APP_ENV') == 'production')
+        <script src="/assets/js/paymentProcessorRotator.min.js?{{ rand()}}"></script>
+    @endif
 @endsection
 
 @section('google_analytics')

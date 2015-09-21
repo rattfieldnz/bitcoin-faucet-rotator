@@ -64,9 +64,6 @@
     <a href="http://disqus.com" class="dsq-brlink">
         comments powered by <span class="logo-disqus">Disqus</span>
     </a>
-    <script src="/js/accordion.js"></script>
-    <script src="/js/jquery.tablesorter.min.js"></script>
-    <script src="/js/tablesorter_custom_code.js"></script>
 @endsection
 
 @section('google_analytics')

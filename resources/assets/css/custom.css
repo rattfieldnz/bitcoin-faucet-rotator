@@ -1,0 +1,109 @@
+* {
+  margin: 0; }
+
+body {
+  margin-bottom: 4em; }
+
+html {
+  position: relative;
+  min-height: 100%;
+  /* The html and body elements cannot have any padding or margin. */ }
+
+body, label, .checkbox label {
+  font-weight: 300; }
+
+.container, .container-fluid .row {
+  margin-top: 3em; }
+
+#faucet-iframe, #rotator-iframe {
+  width: 100%;
+  height: 50em;
+  border: 2px solid #ddd; }
+
+.btn-width {
+  width: 7em; }
+
+.btn-width-small {
+  width: 5em; }
+
+.faucet-payment-processors {
+  margin-left: -2em; }
+
+.accordion {
+  min-width: 13em;
+  max-width: 20em; }
+
+.table-responsive {
+  overflow-x: auto; }
+
+.space-right {
+  margin-right: 0.5em; }
+
+.button-font-size {
+  font-size: 1.3em; }
+
+.button-font-small {
+  font-size: 1em; }
+
+.admin-details {
+  width: 40%; }
+
+/* Set the fixed height of the footer here */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4em;
+  background-color: #f5f5f5;
+  border-top: 2px solid #ddd; }
+  .footer .container {
+    padding: 1em 1em 0em 1em;
+    margin-top: 0em; }
+    .footer .container .center {
+      text-align: center !important; }
+
+#faucets_table thead, #payment_processors_table thead {
+  border: 1px solid #ddd; }
+  #faucets_table thead th, #payment_processors_table thead th {
+    height: 4em !important;
+    padding-bottom: 1.25em !important; }
+    #faucets_table thead th .headerSortDown, #payment_processors_table thead th .headerSortDown {
+      background-image: url("../table_sorter_themes/blue/desc.gif"); }
+    #faucets_table thead th .headerSortUp, #payment_processors_table thead th .headerSortUp {
+      background-image: url("../table_sorter_themes/blue/asc.gif"); }
+
+#navcontainer {
+  margin-bottom: 0.5em; }
+  #navcontainer #navlist {
+    margin: 0;
+    padding: 0;
+    text-align: center; }
+    #navcontainer #navlist li {
+      display: inline;
+      list-style-type: none; }
+
+#page-heading, #comments {
+  text-align: center;
+  margin-top: 1em; }
+
+div #vote li {
+  list-style-type: none !important; }
+
+fieldset.border {
+  border: 2px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  box-shadow: 0 0 0 0 #000; }
+
+legend.border {
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none; }
+
+#btc-quote {
+  margin-left: 1em !important; }
+
+/*# sourceMappingURL=custom.css.map */
