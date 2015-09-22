@@ -5,7 +5,7 @@ var elixir = require('laravel-elixir');
 var concatCSS = require('gulp-concat-css');
 var minifyCSS = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
-var minifyJS = require('gulp-minify');
+var uglify = require('gulp-uglify');
 
 /**
  * Copy any needed files.
@@ -95,27 +95,39 @@ elixir(function(mix) {
 
 });
 
-gulp.task('minify', function(){
+gulp.task('minifycss', function(){
 
     // Minify CSS
-    gulp.src('public/assets/css/freebtc.css')
+    return gulp.src('public/assets/css/freebtc.css')
         .pipe(minifyCSS())
         .pipe(rename('freebtc.min.css'))
         .pipe(gulp.dest('public/assets/css/'));
 
-    // Minify Javascript/JQuery
-    gulp.src('public/assets/js/freebtc.js')
-        .pipe(minifyJS())
-        .pipe(rename('freebtc.min.js'))
-        .pipe(gulp.dest('public/assets/js/'));
+});
 
-    gulp.src('public/assets/js/rotator.js')
-        .pipe(minifyJS())
+gulp.task('minifyjs', function(){
+    compressMainJS();
+    compressMainRotator();
+    compressPaymentProcessorRotator();
+});
+
+function compressMainJS(){
+    return gulp.src('public/assets/js/freebtc.js')
+        .pipe(uglify())
+        .pipe(rename("freebtc.min.js"))
+        .pipe(gulp.dest('public/assets/js/'));
+}
+
+function compressMainRotator(){
+    return gulp.src('public/assets/js/rotator.js')
+        .pipe(uglify())
         .pipe(rename('rotator.min.js'))
         .pipe(gulp.dest('public/assets/js/'));
+}
 
-    gulp.src('public/assets/js/paymentProcessorRotator.js')
-        .pipe(minifyJS())
+function compressPaymentProcessorRotator(){
+    return gulp.src('public/assets/js/paymentProcessorRotator.js')
+        .pipe(uglify())
         .pipe(rename('paymentProcessorRotator.min.js'))
         .pipe(gulp.dest('public/assets/js/'));
-});
+}
