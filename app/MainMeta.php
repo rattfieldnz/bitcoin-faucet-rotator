@@ -11,7 +11,14 @@ class MainMeta extends Model {
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'keywords', 'google_analytics_id'];
+    protected $fillable = [
+        'title',
+        'description',
+        'keywords',
+        'google_analytics_id',
+        'yandex_verification',
+        'bing_verification'
+    ];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

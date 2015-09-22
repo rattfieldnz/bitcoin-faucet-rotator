@@ -8,6 +8,8 @@
 
 namespace App\Helpers\WebsiteMeta;
 
+use App\MainMeta;
+
 class WebsiteMeta
 {
 
@@ -67,5 +69,16 @@ class WebsiteMeta
         $body = $curler->get($this->url);
         $parser = (new MetaParser($body, $this->url));
         return $parser;
+    }
+
+    /**
+     * Returns search engine verification ids.
+     * @return array
+     */
+    public static function seVerificationIds(){
+        return [
+            'yandex_verification' => MainMeta::firstOrFail()->yandex_verification,
+            'bing_verification' => MainMeta::firstOrFail()->bing_verification
+        ];
     }
 }

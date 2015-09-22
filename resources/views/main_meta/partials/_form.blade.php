@@ -27,6 +27,20 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('yandex_verification', 'Yandex Verification ID:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('yandex_verification', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('bing_verification', 'Bing Verification ID:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('bing_verification', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
         {!! Form::submit("Submit", ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
     </div>

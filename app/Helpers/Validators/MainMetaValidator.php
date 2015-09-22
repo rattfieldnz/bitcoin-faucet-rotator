@@ -18,7 +18,9 @@ class MainMetaValidator extends Validator
             'title' => 'min:10|max:70',
             'description' => 'min:20|max:160',
             'keywords' => 'min:3|max:255',
-            //'google_analytics_code' => '',
+            'google_analytics_code' => 'max:20',
+            'yandex_verification' => 'max:70',
+            'bing_verification' => 'max:70',
         ];
     }
 }
