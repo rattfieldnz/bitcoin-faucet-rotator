@@ -1443,18 +1443,6 @@
         },
         {
             "name": "league/flysystem",
-<<<<<<< HEAD
-            "version": "1.0.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "76caed01a57527599b55919f0746104f288b3d56"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/76caed01a57527599b55919f0746104f288b3d56",
-                "reference": "76caed01a57527599b55919f0746104f288b3d56",
-=======
             "version": "1.0.14",
             "source": {
                 "type": "git",
@@ -1465,7 +1453,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/202c7775d959f377e2e302d93e7127c47604438a",
                 "reference": "202c7775d959f377e2e302d93e7127c47604438a",
->>>>>>> bootstrap_gulp_bower
                 "shasum": ""
             },
             "require": {
@@ -1536,11 +1523,7 @@
                 "sftp",
                 "storage"
             ],
-<<<<<<< HEAD
-            "time": "2015-09-20 13:05:34"
-=======
             "time": "2015-09-22 19:18:28"
->>>>>>> bootstrap_gulp_bower
         },
         {
             "name": "linusu/bitcoin-address-validator",
