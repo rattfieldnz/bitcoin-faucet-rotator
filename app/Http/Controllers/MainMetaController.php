@@ -57,7 +57,7 @@ class MainMetaController extends Controller {
         $validator = Validator::make($input, MainMetaValidator::validationRules());
 
         if($validator->fails()){
-            return Redirect::to('main_meta')
+            return Redirect::to('/admin/main_meta')
                 ->withErrors($validator)
                 ->withInput($input);
         }
@@ -69,7 +69,7 @@ class MainMetaController extends Controller {
 
             Session::flash('success_message_add', 'The main meta has successfully been created and stored!');
 
-            return Redirect::to('/main_meta');
+            return Redirect::to('/admin/main_meta');
         }
 	}
 
@@ -88,7 +88,7 @@ class MainMetaController extends Controller {
         $validator = Validator::make($input, MainMetaValidator::validationRules());
 
         if($validator->fails()){
-            return Redirect::to('main_meta')
+            return Redirect::to('/admin/main_meta')
                 ->withErrors($validator)
                 ->withInput($input);
         }
@@ -99,7 +99,7 @@ class MainMetaController extends Controller {
 
             Session::flash('success_message_update', 'The main meta has successfully been updated!');
 
-            return Redirect::to('/main_meta/');
+            return Redirect::to('/admin/main_meta/');
 
         }
 	}

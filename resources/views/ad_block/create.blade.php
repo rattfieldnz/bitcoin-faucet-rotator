@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <fieldset>
+    <fieldset id="adblock_config_form">
 
         @include('ad_block/partials/_errors')
 

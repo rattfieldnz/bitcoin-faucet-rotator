@@ -49,7 +49,7 @@ class TwitterConfigController extends Controller {
         $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
         if($validator->fails()){
-            return Redirect::to('admin/twitter_config')
+            return Redirect::to('/admin/twitter_config')
                 ->withErrors($validator)
                 ->withInput($input);
         }
@@ -63,7 +63,7 @@ class TwitterConfigController extends Controller {
 
             Session::flash('success_message_add', 'The Twitter configuration has successfully been created and stored!');
 
-            return Redirect::to('admin/twitter_config');
+            return Redirect::to('/admin/twitter_config');
         }
 
 

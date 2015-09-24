@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<div class="form-group" id="main-meta-submit">
+<div class="form-group" id="submit">
     <div class="col-lg-10 col-lg-offset-2">
         {!! Form::submit("Submit", ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
     </div>

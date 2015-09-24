@@ -72,7 +72,7 @@ class FaucetsController extends Controller {
         //with input still in form, and accompanied with
         //the relevant errors.
         if($validator->fails()){
-            return Redirect::to('faucets/create')
+            return Redirect::to('/admin/faucets/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {
@@ -206,7 +206,7 @@ class FaucetsController extends Controller {
         //If validation fails, redirect back to the
         //editing page - with input and relevant errors.
         if($validator->fails()){
-            return Redirect::to('faucets/' . $slug . '/edit')
+            return Redirect::to('/admin/faucets/' . $slug . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {

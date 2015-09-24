@@ -13,6 +13,9 @@
     <h2>{!! Form::label('ad_content', 'Ad Block Content:', ['class' => 'control-label', 'style' => 'margin-left:0.5em;']) !!}</h2>
     <div class="col-lg-12">
         {!! Form::textarea('ad_content', null, ['class' => 'form-control']) !!}
+        <script>
+            CKEDITOR.replace( 'ad_content');
+        </script>
     </div>
 </div>
 
@@ -24,13 +27,12 @@
 
 <hr>
 <br>
-<p>Only the follwing HTML and CSS properties are allowed:</p>
+<p>The following HTML properties are allowed:</p>
 
 <h3>HTML</h3>
 
-<p>div, b, strong, i, em, a[href|title|target], ul, ol, li, p[style], br, span[style], img[width|height|alt|src], iframe[src|scrolling|style]</p>
+<p>div, b, strong, i, em, a[href|class|title|target], ul, ol, li, p[style], br, span[style], img[width|height|alt|src], iframe[src|scrolling|style], src, b, strong, h1, h2, 13, h4, h5, h6, dt, dl</p>
 
-<h3>CSS</h3>
-
-<p>font, font-size, font-weight, font-style, font-family, text-decoration, padding-left, color, background-color, text-align, border, width, height</p>
-
+@section('ckeditor-script')
+    <script src="/assets/js/ckeditor/ckeditor.js"></script>
+@endsection

@@ -71,7 +71,7 @@ class AdBlockController extends Controller
         $validator = Validator::make($input, AdBlockValidator::validationRules());
 
         if($validator->fails()){
-            return Redirect::to('admin/ad_block_config')
+            return Redirect::to('/admin/ad_block_config')
                 ->withErrors($validator)
                 ->withInput($input);
         }
@@ -84,7 +84,7 @@ class AdBlockController extends Controller
 
             Session::flash('success_message_add', 'The Ad Block has successfully been created and stored!');
 
-            return Redirect::to('admin/ad_block_config');
+            return Redirect::to('/admin/ad_block_config');
         }
     }
 

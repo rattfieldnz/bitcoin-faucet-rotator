@@ -20,18 +20,18 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Faucets <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/faucets">View Faucets</a></li>
-                            <li><a href="/faucets/create">Add New Faucet</a></li>
+                            <li><a href="/admin/faucets/create">Add New Faucet</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Payment Processors<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/payment_processors">View Payment Processors</a></li>
-                            <li><a href="/payment_processors/create">Add New Payment Processor</a></li>
+                            <li><a href="/admin/payment_processors/create">Add New Payment Processor</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/main_meta">Manage Main Meta</a>
+                        <a href="/admin/main_meta">Manage Main Meta</a>
                     </li>
                     <li>
                         <a href="/admin/twitter_config">Manage Twitter Config</a>

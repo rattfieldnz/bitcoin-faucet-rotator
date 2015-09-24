@@ -153,7 +153,8 @@ legend.border {
   margin-left: 1em !important;
 }
 
-#main-meta-submit {
+#submit,
+#adblock_config_form {
   margin-bottom: 5em;
 }
 

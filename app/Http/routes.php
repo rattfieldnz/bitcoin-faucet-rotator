@@ -44,6 +44,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
 });
 
 Route::get('/', 'RotatorController@index');
+
 Route::patch('faucets/checkFaucetsStatus', [
     'as' => 'checkFaucetsStatus', 'uses' => 'FaucetsController@checkFaucetsStatus'
 ]);
@@ -51,11 +52,13 @@ Route::patch('faucets/{$slug}', [
     'as' => 'faucetLowBalance', 'uses' => 'FaucetsController@faucetLowBalance'
 ]);
 Route::patch('checkFaucetsStatus', 'FaucetsController@checkFaucetsStatus');
-
 Route::get('faucets/progress', 'FaucetsController@progress' );
+Route::get('/admin/faucets/create', 'FaucetsController@create');
+Route::get('/admin/faucets/{slug}/edit', 'FaucetsController@edit');
 Route::resource('faucets', 'FaucetsController');
 
 Route::resource('main_meta', 'MainMetaController');
+Route::get('/admin/main_meta', 'MainMetaController@index');
 
 Route::resource('admin/twitter_config', 'TwitterConfigController');
 Route::get('/admin/twitter_config', 'TwitterConfigController@index');
@@ -63,12 +66,14 @@ Route::get('/admin/twitter_config', 'TwitterConfigController@index');
 Route::resource('admin/ad_block_config', 'AdBlockController');
 Route::get('/admin/ad_block_config', 'AdBlockController@index');
 
-Route::get('admin/admin', 'AdminController@index');
-Route::get('admin/overview', 'AdminController@overview');
-
 Route::resource('payment_processors', 'PaymentProcessorsController');
 Route::get('payment_processors', 'PaymentProcessorsController@index');
+Route::get('/admin/payment_processors/create', 'PaymentProcessorsController@create');
+Route::get('/admin/payment_processors/{slug}/edit', 'PaymentProcessorsController@edit');
 Route::get('payment_processors/{paymentProcessorSlug}/rotator', 'PaymentProcessorsController@faucets');
+
+Route::get('admin/admin', 'AdminController@index');
+Route::get('admin/overview', 'AdminController@overview');
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');

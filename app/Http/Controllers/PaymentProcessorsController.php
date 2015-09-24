@@ -55,7 +55,7 @@ class PaymentProcessorsController extends Controller {
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesNew());
 
         if($validator->fails()){
-            return Redirect::to('payment_processors/create')
+            return Redirect::to('/admin/payment_processors/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
@@ -129,7 +129,7 @@ class PaymentProcessorsController extends Controller {
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesEdit($id));
 
         if($validator->fails()){
-            return Redirect::to('/payment_processors/' . $slug . '/edit')
+            return Redirect::to('/admin/payment_processors/' . $slug . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
