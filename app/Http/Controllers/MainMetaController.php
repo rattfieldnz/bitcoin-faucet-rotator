@@ -3,6 +3,7 @@
 use app\Helpers\Validators\MainMetaValidator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Chromabits\Purifier\Contracts\Purifier;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -13,8 +14,14 @@ use App\MainMeta;
 use Illuminate\Http\Request;
 
 class MainMetaController extends Controller {
-    function __construct()   {
+    /**
+     * @var Purifier
+     */
+    protected $purifier;
+
+    function __construct(Purifier $purifier)   {
         $this->middleware('auth');
+        $this->purifier = $purifier;
     }
 	/**
 	 * Display a listing of the resource.
@@ -43,7 +50,10 @@ class MainMetaController extends Controller {
     public function store()
     {
         //Create the validator to process input for validation.
-        $input = Input::except('_token');
+        $input = Input::except('_token', 'page_main_content');
+        $main_content = $this->purifier->clean(Input::get('page_main_content'));
+        $input['page_main_content'] = $main_content;
+
         $validator = Validator::make($input, MainMetaValidator::validationRules());
 
         if($validator->fails()){

@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
   "directory": "vendor/bower_components"
+=======
+  "directory": "./vendor/bower_components"
+>>>>>>> manage_main_meta
 }

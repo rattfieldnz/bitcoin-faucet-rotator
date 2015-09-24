@@ -59,6 +59,11 @@ gulp.task("copyfiles", function() {
 
     gulp.src("vendor/bower_components/font-awesome/fonts/**")
         .pipe(gulp.dest("public/assets/css/fonts"));
+
+    // CKEditor
+    gulp.src("vendor/bower_components/ckeditor/**")
+        .pipe(gulp.dest("public/assets/js/ckeditor"));
+
 });
 
 /**
