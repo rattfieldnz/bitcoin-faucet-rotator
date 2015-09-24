@@ -153,6 +153,14 @@ legend.border {
   margin-left: 1em !important;
 }
 
+#main-meta-submit {
+  margin-bottom: 5em;
+}
+
+#main_page_content {
+  margin-bottom: 4em;
+}
+
 /*# sourceMappingURL=custom.css.map */
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
