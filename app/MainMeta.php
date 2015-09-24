@@ -17,7 +17,9 @@ class MainMeta extends Model {
         'keywords',
         'google_analytics_id',
         'yandex_verification',
-        'bing_verification'
+        'bing_verification',
+        'page_main_title',
+        'page_main_content'
     ];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
