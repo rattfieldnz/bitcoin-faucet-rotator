@@ -43,6 +43,7 @@
 <hr>
 
 <h3>Manage main page content</h3>
+<p>This content appears on the main faucet rotator page.</p>
 
 <div class="form-group">
     {!! Form::label('page_main_title', 'Main Page Title:', ['class' => 'col-lg-2 control-label']) !!}
