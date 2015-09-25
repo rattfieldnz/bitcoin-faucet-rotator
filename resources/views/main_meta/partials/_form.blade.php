@@ -56,9 +56,6 @@
     {!! Form::label('page_main_content', 'Main Page Content:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
         {!! Form::textarea('page_main_content', null, ['class' => 'form-control']) !!}
-        <script>
-            CKEDITOR.replace( 'page_main_content');
-        </script>
     </div>
 </div>
 
@@ -70,4 +67,7 @@
 
 @section('ckeditor-script')
     <script src="/assets/js/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'page_main_content');
+    </script>
 @endsection

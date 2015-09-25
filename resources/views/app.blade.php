@@ -16,12 +16,6 @@
         <link rel="stylesheet" href="/assets/css/freebtc.min.css?{{ rand()}}">
     @endif
 
-    @if(env('APP_ENV') == 'local')
-        <script src="/assets/js/freebtc.js?{{ rand()}}"></script>
-    @elseif(env('APP_ENV') == 'production')
-        <script src="/assets/js/freebtc.min.js?{{ rand()}}"></script>
-        @endif
-
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -63,9 +57,14 @@
 
     @include('partials.footer')
 
-	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+	@if(env('APP_ENV') == 'local')
+		<script src="/assets/js/freebtc.js?{{ rand()}}"></script>
+	@elseif(env('APP_ENV') == 'production')
+		<script src="/assets/js/freebtc.min.js?{{ rand()}}"></script>
+	@endif
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50b996b14942b1fb" async="async"></script>
     @yield('faucet_rotator_script')
+	@yield('ckeditor-script')
     @yield('google_analytics')
 </body>
 </html>
