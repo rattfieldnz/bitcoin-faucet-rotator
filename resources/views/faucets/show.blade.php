@@ -18,7 +18,7 @@
             <a class="btn btn-primary btn-width" href="/faucets/{{ $faucet->slug}}/edit/">
                 <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit</span>
             </a>
-            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet" data-id="{{ $faucet->id }}">
+            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet{{ $faucet->slug}}" data-id="{{ $faucet->slug }}">
                 <span class="fa fa-trash fa-1x space-right"></span>
                 <span class="button-font-size">Delete</span>
             </a>
