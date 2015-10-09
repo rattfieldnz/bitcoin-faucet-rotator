@@ -13,7 +13,7 @@
     @if(env('APP_ENV') == 'local')
         <link rel="stylesheet" href="/assets/css/freebtc.css?{{ rand()}}">
     @elseif(env('APP_ENV') == 'production')
-        <link rel="stylesheet" href="/assets/css/freebtc.min.css?{{ rand()}}">
+        <link rel="stylesheet" href="/assets/css/freebtc.min.css">
     @endif
 
 	<!-- Fonts -->
