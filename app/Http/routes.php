@@ -172,11 +172,21 @@ Route::get('feed', function() {
             // set item's title, author, url, pubdate, description and content
             $feed->add(
                 $title,
-                'FreeBTC.Website Bitcoin Faucet Rotator',
+                $p->name,
                 URL::to('/payment_processors/' . $p->slug),
                 $p->created_at,
                 str_replace('&', ' and ', $p->meta_description),
                 $p->meta_description
+            );
+
+            $rotator = URL::to("/payment_processors/" . $p->slug . '/rotator');
+            $feed->add(
+                $title,
+                $p->name,
+                $rotator,
+                $p->created_at,
+                $p->name . ' Faucet Rotator',
+                'Earn free bitcoins from faucets that use "' . $p->name . '" as a payment processor.'
             );
         }
 

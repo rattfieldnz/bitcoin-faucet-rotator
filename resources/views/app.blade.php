@@ -9,11 +9,12 @@
 	<meta name="keywords" content="@yield('keywords')">
 	<meta name="yandex-verification" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['yandex_verification'] }}" />
 	<meta name="msvalidate.01" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['bing_verification'] }}" />
-
+    <link href="{{ url('feed') }}" rel="alternate" type="application/rss+xml" title="FreeBTC.Website Bitcoin Faucet Rotator Feed" />
+    
     @if(env('APP_ENV') == 'local')
         <link rel="stylesheet" href="/assets/css/freebtc.css?{{ rand()}}">
     @elseif(env('APP_ENV') == 'production')
-        <link rel="stylesheet" href="/assets/css/freebtc.min.css">
+        <link rel="stylesheet" href="/assets/css/freebtc.min.css?{{ rand()}}">
     @endif
 
 	<!-- Fonts -->
