@@ -17,7 +17,7 @@ use Illuminate\Pagination\Paginator;
 class ApiController extends BaseController{
 
     public function faucets(){
-        return Faucet::all();
+        return Faucet::all()->sortBy('interval_minutes')->values()->all(); 
     }
 
     public function faucet($slug){
@@ -31,7 +31,7 @@ class ApiController extends BaseController{
     public function activeFaucets($has_low_balance = false){
 
         try {
-            $faucets = Faucet::all();
+            $faucets = Faucet::all()->sortBy('interval_minutes')->values()->all();
             $active_faucets = [];
 
             foreach($faucets as $f){
