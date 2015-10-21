@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1 id="page-heading">Edit '{{ $faucet->name }}'</h1>
+    <h1 class="page-heading">Edit '{{ $faucet->name }}'</h1>
 
     @include('faucets/partials/_errors')
 

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1 id="page-heading">Create a new payment processor</h1>
+    <h1 class="page-heading">Create a new payment processor</h1>
 
     @include('payment_processors/partials/_errors')
 

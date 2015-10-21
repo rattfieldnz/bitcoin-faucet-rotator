@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <fieldset>
+    <fieldset id="twitter-config-fieldset">
         @include('twitter_config/partials/_config_info')
 
         @include('twitter_config/partials/_errors')

@@ -2,6 +2,7 @@
 
 @section('content')
 
+    <fieldset id="twitter-config-fieldset">
     @include('twitter_config/partials/_config_info')
 
     @if (Session::has('success_message_add'))
@@ -21,4 +22,5 @@
     {!! Form::model( $twitterConfig, ['method' => 'PATCH', 'route' => ['admin.twitter_config.update', $twitterConfig],'class' => 'form-horizontal']) !!}
     @include('twitter_config/partials/_form')
     {!! Form::close() !!}
+    </fieldset>
 @endsection

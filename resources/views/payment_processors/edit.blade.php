@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-   <h1 id="page-heading">Edit '{{ $payment_processor->name }}'</h1>
+   <h1 class="page-heading">Edit '{{ $payment_processor->name }}'</h1>
 
     @include('payment_processors/partials/_errors')
 

@@ -7,7 +7,7 @@
 @section('keywords', $paymentProcessor->meta_keywords)
 
 @section('content')
-<h1 id="page-heading">{{ $paymentProcessor->name }} Faucet Rotator</h1>
+<h1 class="page-heading">{{ $paymentProcessor->name }} Faucet Rotator</h1>
 <span property="{{ $paymentProcessor->slug }}" id="faucet_slug"></span>
 <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
 @include('partials.ads')

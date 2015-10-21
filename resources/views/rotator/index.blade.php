@@ -8,7 +8,7 @@
 
 @section('content')
 
-<h1 id="page-heading">{{ $main_meta->page_main_title }}</h1>
+<h1 class="page-heading">{{ $main_meta->page_main_title }}</h1>
 @include('partials.ads')
 <nav id="navcontainer">
     <ul id="navlist">

@@ -7,7 +7,7 @@
 @section('keywords', $payment_processor->meta_keywords)
 
 @section('content')
-    <h1 id="page-heading">{{ $payment_processor->name }}</h1>
+    <h1 class="page-heading">{{ $payment_processor->name }}</h1>
     <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
 
     @if (Auth::user())

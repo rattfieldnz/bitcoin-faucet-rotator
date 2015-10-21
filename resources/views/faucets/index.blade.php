@@ -7,7 +7,7 @@
 @section('keywords', 'Free Bitcoins, Bitcoin Faucets, Get Free Bitcoins, Satoshis, Free BTC Website')
 
 @section('content')
-    <h1 id="page-heading">Current Faucets</h1>
+    <h1 class="page-heading">Current Faucets</h1>
     <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
     @include('faucets/partials/_session_messages')
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1 id="page-heading">Manage Main Meta</h1>
+    <h1 class="page-heading">Manage Main Meta</h1>
     @if (Session::has('success_message_add'))
         <div class="alert alert-success">
             <span class="fa fa-thumbs-o-up fa-2x space-right"></span>

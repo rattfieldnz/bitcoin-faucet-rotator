@@ -7,7 +7,7 @@
 @section('keywords', 'Free Bitcoins, Bitcoin Faucets, Xapo, MicroWallet, BlockChain, Paytoshi, FaucetBox')
 
 @section('content')
-    <h1 id="page-heading">Current Payment Processors</h1>
+    <h1 class="page-heading">Current Payment Processors</h1>
     <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
 
     @if (Session::has('success_message_delete'))
