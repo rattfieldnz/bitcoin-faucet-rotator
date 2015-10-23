@@ -37,6 +37,9 @@
                         <a href="/admin/twitter_config">Manage Twitter Config</a>
                     </li>
                     <li>
+                        <a href="/admin/facebook_config">Manage Facebook Config</a>
+                    </li>
+                    <li>
                         <a href="/admin/ad_block_config">Manage Ad Block</a>
                     </li>
                 @else

@@ -54,8 +54,6 @@ class TwitterConfigController extends Controller {
                 ->withInput($input);
         }
         else{
-            //var_dump($input);
-
             $twitterConfig = new TwitterConfig();
             $twitterConfig->fill($input);
 
@@ -65,8 +63,6 @@ class TwitterConfigController extends Controller {
 
             return Redirect::to('/admin/twitter_config');
         }
-
-
 	}
 
 	/**

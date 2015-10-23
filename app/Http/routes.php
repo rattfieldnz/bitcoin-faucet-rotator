@@ -63,6 +63,9 @@ Route::get('/admin/main_meta', 'MainMetaController@index');
 Route::resource('admin/twitter_config', 'TwitterConfigController');
 Route::get('/admin/twitter_config', 'TwitterConfigController@index');
 
+Route::resource('admin/facebook_config', 'FacebookConfigController');
+Route::get('/admin/facebook_config', 'FacebookConfigController@index');
+
 Route::resource('admin/ad_block_config', 'AdBlockController');
 Route::get('/admin/ad_block_config', 'AdBlockController@index');
 
