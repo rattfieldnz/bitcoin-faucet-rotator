@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b5bcc4e6f117a3c6994a8b0587fa5baa",
-    "content-hash": "0cde8468c8b66f8c0e382fce27d75e45",
+    "hash": "ab5f1f605c21f88c2840d48948a1660e",
+    "content-hash": "981dd3ba99e80e528d2c35308eb42f0d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -948,6 +948,61 @@
             "time": "2013-11-30 08:25:19"
         },
         {
+            "name": "facebook/php-sdk-v4",
+            "version": "5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
+                "reference": "cc551f793492fa92ca107d596a6f1e3a62fb894c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/cc551f793492fa92ca107d596a6f1e3a62fb894c",
+                "reference": "cc551f793492fa92ca107d596a6f1e3a62fb894c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2015-10-13 22:11:58"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "6.1.0",
             "source": {
@@ -1262,6 +1317,50 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
+        },
+        {
+            "name": "laracasts/generators",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
+                "reference": "eb58b86f49d69eff4db4cc6f2ec94480a57c4358"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/eb58b86f49d69eff4db4cc6f2ec94480a57c4358",
+                "reference": "eb58b86f49d69eff4db4cc6f2ec94480a57c4358",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laracasts\\Generators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Extend Laravel 5's generators.",
+            "keywords": [
+                "generators",
+                "laravel"
+            ],
+            "time": "2015-08-19 14:29:06"
         },
         {
             "name": "laravel/framework",
@@ -3235,105 +3334,6 @@
             "time": "2015-06-14 21:17:01"
         },
         {
-            "name": "facebook/php-sdk-v4",
-            "version": "5.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-                "reference": "cc551f793492fa92ca107d596a6f1e3a62fb894c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/cc551f793492fa92ca107d596a6f1e3a62fb894c",
-                "reference": "cc551f793492fa92ca107d596a6f1e3a62fb894c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~5.0",
-                "mockery/mockery": "~0.8",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Facebook\\": "src/Facebook/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Facebook Platform"
-            ],
-            "authors": [
-                {
-                    "name": "Facebook",
-                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
-                }
-            ],
-            "description": "Facebook SDK for PHP",
-            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
-            "keywords": [
-                "facebook",
-                "sdk"
-            ],
-            "time": "2015-10-13 22:11:58"
-        },
-        {
-            "name": "laracasts/generators",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
-                "reference": "eb58b86f49d69eff4db4cc6f2ec94480a57c4358"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/eb58b86f49d69eff4db4cc6f2ec94480a57c4358",
-                "reference": "eb58b86f49d69eff4db4cc6f2ec94480a57c4358",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "~2.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Laracasts\\Generators\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeffrey Way",
-                    "email": "jeffrey@laracasts.com"
-                }
-            ],
-            "description": "Extend Laravel 5's generators.",
-            "keywords": [
-                "generators",
-                "laravel"
-            ],
-            "time": "2015-08-19 14:29:06"
-        },
-        {
             "name": "phpspec/php-diff",
             "version": "v1.0.2",
             "source": {
@@ -3746,16 +3746,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.14",
+            "version": "4.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b4900675926860bef091644849305399b986efa2"
+                "reference": "be8f7b9eacf8243940f8412f8b4a9a434c73dd7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b4900675926860bef091644849305399b986efa2",
-                "reference": "b4900675926860bef091644849305399b986efa2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/be8f7b9eacf8243940f8412f8b4a9a434c73dd7b",
+                "reference": "be8f7b9eacf8243940f8412f8b4a9a434c73dd7b",
                 "shasum": ""
             },
             "require": {
@@ -3814,7 +3814,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-17 15:03:30"
+            "time": "2015-10-22 09:05:37"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
