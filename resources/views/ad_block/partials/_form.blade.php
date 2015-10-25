@@ -13,6 +13,11 @@
     <h2>{!! Form::label('ad_content', 'Ad Block Content:', ['class' => 'control-label', 'style' => 'margin-left:0.5em;']) !!}</h2>
     <div class="col-lg-12">
         {!! Form::textarea('ad_content', null, ['class' => 'form-control']) !!}
+        
+    <script>
+        CKEDITOR.replace( 'ad_content');
+    </script>
+
     </div>
 </div>
 
@@ -32,7 +37,4 @@
 
 @section('ckeditor-script')
     <script src="/assets/js/ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'ad_content');
-    </script>
 @endsection
