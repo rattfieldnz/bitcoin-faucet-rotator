@@ -949,16 +949,16 @@
         },
         {
             "name": "facebook/php-sdk-v4",
-            "version": "5.1.1",
+            "version": "5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-                "reference": "8d74588f2f88980c3504333111523ca231796a72"
+                "reference": "2c42fb3002953355f12d3c6e8003a9fd5af563d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/8d74588f2f88980c3504333111523ca231796a72",
-                "reference": "8d74588f2f88980c3504333111523ca231796a72",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/2c42fb3002953355f12d3c6e8003a9fd5af563d9",
+                "reference": "2c42fb3002953355f12d3c6e8003a9fd5af563d9",
                 "shasum": ""
             },
             "require": {
@@ -1000,7 +1000,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2015-11-12 19:21:46"
+            "time": "2015-11-19 21:07:36"
         },
         {
             "name": "guzzlehttp/guzzle",
