@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Chromabits\Purifier\Contracts\Purifier;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,34 +14,34 @@ use Illuminate\Support\Facades\Validator;
 use App\MainMeta;
 use Illuminate\Http\Request;
 
-class MainMetaController extends Controller {
+class MainMetaController extends Controller
+{
     /**
      * @var Purifier
      */
     protected $purifier;
 
-    function __construct(Purifier $purifier)   {
+    public function __construct(Purifier $purifier)
+    {
         $this->middleware('auth');
         $this->purifier = $purifier;
     }
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$main_meta = MainMeta::all();
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $mainMeta = MainMeta::all();
 
-        if(count($main_meta) == 0) {
+        if (count($mainMeta) == 0) {
             return view('main_meta.create');
         }
-        else{
-            $main_meta = MainMeta::first();
-            return view('main_meta.edit', compact('main_meta'));
-        }
+        $mainMeta = MainMeta::first();
+        return view('main_meta.edit', compact('mainMeta'));
 
-	}
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -51,57 +52,51 @@ class MainMetaController extends Controller {
     {
         //Create the validator to process input for validation.
         $input = Input::except('_token', 'page_main_content');
-        $main_content = $this->purifier->clean(Input::get('page_main_content'));
-        $input['page_main_content'] = $main_content;
+        $mainContent = $this->purifier->clean(Input::get('page_main_content'));
+        $input['page_main_content'] = $mainContent;
 
         $validator = Validator::make($input, MainMetaValidator::validationRules());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('/admin/main_meta')
                 ->withErrors($validator)
                 ->withInput($input);
         }
-        else{
-            $main_meta = new MainMeta();
-            $main_meta->fill($input);
+        $mainMeta = new MainMeta();
+        $mainMeta->fill($input);
 
-            $main_meta->save();
+        $mainMeta->save();
 
-            Session::flash('success_message_add', 'The main meta has successfully been created and stored!');
+        Session::flash('success_message_add', 'The main meta has successfully been created and stored!');
 
-            return Redirect::to('/admin/main_meta');
-        }
-	}
+        return Redirect::to('/admin/main_meta');
+    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param MainMeta $main_meta
+     * @param MainMeta $mainMeta
      * @return Response
      * @internal param int $id
      */
-	public function update(MainMeta $main_meta)
-	{
-        $main_meta = $main_meta::firstOrFail();
+    public function update(MainMeta $mainMeta)
+    {
+        $mainMeta = $mainMeta::firstOrFail();
 
         $input = Input::except('_token');
         $validator = Validator::make($input, MainMetaValidator::validationRules());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('/admin/main_meta')
                 ->withErrors($validator)
                 ->withInput($input);
         }
-        else{
-            $main_meta->fill($input);
+        $mainMeta->fill($input);
 
-            $main_meta->save();
+        $mainMeta->save();
 
-            Session::flash('success_message_update', 'The main meta has successfully been updated!');
+        Session::flash('success_message_update', 'The main meta has successfully been updated!');
 
-            return Redirect::to('/admin/main_meta/');
-
-        }
-	}
-
+        return Redirect::to('/admin/main_meta/');
+    }
 }

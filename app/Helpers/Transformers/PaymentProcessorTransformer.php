@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 05-Mar-2015
- * Time: 15:37
- */
-
-namespace Helpers\Transformers;
+<?php namespace Helpers\Transformers;
 
 /**
  * Class PaymentProcessorTransformer
@@ -15,20 +7,21 @@ namespace Helpers\Transformers;
  * a specified format.
  * @package Helpers\Transformers
  */
-class PaymentProcessorTransformer extends Transformer{
+class PaymentProcessorTransformer extends Transformer
+{
 
     /**
      * The method which transforms the
      * payment processor related data.
-     * @param $payment_processor
+     * @param $paymentProcessor
      * @return array
      */
-    public function transform($payment_processor)
+    public function transform($paymentProcessor)
     {
         return [
-            'id' => (int)$payment_processor['id'],
-            'name' => $payment_processor['name'],
-            'url' => $payment_processor['url']
+            'id' => (int)$paymentProcessor['id'],
+            'name' => $paymentProcessor['name'],
+            'url' => $paymentProcessor['url']
         ];
     }
 }

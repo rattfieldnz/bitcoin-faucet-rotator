@@ -9,6 +9,7 @@
 @section('content')
     <h1 class="page-heading">Current Faucets</h1>
     <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
+    @include('partials.ads')
     @include('faucets/partials/_session_messages')
 
     @if(Auth::check())
@@ -31,12 +32,6 @@
         </div>
         {!! Form::close() !!}
     @endif
-    <p style="text-align:center;">
-        <iframe scrolling="no" style="border: 0; width: 234px; height: 60px;" src="//coinurl.com/get.php?id=40679"></iframe>
-        <iframe scrolling="no" style="border: 0; width: 234px; height: 60px;" src="//coinurl.com/get.php?id=40680"></iframe>
-        <iframe scrolling="no" style="border: 0; width: 234px; height: 60px;" src="//coinurl.com/get.php?id=40681"></iframe>
-        <iframe scrolling="no" style="border: 0; width: 234px; height: 60px;" src="//coinurl.com/get.php?id=40682"></iframe>
-    </p>
     <div class="table-responsive">
         <table class="table table-striped bordered tablesorter" id="faucets_table">
             <thead>
@@ -73,8 +68,8 @@
                     <td>{{ $faucet->max_payout }}</td>
                     <td>
                         <ul class="faucet-payment-processors">
-                            @foreach($faucet->payment_processors as $payment_processor)
-                                <li>{!! link_to_route('payment_processors.show', $payment_processor->name, array($payment_processor->slug)) !!}</li>
+                            @foreach($faucet->paymentProcessors as $paymentProcessor)
+                                <li>{!! link_to_route('payment_processors.show', $paymentProcessor->name, [$paymentProcessor->slug]) !!}</li>
                             @endforeach
                         </ul>
                     </td>

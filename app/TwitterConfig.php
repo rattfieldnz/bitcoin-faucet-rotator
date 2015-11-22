@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class TwitterConfig extends Model {
+class TwitterConfig extends Model
+{
 
     protected $table = 'twitter_config';
 
@@ -25,5 +26,4 @@ class TwitterConfig extends Model {
     {
         return $this->belongsTo('App\User');
     }
-
 }

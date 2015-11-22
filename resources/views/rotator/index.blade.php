@@ -1,14 +1,14 @@
 @extends('app')
 
-@section('title', $main_meta->title)
+@section('title', $mainMeta->title)
 
-@section('description', $main_meta->description)
+@section('description', $mainMeta->description)
 
-@section('keywords', $main_meta->keywords)
+@section('keywords', $mainMeta->keywords)
 
 @section('content')
 
-<h1 class="page-heading">{{ $main_meta->page_main_title }}</h1>
+<h1 class="page-heading">{{ $mainMeta->page_main_title }}</h1>
 @include('partials.ads')
 <nav id="navcontainer">
     <ul id="navlist">
@@ -28,7 +28,7 @@
 
 <div class="row" id="main_page_content">
     <div class="col-lg-12">
-         {!! $main_meta->page_main_content !!}
+         {!! $mainMeta->page_main_content !!}
     </div>
 </div>
 @endsection

@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 31-Jul-2015
- * Time: 22:32
- */
-
-namespace App\Helpers\WebsiteMeta;
+<?php namespace App\Helpers\WebsiteMeta;
 
 /**
  * MetaParser
@@ -44,28 +36,30 @@ namespace App\Helpers\WebsiteMeta;
 class MetaParser
 {
     /**
-     * _parsed
+     * parsed
      *
      * @var    array
      * @access protected
      */
-    protected $_parsed;
+    protected $parsed;
 
     /**
-     * _body.
+     * body.
      *
      * @var    string
      * @access protected
      */
-    protected $_body;
+    protected $body;
 
     /**
-     * _url
+     * url
      *
      * @var    string
      * @access protected
      */
-    protected $_url;
+    protected $url;
+
+    protected $favicon;
 
     /**
      * __construct
@@ -79,8 +73,8 @@ class MetaParser
      */
     public function __construct($body, $url)
     {
-        $this->_body = $body;
-        $this->_url = $url;
+        $this->body = $body;
+        $this->url = $url;
     }
 
     /**
@@ -92,7 +86,7 @@ class MetaParser
      * @param  string $base
      * @return string
      */
-    protected function _resolveFullPath($addr, $base)
+    protected function resolveFullPath($addr, $base)
     {
         // empty address provided
         if (empty($addr)) {
@@ -144,29 +138,28 @@ class MetaParser
     }
 
     /**
-     * _parseBase
+     * parseBase
      *
      * @todo   find url's that have various base values, and test them
      * @access private
      * @return string
      */
-    private function _parseBase()
+    private function parseBase()
     {
         // search for base tag; return empty string if none found
         preg_match_all(
             '/<base.*href=(\'|")(.*)\1.*>/imU',
-            $this->_body,
+            $this->body,
             $bases
         );
 
         // store url components (will need to be used before value returned)
-        $components = parse_url($this->_url);
+        $components = parse_url($this->url);
         $path = ($components['scheme']) . '://' . ($components['host']);
         if (isset($components['path'])) {
             $path .= $components['path'];
-        } else {
-            $path .= '/';
         }
+        $path .= '/';
 
         // remove any filename that was specified by the path explicitely
         $path = preg_replace('/[^\/]*$/U', '', $path);
@@ -184,7 +177,6 @@ class MetaParser
 
         // if a target attribute found
         if (preg_match('/target=/', $found)) {
-
             // check if target being specified is the document itself (which
             // is okay)
             $self = preg_match('/target=[\'"]{1}_self[\'"]{1}/', $found);
@@ -197,7 +189,7 @@ class MetaParser
         }
 
         // resolve path (check for trailing slash; always required)
-        $resolved = $this->_resolveFullPath($base, $path);
+        $resolved = $this->resolveFullPath($base, $path);
         if (!preg_match('/\/$/', $resolved)) {
             return ($resolved) . '/';
         }
@@ -205,17 +197,17 @@ class MetaParser
     }
 
     /**
-     * _parseCharset
+     * parseCharset
      *
      * @access private
      * @return String
      */
-    private function _parseCharset()
+    private function parseCharset()
     {
         // get the page's charset (defined as a meta tag)
         preg_match(
             '#<meta(?!\s*(?:name|value)\s*=)[^>]*?charset\s*=[\s"\']*([^\s"\'/>]*)#i',
-            $this->_body,
+            $this->body,
             $charset
         );
         if (empty($charset)) {
@@ -233,7 +225,7 @@ class MetaParser
     }
 
     /**
-     * _parseDescription
+     * parseDescription
      *
      * @notes  not checking the index of the regular expression that
      *         corresponds to the actual keywords in order to ensure that an
@@ -244,10 +236,10 @@ class MetaParser
      * @access private
      * @return string
      */
-    private function _parseDescription()
+    private function parseDescription()
     {
         // grab meta tag; return immediately if false
-        $description = $this->_parseMetaTag('description');
+        $description = $this->parseMetaTag('description');
         if ($description === false) {
             return false;
         }
@@ -257,30 +249,29 @@ class MetaParser
     }
 
     /**
-     * _parseFavicon
+     * parseFavicon
      *
      * @access private
      * @return string
      */
-    private function _parseFavicon()
+    private function parseFavicon()
     {
         // generate default
-        $parsed = parse_url($this->_url);
+        $parsed = parse_url($this->url);
         $default = ($parsed['scheme']) . '://' . ($parsed['host']) .
             '/favicon.ico';
 
         // get the page links (icon attribute value leading)
         preg_match_all(
             '/<link.+rel=(\'|").*[^-]\bicon\b.{0,20}href=(\'|")(.+)\2/imU',
-            $this->_body,
+            $this->body,
             $favicons
         );
         if (empty($favicons[3])) {
-
             // get the page links (icon attribute value trailing)
             preg_match_all(
                 '/<link.+href=(\'|")(.+)\1.{0,20}rel=(\'|").*[^-]\bicon\b/imU',
-                $this->_body,
+                $this->body,
                 $favicons
             );
 
@@ -288,43 +279,42 @@ class MetaParser
             if (empty($favicons[2])) {
                 return $default;
             }
-            $favicon = array_pop($favicons[2]);
-        } else {
-            $favicon = array_pop($favicons[3]);
+            $this->favicon = array_pop($favicons[2]);
         }
+        $this->favicon = array_pop($favicons[3]);
 
         // resolve full path
-        $favicon = trim($favicon);
-        $favicon = $this->_resolveFullPath($favicon, $this->getBase());
+        $favicon = trim($this->favicon);
+        $favicon = $this->resolveFullPath($favicon, $this->getBase());
         $favicon = str_replace(PHP_EOL, '', $favicon);
         return $favicon;
     }
 
     /**
-     * _parseImages
+     * parseImages
      *
      * @notes  first expression capture relates to [^*]* rather than .* as
      *         this was excluding new lines
      * @access private
      * @return array
      */
-    private function _parseImages()
+    private function parseImages()
     {
         // get the page images
         preg_match_all(
             '/<img[^*]*src=(\'|")(.+)\1/imU',
-            $this->_body,
+            $this->body,
             $images
         );
         if (empty($images[2])) {
-            return array();
+            return [];
         }
 
         // base the images
         $images = array_pop($images);
         $base = $this->getBase();
         foreach ($images as &$image) {
-            $image = $this->_resolveFullPath($image, $base);
+            $image = $this->resolveFullPath($image, $base);
             $image = str_replace(PHP_EOL, '', $image);
         }
         $images = array_unique($images);
@@ -335,7 +325,7 @@ class MetaParser
     }
 
     /**
-     * _parseKeywords
+     * parseKeywords
      *
      * @notes  not checking the index of the regular expression that
      *         corresponds to the actual keywords in order to ensure that an
@@ -344,10 +334,10 @@ class MetaParser
      * @access private
      * @return array
      */
-    private function _parseKeywords()
+    private function parseKeywords()
     {
         // grab meta tag; return immediately if false
-        $keywords = $this->_parseMetaTag('keywords');
+        $keywords = $this->parseMetaTag('keywords');
         if ($keywords === false) {
             return false;
         }
@@ -361,31 +351,30 @@ class MetaParser
     }
 
     /**
-     * _parseMetaTag
+     * parseMetaTag
      *
      * @access protected
      * @param  string $value
      * @param string $attr
      * @return false|string
      */
-    protected function _parseMetaTag($value, $attr = 'name')
+    protected function parseMetaTag($value, $attr = 'name')
     {
         // get the page meta-tag (name attribute leading)
         preg_match_all(
             '/<meta.+' . ($attr) . '=(\'|")(\bdc\.\b)?\b' .
             ($value) . '\b\1.+content=(\'|")(.*)\3/imU',
-            $this->_body,
+            $this->body,
             $tags
         );
 
         // meta tag not found (not that it's empty, but not-found)
         if (empty($tags[3])) {
-
             // get the page meta-tag (name attribute trailing)
             preg_match_all(
                 '/<meta.+content=(\'|")(.*)\1.+' . ($attr) .
                 '=(\'|")(\bdc\.\b)?\b' . ($value) . '\b\3.+/imU',
-                $this->_body,
+                $this->body,
                 $tags
             );
 
@@ -403,28 +392,28 @@ class MetaParser
     }
 
     /**
-     * _parseOpenGraphKeys
+     * parseOpenGraphKeys
      *
      * @access protected
      * @return array
      */
-    protected function _parseOpenGraphKeys()
+    protected function parseOpenGraphKeys()
     {
-        preg_match_all('/([\'|"]{1})og:([a-zA-Z0-9\-:_]{1,25})\1/', $this->_body, $keys);
+        preg_match_all('/([\'|"]{1})og:([a-zA-Z0-9\-:_]{1,25})\1/', $this->body, $keys);
         return array_pop($keys);
     }
 
     /**
-     * _parseTitle
+     * parseTitle
      *
      * @access private
      * @return string
      */
-    private function _parseTitle()
+    private function parseTitle()
     {
         // get the page's title
-        // preg_match('/<title[^>]*>([^<]+)<\/title>/i', $this->_body, $titles);
-        preg_match('/<title[^>]*>([^<]+)<\/title>/im', $this->_body, $titles);
+        // preg_match('/<title[^>]*>([^<]+)<\/title>/i', $this->body, $titles);
+        preg_match('/<title[^>]*>([^<]+)<\/title>/im', $this->body, $titles);
         if (empty($titles)) {
             return false;
         }
@@ -436,7 +425,7 @@ class MetaParser
     /**
      * getBase
      *
-     * @notes  do not need to check for false value after _parseFavicon as
+     * @notes  do not need to check for false value after parseFavicon as
      *         default will always be returned (eg. domain.com/favicon.ico)
      * @access public
      * @return false|string
@@ -444,13 +433,13 @@ class MetaParser
     public function getBase()
     {
         // return base found, if any
-        if (isset($this->_parsed['base'])) {
-            return $this->_parsed['base'];
+        if (isset($this->parsed['base'])) {
+            return $this->parsed['base'];
         }
 
         // parse base/return
-        $base = $this->_parseBase();
-        $this->_parsed['base'] = $base;
+        $base = $this->parseBase();
+        $this->parsed['base'] = $base;
         return $base;
     }
 
@@ -469,16 +458,16 @@ class MetaParser
     public function getCharset()
     {
         // return charset found, if any
-        if (isset($this->_parsed['charset'])) {
-            return $this->_parsed['charset'];
+        if (isset($this->parsed['charset'])) {
+            return $this->parsed['charset'];
         }
 
         // parse charset/return
-        $charset = $this->_parseCharset();
+        $charset = $this->parseCharset();
         if ($charset === false) {
             return false;
         }
-        $this->_parsed['charset'] = $charset;
+        $this->parsed['charset'] = $charset;
         return $charset;
     }
 
@@ -491,16 +480,16 @@ class MetaParser
     public function getDescription()
     {
         // return description found, if any
-        if (isset($this->_parsed['description'])) {
-            return $this->_parsed['description'];
+        if (isset($this->parsed['description'])) {
+            return $this->parsed['description'];
         }
 
         // parse description/return
-        $description = $this->_parseDescription();
+        $description = $this->parseDescription();
         if ($description === false) {
             return false;
         }
-        $this->_parsed['description'] = $description;
+        $this->parsed['description'] = $description;
         return $description;
     }
 
@@ -513,25 +502,25 @@ class MetaParser
     public function getDetails()
     {
         // return relevant meta data
-        return array(
+        return [
             'base' => $this->getBase(),
             'charset' => $this->getCharset(),
             'favicon' => $this->getFavicon(),
-            'meta' => array(
+            'meta' => [
                 'description' => $this->getDescription(),
                 'keywords' => $this->getKeywords()
-            ),
+            ],
             'images' => $this->getImages(),
             'openGraph' => $this->getOpenGraph(),
             'title' => $this->getTitle(),
             'url' => $this->getUrl()
-        );
+        ];
     }
 
     /**
      * getFavicon
      *
-     * @notes  do not need to check for false value after _parseFavicon as
+     * @notes  do not need to check for false value after parseFavicon as
      *         default will always be returned (eg. domain.com/favicon.ico)
      * @access public
      * @return false|string
@@ -539,13 +528,13 @@ class MetaParser
     public function getFavicon()
     {
         // return favicon found, if any
-        if (isset($this->_parsed['favicon'])) {
-            return $this->_parsed['favicon'];
+        if (isset($this->parsed['favicon'])) {
+            return $this->parsed['favicon'];
         }
 
         // parse favicon/return
-        $favicon = $this->_parseFavicon();
-        $this->_parsed['favicon'] = $favicon;
+        $favicon = $this->parseFavicon();
+        $this->parsed['favicon'] = $favicon;
         return $favicon;
     }
 
@@ -558,13 +547,13 @@ class MetaParser
     public function getImages()
     {
         // return images found, if any
-        if (isset($this->_parsed['images'])) {
-            return $this->_parsed['images'];
+        if (isset($this->parsed['images'])) {
+            return $this->parsed['images'];
         }
 
         // parse images/return
-        $images = $this->_parseImages();
-        $this->_parsed['images'] = $images;
+        $images = $this->parseImages();
+        $this->parsed['images'] = $images;
         return $images;
     }
 
@@ -577,16 +566,16 @@ class MetaParser
     public function getKeywords()
     {
         // return keywords found, if any
-        if (isset($this->_parsed['keywords'])) {
-            return $this->_parsed['keywords'];
+        if (isset($this->parsed['keywords'])) {
+            return $this->parsed['keywords'];
         }
 
         // parse keywords if found; encode; return
-        $keywords = $this->_parseKeywords();
+        $keywords = $this->parseKeywords();
         if ($keywords === false) {
             return false;
         }
-        $this->_parsed['keywords'] = $keywords;
+        $this->parsed['keywords'] = $keywords;
         return $keywords;
     }
 
@@ -598,15 +587,15 @@ class MetaParser
      */
     public function getOpenGraph()
     {
-        $graph = array();
-        $keys = $this->_parseOpenGraphKeys();
+        $graph = [];
+        $keys = $this->parseOpenGraphKeys();
         foreach ($keys as $key) {
-            $graph[$key] = $this->_parseMetaTag('og:' . ($key), 'property');
+            $graph[$key] = $this->parseMetaTag('og:' . ($key), 'property');
         }
 
         // resolve path to open graph image, if found
         if (in_array('image', $keys)) {
-            $graph['imagePath'] = $this->_resolveFullPath(
+            $graph['imagePath'] = $this->resolveFullPath(
                 $graph['image'],
                 $this->getBase()
             );
@@ -623,16 +612,16 @@ class MetaParser
     public function getTitle()
     {
         // return title found, if any
-        if (isset($this->_parsed['title'])) {
-            return $this->_parsed['title'];
+        if (isset($this->parsed['title'])) {
+            return $this->parsed['title'];
         }
 
         // parse title/return
-        $title = $this->_parseTitle();
+        $title = $this->parseTitle();
         if ($title === false) {
             return false;
         }
-        $this->_parsed['title'] = $title;
+        $this->parsed['title'] = $title;
         return $title;
     }
 
@@ -644,6 +633,6 @@ class MetaParser
      */
     public function getUrl()
     {
-        return $this->_url;
+        return $this->url;
     }
 }

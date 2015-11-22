@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 11-Mar-2015
- * Time: 15:25
- */
-
-namespace Helpers\Validators;
-
+<?php namespace Helpers\Validators;
 
 use App\Faucet;
 use Illuminate\Validation\Validator;
@@ -19,7 +10,8 @@ use Illuminate\Validation\Validator;
  * entries and updates.
  * @package Helpers\Validators
  */
-class FaucetValidator extends Validator{
+class FaucetValidator extends Validator
+{
 
     /**
      * Validates new faucet entries.
@@ -50,14 +42,14 @@ class FaucetValidator extends Validator{
      * still be submitted without any duplication
      * errors.
      *
-     * @param $faucet_id
+     * @param $faucetId
      * @return array
      */
-    public static function validationRulesEdit($faucet_id)
+    public static function validationRulesEdit($faucetId)
     {
         return [
-                'name' => 'required|unique:faucets,name, ' . $faucet_id . '|min:5',
-                'url' => 'required|unique:faucets,url, ' . $faucet_id,
+                'name' => 'required|unique:faucets,name, ' . $faucetId . '|min:5',
+                'url' => 'required|unique:faucets,url, ' . $faucetId,
                 'interval_minutes' => 'required|integer',
                 'min_payout' => 'required|numeric',
                 'max_payout' => 'required|numeric',

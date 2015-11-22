@@ -458,7 +458,7 @@ $.widget( "ui.autocomplete", {
 			this._suggest( content );
 			this._trigger( "open" );
 		} else {
-			// use ._close() instead of .close() so we don't cancel future searches
+			// use .close() instead of .close() so we don't cancel future searches
 			this._close();
 		}
 	},

@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 05-Mar-2015
- * Time: 13:39
- */
-
-namespace Helpers\Transformers;
+<?php namespace Helpers\Transformers;
 
 /**
  * Class FaucetTransformer
@@ -14,7 +6,8 @@ namespace Helpers\Transformers;
  * related data in a specified format.
  * @package Helpers\Transformers
  */
-class FaucetTransformer extends Transformer{
+class FaucetTransformer extends Transformer
+{
 
     /**
      * The method which transforms the faucet

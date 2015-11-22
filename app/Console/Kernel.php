@@ -7,40 +7,41 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Auth;
 
-class Kernel extends ConsoleKernel {
+class Kernel extends ConsoleKernel
+{
     
-	/**
-	 * The Artisan commands provided by your application.
-	 *
-	 * @var array
-	 */
-	protected $commands = [
-		'App\Console\Commands\Inspire',
-	];
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        'App\Console\Commands\Inspire',
+    ];
 
-	/**
-	 * Define the application's command schedule.
-	 *
-	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-	 * @return void
-	 */
-	protected function schedule(Schedule $schedule)
-	{
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
 
-		$schedule->command('inspire')
-				 ->hourly();
+        $schedule->command('inspire')
+                 ->hourly();
 
         $schedule->call(function () {
             Faucets::checkUpdateStatuses();
         })->hourly()->environments('production');
 
-        $schedule->call(function(){
+        $schedule->call(function () {
             $user = User::where('is_admin', '=', true)->firstOrFail();
             $twitter = new Twitter($user);
             $twitter->sendRandomFaucetTweet();
         })->hourly()->environments('production');
-		
-	}
+        
+    }
 
     /**
      * The bootstrap classes for the application.
@@ -56,5 +57,4 @@ class Kernel extends ConsoleKernel {
         'Illuminate\Foundation\Bootstrap\RegisterProviders',
         'Illuminate\Foundation\Bootstrap\BootProviders',
     ];
-
 }

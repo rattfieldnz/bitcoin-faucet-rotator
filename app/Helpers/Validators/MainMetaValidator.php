@@ -1,14 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 12-Jul-2015
- * Time: 23:17
- */
+<?php namespace app\Helpers\Validators;
 
-namespace app\Helpers\Validators;
 use Illuminate\Validation\Validator;
-
 
 class MainMetaValidator extends Validator
 {

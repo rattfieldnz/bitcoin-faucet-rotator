@@ -1,13 +1,13 @@
 @extends('app')
 
-@section('title', $payment_processor->meta_title)
+@section('title', $paymentProcessor->meta_title)
 
-@section('description', $payment_processor->meta_description)
+@section('description', $paymentProcessor->meta_description)
 
-@section('keywords', $payment_processor->meta_keywords)
+@section('keywords', $paymentProcessor->meta_keywords)
 
 @section('content')
-    <h1 class="page-heading">{{ $payment_processor->name }}</h1>
+    <h1 class="page-heading">{{ $paymentProcessor->name }}</h1>
     <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
 
     @if (Auth::user())
@@ -15,10 +15,10 @@
             window.csrfToken = '<?php echo csrf_token(); ?>';
         </script>
         <p>
-            <a class="btn btn-primary btn-width" href="/payment_processors/{{ $payment_processor->slug}}/edit/">
+            <a class="btn btn-primary btn-width" href="/payment_processors/{{ $paymentProcessor->slug}}/edit/">
                 <span class="fa fa-edit fa-1x space-right"></span><span class="button-font-size">Edit</span>
             </a>
-            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delPaymentProcessor" data-id="{{ $payment_processor->slug }}">
+            <a class="btn btn-primary btn-width" id="confirm" data-toggle="modal" href="#" data-target="#delPaymentProcessor" data-id="{{ $paymentProcessor->slug }}">
                 <span class="fa fa-trash fa-1x space-right"></span>
                 <span class="button-font-size">Delete</span>
             </a>
@@ -34,7 +34,7 @@
                             <span class="fa fa-warning fa-3x"></span>
                             <span id="id"></span>
                             <span style="padding-left: 2em;">
-                                ARE YOU SURE you want to delete {!! link_to($payment_processor->url, $payment_processor->name, ['target' => '_blank']) !!} ?
+                                ARE YOU SURE you want to delete {!! link_to($paymentProcessor->url, $paymentProcessor->name, ['target' => '_blank']) !!} ?
                             </span>
                         </h4>
                     </div>
@@ -46,7 +46,7 @@
                         <div id="delmodelcontainer" style="float:right">
 
                             <div id="yes" style="float:left; padding-right:10px">
-                                {!! Form::open(array('action' => array('PaymentProcessorsController@destroy', $payment_processor->slug), 'method' => 'DELETE')) !!}
+                                {!! Form::open(array('action' => array('PaymentProcessorsController@destroy', $paymentProcessor->slug), 'method' => 'DELETE')) !!}
 
                                 {!! Form::submit('Yes', array('class' => 'btn btn-primary')) !!}
 
@@ -83,16 +83,16 @@
             </thead>
             <tbody>
             <tr>
-                <td>{!! link_to($payment_processor->url, $payment_processor->name, ['target' => 'blank', 'title' => $payment_processor->name]) !!}</td>
+                <td>{!! link_to($paymentProcessor->url, $paymentProcessor->name, ['target' => 'blank', 'title' => $paymentProcessor->name]) !!}</td>
                 <td>
                     <ul class="faucet-payment-processors">
-                        @foreach($payment_processor->faucets as $faucet)
+                        @foreach($paymentProcessor->faucets as $faucet)
                             <li>{!! link_to_route('faucets.show', $faucet->name, array($faucet->slug), ['title' => $faucet->name]) !!}</li>
                         @endforeach
                     </ul>
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-lg" id="rotator" href="/payment_processors/{{ $payment_processor->slug }}/rotator" title="View the faucet rotator for '{{ $payment_processor->name }}' faucets." role="button">Go to Rotator</a>
+                    <a class="btn btn-primary btn-lg" id="rotator" href="/payment_processors/{{ $paymentProcessor->slug }}/rotator" title="View the faucet rotator for '{{ $paymentProcessor->name }}' faucets." role="button">Go to Rotator</a>
                 </td>
             </tr>
             </tbody>

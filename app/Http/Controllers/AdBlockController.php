@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use App\AdBlock;
 use App\User;
@@ -25,11 +23,17 @@ class AdBlockController extends Controller
     protected $purifier;
 
     /**
-     * Construct an instance of MyClass
+     * @property int adsUserId
+     */
+    private $adsUserId;
+
+    /**
+     * Construct an instance of AdBlockController
      *
      * @param Purifier $purifier
      */
-    function __construct(Purifier $purifier)   {
+    public function __construct(Purifier $purifier)
+    {
         $this->middleware('auth');
         $this->purifier = $purifier;
     }
@@ -40,22 +44,17 @@ class AdBlockController extends Controller
      */
     public function index()
     {
-        if(Auth::user())
-        {
-            $adsUserId = Auth::user()->id;
+        if (Auth::user()) {
+            $this->adsUserId = Auth::user()->id;
         }
-        else {
-            $adsUserId = (int)User::where('is_admin', '=', true)->firstOrFail()->id;
-        }
+        $this->adsUserId = (int)User::where('is_admin', '=', true)->firstOrFail()->id;
 
-        $adBlock = User::find($adsUserId)->adBlock;
+        $adBlock = User::find($this->adsUserId)->adBlock;
 
-        if(count($adBlock) == 0) {
+        if (count($adBlock) == 0) {
             return view('ad_block.create');
         }
-        else{
-            return view('ad_block.edit', compact('adBlock'));
-        }
+        return view('ad_block.edit', compact('adBlock'));
 
     }
 
@@ -70,22 +69,20 @@ class AdBlockController extends Controller
 
         $validator = Validator::make($input, AdBlockValidator::validationRules());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('/admin/ad_block_config')
                 ->withErrors($validator)
                 ->withInput($input);
         }
-        else{
 
-            $adBlock = new AdBlock();
-            $adBlock->fill($input);
+        $adBlock = new AdBlock();
+        $adBlock->fill($input);
 
-            $adBlock->save();
+        $adBlock->save();
 
-            Session::flash('success_message_add', 'The Ad Block has successfully been created and stored!');
+        Session::flash('success_message_add', 'The Ad Block has successfully been created and stored!');
 
-            return Redirect::to('/admin/ad_block_config');
-        }
+        return Redirect::to('/admin/ad_block_config');
     }
 
     /**
@@ -100,21 +97,18 @@ class AdBlockController extends Controller
         $input = Input::except('_token');
         $validator = Validator::make($input, AdBlockValidator::validationRules());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('admin/ad_block_config')
                 ->withErrors($validator)
                 ->withInput($input);
         }
-        else{
-            //die(var_dump($input));
-            $adBlock->fill($input);
 
-            $adBlock->save();
+        $adBlock->fill($input);
 
-            Session::flash('success_message_update', 'The Ad Block has successfully been updated!');
+        $adBlock->save();
 
-            return Redirect::to('admin/ad_block_config');
+        Session::flash('success_message_update', 'The Ad Block has successfully been updated!');
 
-        }
+        return Redirect::to('admin/ad_block_config');
     }
 }

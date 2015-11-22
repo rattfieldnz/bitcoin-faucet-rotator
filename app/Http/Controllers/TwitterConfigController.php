@@ -14,67 +14,66 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-class TwitterConfigController extends Controller {
+class TwitterConfigController extends Controller
+{
 
-    function __construct()   {
-		$this->middleware('auth');
-	}
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $twitterConfig = User::find(Auth::user()->id)->twitterConfig;
 
-        if(count($twitterConfig) == 0) {
+        if (count($twitterConfig) == 0) {
             return view('twitter_config.create');
         }
-        else{
-            return view('twitter_config.edit', compact('twitterConfig'));
-        }
-	}
+        return view('twitter_config.edit', compact('twitterConfig'));
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-	    //Create the validator to process input for validation.
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        //Create the validator to process input for validation.
         $input = Input::except('_token');
         $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('/admin/twitter_config')
                 ->withErrors($validator)
                 ->withInput($input);
         }
-        else{
-            //var_dump($input);
+        $twitterConfig = new TwitterConfig();
+        $twitterConfig->fill($input);
 
-            $twitterConfig = new TwitterConfig();
-            $twitterConfig->fill($input);
+        $twitterConfig->save();
 
-            $twitterConfig->save();
+        Session::flash(
+            'success_message_add',
+            'The Twitter configuration has successfully been created and stored!'
+        );
 
-            Session::flash('success_message_add', 'The Twitter configuration has successfully been created and stored!');
-
-            return Redirect::to('/admin/twitter_config');
-        }
+        return Redirect::to('/admin/twitter_config');
 
 
-	}
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
 
     /**
      * Update the specified resource in storage.
@@ -88,22 +87,17 @@ class TwitterConfigController extends Controller {
         $input = Input::except('_token');
         $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('admin/twitter_config')
                 ->withErrors($validator)
                 ->withInput($input);
         }
-        else{
-            //die(var_dump($input));
-            $twitterConfig->fill($input);
+        $twitterConfig->fill($input);
 
-            $twitterConfig->save();
+        $twitterConfig->save();
 
-            Session::flash('success_message_update', 'The Twitter configuration has successfully been updated!');
+        Session::flash('success_message_update', 'The Twitter configuration has successfully been updated!');
 
-            return Redirect::to('admin/twitter_config');
-
-        }
+        return Redirect::to('admin/twitter_config');
     }
-
 }

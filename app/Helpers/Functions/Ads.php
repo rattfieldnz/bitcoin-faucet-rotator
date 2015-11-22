@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 18-Sep-2015
- * Time: 19:18
- */
-
-namespace Helpers\Functions;
-
+<?php namespace Helpers\Functions;
 
 use App\AdBlock;
 use App\User;
@@ -22,13 +13,11 @@ class Ads
      */
     public function get()
     {
-        if(Auth::user()) {
+        if (Auth::user()) {
             $this->userId = Auth::user()->id;
             return User::find($this->userId)->firstOrFail()->adBlock->ad_content;
         }
-        else{
-            return User::where('is_admin', '=', true)->firstOrFail()->adBlock->ad_content;
-        }
+        return User::where('is_admin', '=', true)->firstOrFail()->adBlock->ad_content;
 
     }
 }

@@ -1,36 +1,29 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 02-Aug-2015
- * Time: 13:14
- */
-
-namespace App\Helpers\Functions;
-
+<?php namespace App\Helpers\Functions;
 
 class LaravelCron
 {
 
-    public static function cronExists($command){
+    public static function cronExists($command)
+    {
 
-        $cronjob_exists = false;
+        $cronjobExists = false;
         exec('crontab -l', $crontab);
-        if(isset($crontab)&& is_array($crontab)){
+        if (isset($crontab) && is_array($crontab)) {
             $crontab = array_flip($crontab);
-            if(isset($crontab[$command])){
-                $cronjob_exists = true;
+            if (isset($crontab[$command])) {
+                $cronjobExists = true;
             }
         }
-        return $cronjob_exists;
+        return $cronjobExists;
     }
 
-    public static function initialize(){
+    public static function initialize()
+    {
         $command = '* * * * * php /var/www/faucet_rotator/artisan schedule:run 1>> /dev/null 2>&1';
 
-       if(self::cronExists($command) == false){
+        if (self::cronExists($command) == false) {
             //add job to crontab
             exec('echo -e "`crontab -l`\n'.$command.'" | crontab -');
-       }
+        }
     }
 }

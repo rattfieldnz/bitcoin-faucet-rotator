@@ -31,8 +31,10 @@
         "facebook/php-sdk-v4": "~5.1"
     },
     "require-dev": {
-	"phpunit/phpunit": "~4.0",
-	"phpspec/phpspec": "~2.1"
+	    "phpunit/phpunit": "~4.0",
+	    "phpspec/phpspec": "~2.1",
+        "socialengine/sniffer-rules": "^2.2",
+        "phpmd/phpmd" : "@stable"
     },
     "autoload": {
 	"classmap": [

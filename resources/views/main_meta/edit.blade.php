@@ -17,7 +17,7 @@
     @endif
     @include('main_meta/partials/_errors')
 
-    {!! Form::model( $main_meta, ['method' => 'PATCH', 'route' => ['main_meta.update', $main_meta],'class' => 'form-horizontal']) !!}
+    {!! Form::model( $mainMeta, ['method' => 'PATCH', 'route' => ['main_meta.update', $mainMeta],'class' => 'form-horizontal']) !!}
     @include('main_meta/partials/_form')
     {!! Form::close() !!}
 @endsection

@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 16-Aug-2015
- * Time: 23:00
- */
-
-namespace Helpers\Validators;
-
+<?php namespace Helpers\Validators;
 
 use Illuminate\Validation\Validator;
 

@@ -6,22 +6,23 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+{
 
-	use Authenticatable, CanResetPassword;
+    use Authenticatable, CanResetPassword;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['user_name',
         'first_name',
         'last_name',
@@ -30,12 +31,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'bitcoin_address',
         'is_admin'];
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = ['password', 'remember_token'];
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * A method defining the relationship
@@ -47,12 +48,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('App\Faucet', 'referral_info')->orderBy('interval_minutes', 'asc');
     }
 
-    public function twitterConfig(){
+    public function twitterConfig()
+    {
         return $this->hasOne('App\TwitterConfig', 'user_id');
     }
 
-    public function adBlock(){
+    public function adBlock()
+    {
         return $this->hasOne('App\AdBlock', 'user_id');
     }
-
 }
