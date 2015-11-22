@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 05-Mar-2015
- * Time: 13:36
- */
-
-namespace Helpers\Transformers;
-
+<?php namespace Helpers\Transformers;
 
 /**
  * Class Transformer
@@ -16,7 +7,8 @@ namespace Helpers\Transformers;
  * the abstract 'transform' method.
  * @package Helpers\Transformers
  */
-abstract class Transformer {
+abstract class Transformer
+{
 
     /**
      * This method transforms a collection of data
@@ -36,5 +28,5 @@ abstract class Transformer {
      * @param $item
      * @return mixed
      */
-    public abstract function transform($item);
+    abstract public function transform($item);
 }

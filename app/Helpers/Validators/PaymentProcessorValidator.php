@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 11-Mar-2015
- * Time: 15:25
- */
-
-namespace Helpers\Validators;
-
+<?php namespace Helpers\Validators;
 
 use App\PaymentProcessor;
 use Illuminate\Validation\Validator;
@@ -19,7 +10,8 @@ use Illuminate\Validation\Validator;
  * entries and updates.
  * @package Helpers\Validators
  */
-class PaymentProcessorValidator extends Validator{
+class PaymentProcessorValidator extends Validator
+{
 
     /**
      * Validates new payment processor entries.
@@ -42,17 +34,17 @@ class PaymentProcessorValidator extends Validator{
      * still be submitted without any duplication
      * errors.
      *
-     * @param $payment_processor_id
+     * @param $paymentProcessorId
      * @return array
      */
-    public static function validationRulesEdit($payment_processor_id)
+    public static function validationRulesEdit($paymentProcessorId)
     {
         return [
-            'name' => 'required|unique:payment_processors,name,' . $payment_processor_id . '|min:3',
-            'url' => 'required|url|active_url|unique:payment_processors,url,' . $payment_processor_id,
-            'meta_title' => 'string|max:70|unique:payment_processors,meta_title,' . $payment_processor_id,
-            'meta_description' => 'string|max:160|unique:payment_processors,meta_description,' . $payment_processor_id,
-            'meta_keywords' => 'string|max:255|unique:payment_processors,meta_keywords,' . $payment_processor_id,
+            'name' => 'required|unique:payment_processors,name,' . $paymentProcessorId . '|min:3',
+            'url' => 'required|url|active_url|unique:payment_processors,url,' . $paymentProcessorId,
+            'meta_title' => 'string|max:70|unique:payment_processors,meta_title,' . $paymentProcessorId,
+            'meta_description' => 'string|max:160|unique:payment_processors,meta_description,' . $paymentProcessorId,
+            'meta_keywords' => 'string|max:255|unique:payment_processors,meta_keywords,' . $paymentProcessorId,
         ];
     }
 }

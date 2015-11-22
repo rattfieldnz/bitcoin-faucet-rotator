@@ -16,27 +16,31 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Roumen\Feed\Facades\Feed;
 
-Route::group(['prefix' => 'api/v1'], function()
-{
+Route::group(['prefix' => 'api/v1'], function () {
+
     Route::get('faucets', 'ApiController@faucets');
     Route::get('active_faucets', 'ApiController@activeFaucets');
     Route::get('faucets/{id}', 'ApiController@faucet');
     Route::get('payment_processors/{paymentProcessorSlug}/faucets', 'ApiController@paymentProcessorFaucets');
 });
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
-    Route::group(['middleware' => 'guest'], function(){
+    Route::group(['middleware' => 'guest'], function () {
         // Login
         Route::get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
-        Route::post('login', ['as' => 'auth.login.store', 'before' => 'throttle:2,60', 'uses' => 'AuthController@postLogin']);
+        Route::post('login', [
+            'as' => 'auth.login.store',
+            'before' => 'throttle:2,60',
+            'uses' => 'AuthController@postLogin'
+        ]);
 
         // Register
         //Route::get('register', ['as' => 'auth.register', 'uses' => 'AuthController@getRegister']);
         //Route::post('register', ['as' => 'auth.register.store', 'uses' => 'AuthController@postRegister']);
     });
 
-    Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'auth'], function () {
         // Logout
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
     });
@@ -52,7 +56,7 @@ Route::patch('faucets/{$slug}', [
     'as' => 'faucetLowBalance', 'uses' => 'FaucetsController@faucetLowBalance'
 ]);
 Route::patch('checkFaucetsStatus', 'FaucetsController@checkFaucetsStatus');
-Route::get('faucets/progress', 'FaucetsController@progress' );
+Route::get('faucets/progress', 'FaucetsController@progress');
 Route::get('/admin/faucets/create', 'FaucetsController@create');
 Route::get('/admin/faucets/{slug}/edit', 'FaucetsController@edit');
 Route::resource('faucets', 'FaucetsController');
@@ -83,7 +87,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-Route::get('sitemap', function(){
+Route::get('sitemap', function () {
 
     // create new sitemap object
     $sitemap = App::make("sitemap");
@@ -93,9 +97,8 @@ Route::get('sitemap', function(){
     $sitemap->setCache('laravel.sitemap', 15);
 
     // check if there is cached sitemap and build new only if is not
-    if (!$sitemap->isCached())
-    {
-        // add item to the sitemap (url, date, priority, freq)
+    if (!$sitemap->isCached()) {
+    // add item to the sitemap (url, date, priority, freq)
         $sitemap->add(URL::to('/'), Carbon::now(), '1.0', 'daily');
         $sitemap->add(URL::to('/faucets'), Carbon::now(), '1.0', 'daily');
         $sitemap->add(URL::to('/payment_processors'), Carbon::now(), '1.0', 'daily');
@@ -104,16 +107,14 @@ Route::get('sitemap', function(){
         $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
 
         // add every post to the sitemap
-        foreach ($faucets as $f)
-        {
+        foreach ($faucets as $f) {
             $url = URL::to("/faucets/" . $f->slug);
             $sitemap->add($url, $f->updated_at, '1.0', 'daily');
         }
 
         $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
 
-        foreach ($payment_processors as $p)
-        {
+        foreach ($payment_processors as $p) {
             $url = URL::to("/payment_processors/" . $p->slug);
             $sitemap->add($url, $p->updated_at, '1.0', 'daily');
 
@@ -127,7 +128,7 @@ Route::get('sitemap', function(){
 
 });
 
-Route::get('feed', function() {
+Route::get('feed', function () {
 
     // create new feed
     $feed = Feed::make();
@@ -150,45 +151,45 @@ Route::get('feed', function() {
         $feed->setShortening(true); // true or false
         $feed->setTextLimit(100); // maximum length of description text
 
-        foreach ($faucets as $faucet) {
-            $title = isset($faucet->meta_title) == true ? $faucet->meta_title : $faucet->name;
+    foreach ($faucets as $faucet) {
+        $title = isset($faucet->meta_title) == true ? $faucet->meta_title : $faucet->name;
 
-            // set item's title, author, url, pubdate, description and content
-            $feed->add(
-                $title,
-                'FreeBTC.Website Bitcoin Faucet Rotator',
-                URL::to('/faucets/' . $faucet->slug),
-                $faucet->created_at,
-                str_replace('&', ' and ', $faucet->meta_description),
-                $faucet->meta_description
-            );
-        }
+        // set item's title, author, url, pubdate, description and content
+        $feed->add(
+            $title,
+            'FreeBTC.Website Bitcoin Faucet Rotator',
+            URL::to('/faucets/' . $faucet->slug),
+            $faucet->created_at,
+            str_replace('&', ' and ', $faucet->meta_description),
+            $faucet->meta_description
+        );
+    }
 
         $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
 
-        foreach ($payment_processors as $p) {
-            $title = isset($p->meta_title) == true ? $p->meta_title : $p->name;
+    foreach ($payment_processors as $p) {
+        $title = isset($p->meta_title) == true ? $p->meta_title : $p->name;
 
-            // set item's title, author, url, pubdate, description and content
-            $feed->add(
-                $title,
-                $p->name,
-                URL::to('/payment_processors/' . $p->slug),
-                $p->created_at,
-                str_replace('&', ' and ', $p->meta_description),
-                $p->meta_description
-            );
+        // set item's title, author, url, pubdate, description and content
+        $feed->add(
+            $title,
+            $p->name,
+            URL::to('/payment_processors/' . $p->slug),
+            $p->created_at,
+            str_replace('&', ' and ', $p->meta_description),
+            $p->meta_description
+        );
 
-            $rotator = URL::to("/payment_processors/" . $p->slug . '/rotator');
-            $feed->add(
-                $title,
-                $p->name,
-                $rotator,
-                $p->created_at,
-                $p->name . ' Faucet Rotator',
-                'Earn free bitcoins from faucets that use "' . $p->name . '" as a payment processor.'
-            );
-        }
+        $rotator = URL::to("/payment_processors/" . $p->slug . '/rotator');
+        $feed->add(
+            $title,
+            $p->name,
+            $rotator,
+            $p->created_at,
+            $p->name . ' Faucet Rotator',
+            'Earn free bitcoins from faucets that use "' . $p->name . '" as a payment processor.'
+        );
+    }
 
 
         return $feed->render('atom');
@@ -197,6 +198,6 @@ Route::get('feed', function() {
 });
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
 ]);

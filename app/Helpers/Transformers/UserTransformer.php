@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 05-Mar-2015
- * Time: 15:54
- */
-
-namespace Helpers\Transformers;
+<?php namespace Helpers\Transformers;
 
 /**
  * Class UserTransformer
@@ -14,7 +6,8 @@ namespace Helpers\Transformers;
  * user related data in a specified format.
  * @package Helpers\Transformers
  */
-class UserTransformer extends Transformer {
+class UserTransformer extends Transformer
+{
 
     /**
      * The method which transforms the

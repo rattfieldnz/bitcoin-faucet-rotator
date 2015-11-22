@@ -4,7 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class Faucet extends Model implements SluggableInterface {
+class Faucet extends Model implements SluggableInterface
+{
 
     /**
      * The database table used by the model.
@@ -44,7 +45,7 @@ class Faucet extends Model implements SluggableInterface {
      * A method defining the relationship between
      * a faucet and payment processors.
      */
-    public function payment_processors()
+    public function paymentProcessors()
     {
         return $this->belongsToMany('App\PaymentProcessor', 'faucet_payment_processor');
     }
@@ -66,8 +67,7 @@ class Faucet extends Model implements SluggableInterface {
      */
     public function hasRefProgram()
     {
-        if($this->attributes['has_ref_program'])
-        {
+        if ($this->attributes['has_ref_program']) {
             return 'Yes';
         }
         return 'No';
@@ -80,19 +80,17 @@ class Faucet extends Model implements SluggableInterface {
      */
     public function status()
     {
-        if($this->attributes['is_paused'])
-        {
+        if ($this->attributes['is_paused']) {
             return 'Paused';
         }
         return 'Active';
     }
 
-    public function lowBalanceStatus(){
-        if($this->attributes['has_low_balance'] == true)
-        {
+    public function lowBalanceStatus()
+    {
+        if ($this->attributes['has_low_balance'] == true) {
             return 'Yes';
         }
         return 'No';
     }
-
 }

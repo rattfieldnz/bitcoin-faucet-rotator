@@ -3,7 +3,8 @@
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Support\ServiceProvider;
 
-class LogServiceProvider extends ServiceProvider {
+class LogServiceProvider extends ServiceProvider
+{
 
     /**
      * Configure the application's logging facilities.
@@ -25,5 +26,4 @@ class LogServiceProvider extends ServiceProvider {
     {
         //
     }
-
 }

@@ -11,66 +11,64 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-class PaymentProcessorsController extends Controller {
+class PaymentProcessorsController extends Controller
+{
 
-    function __construct()
+    public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'faucets']]);
     }
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-        $count_payment_processors = count(PaymentProcessor::all());
-        $payment_processors = PaymentProcessor::paginate($count_payment_processors);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $countPaymentProcessors = count(PaymentProcessor::all());
+        $paymentProcessors = PaymentProcessor::paginate($countPaymentProcessors);
 
-        return view('payment_processors.index', compact('payment_processors'));
-	}
+        return view('payment_processors.index', compact('paymentProcessors'));
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-        $form_heading = "Add a new payment processor";
-        $submit_button_text = "Submit Payment Processor";
-        return view('payment_processors.create', compact(['form_heading', 'submit_button_text']));
-	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        $submitButtonText = "Submit Payment Processor";
+        return view('payment_processors.create', compact('submitButtonText'));
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesNew());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('/admin/payment_processors/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
-        else{
+        $paymentProcessor = new PaymentProcessor;
 
-            $payment_processor = new PaymentProcessor;
+        $paymentProcessor->fill(Input::all());
 
-            $payment_processor->fill(Input::all());
+        $paymentProcessor->save();
 
-            $payment_processor->save();
-
-            Session::flash('success_message', 'The payment processor has successfully been created and stored!');
-            return Redirect::to('/payment_processors/' . $payment_processor->slug);
-        }
-	}
+        Session::flash('success_message', 'The payment processor has successfully been created and stored!');
+        return Redirect::to('/payment_processors/' . $paymentProcessor->slug);
+    }
 
     /**
      * Display the specified resource.
@@ -79,19 +77,17 @@ class PaymentProcessorsController extends Controller {
      * @return Response
      * @internal param int $id
      */
-	public function show($slug)
-	{
+    public function show($slug)
+    {
         try {
-            //$payment_processor = PaymentProcessor::findOrFail($id);
-            $payment_processor = PaymentProcessor::findBySlugOrId($slug);
+            //$paymentProcessor = PaymentProcessor::findOrFail($id);
+            $paymentProcessor = PaymentProcessor::findBySlug($slug);
 
-            return view('payment_processors.show', compact('payment_processor', 'slug'));
-        }
-        catch(ModelNotFoundException $e)
-        {
+            return view('payment_processors.show', compact('paymentProcessor', 'slug'));
+        } catch (ModelNotFoundException $e) {
             abort(404);
         }
-	}
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -99,21 +95,19 @@ class PaymentProcessorsController extends Controller {
      * @param $slug
      * @return Response
      */
-	public function edit($slug)
-	{
+    public function edit($slug)
+    {
         try {
-            $payment_processor = PaymentProcessor::findBySlugOrId($slug);
+            $paymentProcessor = PaymentProcessor::findBySlugOrId($slug);
 
-            $submit_button_text = "Submit Changes";
+            $submitButtonText = "Submit Changes";
 
             //Return the faucets edit view, with fields pre-populated.
-            return view('payment_processors.edit', compact(['payment_processor', 'submit_button_text']));
-        }
-        catch(ModelNotFoundException $e)
-        {
+            return view('payment_processors.edit', compact('paymentProcessor', 'submitButtonText'));
+        } catch (ModelNotFoundException $e) {
             abort(404);
         }
-	}
+    }
 
     /**
      * Update the specified resource in storage.
@@ -121,28 +115,26 @@ class PaymentProcessorsController extends Controller {
      * @param $slug
      * @return Response
      */
-	public function update($slug)
-	{
-		$payment_processor = PaymentProcessor::findBySlugOrId($slug);
-        $id = $payment_processor->id;
+    public function update($slug)
+    {
+        $paymentProcessor = PaymentProcessor::findBySlugOrId($slug);
+        $id = $paymentProcessor->id;
 
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesEdit($id));
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return Redirect::to('/admin/payment_processors/' . $slug . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
-        else{
-            $payment_processor->fill(Input::all());
+        $paymentProcessor->fill(Input::all());
 
-            $payment_processor->save();
+        $paymentProcessor->save();
 
-            Session::flash('success_message', 'The payment processor has successfully been updated!');
+        Session::flash('success_message', 'The payment processor has successfully been updated!');
 
-            return Redirect::to('/payment_processors/' . $slug);
-        }
-	}
+        return Redirect::to('/payment_processors/' . $slug);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -150,30 +142,37 @@ class PaymentProcessorsController extends Controller {
      * @param $slug
      * @return Response
      */
-	public function destroy($slug)
-	{
+    public function destroy($slug)
+    {
         try {
-            $payment_processor = PaymentProcessor::findBySlugOrId($slug);
+            $paymentProcessor = PaymentProcessor::findBySlugOrId($slug);
 
-            $payment_processor_name = $payment_processor->name;
-            $payment_processor_url = $payment_processor->url;
+            $paymentProcessorName = $paymentProcessor->name;
+            $paymentProcessorUrl = $paymentProcessor->url;
 
-            $payment_processor->faucets()->detach();
-            $payment_processor->delete();
+            $paymentProcessor->faucets()->detach();
+            $paymentProcessor->delete();
 
-            Session::flash('success_message_delete', 'The payment processor "' . $payment_processor_name . '" with URL "' . $payment_processor_url . '" has successfully been deleted!');
-            Session::flash('success_message_alert', 'Any faucets associated with the deleted payment processor will need to have another payment processor/s added to it.');
+            Session::flash(
+                'success_message_delete',
+                'The payment processor "' . $paymentProcessorName .
+                '" with URL "' . $paymentProcessorUrl .
+                '" has successfully been deleted!'
+            );
+            Session::flash(
+                'success_message_alert',
+                'Any faucets associated with the deleted payment processor' .
+                ' will need to have another payment processor/s added to it.'
+            );
             return Redirect::to('/payment_processors/');
-        }
-        catch(ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             abort(404);
         }
 
-	}
+    }
 
-    public function faucets($paymentProcessorSlug){
-
+    public function faucets($paymentProcessorSlug)
+    {
         try {
             $paymentProcessor = PaymentProcessor::findBySlugOrId($paymentProcessorSlug);
             $faucets = $paymentProcessor->faucets;
@@ -187,12 +186,12 @@ class PaymentProcessorsController extends Controller {
                     array_push($activeFaucets, $f);
                 }
             }
-            return view('payment_processors.rotator.index', compact('paymentProcessor', 'activeFaucets', 'paymentProcessorSlug'));
-        }
-        catch(ModelNotFoundException $e)
-        {
+            return view(
+                'payment_processors.rotator.index',
+                compact('paymentProcessor', 'activeFaucets', 'paymentProcessorSlug')
+            );
+        } catch (ModelNotFoundException $e) {
             abort(404);
         }
     }
-
 }

@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 28-Jun-2015
- * Time: 15:09
- */
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use App\Faucet;
 use App\PaymentProcessor;
@@ -14,58 +6,61 @@ use Exception;
 use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Pagination\Paginator;
 
-class ApiController extends BaseController{
+class ApiController extends BaseController
+{
 
-    public function faucets(){
-        return Faucet::all()->sortBy('interval_minutes')->values()->all(); 
+    public function faucets()
+    {
+        return Faucet::all()->sortBy('interval_minutes')->values()->all();
     }
 
-    public function faucet($slug){
+    public function faucet($slug)
+    {
         $faucet = Faucet::find($slug);
-        if($faucet == null || !$faucet){
+        if ($faucet == null || !$faucet) {
             return [404 => 'Not Found'];
         }
         return $faucet;
     }
 
-    public function activeFaucets($has_low_balance = false){
+    public function activeFaucets($hasLowBalance = false)
+    {
 
         try {
             $faucets = Faucet::all()->sortBy('interval_minutes')->values()->all();
-            $active_faucets = [];
+            $activeFaucets = [];
 
-            foreach($faucets as $f){
-                if($f->is_paused == false &&
-                    $f->has_low_balance == $has_low_balance){
-                    array_push($active_faucets, $f);
+            foreach ($faucets as $f) {
+                if ($f->is_paused == false &&
+                    $f->has_low_balance == $hasLowBalance) {
+                    array_push($activeFaucets, $f);
                 }
             }
-            return $active_faucets;
-        }
-        catch(Exception $e){
+            return $activeFaucets;
+        } catch (Exception $e) {
             return null;
         }
     }
 
-    public function paymentProcessorFaucets($paymentProcessorSlug){
+    public function paymentProcessorFaucets($paymentProcessorSlug)
+    {
 
         try {
             $paymentProcessor = PaymentProcessor::findBySlugOrId($paymentProcessorSlug);
 
             $faucets = $paymentProcessor->faucets;
 
-            $active_faucets = [];
+            $activeFaucets = [];
 
             foreach ($faucets as $f) {
                 if ($f->is_paused == false &&
                     $f->has_low_balance == false
                 ) {
-                    array_push($active_faucets, $f);
+                    array_push($activeFaucets, $f);
                 }
             }
-            return $active_faucets;
-        }
-        catch(Exception $e){
+            return $activeFaucets;
+        } catch (Exception $e) {
             return null;
         }
     }

@@ -57,7 +57,7 @@
 <div class="form-group">
     {!! Form::label('faucet_payment_processors[]', 'Payment Processor/s', ['class' => 'col-lg-2 control-label'] ) !!}
     <div class="col-lg-10">
-        {!! Form::select('faucet_payment_processors[]', $payment_processors, $selected = isset($payment_processor_ids) ? $payment_processor_ids : null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
+        {!! Form::select('faucet_payment_processors[]', $paymentProcessors, $selected = isset($paymentProcessorIds) ? $paymentProcessorIds : null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
     </div>
 </div>
 
@@ -100,6 +100,6 @@
 
 <div class="form-group" id="submit">
     <div class="col-lg-10 col-lg-offset-2">
-        {!! Form::submit($submit_button_text, ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
+        {!! Form::submit($submitButtonText, ['class' => 'btn btn-lg btn-primary pull-left'] ) !!}
     </div>
 </div>

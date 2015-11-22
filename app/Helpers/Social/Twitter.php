@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 17-Aug-2015
- * Time: 12:26
- */
-
-namespace App\Helpers\Social;
+<?php namespace App\Helpers\Social;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Faucet;
@@ -26,12 +18,12 @@ class Twitter
 
     private function setKeys(User $user)
     {
-        $user_keys = $user->twitterConfig;
-        if ($user_keys != null) {
-            $this->keys['consumer_key'] = $user_keys->consumer_key;
-            $this->keys['consumer_key_secret'] = $user_keys->consumer_key_secret;
-            $this->keys['access_token'] = $user_keys->access_token;
-            $this->keys['access_token_secret'] = $user_keys->access_token_secret;
+        $userKeys = $user->twitterConfig;
+        if ($userKeys != null) {
+            $this->keys['consumer_key'] = $userKeys->consumer_key;
+            $this->keys['consumer_key_secret'] = $userKeys->consumer_key_secret;
+            $this->keys['access_token'] = $userKeys->access_token;
+            $this->keys['access_token_secret'] = $userKeys->access_token_secret;
         }
     }
 
@@ -40,14 +32,15 @@ class Twitter
         $this->connection->post("statuses/update", array("status" => $message));
     }
 
-    public function sendRandomFaucetTweet(){
-        $faucet_count = count(Faucet::all());
-        if($faucet_count > 0) {
-            $numbers = range(0, $faucet_count - 1);
+    public function sendRandomFaucetTweet()
+    {
+        $faucetCount = count(Faucet::all());
+        if ($faucetCount > 0) {
+            $numbers = range(0, $faucetCount - 1);
             shuffle($numbers);
-            $random_number = array_slice($numbers, 0,1);
+            $randomNumber = array_slice($numbers, 0, 1);
 
-            $faucet = Faucet::find($random_number[0]);
+            $faucet = Faucet::find($randomNumber[0]);
 
             $message = "Earn between " . $faucet->min_payout . " and "
                 . $faucet->max_payout . " satoshis every " . $faucet->interval_minutes

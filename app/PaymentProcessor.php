@@ -4,7 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class PaymentProcessor extends Model implements SluggableInterface {
+class PaymentProcessor extends Model implements SluggableInterface
+{
 
     /**
      * The database table used by the model.
@@ -43,6 +44,4 @@ class PaymentProcessor extends Model implements SluggableInterface {
     {
         return $this->belongsToMany('App\Faucet', 'faucet_payment_processor');
     }
-
 }
-

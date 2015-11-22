@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 31-Jul-2015
- * Time: 16:37
- */
-
-namespace App\Helpers\Functions;
-
+<?php namespace App\Helpers\Functions;
 
 use DOMDocument;
 use Exception;
@@ -17,11 +8,11 @@ class HtmlParse
 {
     private $url;
 
-    public function __construct($url){
-        if(UrlValidation::urlExists($url) == true){
+    public function __construct($url)
+    {
+        if (UrlValidation::urlExists($url) == true) {
             $this->url = $url;
-        }
-        else{
+        } else {
             throw new Exception('The URL does not exist or is experiencing technical issues.');
         }
     }
@@ -47,5 +38,4 @@ class HtmlParse
 
         return $doc;
     }
-
 }

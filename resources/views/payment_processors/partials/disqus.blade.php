@@ -2,7 +2,7 @@
 <script type="text/javascript">
     var disqus_shortname = 'freebtcwebsite';
             @if (isset($slug))
-              var disqus_identifier = 'payment_processor-{{ $slug }}';
+              var disqus_identifier = 'paymentProcessor-{{ $slug }}';
     @endif
 
     (function() {

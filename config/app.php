@@ -141,6 +141,7 @@ return [
         'Roumen\Sitemap\SitemapServiceProvider',
 		'Roumen\Feed\FeedServiceProvider',
         'Chromabits\Purifier\PurifierServiceProvider',
+		'SocialEngine\SnifferRules\ServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */

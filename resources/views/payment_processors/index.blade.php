@@ -1,8 +1,8 @@
 @extends('app')
 
-@section('title', 'List of Payment Processors ('. count($payment_processors) . ') | FreeBTC.website')
+@section('title', 'List of Payment Processors ('. count($paymentProcessors) . ') | FreeBTC.website')
 
-@section('description', "This page lists all bitcoin faucets' payment processors currently on the system, with sortable columns. There are " . count($payment_processors) . " processors listed.")
+@section('description', "This page lists all bitcoin faucets' payment processors currently on the system, with sortable columns. There are " . count($paymentProcessors) . " processors listed.")
 
 @section('keywords', 'Free Bitcoins, Bitcoin Faucets, Xapo, MicroWallet, BlockChain, Paytoshi, FaucetBox')
 
@@ -32,10 +32,10 @@
             <th>Associated Faucet Rotator</th>
             </thead>
             <tbody>
-            @foreach($payment_processors as $payment_processor)
+            @foreach($paymentProcessors as $paymentProcessor)
                 <tr>
-                    <td>{!! link_to_route('payment_processors.show', $payment_processor->name, array($payment_processor->slug), ['title' => $payment_processor->name]) !!}</td>
-                    <td><a class="btn btn-primary btn-lg" href="{!! URL::to('/payment_processors/' . $payment_processor->slug . '/rotator/') !!}" title="Surf {{ $payment_processor->name }} Faucets" role="button">Surf {{ $payment_processor->name }} Faucets</a></td>
+                    <td>{!! link_to_route('payment_processors.show', $paymentProcessor->name, array($paymentProcessor->slug), ['title' => $paymentProcessor->name]) !!}</td>
+                    <td><a class="btn btn-primary btn-lg" href="{!! URL::to('/payment_processors/' . $paymentProcessor->slug . '/rotator/') !!}" title="Surf {{ $paymentProcessor->name }} Faucets" role="button">Surf {{ $paymentProcessor->name }} Faucets</a></td>
                 </tr>
             @endforeach
             </tbody>

@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class MainMeta extends Model {
+class MainMeta extends Model
+{
 
     protected $table = 'main_meta';
 
@@ -23,5 +24,4 @@ class MainMeta extends Model {
     ];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
-
 }

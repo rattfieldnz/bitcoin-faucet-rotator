@@ -1,15 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 31-Jul-2015
- * Time: 22:39
- */
+<?php namespace App\Helpers\WebsiteMeta;
 
-namespace App\Helpers\WebsiteMeta;
-
-
-// dependecy check
+// dependency check
 use Exception;
 
 if (!in_array('curl', get_loaded_extensions())) {
@@ -49,7 +40,8 @@ if (!in_array('curl', get_loaded_extensions())) {
  *     $curler->get('http://www.google.com/'); // passes
  *
  *     $curler = (new Curler());
- *     $curler->get('http://www.google.ca/intl/en/images/about_logo.gif'); // fails (default is to accept only webpage mime types)
+ *     $curler->get('http://www.google.ca/intl/en/images/about_logo.gif');
+ *     // fails (default is to accept only webpage mime types)
  *
  *     $curler = (new Curler());
  *     $curler->setMime('images');
@@ -100,19 +92,22 @@ if (!in_array('curl', get_loaded_extensions())) {
  *
  *     $curler = (new Curler());
  *     $curler->setMimes('image', 'javascript');
- *     $curler->head('http://www.google.com/'); // fails (theoretically; head call will go through)
+ *     $curler->head('http://www.google.com/');
+ *     // fails (theoretically; head call will go through)
  *
  *     $curler = (new Curler());
- *     $curler->head('http://www.google.ca/intl/en/images/about_logo.gif'); // passes (theoretically; head call will go through)
+ *     $curler->head('http://www.google.ca/intl/en/images/about_logo.gif');
+ *     // passes (theoretically; head call will go through)
  *
  *     $curler = (new Curler());
- *     $curler->head('graph.facebook.com/oliver.nassar/picture'); // passes (theoretically; head call will go through)
+ *     $curler->head('graph.facebook.com/oliver.nassar/picture');
+ *     // passes (theoretically; head call will go through)
  * </code>
  */
 class Curler
 {
     /**
-     * _acceptable
+     * acceptable
      *
      * Array of acceptable mime types that ought to result in a successful
      * curl.
@@ -120,20 +115,20 @@ class Curler
      * @var    array
      * @access protected
      */
-    protected $_acceptable;
+    protected $acceptable;
 
     /**
-     * _auth
+     * auth
      *
      * HTTP auth credentials
      *
      * @var    array
      * @access protected
      */
-    protected $_auth;
+    protected $auth;
 
     /**
-     * _cookie
+     * cookie
      *
      * Path to the cookie file that should be used for temporary storage of
      * cookies that are sent back by a curl.
@@ -141,10 +136,10 @@ class Curler
      * @var    string
      * @access protected
      */
-    protected $_cookie;
+    protected $cookie;
 
     /**
-     * _death
+     * death
      *
      * When set to false, signifies that the curl should never die; when set
      * to an int (eg. 404), signifies the http status code that should mark
@@ -153,46 +148,46 @@ class Curler
      * @var    false|integer|array
      * @access protected
      */
-    protected $_death;
+    protected $death;
 
     /**
-     * _dynamicResponse
+     * dynamicResponse
      *
      * @var    string (default: '')
      * @access protected
      */
-    protected $_dynamicResponse = '';
+    protected $dynamicResponse = '';
 
     /**
-     * _error
+     * error
      *
      * Array containing details of a possible error.
      *
      * @var    array
      * @access protected
      */
-    protected $_error;
+    protected $error;
 
     /**
-     * _headers
+     * headers
      *
      * Array containing the request headers that will be sent with the curl.
      *
      * @var    array
      * @access protected
      */
-    protected $_headers;
+    protected $headers;
 
     /**
-     * _headInfo
+     * headInfo
      *
      * @var    array
      * @access protected
      */
-    protected $_headInfo;
+    protected $headInfo;
 
     /**
-     * _info
+     * info
      *
      * Storage of the info that was returned by the GET and HEAD calls
      * (since a GET is always preceeded by a HEAD).
@@ -200,10 +195,10 @@ class Curler
      * @var    array
      * @access protected
      */
-    protected $_info;
+    protected $info;
 
     /**
-     * _limit
+     * limit
      *
      * The limit, in kilobytes, that the curler will grab. This is
      * determined by sending a HEAD request first.
@@ -213,10 +208,10 @@ class Curler
      * @var    integer
      * @access protected
      */
-    protected $_limit = 1024;
+    protected $limit = 1024;
 
     /**
-     * _mimes
+     * mimes
      *
      * Mime type mappings, used to determine if requests should be processed
      * and/or returned.
@@ -226,178 +221,178 @@ class Curler
      * @var    array
      * @access protected
      */
-    protected $_mimes = array(
+    protected $mimes = [
 
         // js
-        'application/json' => array(
+        'application/json' => [
             'all',
             'javascript',
             'js',
             'json',
             'text'
-        ),
-        'application/rss+xml' => array(
+        ],
+        'application/rss+xml' => [
             'all',
             'text',
             'xml'
-        ),
-        'application/x-javascript' => array(
+        ],
+        'application/x-javascript' => [
             'all',
             'javascript',
             'js',
             'text'
-        ),
-        'application/xhtml+xml' => array(
+        ],
+        'application/xhtml+xml' => [
             'all',
             'text',
             'webpage',
             'webpages',
             'xhtml',
             'xml'
-        ),
-        'application/xml' => array(
+        ],
+        'application/xml' => [
             'all',
             'text',
             'xml'
-        ),
+        ],
 
         // images
-        'image/bmp' => array(
+        'image/bmp' => [
             'all',
             'bmp',
             'image',
             'images'
-        ),
-        'image/gif' => array(
+        ],
+        'image/gif' => [
             'all',
             'gif',
             'image',
             'images'
-        ),
-        'image/jpeg' => array(
+        ],
+        'image/jpeg' => [
             'all',
             'image',
             'images',
             'jpeg',
             'jpg'
-        ),
-        'image/jpg' => array(
+        ],
+        'image/jpg' => [
             'all',
             'image',
             'images',
             'jpeg',
             'jpg'
-        ),
-        'image/pjpeg' => array(
+        ],
+        'image/pjpeg' => [
             'all',
             'image',
             'images',
             'jpeg',
             'jpg'
-        ),
-        'image/png' => array(
+        ],
+        'image/png' => [
             'all',
             'image',
             'images',
             'png'
-        ),
-        'image/vnd.microsoft.icon' => array(
+        ],
+        'image/vnd.microsoft.icon' => [
             'all',
             'image',
             'images'
-        ),
-        'image/x-icon' => array(
+        ],
+        'image/x-icon' => [
             'all',
             'image',
             'images'
-        ),
-        'image/x-bitmap' => array(
+        ],
+        'image/x-bitmap' => [
             'all',
             'image',
             'images'
-        ),
+        ],
 
         // css
-        'text/css' => array(
+        'text/css' => [
             'all',
             'css',
             'text'
-        ),
+        ],
 
         // html
-        'text/html' => array(
+        'text/html' => [
             'all',
             'html',
             'text',
             'webpage',
             'webpages'
-        ),
+        ],
 
         // plain
-        'text/plain' => array(
+        'text/plain' => [
             'all',
             'text'
-        ),
+        ],
 
         // javascript
-        'text/javascript' => array(
+        'text/javascript' => [
             'all',
             'javascript',
             'js',
             'text'
-        ),
-        'text/x-javascript' => array(
+        ],
+        'text/x-javascript' => [
             'all',
             'javascript',
             'js',
             'text'
-        ),
-        'text/x-json' => array(
+        ],
+        'text/x-json' => [
             'all',
             'javascript',
             'js',
             'json',
             'text'
-        )
-    );
+        ]
+    ];
 
     /**
-     * _response
+     * response
      *
      * @var    String
      * @access protected
      */
-    protected $_response;
+    protected $response;
 
     /**
-     * _timeout
+     * timeout
      *
      * Number of seconds to wait before timing out and failing.
      *
      * @var    integer
      * @access protected
      */
-    protected $_timeout;
+    protected $timeout;
 
     /**
-     * _userAgent
+     * userAgent
      *
      * The user agent that should be simulating the request.
      *
      * @var    string
      * @access protected
      */
-    protected $_userAgent;
+    protected $userAgent;
 
     /**
-     * _curlOptions
+     * curlOptions
      *
      * Array of curl options
      *
      * @var    array
      * @access protected
      */
-    protected $_curlOptions = array();
+    protected $curlOptions = [];
 
     /**
      * __construct
@@ -410,22 +405,22 @@ class Curler
     public function __construct($death = 404)
     {
         // ensure no HTTP auth credentials are setup
-        $this->_auth = array();
+        $this->auth = [];
 
         // set the death code (used for marking a 'failed' curl)
-        $this->_death = $death;
+        $this->death = $death;
 
         // set the mime types that are acceptable, by default
         $this->setMime('webpages');
 
         // set default cookie path
-        $this->_cookie = __DIR__ . '/cookies.txt';
+        $this->cookie = __DIR__ . '/cookies.txt';
 
         // set the request headers
-        $this->setHeaders(array(
+        $this->setHeaders([
             'Connection' => 'keep-alive',
             'Accept-Language' => 'en-us,en;q=0.5'
-        ));
+        ]);
 
         // set timeout in seconds
         $this->setTimeout(5);
@@ -437,28 +432,28 @@ class Curler
         );
 
         // Set default curl options
-        $this->setCurlOptions(array(
+        $this->setCurlOptions([
             'CURLOPT_SSL_VERIFYPEER' => false,
             'CURLOPT_SSL_VERIFYHOST' => 2,
             'CURLOPT_FOLLOWLOCATION' => true,
             'CURLOPT_MAXREDIRS' => 10,
-        ));
+        ]);
     }
 
     /**
-     * _close
+     * close
      *
      * @access protected
      * @param  resource $resource
      * @return void
      */
-    protected function _close($resource)
+    protected function close($resource)
     {
         curl_close($resource);
     }
 
     /**
-     * _getCurlOption
+     * getCurlOption
      *
      * Returns a pre-defined curl option value
      *
@@ -467,35 +462,35 @@ class Curler
      * @return mixed
      * @throws Exception
      */
-    protected function _getCurlOption($option)
+    protected function getCurlOption($option)
     {
-        if (!isset($this->_curlOptions[$option])) {
+        if (!isset($this->curlOptions[$option])) {
             throw new Exception(
                 'Curl option ' . ($option) . ' is empty. Use setCurlOptions'
             );
         }
-        return $this->_curlOptions[$option];
+        return $this->curlOptions[$option];
     }
 
     /**
-     * _getHeaders
+     * getHeaders
      *
      * Parses and returns the headers for the curl request.
      *
      * @access protected
      * @return array headers formatted to be correctly formed for an HTTP request
      */
-    protected function _getHeaders()
+    protected function getHeaders()
     {
-        $formatted = array();
-        foreach ($this->_headers as $name => $value) {
+        $formatted = [];
+        foreach ($this->headers as $name => $value) {
             array_push($formatted, ($name) . ': ' . ($value));
         }
         return $formatted;
     }
 
     /**
-     * _getResource
+     * getResource
      *
      * Creates a curl resource, set's it up, and returns it's reference.
      *
@@ -505,46 +500,46 @@ class Curler
      *         request, in which case no response-body is returned
      * @return Resource curl resource reference
      */
-    protected function _getResource($url, $head = false)
+    protected function getResource($url, $head = false)
     {
         // ensure cookie is writable by attempting to open it up
-        $this->_openCookie();
+        $this->openCookie();
 
         // init call, headers, user agent
         $resource = curl_init($url);
-        curl_setopt($resource, CURLOPT_HTTPHEADER, $this->_getHeaders());
+        curl_setopt($resource, CURLOPT_HTTPHEADER, $this->getHeaders());
         curl_setopt($resource, CURLOPT_HEADER, false);
-        curl_setopt($resource, CURLOPT_USERAGENT, $this->_userAgent);
+        curl_setopt($resource, CURLOPT_USERAGENT, $this->userAgent);
         curl_setopt($resource, CURLOPT_ENCODING, 'gzip,deflate');
 
         // authentication
-        if (!empty($this->_auth)) {
+        if (!empty($this->auth)) {
             curl_setopt(
                 $resource,
                 CURLOPT_USERPWD,
-                ($this->_auth['username']) . ':' .
-                ($this->_auth['password'])
+                ($this->auth['username']) . ':' .
+                ($this->auth['password'])
             );
         }
 
         // cookies
-        curl_setopt($resource, CURLOPT_COOKIEFILE, $this->_cookie);
-        curl_setopt($resource, CURLOPT_COOKIEJAR, $this->_cookie);
+        curl_setopt($resource, CURLOPT_COOKIEFILE, $this->cookie);
+        curl_setopt($resource, CURLOPT_COOKIEJAR, $this->cookie);
 
         // time allowances
-        curl_setopt($resource, CURLOPT_CONNECTTIMEOUT, $this->_timeout);
-        curl_setopt($resource, CURLOPT_TIMEOUT, $this->_timeout);
+        curl_setopt($resource, CURLOPT_CONNECTTIMEOUT, $this->timeout);
+        curl_setopt($resource, CURLOPT_TIMEOUT, $this->timeout);
 
         // https settings
         curl_setopt(
             $resource,
             CURLOPT_SSL_VERIFYPEER,
-            $this->_getCurlOption('CURLOPT_SSL_VERIFYPEER')
+            $this->getCurlOption('CURLOPT_SSL_VERIFYPEER')
         );
         curl_setopt(
             $resource,
             CURLOPT_SSL_VERIFYHOST,
-            $this->_getCurlOption('CURLOPT_SSL_VERIFYHOST')
+            $this->getCurlOption('CURLOPT_SSL_VERIFYHOST')
         );
         curl_setopt($resource, CURLOPT_FRESH_CONNECT, true);
 
@@ -553,12 +548,12 @@ class Curler
         curl_setopt(
             $resource,
             CURLOPT_FOLLOWLOCATION,
-            $this->_getCurlOption('CURLOPT_FOLLOWLOCATION')
+            $this->getCurlOption('CURLOPT_FOLLOWLOCATION')
         );
         curl_setopt(
             $resource,
             CURLOPT_MAXREDIRS,
-            $this->_getCurlOption('CURLOPT_MAXREDIRS')
+            $this->getCurlOption('CURLOPT_MAXREDIRS')
         );
         curl_setopt($resource, CURLOPT_NOBODY, $head);
 
@@ -567,39 +562,38 @@ class Curler
     }
 
     /**
-     * _openCookie
+     * openCookie
      *
      * @access protected
      * @throws Exception
      */
-    protected function _openCookie()
+    protected function openCookie()
     {
         // ensure file is writable
-        if (file_exists($this->_cookie)) {
-            if (posix_access($this->_cookie, POSIX_W_OK) === false) {
+        if (file_exists($this->cookie)) {
+            if (posix_access($this->cookie, POSIX_W_OK) === false) {
                 throw new Exception(
-                    'File *' . ($this->_cookie) . '* must be writable ' .
+                    'File *' . ($this->cookie) . '* must be writable ' .
                     'for cookie storage.'
                 );
             }
         } // ensure file directory is writable
-        else {
-            $dir = dirname($this->_cookie);
-            if (is_writable($dir) === false) {
-                throw new Exception(
-                    'Path *' . ($dir) . '* must be writable for cookie ' .
-                    'storage.'
-                );
-            }
 
-            // open file
-            $resource = fopen($this->_cookie, 'w');
-            fclose($resource);
+        $dir = dirname($this->cookie);
+        if (is_writable($dir) === false) {
+            throw new Exception(
+                'Path *' . ($dir) . '* must be writable for cookie ' .
+                'storage.'
+            );
         }
+
+        // open file
+        $resource = fopen($this->cookie, 'w');
+        fclose($resource);
     }
 
     /**
-     * _valid
+     * valid
      *
      * Ensures that a request is valid, based on the http code, mime type
      * and content length returned.
@@ -607,46 +601,44 @@ class Curler
      * @access protected
      * @return Boolean whether or not the request is valid to be processed
      */
-    protected function _valid()
+    protected function valid()
     {
         // should be killed; die
-        if (in_array($this->_headInfo['http_code'], (array)$this->_death)) {
-            $this->_error = array(
-                'message' => ($this->_headInfo['http_code']) .
+        if (in_array($this->headInfo['http_code'], (array)$this->death)) {
+            $this->error = [
+                'message' => ($this->headInfo['http_code']) .
                     ' error while trying to retrieve ' .
-                    ($this->_headInfo['url'])
-            );
+                    ($this->headInfo['url'])
+            ];
             return false;
         }
 
         // check if mime type requirement met
         $mimes = $this->getMimes();
-        $pieces = explode(';', $this->_headInfo['content_type']);
+        $pieces = explode(';', $this->headInfo['content_type']);
         $mime = current($pieces);
         if (!in_array($mime, $mimes)) {
-
             // make error, and return false (eg. <content_type> didn't
             // match; info still available for usage via
             // <$this->getInfo>)
-            $this->_error = array(
+            $this->error = [
                 'message' => 'Mime-type requirement not met. Resource is ' .
-                    current(explode(';', $this->_headInfo['content_type'])) .
+                    current(explode(';', $this->headInfo['content_type'])) .
                     '. You were hoping for one of: ' .
                     implode(', ', $this->getMimes()) . '.'
-            );
+            ];
             return false;
         }
 
         // greater than maximum allowed
-        if ($this->_headInfo['download_content_length'] > ($this->_limit * 1024)) {
-
+        if ($this->headInfo['download_content_length'] > ($this->limit * 1024)) {
             // make error, return false
-            $this->_error = array(
+            $this->error = [
                 'message' => ('File size limit reached. Limit was set to ') .
-                    ($this->_limit) . ('kb. ') . ('Resource is ') .
-                    round(($this->_headInfo['download_content_length'] / 1024), 2) .
+                    ($this->limit) . ('kb. ') . ('Resource is ') .
+                    round(($this->headInfo['download_content_length'] / 1024), 2) .
                     ('kb.')
-            );
+            ];
             return false;
         }
 
@@ -666,7 +658,7 @@ class Curler
      */
     public function addMime($mime)
     {
-        $this->_acceptable[] = $mime;
+        $this->acceptable[] = $mime;
     }
 
     /**
@@ -699,11 +691,10 @@ class Curler
     public function get($url)
     {
         // execute HEAD call, and check if invalid
-        if (is_null($this->_headInfo)) {
+        if (is_null($this->headInfo)) {
             $this->head($url);
         }
-        if (!$this->_valid()) {
-
+        if (!$this->valid()) {
             /**
              * failed HEAD, so return <false> (info of the call and error
              * details still available through <$this->getInfo> and
@@ -714,27 +705,27 @@ class Curler
 
         // mime type setting
         $this->setHeader('Accept', implode(',', $this->getMimes()));
-        $resource = $this->_getResource($url);
-        curl_setopt($resource, CURLOPT_WRITEFUNCTION, array($this, 'writeCallback'));
+        $resource = $this->getResource($url);
+        curl_setopt($resource, CURLOPT_WRITEFUNCTION, [$this, 'writeCallback']);
 
         // make the GET call, storing the response; store the info
         curl_exec($resource);
-        $this->_response = $this->_dynamicResponse;
-        $this->_info = curl_getinfo($resource);
+        $this->response = $this->dynamicResponse;
+        $this->info = curl_getinfo($resource);
 
         // error founded
         if (curl_errno($resource) !== '0') {
-            $this->_error = array(
+            $this->error = [
                 'code' => curl_errno($resource),
                 'message' => curl_error($resource)
-            );
+            ];
         }
 
         // close the resource
-        $this->_close($resource);
+        $this->close($resource);
 
         // give the response back :)
-        return $this->_response;
+        return $this->response;
     }
 
     /**
@@ -777,7 +768,7 @@ class Curler
 
         // instantiate parser to get access to content's provided charset
         $info = $this->getInfo();
-        $parser = (new MetaParser($this->_response, $info['url']));
+        $parser = (new MetaParser($this->response, $info['url']));
         return $parser->getCharset();
     }
 
@@ -787,14 +778,14 @@ class Curler
      * Get details on the error that occured.
      *
      * @access public
-     * @return Array
+     * @return array
      */
     public function getError()
     {
-        if (is_null($this->_error)) {
-            return array();
+        if (is_null($this->error)) {
+            return [];
         }
-        return $this->_error;
+        return $this->error;
     }
 
     /**
@@ -832,7 +823,7 @@ class Curler
      */
     public function getInfo()
     {
-        return $this->_info;
+        return $this->info;
     }
 
     /**
@@ -843,7 +834,7 @@ class Curler
      */
     public function getHeadInfo()
     {
-        return $this->_headInfo;
+        return $this->headInfo;
     }
 
     /**
@@ -857,10 +848,10 @@ class Curler
      */
     public function getMimes()
     {
-        $mimes = array();
-        foreach ($this->_mimes as $mime => $buckets) {
-            $intersection = array_intersect($this->_acceptable, $buckets);
-            if (in_array($mime, $this->_acceptable)) {
+        $mimes = [];
+        foreach ($this->mimes as $mime => $buckets) {
+            $intersection = array_intersect($this->acceptable, $buckets);
+            if (in_array($mime, $this->acceptable)) {
                 array_push($mimes, $mime);
             } elseif (!empty($intersection)) {
                 $mimes = array_merge($mimes, (array)$mime);
@@ -889,25 +880,25 @@ class Curler
          * clarity); grab the resource
          */
         $this->setHeader('Accept', '*/*');
-        $resource = $this->_getResource($url, true);
+        $resource = $this->getResource($url, true);
 
         // make the HEAD call; store the info
         curl_exec($resource);
-        $this->_headInfo = curl_getinfo($resource);
+        $this->headInfo = curl_getinfo($resource);
 
         // error founded
         if (curl_errno($resource) !== '0') {
-            $this->_error = array(
+            $this->error = [
                 'code' => curl_errno($resource),
                 'message' => curl_error($resource)
-            );
+            ];
         }
 
         // close the resource
-        $this->_close($resource);
+        $this->close($resource);
 
         // return info (head-headers)
-        return $this->_headInfo;
+        return $this->headInfo;
     }
 
     /**
@@ -920,7 +911,7 @@ class Curler
      */
     public function getResponse()
     {
-        return $this->_response;
+        return $this->response;
     }
 
     /**
@@ -930,15 +921,14 @@ class Curler
      * @param  String $url
      * @param array $data
      * @param  boolean $buildQuery (default: true)
-     * @return Array|false
+     * @return array|false
      * @internal param Array $array
      */
-    public function post($url, array $data = array(), $buildQuery = true)
+    public function post($url, array $data = [], $buildQuery = true)
     {
         // execute HEAD call, and check if invalid
         $this->head($url);
-        if (!$this->_valid()) {
-
+        if (!$this->valid()) {
             /**
              * failed HEAD, so return <false> (info of the call and error
              * details still available through <$this->getInfo> and
@@ -949,7 +939,7 @@ class Curler
 
         // mime type setting
         $this->setHeader('Accept', implode(',', $this->getMimes()));
-        $resource = $this->_getResource($url);
+        $resource = $this->getResource($url);
 
         // set post-specific details
         curl_setopt($resource, CURLOPT_POST, true);
@@ -959,27 +949,26 @@ class Curler
                 CURLOPT_POSTFIELDS,
                 http_build_query($data)
             );
-        } else {
-            curl_setopt($resource, CURLOPT_POSTFIELDS, $data);
         }
+        curl_setopt($resource, CURLOPT_POSTFIELDS, $data);
 
         // make the GET call, storing the response; store the info
-        $this->_response = curl_exec($resource);
-        $this->_info = curl_getinfo($resource);
+        $this->response = curl_exec($resource);
+        $this->info = curl_getinfo($resource);
 
         // error founded
         if (curl_errno($resource) !== '0') {
-            $this->_error = array(
+            $this->error = [
                 'code' => curl_errno($resource),
                 'message' => curl_error($resource)
-            );
+            ];
         }
 
         // close the resource
-        $this->_close($resource);
+        $this->close($resource);
 
         // give the response back :)
-        return $this->_response;
+        return $this->response;
     }
 
     /**
@@ -992,7 +981,7 @@ class Curler
      */
     public function reset()
     {
-        $this->__construct($this->_death);
+        $this->__construct($this->death);
     }
 
     /**
@@ -1005,10 +994,10 @@ class Curler
      */
     public function setAuth($username, $password)
     {
-        $this->_auth = array(
+        $this->auth = [
             'username' => $username,
             'password' => $password
-        );
+        ];
     }
 
     /**
@@ -1023,7 +1012,7 @@ class Curler
     public function setCurlOptions(array $options)
     {
         foreach ($options as $option => $value) {
-            $this->_curlOptions[$option] = $value;
+            $this->curlOptions[$option] = $value;
         }
     }
 
@@ -1041,7 +1030,7 @@ class Curler
      */
     public function setHeader($name, $value)
     {
-        $this->_headers[$name] = $value;
+        $this->headers[$name] = $value;
     }
 
     /**
@@ -1072,7 +1061,7 @@ class Curler
      */
     public function setLimit($kilobytes)
     {
-        $this->_limit = $kilobytes;
+        $this->limit = $kilobytes;
     }
 
     /**
@@ -1104,9 +1093,9 @@ class Curler
     public function setMimes()
     {
         $args = func_get_args();
-        $this->_acceptable = array();
+        $this->acceptable = [];
         if (!in_array(false, $args)) {
-            $this->_acceptable = $args;
+            $this->acceptable = $args;
         }
     }
 
@@ -1119,7 +1108,7 @@ class Curler
      */
     public function setTimeout($seconds)
     {
-        $this->_timeout = $seconds;
+        $this->timeout = $seconds;
     }
 
     /**
@@ -1131,7 +1120,7 @@ class Curler
      */
     public function setUserAgent($str)
     {
-        $this->_userAgent = $str;
+        $this->userAgent = $str;
         $this->setHeader('User-Agent', $str);
     }
 
@@ -1141,23 +1130,22 @@ class Curler
      */
     public function setCookieFile($cookie)
     {
-        $this->_cookie = $cookie;
+        $this->cookie = $cookie;
     }
 
     /**
      * writeCallback
      *
      * @access public
-     * @param  Object $resource
      * @param  string $data
      * @return int
      * @throws Exception
      */
-    public function writeCallback($resource, $data)
+    public function writeCallback($data)
     {
-        $this->_dynamicResponse .= $data;
-        $limit = $this->_limit * 1024;
-        if (strlen($this->_dynamicResponse) > $limit) {
+        $this->dynamicResponse .= $data;
+        $limit = $this->limit * 1024;
+        if (strlen($this->dynamicResponse) > $limit) {
             throw new Exception('Exceeding size.');
         }
         return strlen($data);
