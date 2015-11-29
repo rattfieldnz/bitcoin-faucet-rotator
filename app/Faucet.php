@@ -4,6 +4,14 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
+/**
+ * Class Faucet
+ *
+ * A model class for a faucet.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App
+ */
 class Faucet extends Model implements SluggableInterface
 {
 

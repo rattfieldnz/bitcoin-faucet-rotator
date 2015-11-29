@@ -2,6 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class AdBlock
+ *
+ * A model class for an ad block.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App
+ */
 class AdBlock extends Model
 {
     /**

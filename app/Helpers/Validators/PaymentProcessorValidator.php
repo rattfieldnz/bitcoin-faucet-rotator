@@ -8,6 +8,8 @@ use Illuminate\Validation\Validator;
  *
  * This class is used to validate faucet
  * entries and updates.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package Helpers\Validators
  */
 class PaymentProcessorValidator extends Validator

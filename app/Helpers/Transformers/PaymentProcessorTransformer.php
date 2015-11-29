@@ -5,6 +5,8 @@
  * This class is responsible for showing
  * payment processor related data in
  * a specified format.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package Helpers\Transformers
  */
 class PaymentProcessorTransformer extends Transformer

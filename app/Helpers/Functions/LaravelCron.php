@@ -1,8 +1,23 @@
 <?php namespace App\Helpers\Functions;
 
+/**
+ * Class LaravelCron
+ *
+ * A class to handle Laravel-specific cron jobs.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Helpers\Functions
+ */
 class LaravelCron
 {
 
+    /**
+     * A function to check whether a cron job for the
+     * specific command exists.
+     *
+     * @param $command
+     * @return bool
+     */
     public static function cronExists($command)
     {
 
@@ -17,9 +32,12 @@ class LaravelCron
         return $cronjobExists;
     }
 
+    /**
+     * A function to initialise the scheduler cron job.
+     */
     public static function initialize()
     {
-        $command = '* * * * * php /var/www/faucet_rotator/artisan schedule:run 1>> /dev/null 2>&1';
+        $command = '* * * * * php ' . base_path() . '/artisan schedule:run 1>> /dev/null 2>&1';
 
         if (self::cronExists($command) == false) {
             //add job to crontab

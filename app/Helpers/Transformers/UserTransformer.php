@@ -4,6 +4,8 @@
  * Class UserTransformer
  * This class is responsible for showing
  * user related data in a specified format.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package Helpers\Transformers
  */
 class UserTransformer extends Transformer

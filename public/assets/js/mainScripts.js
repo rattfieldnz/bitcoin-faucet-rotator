@@ -30239,4 +30239,4 @@ $(document).ready(function()
         $("#payment_processors_table").tablesorter();
     }
 );
-//# sourceMappingURL=freebtc.js.map
+//# sourceMappingURL=mainScripts.js.map

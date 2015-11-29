@@ -2,6 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class MainMeta
+ *
+ * The model class for the site main meta.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App
+ */
 class MainMeta extends Model
 {
 

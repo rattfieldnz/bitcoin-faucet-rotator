@@ -4,6 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
+/**
+ * Class PaymentProcessor
+ * @package App
+ */
 class PaymentProcessor extends Model implements SluggableInterface
 {
 

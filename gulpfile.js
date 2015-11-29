@@ -83,7 +83,7 @@ elixir(function(mix) {
             'js/custom/modal_dialog.js',
             'js/custom/tablesorter_custom_code.js'
         ],
-        'public/assets/js/freebtc.js',
+        'public/assets/js/mainScripts.js',
         'resources/assets/'
     );
 
@@ -94,7 +94,7 @@ elixir(function(mix) {
     // Combine CSS
     gulp.src('resources/assets/css/**/*.css')
         .pipe(sourcemaps.init())
-        .pipe(concatCSS("freebtc.css"))
+        .pipe(concatCSS("mainStyles.css"))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/assets/css/'));
 
@@ -103,9 +103,9 @@ elixir(function(mix) {
 gulp.task('minifycss', function(){
 
     // Minify CSS
-    return gulp.src('public/assets/css/freebtc.css')
+    return gulp.src('public/assets/css/mainStyles.css')
         .pipe(minifyCSS())
-        .pipe(rename('freebtc.min.css'))
+        .pipe(rename('mainStyles.min.css'))
         .pipe(gulp.dest('public/assets/css/'));
 
 });
@@ -117,9 +117,9 @@ gulp.task('minifyjs', function(){
 });
 
 function compressMainJS(){
-    return gulp.src('public/assets/js/freebtc.js')
+    return gulp.src('public/assets/js/mainScripts.js')
         .pipe(uglify())
-        .pipe(rename("freebtc.min.js"))
+        .pipe(rename("mainScripts.min.js"))
         .pipe(gulp.dest('public/assets/js/'));
 }
 

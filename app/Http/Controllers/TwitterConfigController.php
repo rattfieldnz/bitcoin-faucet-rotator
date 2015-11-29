@@ -14,16 +14,30 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class TwitterConfigController
+ *
+ * A controller class for storing and updating Twitter
+ * OAuth keys - required for Twitter interaction.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Http\Controllers
+ */
 class TwitterConfigController extends Controller
 {
 
+    /**
+     * TwitterConfigController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
     /**
-     * Display a listing of the resource.
+     * Displays the Twitter OAuth keys in an editable form.
+     * If there are no credentials, the form is configured
+     * for a new set of credentials.
      *
      * @return Response
      */
@@ -38,7 +52,7 @@ class TwitterConfigController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores newly created Twitter OAuth keys in storage.
      *
      * @return Response
      */
@@ -69,14 +83,7 @@ class TwitterConfigController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-
-    /**
-     * Update the specified resource in storage.
+     * Update the Twitter OAuth keys in storage.
      *
      * @param TwitterConfig $twitterConfig
      * @return Response

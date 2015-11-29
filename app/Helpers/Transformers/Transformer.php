@@ -5,6 +5,8 @@
  * This class is responsible for showing
  * general collections of data, specified by
  * the abstract 'transform' method.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package Helpers\Transformers
  */
 abstract class Transformer

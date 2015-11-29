@@ -4,18 +4,37 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Faucet;
 use \App\User;
 
+/**
+ * Class Twitter
+ *
+ * A class to handle Twitter-related functionality.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @todo Abstract Twitter tweeting functions into another class.
+ * @package App\Helpers\Social
+ */
 class Twitter
 {
 
     private $keys;
     private $connection;
 
+    /**
+     * Twitter constructor.
+     * @param User $user
+     */
     public function __construct(User $user)
     {
         $this->setKeys($user);
         $this->setConnection($this->getKeys());
     }
 
+    /**
+     * A function to set Twitter OAuth keys, obtained from a given user,
+     * so Twitter-related functionality can work.
+     *
+     * @param User $user
+     */
     private function setKeys(User $user)
     {
         $userKeys = $user->twitterConfig;
@@ -27,25 +46,40 @@ class Twitter
         }
     }
 
+    /**
+     * A function to send a tweet (note: Twitter only allows 140 characters
+     * in a single tweet).
+     *
+     * @param $message
+     */
     public function sendTweet($message)
     {
         $this->connection->post("statuses/update", array("status" => $message));
     }
 
+    /**
+     * A function used to tweet the details of a Random faucet.
+     */
     public function sendRandomFaucetTweet()
     {
         $faucetCount = count(Faucet::all());
         if ($faucetCount > 0) {
+
+            //Obtain a random integer used to
+            //get a random faucet to tweet.
             $numbers = range(0, $faucetCount - 1);
             shuffle($numbers);
             $randomNumber = array_slice($numbers, 0, 1);
 
+            //Obtain a faucet using the random integer.
             $faucet = Faucet::find($randomNumber[0]);
 
+            //Construct a message template based on the random faucet's details.
             $message = "Earn between " . $faucet->min_payout . " and "
                 . $faucet->max_payout . " satoshis every " . $faucet->interval_minutes
                 . " minute/s from " . url('/faucets/' . $faucet->slug) . " for free :).";
 
+            // Send the tweet of the random faucet.
             $this->sendTweet($message);
         }
     }

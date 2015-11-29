@@ -31,10 +31,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')
                  ->hourly();
 
+        // Check the statuses of each faucet every hour.
         $schedule->call(function () {
             Faucets::checkUpdateStatuses();
         })->hourly()->environments('production');
 
+        // Schedule a random tweet of a selected faucet every hour.
         $schedule->call(function () {
             $user = User::where('is_admin', '=', true)->firstOrFail();
             $twitter = new Twitter($user);
