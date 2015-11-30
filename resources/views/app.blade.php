@@ -9,7 +9,13 @@
 	<meta name="keywords" content="@yield('keywords')">
 	<meta name="yandex-verification" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['yandex_verification'] }}" />
 	<meta name="msvalidate.01" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['bing_verification'] }}" />
-    <link href="http://feeds.feedburner.com/freebtcwebsitefeed" rel="alternate" type="application/rss+xml" title="FreeBTC.Website Bitcoin Faucet Rotator Feed" />
+
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::feedburnerFeedUrl())
+        <link href="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::feedburnerFeedUrl() }}" rel="alternate" type="application/rss+xml" title="@yield('title') Feed" />
+    @else
+        <link href="/feed" rel="alternate" type="application/rss+xml" title="@yield('title') Feed" />
+    @endif
+
     
     @if(env('APP_ENV') == 'local')
         <link rel="stylesheet" href="/assets/css/mainStyles.css?{{ rand()}}">

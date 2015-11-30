@@ -1,28 +1,28 @@
 <div class="form-group">
     {!! Form::label('title', 'Meta Title:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
-        {!! Form::text('title', null, ['class' => 'form-control']) !!}
+        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Lorem imsum dolor sit amet']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('description', 'Meta Description:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
-        {!! Form::text('description', null, ['class' => 'form-control']) !!}
+        {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Lorem imsum dolor sit amet, consecter...']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('keywords', 'Meta Keywords:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
-        {!! Form::text('keywords', null, ['class' => 'form-control', 'min' => 0]) !!}
+        {!! Form::text('keywords', null, ['class' => 'form-control', 'min' => 0, 'placeholder' => 'keyword 1, keyword 2, keyword 3,...']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('google_analytics_id', 'Google Analytics ID:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
-        {!! Form::text('google_analytics_id', null, ['class' => 'form-control']) !!}
+        {!! Form::text('google_analytics_id', null, ['class' => 'form-control', 'placeholder' => 'UA-12345678-9']) !!}
     </div>
 </div>
 
@@ -44,6 +44,13 @@
     {!! Form::label('twitter_username', 'Twitter Username (without \'@\'):', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
         {!! Form::text('twitter_username', null, ['class' => 'form-control', 'placeholder' => 'FreeBTCWebsite']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('feedburner_feed_url', 'FeedBurner Feed URL:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('feedburner_feed_url', null, ['class' => 'form-control', 'placeholder' => 'http://feeds.feedburner.com/yourwebsitefeed']) !!}
     </div>
 </div>
 

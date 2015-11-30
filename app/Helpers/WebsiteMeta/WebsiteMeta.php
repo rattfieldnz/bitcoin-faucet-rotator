@@ -118,7 +118,20 @@ class WebsiteMeta
         return MainMeta::firstOrFail()->addthisid;
     }
 
+    /**
+     * Returns the Twitter username.
+     *
+     * @return mixed
+     */
     public static function twitterUsername(){
         return MainMeta::firstOrFail()->twitter_username;
+    }
+
+    /**
+     * Returns the Feedburner feed URL.
+     * @return mixed
+     */
+    public static function feedburnerFeedUrl(){
+        return MainMeta::firstOrFail()->feedburner_feed_url;
     }
 }
