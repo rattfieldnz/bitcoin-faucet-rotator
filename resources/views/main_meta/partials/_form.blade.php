@@ -34,6 +34,13 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('addthisid', 'AddThis ID:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('addthisid', null, ['class' => 'form-control', 'placeholder' => 'ra-1234567abcdefg']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('bing_verification', 'Bing Verification ID:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
         {!! Form::text('bing_verification', null, ['class' => 'form-control']) !!}

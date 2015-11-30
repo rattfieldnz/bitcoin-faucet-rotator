@@ -109,4 +109,12 @@ class WebsiteMeta
             'bing_verification' => MainMeta::firstOrFail()->bing_verification
         ];
     }
+
+    /**
+     * Returns the AddThis id.
+     * @return mixed
+     */
+    public static function addThisId(){
+        return MainMeta::firstOrFail()->addthisid;
+    }
 }

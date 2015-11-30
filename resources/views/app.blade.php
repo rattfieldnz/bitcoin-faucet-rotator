@@ -52,7 +52,10 @@
 	@elseif(env('APP_ENV') == 'production')
 		<script src="/assets/js/mainScripts.min.js?{{ rand()}}"></script>
 	@endif
-    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50b996b14942b1fb" async="async"></script>
+
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::addThisId())
+        <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ \App\Helpers\WebsiteMeta\WebsiteMeta::addThisId() }}" async="async"></script>
+    @endif
     @yield('faucet_rotator_script')
 	@yield('ckeditor-script')
     @yield('google_analytics')

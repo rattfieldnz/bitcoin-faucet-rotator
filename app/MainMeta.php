@@ -27,6 +27,7 @@ class MainMeta extends Model
         'google_analytics_id',
         'yandex_verification',
         'bing_verification',
+        'addthisid',
         'page_main_title',
         'page_main_content'
     ];

@@ -22,6 +22,7 @@ class MainMetaValidator extends Validator
             'google_analytics_code' => 'max:20',
             'yandex_verification' => 'max:70',
             'bing_verification' => 'max:70',
+            'addthisid' => 'max:35',
             'page_main_title' => 'required|min:15|max:100',
             //'page_main_content' => '',
         ];
