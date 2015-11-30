@@ -24,7 +24,6 @@ class MainMetaValidator extends Validator
             'bing_verification' => 'max:70',
             'addthisid' => 'max:35',
             'page_main_title' => 'required|min:15|max:100',
-            //'page_main_content' => '',
         ];
     }
 }
