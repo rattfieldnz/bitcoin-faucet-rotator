@@ -84,7 +84,7 @@ class MainMetaController extends Controller
 
         Session::flash('success_message_add', 'The main meta has successfully been created and stored!');
 
-        return Redirect::to('/admin/main_meta');
+        return Redirect::to('/admin/main_meta/');
     }
 
     /**
