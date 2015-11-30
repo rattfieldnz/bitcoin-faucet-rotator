@@ -41,6 +41,13 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('twitter_username', 'Twitter Username (without \'@\'):', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!! Form::text('twitter_username', null, ['class' => 'form-control', 'placeholder' => 'FreeBTCWebsite']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('bing_verification', 'Bing Verification ID:', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
         {!! Form::text('bing_verification', null, ['class' => 'form-control']) !!}

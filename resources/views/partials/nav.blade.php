@@ -44,10 +44,17 @@
                 @else
                     <li><a href="/faucets">Faucets</a></li>
                     <li><a href="/payment_processors">Payment Processors</a></li>
-                    <li style="margin-top:0.70em;">
-                        <a href="https://twitter.com/FreeBTCWebsite" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @FreeBTCWebsite</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    </li>
+                    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::twitterUsername())
+                        <li style="margin-top:0.70em;">
+                            <a 
+                                href="https://twitter.com/{{ \App\Helpers\WebsiteMeta\WebsiteMeta::twitterUsername() }}"
+                                class="twitter-follow-button"
+                                data-show-count="false"
+                                data-size="large">Follow {{ "@" . \App\Helpers\WebsiteMeta\WebsiteMeta::twitterUsername() }}
+                            </a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        </li>
+                     @endif
                 @endif
             </ul>
 

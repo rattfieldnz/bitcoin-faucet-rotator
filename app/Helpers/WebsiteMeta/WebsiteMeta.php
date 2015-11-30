@@ -117,4 +117,8 @@ class WebsiteMeta
     public static function addThisId(){
         return MainMeta::firstOrFail()->addthisid;
     }
+
+    public static function twitterUsername(){
+        return MainMeta::firstOrFail()->twitter_username;
+    }
 }

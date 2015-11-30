@@ -23,6 +23,7 @@ class MainMetaValidator extends Validator
             'yandex_verification' => 'max:70',
             'bing_verification' => 'max:70',
             'addthisid' => 'max:35',
+            'twitter_username' => 'max:35',
             'page_main_title' => 'required|min:15|max:100',
         ];
     }

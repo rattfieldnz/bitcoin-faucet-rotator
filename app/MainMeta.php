@@ -28,6 +28,7 @@ class MainMeta extends Model
         'yandex_verification',
         'bing_verification',
         'addthisid',
+        'twitter_username', 
         'page_main_title',
         'page_main_content'
     ];
