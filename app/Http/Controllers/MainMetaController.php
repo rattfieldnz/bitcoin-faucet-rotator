@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Validator;
 use App\MainMeta;
 use Illuminate\Http\Request;
 
+/**
+ * Class MainMetaController
+ *
+ * A class to handle storing and updating of the
+ * site's main meta information.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Http\Controllers
+ */
 class MainMetaController extends Controller
 {
     /**
@@ -21,13 +30,19 @@ class MainMetaController extends Controller
      */
     protected $purifier;
 
+    /**
+     * MainMetaController constructor.
+     * @param Purifier $purifier
+     */
     public function __construct(Purifier $purifier)
     {
         $this->middleware('auth');
         $this->purifier = $purifier;
     }
     /**
-     * Display a listing of the resource.
+     * Display the site meta information in an editable form.
+     * The form will be pre-populated if there is one already
+     * in the system.
      *
      * @return Response
      */
@@ -44,7 +59,7 @@ class MainMetaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created main meta in storage.
      *
      * @return Response
      */
@@ -73,7 +88,7 @@ class MainMetaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified main meta in storage.
      *
      * @param MainMeta $mainMeta
      * @return Response

@@ -1,18 +1,41 @@
 <?php namespace App\Helpers\WebsiteMeta;
 
 use App\MainMeta;
+use Exception;
+use RattfieldNz\UrlValidation\UrlValidation;
 
+/**
+ * Class WebsiteMeta
+ *
+ * A class to handle retrieval of a given URL's
+ * website meta details
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Helpers\WebsiteMeta
+ */
 class WebsiteMeta
 {
 
     private $url;
 
+    /**
+     * WebsiteMeta constructor.
+     * @param $url
+     * @throws Exception
+     */
     public function __construct($url)
     {
-        $this->url = $url;
+        if (UrlValidation::urlExists($url) == true) {
+            $this->url = $url;
+        } else {
+            throw new Exception('The URL does not exist or is experiencing technical issues.');
+        }
     }
 
     /**
+     * A function to obtain title information from the current
+     * URL's title meta tag.
+     *
      * @return false|null|string
      */
     public function title()
@@ -24,6 +47,12 @@ class WebsiteMeta
         return null;
     }
 
+    /**
+     * A function to obtain keywords from the current URL's
+     * keywords meta tag.
+     *
+     * @return string
+     */
     public function keywords()
     {
         $keywordsArray = $this->meta()->getKeywords();
@@ -39,6 +68,12 @@ class WebsiteMeta
         return $keywordsString;
     }
 
+    /**
+     * A function to retrieve the meta description of
+     * the current URL.
+     *
+     * @return false|null|string
+     */
     public function description()
     {
         $description = $this->meta()->getDescription();
@@ -50,6 +85,9 @@ class WebsiteMeta
     }
 
     /**
+     * A function used to return a MetaParser object
+     * which is then used to handle HTML retrieval.
+     *
      * @return MetaParser
      */
     public function meta()

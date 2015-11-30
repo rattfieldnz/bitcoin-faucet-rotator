@@ -4,10 +4,23 @@ use DOMDocument;
 use Exception;
 use RattfieldNz\UrlValidation\UrlValidation;
 
+/**
+ * Class HtmlParse
+ *
+ * A class used to handle HTML parsing of a URL.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Helpers\Functions
+ */
 class HtmlParse
 {
     private $url;
 
+    /**
+     * HtmlParse constructor.
+     * @param $url
+     * @throws Exception
+     */
     public function __construct($url)
     {
         if (UrlValidation::urlExists($url) == true) {
@@ -18,6 +31,8 @@ class HtmlParse
     }
 
     /**
+     * A function to retrieve the HTML of the current URL.
+     *
      * @return DOMDocument
      */
     public function retrieveHtml()

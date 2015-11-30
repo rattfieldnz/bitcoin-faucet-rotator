@@ -2,6 +2,15 @@
 
 use Illuminate\Validation\Validator;
 
+/**
+ * Class MainMetaValidator
+ *
+ * A class to handle validation of main meta
+ * updates and creation.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package app\Helpers\Validators
+ */
 class MainMetaValidator extends Validator
 {
     public static function validationRules()

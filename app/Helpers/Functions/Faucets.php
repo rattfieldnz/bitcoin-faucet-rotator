@@ -8,8 +8,22 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use RattfieldNz\UrlValidation\UrlValidation;
 
+/**
+ * Class Faucets
+ *
+ * A helper class to handle extra funtionality
+ * related to currently stored faucets.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Helpers\Functions
+ */
 class Faucets
 {
+    /**
+     * A function to update a faucet's status (active or paused)
+     * according to their low-balance status and if the
+     * faucet's URL is error-free and valid.
+     */
     public static function checkUpdateStatuses()
     {
         //Retrieve faucets to be updated.
@@ -21,15 +35,15 @@ class Faucets
             if (UrlValidation::urlExists($f->url) != true &&
                 $f->is_paused == false &&
                 $f->has_low_balance == false) {
-                $f->is_paused = true;
-                $f->save();
-                array_push($pausedFaucets, $f->name);
+                    $f->is_paused = true;
+                    $f->save();
+                    array_push($pausedFaucets, $f->name);
             } elseif (UrlValidation::urlExists($f->url) != false &&
                 $f->is_paused == true &&
                 $f->has_low_balance == false) {
-                $f->is_paused = false;
-                $f->save();
-                array_push($activatedFaucets, $f->name);
+                    $f->is_paused = false;
+                    $f->save();
+                    array_push($activatedFaucets, $f->name);
             }
         }
 
@@ -50,6 +64,13 @@ class Faucets
         }
     }
 
+    /**
+     * A function used to update the 'low balance' status of a
+     * faucet.
+     *
+     * @param $faucetSlug
+     * @return mixed
+     */
     public static function lowBalance($faucetSlug)
     {
         try {

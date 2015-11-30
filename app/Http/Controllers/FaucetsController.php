@@ -19,50 +19,69 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use RattfieldNz\UrlValidation\UrlValidation;
 
+/**
+ * Class FaucetsController
+ *
+ * A controller class for handling REST interaction
+ * related to faucets.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Http\Controllers
+ */
 class FaucetsController extends Controller
 {
 
     private $faucetsUserId;
 
+    /**
+     * FaucetsController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of all faucets currently in the system.
      *
      * @return Response
      */
     public function index()
     {
+        //Obtain faucets of logged in user
         if (Auth::user()) {
             $this->faucetsUserId = Auth::user()->id;
         }
         $this->faucetsUserId = (int)User::where('is_admin', '=', true)->firstOrFail()->id;
 
+        // Use model relationship to retrieve faucets by User.
         $faucets = User::find($this->faucetsUserId)->faucets;
 
+        // Return the page with list of faucets.
         return view('faucets.index', compact('faucets'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new faucet.
      *
      * @return Response
      */
     public function create()
     {
+        // Obtain current payment processors stored, from which
+        // a faucet can be associated with.
         $paymentProcessors = PaymentProcessor::lists('name', 'id');
         $formHeading = "Create a new faucet";
         $submitButtonText = "Submit Faucet";
+
+        // Return the form for which a faucet can be added.
         return view('faucets.create', compact('paymentProcessors', 'formHeading', 'submitButtonText'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created faucet in storage.
      *
-     * @param Request $request
      * @return Response
+     * @internal param Request $request
      */
     public function store()
     {
@@ -123,7 +142,7 @@ class FaucetsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified faucet.
      *
      * @param $slug
      * @return Response
@@ -145,7 +164,7 @@ class FaucetsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified faucet.
      *
      * @param $slug
      * @return Response
@@ -185,7 +204,7 @@ class FaucetsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified faucet in storage.
      *
      * @param $slug
      * @return Response
@@ -253,7 +272,7 @@ class FaucetsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified faucet from storage.
      *
      * @param $slug
      * @return Response

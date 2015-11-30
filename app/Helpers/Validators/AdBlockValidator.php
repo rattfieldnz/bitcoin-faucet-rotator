@@ -2,6 +2,15 @@
 
 use Illuminate\Validation\Validator;
 
+/**
+ * Class AdBlockValidator
+ *
+ * A class to handle validation of Ad block
+ * updates and creation.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package Helpers\Validators
+ */
 class AdBlockValidator extends Validator
 {
     /**

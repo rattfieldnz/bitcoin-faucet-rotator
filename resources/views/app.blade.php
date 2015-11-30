@@ -12,9 +12,9 @@
     <link href="http://feeds.feedburner.com/freebtcwebsitefeed" rel="alternate" type="application/rss+xml" title="FreeBTC.Website Bitcoin Faucet Rotator Feed" />
     
     @if(env('APP_ENV') == 'local')
-        <link rel="stylesheet" href="/assets/css/freebtc.css?{{ rand()}}">
+        <link rel="stylesheet" href="/assets/css/mainStyles.css?{{ rand()}}">
     @elseif(env('APP_ENV') == 'production')
-        <link rel="stylesheet" href="/assets/css/freebtc.min.css?{{ rand()}}">
+        <link rel="stylesheet" href="/assets/css/mainStyles.min.css?{{ rand()}}">
     @endif
 
 	<!-- Fonts -->
@@ -27,18 +27,6 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
         @yield('ckeditor-script')
-	<!-- Hotjar Tracking Code for freebtc.website -->
-	<script>
-		(function(h,o,t,j,a,r){
-			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-			h._hjSettings={hjid:72229,hjsv:5};
-			a=o.getElementsByTagName('head')[0];
-			r=o.createElement('script');r.async=1;
-			r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-			a.appendChild(r);
-		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-	</script>
-		<script src="//load.sumome.com/" data-sumo-site-id="f945c559115f0d82b56619a5da9b5c4c8281a9a3959277eb54a3bf141930e2d9" async="async"></script>
 </head>
 <body>
 
@@ -60,9 +48,9 @@
     @include('partials.footer')
 
 	@if(env('APP_ENV') == 'local')
-		<script src="/assets/js/freebtc.js?{{ rand()}}"></script>
+		<script src="/assets/js/mainScripts.js?{{ rand()}}"></script>
 	@elseif(env('APP_ENV') == 'production')
-		<script src="/assets/js/freebtc.min.js?{{ rand()}}"></script>
+		<script src="/assets/js/mainScripts.min.js?{{ rand()}}"></script>
 	@endif
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50b996b14942b1fb" async="async"></script>
     @yield('faucet_rotator_script')

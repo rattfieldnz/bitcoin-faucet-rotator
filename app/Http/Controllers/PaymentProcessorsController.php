@@ -15,16 +15,29 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class PaymentProcessorsController
+ *
+ * A controller class to handle REST interaction for
+ * payment processors.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Http\Controllers
+ */
 class PaymentProcessorsController extends Controller
 {
 
+    /**
+     * PaymentProcessorsController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'faucets']]);
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of all current payment processors.
      *
+     * @todo Decide whether to use pagination or not.
      * @return Response
      */
     public function index()
@@ -36,7 +49,7 @@ class PaymentProcessorsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new payment processor.
      *
      * @return Response
      */
@@ -47,19 +60,24 @@ class PaymentProcessorsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created payment processor in storage.
      *
      * @return Response
      */
     public function store()
     {
+        //Validate form input used for creating payment processor.
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesNew());
 
+        // Redirect to pre-populated form if validation failed.
         if ($validator->fails()) {
             return Redirect::to('/admin/payment_processors/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
+
+        // If validation passes, use form data to store
+        // payment processor.
         $paymentProcessor = new PaymentProcessor;
 
         $paymentProcessor->fill(Input::all());
@@ -71,16 +89,14 @@ class PaymentProcessorsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified payment processor.
      *
      * @param $slug
      * @return Response
-     * @internal param int $id
      */
     public function show($slug)
     {
         try {
-            //$paymentProcessor = PaymentProcessor::findOrFail($id);
             $paymentProcessor = PaymentProcessor::findBySlug($slug);
 
             return view('payment_processors.show', compact('paymentProcessor', 'slug'));
@@ -90,7 +106,7 @@ class PaymentProcessorsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a payment processor.
      *
      * @param $slug
      * @return Response
@@ -110,23 +126,29 @@ class PaymentProcessorsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified payment processor in storage.
      *
      * @param $slug
      * @return Response
      */
     public function update($slug)
     {
-        $paymentProcessor = PaymentProcessor::findBySlugOrId($slug);
+        // Obtain payment processor tp update
+        $paymentProcessor = PaymentProcessor::findBySlug($slug);
         $id = $paymentProcessor->id;
 
+        // Create validator to validate form data used to update payment processor.
         $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesEdit($id));
 
+        // If validation fails, redirect to pre-populated form.
         if ($validator->fails()) {
             return Redirect::to('/admin/payment_processors/' . $slug . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
+
+        // If validation passes, store updated details for
+        // payment processor into database.
         $paymentProcessor->fill(Input::all());
 
         $paymentProcessor->save();

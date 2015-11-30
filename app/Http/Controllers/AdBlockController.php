@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Validator;
 use Chromabits\Purifier\Contracts\Purifier;
 use HTMLPurifier_Config;
 
+/**
+ * Class AdBlockController
+ *
+ * A controller class used to handle creation and updating
+ * of a site-wide ad block.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Http\Controllers
+ */
 class AdBlockController extends Controller
 {
     /**
@@ -38,7 +47,9 @@ class AdBlockController extends Controller
         $this->purifier = $purifier;
     }
     /**
-     * Display a listing of the resource.
+     * Display details of the currently-stored ad block.
+     * Shows an empty creation form for an ad block if
+     * there is none.
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,7 +70,8 @@ class AdBlockController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created ad bloxk in storage.
+     *
      * @return \Illuminate\Http\Response
      */
     public function store()
@@ -86,7 +98,7 @@ class AdBlockController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified ad block in storage.
      *
      * @param AdBlock $adBlock
      * @return Response

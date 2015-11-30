@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 
+/**
+ * Class RotatorController
+ *
+ * A controller class for the main page.
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Http\Controllers
+ */
 class RotatorController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display the main page.
      *
      * @return Response
      */
