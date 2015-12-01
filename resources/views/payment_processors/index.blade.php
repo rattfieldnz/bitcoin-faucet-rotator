@@ -8,7 +8,10 @@
 
 @section('content')
     <h1 class="page-heading">Current Payment Processors</h1>
+
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName())
     <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
+    @endif
 
     @if (Session::has('success_message_delete'))
         <div class="alert alert-success">
@@ -42,28 +45,30 @@
         </table>
 
     </div>
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName())
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = '{{ \App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName() }}';
+            var disqus_identifier = 'list-of-payment-processors';
 
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var disqus_shortname = 'freebtcwebsite';
-        var disqus_identifier = 'list-of-payment-processors';
-
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] ||
-            document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>
-        Please enable JavaScript to view the
-        <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-    </noscript>
-    <a href="http://disqus.com" class="dsq-brlink">
-        comments powered by <span class="logo-disqus">Disqus</span>
-    </a>
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>
+            Please enable JavaScript to view the
+            <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a href="http://disqus.com" class="dsq-brlink">
+            comments powered by <span class="logo-disqus">Disqus</span>
+        </a>
+    @endif
+    <br><br>
 @endsection
 
 @section('google_analytics')

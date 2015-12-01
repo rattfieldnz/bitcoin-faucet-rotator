@@ -8,7 +8,9 @@
 
 @section('content')
     <h1 class="page-heading">{{ $faucet->name }}</h1>
-    <p><small><a href="#disqus_thread">See comments</a></small></p>
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName())
+        <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
+    @endif
     @if (Auth::user())
 
         <script>

@@ -134,4 +134,8 @@ class WebsiteMeta
     public static function feedburnerFeedUrl(){
         return MainMeta::firstOrFail()->feedburner_feed_url;
     }
+
+    public static function disqusShortName(){
+        return MainMeta::firstOrFail()->disqus_shortname;
+    }
 }

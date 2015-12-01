@@ -8,7 +8,9 @@
 
 @section('content')
     <h1 class="page-heading">Current Faucets</h1>
-    <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName())
+        <p id="comments"><small><a href="#disqus_thread">See comments</a></small></p>
+    @endif
     @include('partials.ads')
     @include('faucets/partials/_session_messages')
 
@@ -83,29 +85,30 @@
         </table>
     </div>
 
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var disqus_shortname = 'freebtcwebsite';
-        var disqus_identifier = 'list-of-faucets';
+    @if(\App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName())
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = '{{ \App\Helpers\WebsiteMeta\WebsiteMeta::disqusShortName() }}';
+            var disqus_identifier = 'list-of-faucets';
 
-        (function() {
-          var dsq = document.createElement('script');
-          dsq.type = 'text/javascript';
-          dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] ||
-            document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>
-        Please enable JavaScript to view the
-        <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-    </noscript>
-    <a href="http://disqus.com" class="dsq-brlink">
-        comments powered by <span class="logo-disqus">Disqus</span>
-    </a>
-    <br>
-    <a data-sumome-discover-grid></a>
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>
+            Please enable JavaScript to view the
+            <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a href="http://disqus.com" class="dsq-brlink">
+            comments powered by <span class="logo-disqus">Disqus</span>
+        </a>
+    @endif
+    <br><br>
 
 @endsection
 
