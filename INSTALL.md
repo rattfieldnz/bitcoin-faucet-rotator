@@ -22,7 +22,7 @@ Before you begin installing the script, please make sure your server meets the f
 * Enable Mod Rewrite for Apache 
 * Install Composer, Node.js, Node Package Manager, and Bower.
 
-<hr>
+---
 
 ### Step 1
 
@@ -30,14 +30,14 @@ Navigate to the root directory of your web server, then clone this repository.
 
 For example, I would navigate to '/var/www' and issue the following command:
 
-> git clone https://github.com/rattfieldnz/bitcoin-faucet-rotator.git yourdomain.com
+    git clone https://github.com/rattfieldnz/bitcoin-faucet-rotator.git yourdomain.com
 
 ### Step 2
 
 Once the cloning process has completed, go into the repository folder (or the directory you cloned the repository into), 
 and issue the following command:
 
-> composer self-update && composer install
+    composer self-update && composer install
 
 The first part of the command will update the Composer installation, then the second part will install all necessary dependencies required.
 
@@ -59,7 +59,7 @@ Once Step three has been successful, you can now run the database migration and 
 
 To begin this process, make sure you are in the root of the repository (or the directory you cloned it to) and enter the following commands:
 
-> php artisan migrate && php artisan db:seed
+    php artisan migrate && php artisan db:seed
 
 The first part of the command creates the database tables, and the second part seeds the database with the appropriate values.
 
@@ -74,7 +74,7 @@ Since this script is built on Laravel, it needs the 'storage' directory to have 
 
 To do this, you can execute the following command - which will recursively alter access and write permissions on the folder:
 
-> chgrp -R www-data storage && chmod -R 775 storage
+    chgrp -R www-data storage && chmod -R 775 storage
 
 ### Step 6
 
@@ -82,7 +82,7 @@ After the command in Step five has been executed, you will need to set up the in
 
 This script uses Bootstrap and Font Awesome styling for the 'simple' design. If you have installed Bower, execute this command:
 
-> bower install
+    bower install
 
 If you are logged in as the root user, append '--allow-root' to this command (it's generally not recommended to run scripts as root).
 
@@ -92,7 +92,7 @@ To bring all the relevant CSS files into one, and the same for Javascript files,
 
 If you have installed Node.JS and Node Package Manager, execute the following command:
 
-> npm install
+    npm install
 
 This may take a few minutes to finish, depending on your server's resources and bandwidth speed.
 
@@ -100,10 +100,10 @@ This may take a few minutes to finish, depending on your server's resources and 
 
 With Step seven complete, we can now process css in the SASS files, combine and minify our CSS, and combine/minify our Javascript files. To do this, execute the following commands:
 
-> gulp copyfiles
-> gulp
-> gulp minifycss
-> gulp minifyjs
+    gulp copyfiles
+    gulp
+    gulp minifycss
+    gulp minifyjs
 
 The first command copies jQuery, Bootstrap, FontAwesome, JQuery UI, CKEditor files to directories specified in the 'gulpfile.js' file.
 
@@ -115,13 +115,13 @@ The third and fourth commands do as you might think - minify CSS and Javascript 
 
 To enable Laravel to function properly for this script, run the following command:
 
-> php artisan key:generate
+    php artisan key:generate
 
 ### Step 10
 
 If you have a Linux-based server (as I am using), and are using Apache, use the following command to create an Apache sites file for your script:
 
-> touch /etc/apache2/sites-available/yourdomain.com.conf 
+    touch /etc/apache2/sites-available/yourdomain.com.conf 
 
 Once you have created this file, enter the following into it:
 
@@ -149,3 +149,7 @@ Once this file has the above in it, execute the following commands to load it in
 ### Step 11
 
 Barring any potential errors in the previous installation, the script should be successful installed. Visit yourdomain.com in a (modern) web browser to see the functioning script in action.
+
+### Notes
+
+If you encounter any errors during installation, please let me know by emailing me at emailme[AT]robertattfield[DOT]com. Eventually, I will like the installation process to be simpler, so having many users with different hosting platforms and requirements will improve this.
