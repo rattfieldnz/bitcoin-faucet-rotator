@@ -10,6 +10,8 @@ These instructions are for Linux-based servers using Apache 2.2+. If you have se
 
 If you don't currently have a server already, I highly recommend the USD$5/mo package from [DigitalOcean](https://www.digitalocean.com/?refcode=65f76388fd4a). If you choose to sign up through my link, we will both get USD$10 credit :).
 
+If you experience any issues with installation, please [log them as issues](https://github.com/rattfieldnz/bitcoin-faucet-rotator/issues) so others may provide feedback (make sure you anonymise any file paths, passwords, etc). Alternatively, you can contact me through email (details at the bottom of this install.md file). This script has not long been released to the public, so there are bound to be some issues with different setups - which is why your feedback and contributions are very important.
+
 ### Pre-requisites
 
 Before you begin installing the script, please make sure your server meets the following specifications:
@@ -110,6 +112,8 @@ The first command copies jQuery, Bootstrap, FontAwesome, JQuery UI, CKEditor fil
 The second command compiles SASS into CSS, combines CSS files into a single unified file, and combines Javascript/JQuery files into a unified Javascript file.
 
 The third and fourth commands do as you might think - minify CSS and Javascript scripts respectively.
+    
+**NOTE:** Depending on your setup, you may experience errors relating to the dependencies. You may need to install each of the dependencies manually. To install each of the dependencies manually, open the ‘package.json’ file to see the required dependencies, then go ‘npm install dependencyName’ for each package (e.g. npm install bootstrap-sass, npm install gulp, etc). You can also install these globally by using npm –g dependencyName. As a precaution, before running the ‘gulp commands’, I suggest you also run ‘npm rebuild node-sass’ or just ‘npm rebuild’ when installing and updating these dependencies. A reference for this is at http://stackoverflow.com/questions/27257424/nodejs-npm-how-to-reinstall-recompile-copied-app-packages.
 
 ### Step 9
 
