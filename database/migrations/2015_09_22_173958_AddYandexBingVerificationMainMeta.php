@@ -27,7 +27,7 @@ class AddYandexBingVerificationMainMeta extends Migration
      */
     public function down()
     {
-        Schema::table('faucets', function(Blueprint $table)
+        Schema::table('main_meta', function(Blueprint $table)
         {
             $table->dropColumn('yandex_verification');
             $table->dropColumn('bing_verification');
