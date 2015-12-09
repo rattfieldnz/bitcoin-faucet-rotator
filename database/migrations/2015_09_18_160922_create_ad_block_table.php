@@ -30,6 +30,6 @@ class CreateAdBlockTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ad_content');
+        Schema::drop('ad_block');
     }
 }
