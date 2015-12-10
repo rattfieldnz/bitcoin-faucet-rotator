@@ -1942,16 +1942,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "b3cbb3782fc25f0b3154a89d896d81d99b87cfa3"
+                "reference": "d762ee5b099a29044603cd4649851e81aa66cb47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b3cbb3782fc25f0b3154a89d896d81d99b87cfa3",
-                "reference": "b3cbb3782fc25f0b3154a89d896d81d99b87cfa3",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/d762ee5b099a29044603cd4649851e81aa66cb47",
+                "reference": "d762ee5b099a29044603cd4649851e81aa66cb47",
                 "shasum": ""
             },
             "require": {
@@ -1986,7 +1986,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2015-12-09 19:35:44"
+            "time": "2015-12-10 14:48:13"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2294,16 +2294,16 @@
         },
         {
             "name": "roumen/feed",
-            "version": "v2.9.7",
+            "version": "v2.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RoumenDamianoff/laravel-feed.git",
-                "reference": "4611e281e28934b17c564be8f709ac99176cf5f9"
+                "reference": "dce91e2d7a912b7b4d6448cc3e7faef725b4c752"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RoumenDamianoff/laravel-feed/zipball/4611e281e28934b17c564be8f709ac99176cf5f9",
-                "reference": "4611e281e28934b17c564be8f709ac99176cf5f9",
+                "url": "https://api.github.com/repos/RoumenDamianoff/laravel-feed/zipball/dce91e2d7a912b7b4d6448cc3e7faef725b4c752",
+                "reference": "dce91e2d7a912b7b4d6448cc3e7faef725b4c752",
                 "shasum": ""
             },
             "require": {
@@ -2341,7 +2341,7 @@
                 "laravel",
                 "rss"
             ],
-            "time": "2015-11-02 19:03:05"
+            "time": "2015-12-11 18:20:14"
         },
         {
             "name": "roumen/sitemap",
@@ -3987,16 +3987,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.20",
+            "version": "4.8.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "7438c43bc2bbb2febe1723eb595b1c49283a26ad"
+                "reference": "ea76b17bced0500a28098626b84eda12dbcf119c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7438c43bc2bbb2febe1723eb595b1c49283a26ad",
-                "reference": "7438c43bc2bbb2febe1723eb595b1c49283a26ad",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ea76b17bced0500a28098626b84eda12dbcf119c",
+                "reference": "ea76b17bced0500a28098626b84eda12dbcf119c",
                 "shasum": ""
             },
             "require": {
@@ -4005,7 +4005,7 @@
                 "ext-pcre": "*",
                 "ext-reflection": "*",
                 "ext-spl": "*",
-                "php": "~5.3.3|~5.4|~5.5|~5.6",
+                "php": ">=5.3.3",
                 "phpspec/prophecy": "^1.3.1",
                 "phpunit/php-code-coverage": "~2.1",
                 "phpunit/php-file-iterator": "~1.4",
@@ -4055,7 +4055,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-12-10 07:48:52"
+            "time": "2015-12-12 07:45:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4537,22 +4537,25 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "32a879f4f35019d78d568db2885d7779ca084a33"
+                "reference": "e4fb41d5d0387d556e2c25534d630b3cce90ea67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/32a879f4f35019d78d568db2885d7779ca084a33",
-                "reference": "32a879f4f35019d78d568db2885d7779ca084a33",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/e4fb41d5d0387d556e2c25534d630b3cce90ea67",
+                "reference": "e4fb41d5d0387d556e2c25534d630b3cce90ea67",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
                 "php": ">=5.1.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
             },
             "bin": [
                 "scripts/phpcs",
@@ -4607,7 +4610,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-11-23 21:30:59"
+            "time": "2015-12-11 00:12:46"
         },
         {
             "name": "symfony/config",
