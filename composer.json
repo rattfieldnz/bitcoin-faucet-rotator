@@ -65,6 +65,9 @@
 	]
     },
     "config": {
-	"preferred-install": "dist"
+	"preferred-install": "dist",
+	"github-oauth": {
+		"github.com": "<YOUR PERSONAL TOKEN>"
+	}
     }
 }
