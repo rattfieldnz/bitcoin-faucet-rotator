@@ -7,6 +7,13 @@
 	<title>@yield('title')</title>
 	<meta name="description" content="@yield('description')">
 	<meta name="keywords" content="@yield('keywords')">
+	
+	<meta property="og:url" content="{{ Illuminate\Support\Facades\Request::url() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:description" content="@yield('description')" />
+    <meta property="og:image" content="{{ env(ROOT_URL) }}/images/og/bitcoin.png" />
+	
 	<meta name="yandex-verification" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['yandex_verification'] }}" />
 	<meta name="msvalidate.01" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['bing_verification'] }}" />
 
