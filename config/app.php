@@ -95,7 +95,7 @@ return [
 	|
 	*/
 
-	'log' => 'daily',
+	'log' => 'single',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -135,12 +135,12 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-        'Laracasts\Generators\GeneratorsServiceProvider',
-        'Collective\Html\HtmlServiceProvider',
-        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-        'Roumen\Sitemap\SitemapServiceProvider',
+                'Laracasts\Generators\GeneratorsServiceProvider',
+                'Collective\Html\HtmlServiceProvider',
+                'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+                'Roumen\Sitemap\SitemapServiceProvider',
 		'Roumen\Feed\FeedServiceProvider',
-        'Chromabits\Purifier\PurifierServiceProvider',
+                'Chromabits\Purifier\PurifierServiceProvider',
 		'SocialEngine\SnifferRules\ServiceProvider',
 		/*
 		 * Application Service Providers...
@@ -149,7 +149,7 @@ return [
 		'App\Providers\BusServiceProvider',
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
-        'App\Providers\LogServiceProvider',
+                'App\Providers\LogServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
 	],
@@ -179,7 +179,7 @@ return [
 		'DB'        => 'Illuminate\Support\Facades\DB',
 		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
 		'Event'     => 'Illuminate\Support\Facades\Event',
-		'Feed'      => 'Roumen\Feed\Facades\Feed',
+		'Feed'      => 'Roumen\Feed\Feed',
 		'File'      => 'Illuminate\Support\Facades\File',
         'Form'      => 'Collective\Html\FormFacade',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',

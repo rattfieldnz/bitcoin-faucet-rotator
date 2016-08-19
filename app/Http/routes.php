@@ -14,7 +14,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use Roumen\Feed\Facades\Feed;
 
 Route::group(['prefix' => 'api/v1'], function () {
 
@@ -61,6 +60,13 @@ Route::get('/admin/faucets/create', 'FaucetsController@create');
 Route::get('/admin/faucets/{slug}/edit', 'FaucetsController@edit');
 Route::resource('faucets', 'FaucetsController');
 
+Route::resource('payment_processors', 'PaymentProcessorsController');
+Route::get('/payment_processors', ['as' => 'payment_processors', 'uses' => 'PaymentProcessorsController@index']);
+Route::get('/admin/payment_processors/create', 'PaymentProcessorsController@create');
+Route::get('/admin/payment_processors/{slug}/edit', 'PaymentProcessorsController@edit');
+Route::get('payment_processors/{paymentProcessorSlug}/rotator', 'PaymentProcessorsController@faucets');
+
+
 Route::resource('main_meta', 'MainMetaController');
 Route::get('/admin/main_meta', 'MainMetaController@index');
 
@@ -69,12 +75,6 @@ Route::get('/admin/twitter_config', 'TwitterConfigController@index');
 
 Route::resource('admin/ad_block_config', 'AdBlockController');
 Route::get('/admin/ad_block_config', 'AdBlockController@index');
-
-Route::resource('payment_processors', 'PaymentProcessorsController');
-Route::get('payment_processors', 'PaymentProcessorsController@index');
-Route::get('/admin/payment_processors/create', 'PaymentProcessorsController@create');
-Route::get('/admin/payment_processors/{slug}/edit', 'PaymentProcessorsController@edit');
-Route::get('payment_processors/{paymentProcessorSlug}/rotator', 'PaymentProcessorsController@faucets');
 
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
@@ -131,7 +131,7 @@ Route::get('sitemap', function () {
 Route::get('feed', function () {
 
     // create new feed
-    $feed = Feed::make();
+    $feed = App::make("feed");
 
     // cache the feed for 60 minutes (second parameter is optional)
     $feed->setCache(60, 'laravelFeedKey');
@@ -191,8 +191,8 @@ Route::get('feed', function () {
         );
     }
 
-
-        return $feed->render('atom');
+    $feed->setView('pages.rss');
+    return $feed->render('rss');
 
     //}
 });
@@ -201,3 +201,8 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('500', function()
+{
+    abort(500);
+});

@@ -13,6 +13,7 @@
     ],
     "require": {
 	"laravel/framework": "5.1.*",
+        "cviebrock/eloquent-sluggable": "3.1.4" , 
         "laravelcollective/html": "~5.1",
         "linusu/bitcoin-address-validator": "0.1.2",
         "raven/raven": "0.10.*",
@@ -21,7 +22,6 @@
         "barryvdh/laravel-ide-helper": "~2.0",
         "doctrine/dbal": "~2.5",
         "way/generators": "~3.0",
-        "cviebrock/eloquent-sluggable": ">=3.0.0-beta",
         "rattfieldnz/url-validation": "dev-master",
         "roumen/sitemap": "dev-master",
         "abraham/twitteroauth": "^0.5.3",

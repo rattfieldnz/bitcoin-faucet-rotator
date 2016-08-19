@@ -17,15 +17,15 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
     
-    #RewriteBase /
-    #RewriteCond %{HTTP_HOST} ^104\.131\.154\.101$
-    #RewriteRule ^(.*)$ http://freebtc.website/$1 [L,R=301]
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} ^107\.170\.213\.25$
+    RewriteRule ^(.*)$ http://freebtc.website/$1 [L,R=301]
 
-    #RewriteCond %{HTTP_HOST} .
-    #RewriteCond %{HTTP_HOST} !freebtc\.website$
-    #RewriteRule ^ - [F]
-    #RewriteCond %{HTTP_HOST} !^(freebtc\.website)?$
-    #RewriteRule (.*) http://freebtc.website/$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} .
+    RewriteCond %{HTTP_HOST} !freebtc\.website$
+    RewriteRule ^ - [F]
+    RewriteCond %{HTTP_HOST} !^(freebtc\.website)?$
+    RewriteRule (.*) http://freebtc.website/$1 [R=301,L]
 </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -42,6 +42,7 @@
         <FilesMatch "\.(cur|gif|ico|jpe?g|png|svgz?|webp)$">
             SetEnvIf Origin ":" IS_CORS
             Header set Access-Control-Allow-Origin "*" env=IS_CORS
+            Header always edit Set-Cookie (.*) "$1; HTTPOnly; Secure"
         </FilesMatch>
     </IfModule>
 </IfModule>
@@ -93,6 +94,7 @@
 
 <IfModule mod_headers.c>
     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+    Header always edit Set-Cookie (.*) "$1; HTTPOnly; Secure"
 </IfModule>
 
 # ##############################################################################
@@ -829,3 +831,5 @@ RewriteCond %{HTTP_REFERER} ^http://(www\.)?youradulthosting(-|.).*$  [OR]
 RewriteCond %{HTTP_REFERER} ^http://(www\.)?(-|.)zindagi(-|.).*$ [NC]
 RewriteRule .* - [F]
 </IfModule>
+
+Header always edit Set-Cookie (.*) "$1; HTTPOnly; Secure"

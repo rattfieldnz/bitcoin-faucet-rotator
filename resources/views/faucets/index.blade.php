@@ -112,7 +112,23 @@
 
 @endsection
 
+@section('coinurl')
+<script type="text/javascript" src="https://coinurl.com/script/jquery.cookie.js"></script>
+<script type="text/javascript" src="https://coinurl.com/script/md5.js"></script>
+<script type="text/javascript">
+$(function() {
+    var id = "f4a89deb987e9e5fd488da12708b1885";
 
+    var url = encodeURIComponent(window.location.href);
+    var hash = CryptoJS.MD5(url);
+    if($.cookie('coinurl_' + hash) == null) {
+        var redirect = "http://cur.lv/redirect.php?id=" + id + "&url=" + url;
+        $.cookie('coinurl_' + hash, true, {expires: 1});
+        top.location.assign(redirect);
+    }
+});
+</script>
+@endsection
 
 @section('google_analytics')
     @include('partials.google_analytics')

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException; 
 
 class Handler extends ExceptionHandler
 {
@@ -17,7 +18,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        'Symfony\Component\HttpKernel\Exception\HttpException'
+        //'Symfony\Component\HttpKernel\Exception\HttpException'
     ];
 
     /**
@@ -53,7 +54,7 @@ class Handler extends ExceptionHandler
             );
             Log::error('A 404 error (ModelNotFoundException) has been encountered, ' .
                 'details are as follows:\n\n' . $e->getMessage());
-            abort(404);
+            return response(view('errors.404'), 404);
         }
         if ($e instanceof ErrorException) {
             Log::useFiles(storage_path() . '/logs/laravel.log');
@@ -65,7 +66,21 @@ class Handler extends ExceptionHandler
                 'A 500 error (ErrorException) has been encountered, ' .
                 'details are as follows:\n\n' . $e->getMessage()
             );
-            abort(500);
+            return response(view('errors.404'), 404);
+
+        }
+        if ($e instanceof NotFoundHttpException) {
+            Log::useFiles(storage_path() . '/logs/laravel.log');
+            $viewLog->addInfo(
+                'A 404 error (ErrorException) has been encountered, ' .
+                'details are as follows:\n\n' . $e->getMessage()
+            );
+            Log::error(
+                'A 404 error (ErrorException) has been encountered, ' .
+                'details are as follows:\n\n' . $e->getMessage()
+            );
+            return response(view('errors.404'), 404);
+
         }
 
         return parent::render($request, $e);

@@ -18,7 +18,7 @@ class PaymentProcessor extends Model implements SluggableInterface
      */
     protected $table = 'payment_processors';
     use SluggableTrait;
-
+    
     protected $sluggable = [
         'build_from' => 'name',
         'save_to'    => 'slug',

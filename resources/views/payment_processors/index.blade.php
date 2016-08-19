@@ -71,6 +71,9 @@
     <br><br>
 @endsection
 
+@section('coinurl_linkshortening')
+    @include('partials.coinurl_linkshortening')
+
 @section('google_analytics')
     @include('partials.google_analytics')
 @stop
