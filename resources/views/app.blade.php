@@ -65,7 +65,6 @@
     @endif
     @yield('faucet_rotator_script')
 	@yield('ckeditor-script')
-    @yield('coinurl')
     @yield('google_analytics')
 </body>
 </html>
