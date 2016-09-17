@@ -65,6 +65,7 @@
     @endif
     @yield('faucet_rotator_script')
 	@yield('ckeditor-script')
+    <script src="/assets/js/blockadblock.js"></script>
     @yield('google_analytics')
 </body>
 </html>

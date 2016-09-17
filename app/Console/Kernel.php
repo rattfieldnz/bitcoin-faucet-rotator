@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
             $user = User::where('is_admin', '=', true)->firstOrFail();
             $twitter = new Twitter($user);
             $twitter->sendRandomFaucetTweet();
-        })->hourly()->environments('production');
+        })->everyTenMinutes()->environments('production');
         
     }
 
