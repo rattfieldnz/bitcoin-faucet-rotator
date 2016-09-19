@@ -16,7 +16,6 @@
 	
 	<meta name="yandex-verification" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['yandex_verification'] }}" />
 	<meta name="msvalidate.01" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['bing_verification'] }}" />
-    <meta name="tagblog-owner-verification" content="TBVF353-8tDmwD0wW9ULQW2jZkmfmyNN1aUhCK">
 	
     @if(\App\Helpers\WebsiteMeta\WebsiteMeta::feedburnerFeedUrl())
         <link href="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::feedburnerFeedUrl() }}" rel="alternate" type="application/rss+xml" title="@yield('title') Feed" />
