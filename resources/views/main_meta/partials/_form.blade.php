@@ -68,6 +68,13 @@
     </div>
 </div>
 
+<div class="form-group">
+    {!! Form::label('prevent_adblock_blocking', 'Activate AdBlock Prevention Code:', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-10">
+        {!!  Form::select('prevent_adblock_blocking', [1 => 'Yes', 0 => 'No'], null, ['class' => 'form-control' ]) !!}
+    </div>
+</div>
+
 <hr>
 
 <h3>Manage main page content</h3>

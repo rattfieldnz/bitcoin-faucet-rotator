@@ -30,7 +30,8 @@ class MainMeta extends Model
         'addthisid',
         'twitter_username',
         'feedburner_feed_url',
-        'disqus_shortname', 
+        'disqus_shortname',
+        'prevent_adblock_blocking',
         'page_main_title',
         'page_main_content'
     ];

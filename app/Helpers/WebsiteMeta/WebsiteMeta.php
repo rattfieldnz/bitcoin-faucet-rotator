@@ -138,4 +138,8 @@ class WebsiteMeta
     public static function disqusShortName(){
         return MainMeta::firstOrFail()->disqus_shortname;
     }
+
+    public static function activatedAdBlockBlocking(){
+        return MainMeta::firstOrFail()->prevent_adblock_blocking;
+    }
 }

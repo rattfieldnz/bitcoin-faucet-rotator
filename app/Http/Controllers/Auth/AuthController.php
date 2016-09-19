@@ -23,7 +23,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = "/faucets";
+    protected $redirectTo = "";
 
     /**
      * Create a new authentication controller instance.
@@ -36,6 +36,7 @@ class AuthController extends Controller
     {
         $this->auth = $auth;
         $this->registrar = $registrar;
+        $this->redirectTo = env('ROOT_URL') . "/faucets";
 
         $this->middleware('guest', ['except' => 'getLogout']);
     }
@@ -44,7 +45,7 @@ class AuthController extends Controller
 
     public function getRegister()
     {
-        return Redirect::to('auth/login');
+        return Redirect::to(env('ROOT_URL') . '/auth/login');
     }
 
     public function postRegister()

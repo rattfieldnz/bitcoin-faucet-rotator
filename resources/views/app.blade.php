@@ -65,7 +65,9 @@
     @endif
     @yield('faucet_rotator_script')
 	@yield('ckeditor-script')
+	@if(\App\Helpers\WebsiteMeta\WebsiteMeta::activatedAdBlockBlocking() == true && Auth::guest())
     <script src="/assets/js/blockadblock.js"></script>
+	@endif
     @yield('google_analytics')
 </body>
 </html>
