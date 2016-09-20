@@ -15,8 +15,6 @@
 	"laravel/framework": "5.2.*",
         "cviebrock/eloquent-sluggable": "3.1.4" , 
         "laravelcollective/html": "~5.1",
-        "linusu/bitcoin-address-validator": "0.1.2",
-        "raven/raven": "0.10.*",
         "guzzlehttp/guzzle": "^6.1",
         "michelf/php-markdown": "~1.5",
         "barryvdh/laravel-ide-helper": "~2.0",
@@ -28,7 +26,6 @@
         "roumen/feed": "^2.9",
         "chromabits/purifier": "^2.1",
         "laracasts/generators": "~1.0",
-        "facebook/php-sdk-v4": "~5.1",
         "laravelcollective/bus": "^5.2.0"
     },
     "require-dev": {
