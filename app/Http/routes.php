@@ -197,11 +197,6 @@ Route::get('feed', function () {
     //}
 });
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
-
 Route::get('500', function()
 {
     abort(500);
