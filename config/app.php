@@ -133,20 +133,21 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-                'Laracasts\Generators\GeneratorsServiceProvider',
-                'Collective\Html\HtmlServiceProvider',
-                'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-                'Roumen\Sitemap\SitemapServiceProvider',
+        'Laracasts\Generators\GeneratorsServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Roumen\Sitemap\SitemapServiceProvider',
 		'Roumen\Feed\FeedServiceProvider',
-                'Chromabits\Purifier\PurifierServiceProvider',
+        'Chromabits\Purifier\PurifierServiceProvider',
 		'SocialEngine\SnifferRules\ServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
-                'App\Providers\LogServiceProvider',
+        'App\Providers\LogServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
 	],

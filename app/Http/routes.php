@@ -79,6 +79,48 @@ Route::get('/admin/ad_block_config', 'AdBlockController@index');
 Route::get('admin/admin', 'AdminController@index');
 Route::get('admin/overview', 'AdminController@overview');
 
+Route::get('data/download', 'DownloadSpreadsheetDataController@index');
+
+Route::get(
+    '/data/download/faucets',
+    [
+        'as' => 'data/download/faucets',
+        'uses' => 'DownloadSpreadsheetDataController@getFaucetsData'
+    ]
+);
+
+Route::get(
+    '/data/download/payment_processors',
+    [
+        'as' => 'data/download/payment_processors',
+        'uses' => 'DownloadSpreadsheetDataController@getPaymentProcessorsData'
+    ]
+);
+
+Route::get(
+    '/data/download/faucets_payment_processors',
+    [
+        'as' => 'data/download/faucets_payment_processors',
+        'uses' => 'DownloadSpreadsheetDataController@getFaucetsPaymentProcessorsLinkingData'
+    ]
+);
+
+Route::get(
+    '/data/download/ad_block',
+    [
+        'as' => 'data/download/ad_block',
+        'uses' => 'DownloadSpreadsheetDataController@getAdBlockData'
+    ]
+);
+
+Route::get(
+    '/data/download/main_meta',
+    [
+        'as' => 'data/download/main_meta',
+        'uses' => 'DownloadSpreadsheetDataController@getMainMetaData'
+    ]
+);
+
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');

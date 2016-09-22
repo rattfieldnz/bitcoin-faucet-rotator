@@ -17,15 +17,15 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
     
-    RewriteBase /
-    RewriteCond %{HTTP_HOST} ^107\.170\.213\.25$
-    RewriteRule ^(.*)$ http://freebtc.website/$1 [L,R=301]
+    #RewriteBase /
+    #RewriteCond %{HTTP_HOST} ^107\.170\.213\.25$
+    #RewriteRule ^(.*)$ http://freebtc.website/$1 [L,R=301]
 
-    RewriteCond %{HTTP_HOST} .
-    RewriteCond %{HTTP_HOST} !freebtc\.website$
-    RewriteRule ^ - [F]
-    RewriteCond %{HTTP_HOST} !^(freebtc\.website)?$
-    RewriteRule (.*) http://freebtc.website/$1 [R=301,L]
+    #RewriteCond %{HTTP_HOST} .
+    #RewriteCond %{HTTP_HOST} !freebtc\.website$
+    #RewriteRule ^ - [F]
+    #RewriteCond %{HTTP_HOST} !^(freebtc\.website)?$
+    #RewriteRule (.*) http://freebtc.website/$1 [R=301,L]
 </IfModule>
 
 # ------------------------------------------------------------------------------
