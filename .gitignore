@@ -3,3 +3,4 @@
 .env
 storage/cache
 storage/framework/cache
+storage/laravel.log
