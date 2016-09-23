@@ -63,6 +63,7 @@ $(function(){
                 var max = arr.length - 1;
                 var randomFaucetIndex = randomInt(min, max);
                 $('#rotator-iframe').attr('src', arr[randomFaucetIndex].url);
+                $('#current').attr('href', '/faucets/' + arr[randomFaucetIndex].slug);
             });
         }
     });
