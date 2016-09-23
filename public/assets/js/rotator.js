@@ -55,6 +55,7 @@ $(function(){
                 event.preventDefault();
                 //$('#rotator-iframe').contentWindow.location.reload(true);
                 $('#rotator-iframe').attr('src', arr[clickCount].url);
+                $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
             });
 
             $('#random').click(function(event) {
@@ -62,6 +63,7 @@ $(function(){
                 var min = 0;
                 var max = arr.length - 1;
                 var randomFaucetIndex = randomInt(min, max);
+                clickCount = randomFaucetIndex;
                 $('#rotator-iframe').attr('src', arr[randomFaucetIndex].url);
                 $('#current').attr('href', '/faucets/' + arr[randomFaucetIndex].slug);
             });
