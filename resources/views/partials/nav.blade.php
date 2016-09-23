@@ -41,6 +41,9 @@
                     <li>
                         <a href="/admin/ad_block_config">Manage Ad Block</a>
                     </li>
+                    <li>
+                        <a href="/data/download">Download Rotator Data</a>
+                    </li>
                 @else
                     <li><a href="/faucets">Faucets</a></li>
                     <li><a href="/payment_processors">Payment Processors</a></li>
