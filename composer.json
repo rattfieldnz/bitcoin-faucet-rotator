@@ -27,7 +27,8 @@
         "chromabits/purifier": "^2.1",
         "laracasts/generators": "~1.0",
         "laravelcollective/bus": "^5.2.0",
-        "league/csv": "^8.1"
+        "league/csv": "^8.1",
+        "michelecurletta/laravel-schedule-overview": "^0.0.2"
     },
     "require-dev": {
 	    "phpunit/phpunit": "~4.0",

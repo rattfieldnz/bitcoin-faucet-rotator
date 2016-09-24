@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ddffbdd810ae22f878779e57b05bcafb",
-    "content-hash": "4e79ff00a490c16579c356ff14622de3",
+    "hash": "9f7203961744d08923e9b00d4b26b465",
+    "content-hash": "26aeb891996ac73ebc0b512637ae820e",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1672,6 +1672,49 @@
                 "storage"
             ],
             "time": "2016-08-10 08:55:11"
+        },
+        {
+            "name": "michelecurletta/laravel-schedule-overview",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelecurletta/laravel-schedule-overview.git",
+                "reference": "62a3b0d868534d2267f10d2b69277fe469462e72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelecurletta/laravel-schedule-overview/zipball/62a3b0d868534d2267f10d2b69277fe469462e72",
+                "reference": "62a3b0d868534d2267f10d2b69277fe469462e72",
+                "shasum": ""
+            },
+            "require": {
+                "mtdowling/cron-expression": "^1.1",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MicheleCurletta\\LaravelScheduleOverview\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michele Giovanni Curletta",
+                    "email": "michelecurletta@icloud.com"
+                }
+            ],
+            "description": "Show an overview of all scheduled commands",
+            "homepage": "https://github.com/michelecurletta/laravel-schedule-overview",
+            "keywords": [
+                "laravel",
+                "overview",
+                "scheduled"
+            ],
+            "time": "2016-09-15 09:51:55"
         },
         {
             "name": "michelf/php-markdown",

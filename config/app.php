@@ -140,6 +140,7 @@ return [
 		'Roumen\Feed\FeedServiceProvider',
                 'Chromabits\Purifier\PurifierServiceProvider',
 		'SocialEngine\SnifferRules\ServiceProvider',
+                'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider', 
 		/*
 		 * Application Service Providers...
 		 */
