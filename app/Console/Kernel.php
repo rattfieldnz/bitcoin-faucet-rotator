@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'App\Console\Commands\Inspire',
+        'App\Console\Commands\SendRandomFaucetTweet'
     ];
 
     /**
@@ -36,12 +37,9 @@ class Kernel extends ConsoleKernel
             Faucets::checkUpdateStatuses();
         })->hourly()->environments('production');
 
-        // Schedule a random tweet of a selected faucet every hour.
-        $schedule->call(function () {
-            $user = User::where('is_admin', '=', true)->firstOrFail();
-            $twitter = new Twitter($user);
-            $twitter->sendRandomFaucetTweet();
-        })->everyTenMinutes()->environments('production');
+        $schedule->command('send-random-tweet')
+            ->everyTenMinutes()
+            ->environments('production');
         
     }
 
