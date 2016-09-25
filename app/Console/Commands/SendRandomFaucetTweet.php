@@ -37,6 +37,9 @@ class SendRandomFaucetTweet extends Command
     public function handle(){
         $user = User::where('is_admin', '=', true)->firstOrFail();
         $twitter = new Twitter($user);
-        $twitter->sendRandomFaucetTweet();
+
+        if($twitter != null){
+            $twitter->sendRandomFaucetTweet();
+        }
     }
 }
