@@ -74,13 +74,16 @@ class Twitter
             //Obtain a faucet using the random integer.
             $faucet = Faucet::find($randomNumber[0]);
 
-            //Construct a message template based on the random faucet's details.
-            $message = "Earn between " . $faucet->min_payout . " and "
-                . $faucet->max_payout . " satoshis every " . $faucet->interval_minutes
-                . " minute/s from " . url('/faucets/' . $faucet->slug) . " for free :).";
+            if($faucet != null){
 
-            // Send the tweet of the random faucet.
-            $this->sendTweet($message);
+                //Construct a message template based on the random faucet's details.
+                $message = "Earn between " . $faucet->min_payout . " and "
+                    . $faucet->max_payout . " satoshis every " . $faucet->interval_minutes
+                    . " minute/s from " . url('/faucets/' . $faucet->slug) . " for free :).";
+
+                // Send the tweet of the random faucet.
+                $this->sendTweet($message);
+            }
         }
     }
 
