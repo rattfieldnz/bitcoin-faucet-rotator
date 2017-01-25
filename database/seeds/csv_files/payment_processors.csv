@@ -1,38 +1,25 @@
-name,url
-MicroWallet,https://microwallet.org/
-Moon Bitcoin,http://moonbit.co.in/
-Xapo,https://xapo.com/
-Battle Bitcoin,http://battlebit.co.in/
-BitVisits,http://www.bitvisits.com/
-Alien Faucet,http://bitcoinaliens.com/
-GoldsDay,http://goldsday.com/
-StartsBit,http://starsbit.com/
-BlockChain,https://blockchain.info/
-BitDesire,http://bitdesire.com/
-Paytoshi,https://paytoshi.org
-CrocoCoin,http://crococoin.com/
-FaucetBox,https://faucetbox.com
-CoinBox,http://www.coinbox.me/
-BTC Field,http://www.btcfield.com/
-Jackpot Faucet,http://www.jackpotfaucet.com/
-FreeBetco.in,http://freebetco.in/
-Tree Bitcoin,http://treebitcoin.com/
-777bitco.in,http://777bitco.in/
-CoinCollectors,http://coincollectors.info
-DataFaucet,https://datafaucet.info
-Bitcoin Zebra,http://bitcoinzebra.com/
-Bitcoin Cloud,http://bitcoin-cloud.eu/
-Dance Faucet,http://dancefaucet.cf/
-Weekend Bitcoin,http://weekendbitcoin.com/
-BitcoinFaucet.tk,http://bitcoinfaucet.tk/
-Bitz Free Bitcoin,http://bitzfree.com/
-Fast Satoshi,http://www.fastsatoshi.org/
-Bitcoin Factory,http://www.bitcoinfactory.org/
-The BTC Generator,http://www.thebtcgenerator.com/
-Epay,http://epay.info/
-Wonderland Bitcoin,http://www.wonderlandco.in/
-BTC 4 You,https://btc4you.com/
-Bitcoin Showers,http://bitcoinshowers.com/
-CoinBase,https://www.coinbase.com
-Gold Bitcoin,http://goldbitcoin.biz/
-Bitcoin Drip,http://www.bitcoindrip.com/
+id,name,url,slug,created_at,updated_at,meta_title,meta_description,meta_keywords
+2,"Moon Bitcoin",http://moonbit.co.in/,moon-bitcoin,"2015-08-18 12:42:18","2015-08-18 12:42:18","Moon Bitcoin - Free Bitcoin Faucet","Moon Bitcoin is a bitcoin faucet with a difference...YOU decide how often to claim! Instant and weekly payment options. 50% referral commission.","bitcoin, free bitcoin, faucet, bitcoin faucet, win bitcoin, get free bitcoins, win free bitcoins, mining, xapo, satoshi"
+3,Xapo,https://xapo.com/,xapo,"2015-08-18 12:42:21","2015-08-18 12:42:21","Xapo - Bitcoin Wallet & Vault","Xapo is The World’s Secure Bitcoin Wallet. Buy bitcoins, make purchases and send money anywhere around the world with Xapo's convenient, secure bitcoin wallet.",
+5,BitVisits,http://www.bitvisits.com/,bitvisits,"2015-08-18 12:42:33","2015-08-18 12:42:33","BitVisits - Welcome, earn free bitcoin by viewing websites. Click.Visi","With BitVisits you can earn free bitcoin daily by viewing our advertisers websites. Bitcoin advertising directly to bitcoin users. Start clicking and earning fr","bitcoin, surf, surfing, ptc, pts, earn, free bitcoins, free, bitpay, microwallet, faucetbox"
+6,"Alien Faucet",http://bitcoinaliens.com/,alien-faucet,"2015-08-18 12:42:37","2015-08-18 12:42:37","Bitcoin blog, news, and free bitcoin faucet &#8211; Bitcoin Aliens",,
+11,Paytoshi,https://paytoshi.org,paytoshi,"2015-08-18 12:42:58","2015-08-18 12:42:58","Paytoshi - a new bitcoin micropayment wallet",,
+12,CrocoCoin,http://crococoin.com/,crococoin,"2015-08-18 12:43:00","2015-08-18 12:43:00",,,
+17,FreeBetco.in,http://freebetco.in/,freebetco-in,"2015-08-18 12:43:16","2015-08-18 12:43:16","FreeBetCoin - Home",,
+18,"Tree Bitcoin",http://treebitcoin.com/,tree-bitcoin,"2015-08-18 12:43:18","2015-08-18 12:43:18","Grow up the Bitcoin tree and have a harvest!","Bitcoin faucet, mining bitcoin, how to make bitcoin, index bitcoin, Earn on Bitcoin",
+19,777bitco.in,http://777bitco.in/,777bitco-in,"2015-08-18 12:43:20","2015-08-18 12:43:20","777bitco.in  - free bitcoin faucet. Get free bitcoins",,
+23,"Bitcoin Cloud",http://bitcoin-cloud.eu/,bitcoin-cloud,"2015-08-18 12:43:26","2015-08-18 12:43:26","Bitcoin-Cloud.eu | Free bitcoins multi-faucet","Get free bitcoins from the best multi-faucet. Growing list of best free bitcoin faucets accessible on one place! Weekly free bitcoin lottery for huge prizes.","bitcoin faucets, free bitcoin, free bitcoins, best faucet, bitcoin faucet list"
+26,BitcoinFaucet.tk,http://bitcoinfaucet.tk/,bitcoinfaucet-tk,"2015-08-18 12:43:32","2015-08-18 12:43:32","Bitcoin Faucet TK","Free Bitcoins every day!","bitcoin, bitcoins, free, faucet"
+31,Epay,http://epay.info/,epay,"2015-08-18 12:43:46","2015-08-18 12:43:46","ePay.info - CryptoCoins micropayment cache",,
+33,"BTC 4 You",https://btc4you.com/,btc-4-you,"2015-08-18 12:43:53","2015-08-18 12:43:53","Free Bitcoin Faucet ",,
+35,CoinBase,https://www.coinbase.com,coinbase,"2015-08-18 12:43:57","2015-08-18 12:43:57","Buy and Sell Bitcoin - Coinbase",,
+51,CarBitcoin,http://carbitcoin.com,carbitcoin,"2015-09-25 20:28:14","2015-09-25 20:28:14",CarBitcoin.com,"Simple click button to get free bitcoins. CarBitcoin.com - choose your car - get free bitcoins!","free bitcoins, free btc, btc, bitcoins, satoshi"
+53,"Mellow Ads",http://mellowads.com,mellow-ads,"2015-10-17 23:02:43","2015-10-17 23:02:43","Mellow Ads - simple, bitcoin web advertising","Mellow Ads - simple, bitcoin web advertising","Mellow Ads, Bitcoin Ads, Get Free Bitcoin, Bitcoins, Free Bitcoin Ad Credits"
+54,"Claim BTC",http://claimbtc.com,claim-btc,"2015-10-22 16:36:43","2015-10-22 16:36:43","ClaimBTC.com: Free bitcoin faucet with bonuses.","'Earn free bitcoins, receive bonuses and get even more bitcoins completely FREE in out faucet!","Free Bitcoin, Claim BTC, Get Free Bitcoins, Bitcoin Faucet, Bitcoins, Free Bitcoin Faucet"
+55,"Bonus Bitcoin",http://bonusbitcoin.co,bonus-bitcoin,"2015-11-30 22:31:50","2015-11-30 22:31:50","Bonus Bitcoin","Bonus Bitcoin payment processor - pays between 200 and 5000 satoshis every 15 minutes.","Bonus Bitcoin, Bitcoins, Get Free Bitcoins, Satoshis"
+61,BioBTC,http://biobtc.net/,biobtc,"2016-07-31 19:35:01","2016-07-31 19:35:01",BioBTC,"Our faucet gives out bitcoins absolutely for free! In an hour's collected amount is from 500 satoshi and up to 10000 satoshi","Claim, BioBTC, btc, bitcoin, free bitcoins, satoshi, кран, сатоши, биткоин, бесплатный биткоин, бесплатные сатоши, Faucet, био, bio, химия, частицы, монеты биткоин"
+62,FaucetHub.io,https://faucethub.io/,faucethub-io,"2017-01-07 15:56:44","2017-01-07 15:56:44","Welcome to FaucetHub.io - Bitcoin Micropayment Service","Easy to use Bitcoin Micropayment service","bitcoin, faucet, micro payments, micro wallet, faucet wallet, faucet game, faucethub"
+63,Bitter.io,http://bitter.io/,bitter-io,"2017-01-12 21:48:07","2017-01-12 21:48:07",Bitter.io,Bitter.io,Bitter.io
+64,FaucetSystem,http://faucetsystem.com/,faucetsystem,"2017-01-16 20:18:10","2017-01-16 20:18:10","FaucetSystem.com | Bitcoin microtransactions service","FaucetSystem.com | Bitcoin microtransactions service","FaucetSystem, Faucet System, Bitcoin, Satoshi, Get Free Bitcoins"
+65,PurseFaucets,https://pursefaucets.com,pursefaucets,"2017-01-16 20:20:19","2017-01-16 20:20:19",PurseFaucets,PurseFaucets,"PurseFaucets, Bitcoin, Satoshi, Get Free Bitcoins"
+66,"Earn Free Bitcoin",https://earnfreebitcoins.net,earn-free-bitcoin,"2017-01-17 20:03:35","2017-01-17 20:03:35","Earn Free Bitcoin","Earn Free Bitcoins offers you the opportunity to earn free bitcoins, earn now just by clicking a button! High security and support are our core, join now.","EarnFreeBitcoins, Bitcoin Faucet, Earn Bitcoins, Earn Satoshi, free bitcoin, free satoshi, free bitcoins, free bitcoin, bitcoin free, bitcoin faucet, get free bitcoins, earn free bitcoins, earn"
