@@ -12,7 +12,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
-    <meta property="og:image" content="{{ env(ROOT_URL) }}/images/og/bitcoin.png" />
+    <meta property="og:image" content="{{ env('ROOT_URL') }}/images/og/bitcoin.png" />
 	
 	<meta name="yandex-verification" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['yandex_verification'] }}" />
 	<meta name="msvalidate.01" content="{{ \App\Helpers\WebsiteMeta\WebsiteMeta::seVerificationIds()['bing_verification'] }}" />
@@ -22,7 +22,6 @@
     @else
         <link href="/feed" rel="alternate" type="application/rss+xml" title="@yield('title') Feed" />
     @endif
-
     
     @if(env('APP_ENV') == 'local')
         <link rel="stylesheet" href="/assets/css/mainStyles.css?{{ rand()}}">

@@ -28,7 +28,8 @@
         "laracasts/generators": "~1.0",
         "laravelcollective/bus": "^5.2.0",
         "league/csv": "^8.1",
-        "michelecurletta/laravel-schedule-overview": "^0.0.2"
+        "michelecurletta/laravel-schedule-overview": "^0.0.2",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
 	    "phpunit/phpunit": "~4.0",

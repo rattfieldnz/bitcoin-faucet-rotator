@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         })->hourly()->environments('production');
 
         $schedule->command('send-random-tweet')
-            ->everyTenMinutes()
+            ->hourly()
             ->environments('production');
         
     }
