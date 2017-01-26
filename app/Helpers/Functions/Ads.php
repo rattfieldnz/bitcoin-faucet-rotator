@@ -27,9 +27,17 @@ class Ads
     {
         if (Auth::user()) {
             $this->userId = Auth::user()->id;
-            return User::find($this->userId)->firstOrFail()->adBlock->ad_content;
+            $adBlock = User::find($this->userId)->firstOrFail()->adBlock;
+            if($adBlock) {
+                return $adBlock->ad_content;
+            }
+            return null;
         }
-        return User::where('is_admin', '=', true)->firstOrFail()->adBlock->ad_content;
+        $adminAdBlock = User::where('is_admin', '=', true)->firstOrFail()->adBlock;
+        if($adminAdBlock){
+            return $adminAdBlock->ad_content;
+        }
+        return null;
 
     }
 }

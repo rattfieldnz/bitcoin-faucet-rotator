@@ -1,14 +1,18 @@
 @extends('app')
 
+@if($mainMeta)
 @section('title', $mainMeta->title)
 
 @section('description', $mainMeta->description)
 
 @section('keywords', $mainMeta->keywords)
+@endif
 
 @section('content')
 
+    @if($mainMeta)
 <h1 class="page-heading">{{ $mainMeta->page_main_title }}</h1>
+@endif
 @include('partials.ads')
 <nav id="navcontainer">
     <ul id="navlist">
@@ -28,7 +32,9 @@
 
 <div class="row" id="main_page_content">
     <div class="col-lg-12">
+        @if($mainMeta)
          {!! $mainMeta->page_main_content !!}
+            @endif
     </div>
 </div>
 @endsection

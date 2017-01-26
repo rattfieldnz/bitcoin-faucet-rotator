@@ -1,29 +1,13 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
-
-Route::group(['prefix' => 'api/v1'], function () {
-
-    Route::get('faucets', 'ApiController@faucets');
-    Route::get('active_faucets', 'ApiController@activeFaucets');
-    Route::get('faucets/{id}', 'ApiController@faucet');
-    Route::get('payment_processors/{paymentProcessorSlug}/faucets', 'ApiController@paymentProcessorFaucets');
-});
+use Illuminate\Support\Facades\{
+    DB, Route, URL
+};
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+
+    Auth::routes();
 
     Route::group(['middleware' => 'guest'], function () {
         // Login
@@ -44,6 +28,10 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
     });
 
+});
+
+Route::get('home', function () {
+    return redirect('faucets');
 });
 
 Route::get('/', 'RotatorController@index');
@@ -140,7 +128,7 @@ Route::get('sitemap', function () {
 
     // check if there is cached sitemap and build new only if is not
     if (!$sitemap->isCached()) {
-    // add item to the sitemap (url, date, priority, freq)
+        // add item to the sitemap (url, date, priority, freq)
         $sitemap->add(URL::to('/'), Carbon::now(), '1.0', 'daily');
         $sitemap->add(URL::to('/faucets'), Carbon::now(), '1.0', 'daily');
         $sitemap->add(URL::to('/payment_processors'), Carbon::now(), '1.0', 'daily');
@@ -180,18 +168,18 @@ Route::get('feed', function () {
 
     // check if there is cached feed and build new only if is not
     //if (!$feed->isCached()) {
-        // creating rss feed with our most recent 20 posts
-        $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
+    // creating rss feed with our most recent 20 posts
+    $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
 
-        // set your feed's title, description, link, pubdate and language
-        $feed->title = 'FreeBTC.Website Bitcoin Faucet Rotator Feed';
-        $feed->description = 'The Atom/RSS feed which shows the latest bitcoin faucets.';
-        $feed->link = URL::to('feed');
-        $feed->setDateFormat('datetime'); // 'datetime', 'timestamp' or 'carbon'
-        $feed->pubdate = $faucets[0]->created_at;
-        $feed->lang = 'en';
-        $feed->setShortening(true); // true or false
-        $feed->setTextLimit(100); // maximum length of description text
+    // set your feed's title, description, link, pubdate and language
+    $feed->title = 'FreeBTC.Website Bitcoin Faucet Rotator Feed';
+    $feed->description = 'The Atom/RSS feed which shows the latest bitcoin faucets.';
+    $feed->link = URL::to('feed');
+    $feed->setDateFormat('datetime'); // 'datetime', 'timestamp' or 'carbon'
+    $feed->pubdate = $faucets[0]->created_at;
+    $feed->lang = 'en';
+    $feed->setShortening(true); // true or false
+    $feed->setTextLimit(100); // maximum length of description text
 
     foreach ($faucets as $faucet) {
         $title = isset($faucet->meta_title) == true ? $faucet->meta_title : $faucet->name;
@@ -207,7 +195,7 @@ Route::get('feed', function () {
         );
     }
 
-        $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
+    $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
 
     foreach ($payment_processors as $p) {
         $title = isset($p->meta_title) == true ? $p->meta_title : $p->name;
