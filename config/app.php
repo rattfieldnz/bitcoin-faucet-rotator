@@ -3,6 +3,18 @@
 return [
 
     /*
+    |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    */
+
+    'name' => 'My Application',
+
+    /*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
 	|--------------------------------------------------------------------------
@@ -124,6 +136,7 @@ return [
         'Illuminate\Foundation\Providers\FoundationServiceProvider',
         'Illuminate\Hashing\HashServiceProvider',
         'Illuminate\Mail\MailServiceProvider',
+        Illuminate\Notifications\NotificationServiceProvider::class,
         'Illuminate\Pagination\PaginationServiceProvider',
         'Illuminate\Pipeline\PipelineServiceProvider',
         'Illuminate\Queue\QueueServiceProvider',
@@ -145,6 +158,7 @@ return [
 		 * Application Service Providers...
 		 */
         'App\Providers\AppServiceProvider',
+        // App\Providers\BroadcastServiceProvider::class,
         'App\Providers\ConfigServiceProvider',
         'App\Providers\EventServiceProvider',
                 'App\Providers\LogServiceProvider',
@@ -187,6 +201,7 @@ return [
         'Lang'      => 'Illuminate\Support\Facades\Lang',
         'Log'       => 'Illuminate\Support\Facades\Log',
         'Mail'      => 'Illuminate\Support\Facades\Mail',
+        'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password'  => 'Illuminate\Support\Facades\Password',
         'Queue'     => 'Illuminate\Support\Facades\Queue',
         'Redirect'  => 'Illuminate\Support\Facades\Redirect',
