@@ -25,7 +25,7 @@ class MainMetaValidator extends Validator
             'addthisid' => 'max:35',
             'twitter_username' => 'max:35',
             'feedburner_feed_url' => 'max:255',
-            'disqus_shortname' => 'max:100', 
+            'disqus_shortname' => 'max:100',
             'page_main_title' => 'required|min:15|max:100',
             'prevent_adblock_blocking' => 'min:0|max:1'
         ];

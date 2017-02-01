@@ -2,7 +2,7 @@
 
 return [
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Third Party Services
 	|--------------------------------------------------------------------------
@@ -14,24 +14,24 @@ return [
 	|
 	*/
 
-	'mailgun' => [
-		'domain' => 'sandbox617ba3b396d04cdc87767b8105bdab6a.mailgun.org',
-		'secret' => 'key-bf8955d889432187fc788b86de8c7191',
-	],
+    'mailgun' => [
+        'domain' => 'sandbox617ba3b396d04cdc87767b8105bdab6a.mailgun.org',
+        'secret' => 'key-bf8955d889432187fc788b86de8c7191',
+    ],
 
-	'mandrill' => [
-		'secret' => '',
-	],
+    'mandrill' => [
+        'secret' => '',
+    ],
 
-	'ses' => [
-		'key' => '',
-		'secret' => '',
-		'region' => 'us-east-1',
-	],
+    'ses' => [
+        'key' => '',
+        'secret' => '',
+        'region' => 'us-east-1',
+    ],
 
-	'stripe' => [
-		'model'  => 'User',
-		'secret' => '',
-	],
+    'stripe' => [
+        'model'  => 'User',
+        'secret' => '',
+    ],
 
 ];

@@ -30,6 +30,5 @@ class Ads
             return User::find($this->userId)->firstOrFail()->adBlock->ad_content;
         }
         return User::where('is_admin', '=', true)->firstOrFail()->adBlock->ad_content;
-
     }
 }

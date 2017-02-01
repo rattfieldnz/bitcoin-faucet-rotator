@@ -66,7 +66,6 @@ class AdBlockController extends Controller
             return view('ad_block.create');
         }
         return view('ad_block.edit', compact('adBlock'));
-
     }
 
     /**

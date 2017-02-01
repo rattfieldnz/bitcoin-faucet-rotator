@@ -55,7 +55,6 @@ class MainMetaController extends Controller
         }
         $mainMeta = MainMeta::first();
         return view('main_meta.edit', compact('mainMeta'));
-
     }
 
     /**

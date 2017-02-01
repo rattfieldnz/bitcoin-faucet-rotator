@@ -154,17 +154,16 @@ class FaucetsController extends Controller
             //Retrieve faucet by given id.
             //$faucet = Faucet::findOrFail($slug);
             $faucet = Faucet::findBySlugOrId($slug);
-			
-			if(!$faucet)
-			{
-                            return response(view('errors.404'), 404);	
-			}
+            
+            if (!$faucet) {
+                return response(view('errors.404'), 404);
+            }
 
             //Return the view which shows faucet details,
             //with the retrieved faucet bring passe in the view.
             return view('faucets.show', compact('faucet', 'slug'));
         } catch (ModelNotFoundException $e) {
-            return esponse(view('errors.404'), 404); 
+            return esponse(view('errors.404'), 404);
         }
     }
 

@@ -40,7 +40,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('send-random-tweet')
             ->hourly()
             ->environments('production');
-        
     }
 
     /**

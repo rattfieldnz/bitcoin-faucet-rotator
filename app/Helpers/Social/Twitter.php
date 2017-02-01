@@ -70,8 +70,7 @@ class Twitter
         //Obtain a faucet using the random integer.
         $faucet = Faucet::find($randomNumber[0]);
 
-        if($faucet != null){
-
+        if ($faucet != null) {
             //Construct a message template based on the random faucet's details.
             $message = "Earn between " . $faucet->min_payout . " and "
                 . $faucet->max_payout . " satoshis every " . $faucet->interval_minutes

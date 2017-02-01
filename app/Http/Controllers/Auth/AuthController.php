@@ -50,6 +50,5 @@ class AuthController extends Controller
 
     public function postRegister()
     {
-
     }
 }

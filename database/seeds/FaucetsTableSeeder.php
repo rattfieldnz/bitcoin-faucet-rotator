@@ -9,7 +9,8 @@ use App\Helpers\WebsiteMeta\WebsiteMeta;
  * Time: 22:38
  */
 
-class FaucetsTableSeeder extends BaseSeeder {
+class FaucetsTableSeeder extends BaseSeeder
+{
 
     /**
      * Run the database seeds.
@@ -20,7 +21,7 @@ class FaucetsTableSeeder extends BaseSeeder {
     {
         $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/faucets.csv');
 
-        foreach($data as $d){
+        foreach ($data as $d) {
             $url = $d['url'];
             try {
                 $meta = new WebsiteMeta($url);
@@ -41,11 +42,9 @@ class FaucetsTableSeeder extends BaseSeeder {
                 ]);
 
                 $faucet->save();
-            }
-            catch(Exception $e){
+            } catch (Exception $e) {
                 error_log($e->getMessage() . "<br>" . 'The URL "' . $url . '" does not exist or is experiencing technical issues.');
             }
         }
     }
-
 }

@@ -114,7 +114,8 @@ class WebsiteMeta
      * Returns the AddThis id.
      * @return mixed
      */
-    public static function addThisId(){
+    public static function addThisId()
+    {
         return MainMeta::firstOrFail()->addthisid;
     }
 
@@ -123,7 +124,8 @@ class WebsiteMeta
      *
      * @return mixed
      */
-    public static function twitterUsername(){
+    public static function twitterUsername()
+    {
         return MainMeta::firstOrFail()->twitter_username;
     }
 
@@ -131,15 +133,18 @@ class WebsiteMeta
      * Returns the Feedburner feed URL.
      * @return mixed
      */
-    public static function feedburnerFeedUrl(){
+    public static function feedburnerFeedUrl()
+    {
         return MainMeta::firstOrFail()->feedburner_feed_url;
     }
 
-    public static function disqusShortName(){
+    public static function disqusShortName()
+    {
         return MainMeta::firstOrFail()->disqus_shortname;
     }
 
-    public static function activatedAdBlockBlocking(){
+    public static function activatedAdBlockBlocking()
+    {
         return MainMeta::firstOrFail()->prevent_adblock_blocking;
     }
 }

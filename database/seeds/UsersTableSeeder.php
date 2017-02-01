@@ -6,9 +6,11 @@ use Illuminate\Database\Seeder;
 // composer require laracasts/testdummy
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 //use Laracasts\TestDummy\Factory as TestDummy;
 
-class UsersTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -31,5 +33,4 @@ class UsersTableSeeder extends Seeder {
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
-
 }

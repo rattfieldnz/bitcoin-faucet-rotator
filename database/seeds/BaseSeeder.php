@@ -8,7 +8,8 @@ use Illuminate\Database\Seeder;
  * Time: 22:39
  */
 
-class BaseSeeder extends Seeder {
+class BaseSeeder extends Seeder
+{
 
     /**
      * Run the database seeds.
@@ -17,7 +18,6 @@ class BaseSeeder extends Seeder {
      */
     public function run()
     {
-
     }
 
     /**
@@ -32,23 +32,21 @@ class BaseSeeder extends Seeder {
     {
         // If the file doesn't exist, or isn't readable,
         // return false. The seeding will fail at this point.
-        if(!file_exists($filename) || !is_readable($filename))
+        if (!file_exists($filename) || !is_readable($filename)) {
             return false;
+        }
 
-        $header = NULL;
+        $header = null;
         $data = array();
-        if (($handle = fopen($filename, 'r')) !== FALSE)
-        {
-            // While there are still rows in the file
-            while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
-            {
-                // Below conditional forms the associated array,
+        if (($handle = fopen($filename, 'r')) !== false) {
+        // While there are still rows in the file
+            while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
+            // Below conditional forms the associated array,
                 // filling each array within with data from each
                 // row.
-                if(!$header) {
+                if (!$header) {
                     $header = $row;
-                }
-                else {
+                } else {
                     $data[] = array_combine($header, $row);
                 }
             }

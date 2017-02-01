@@ -8,7 +8,6 @@
 
 namespace App\Console\Commands;
 
-
 use Illuminate\Console\Command;
 use App\Helpers\Social\Twitter;
 use App\User;
@@ -34,11 +33,12 @@ class SendRandomFaucetTweet extends Command
      *
      * @return mixed
      */
-    public function handle(){
+    public function handle()
+    {
         $user = User::where('is_admin', '=', true)->firstOrFail();
         $twitter = new Twitter($user);
 
-        if($twitter != null){
+        if ($twitter != null) {
             $twitter->sendRandomFaucetTweet();
         }
     }

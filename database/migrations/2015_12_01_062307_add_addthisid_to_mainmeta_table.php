@@ -16,8 +16,7 @@ class AddAddthisidToMainmetaTable extends Migration
      */
     public function up()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->string('addthisid', 35)->nullable();
         });
     }
@@ -29,7 +28,7 @@ class AddAddthisidToMainmetaTable extends Migration
      */
     public function down()
     {
-        Schema::table('main_meta', function(Blueprint $table) {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->dropColumn('addthisid');
         });
     }

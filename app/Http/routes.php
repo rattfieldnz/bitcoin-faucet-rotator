@@ -43,7 +43,6 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         // Logout
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
     });
-
 });
 
 Route::get('/', 'RotatorController@index');
@@ -167,7 +166,6 @@ Route::get('sitemap', function () {
 
     // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
     return $sitemap->render('xml');
-
 });
 
 Route::get('feed', function () {
@@ -239,7 +237,6 @@ Route::get('feed', function () {
     //}
 });
 
-Route::get('500', function()
-{
+Route::get('500', function () {
     abort(500);
 });

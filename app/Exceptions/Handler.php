@@ -7,7 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException; 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -67,7 +67,6 @@ class Handler extends ExceptionHandler
                 'details are as follows:\n\n' . $e->getMessage()
             );
             return response(view('errors.404'), 404);
-
         }
         if ($e instanceof NotFoundHttpException) {
             Log::useFiles(storage_path() . '/logs/laravel.log');
@@ -80,7 +79,6 @@ class Handler extends ExceptionHandler
                 'details are as follows:\n\n' . $e->getMessage()
             );
             return response(view('errors.404'), 404);
-
         }
 
         return parent::render($request, $e);

@@ -9,7 +9,8 @@ use App\PaymentProcessor;
  * Time: 13:41
  */
 
-class PaymentProcessorsTableSeeder extends BaseSeeder {
+class PaymentProcessorsTableSeeder extends BaseSeeder
+{
 
     /**
      * Run the database seeds.
@@ -20,7 +21,7 @@ class PaymentProcessorsTableSeeder extends BaseSeeder {
     {
         $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/payment_processors.csv');
 
-        foreach($data as $d) {
+        foreach ($data as $d) {
             $url = $d['url'];
             try {
                 $meta = new WebsiteMeta($url);
@@ -33,11 +34,9 @@ class PaymentProcessorsTableSeeder extends BaseSeeder {
                 ]);
 
                 $payment_processor->save();
-            }
-            catch(Exception $e){
+            } catch (Exception $e) {
                 error_log($e->getMessage() . "<br>" . 'The URL "' . $url . '" does not exist or is experiencing technical issues.');
             }
         }
     }
-
 }

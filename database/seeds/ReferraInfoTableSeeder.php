@@ -10,7 +10,8 @@ use App\Faucet;
 use App\User;
 use Illuminate\Database\Seeder;
 
-class ReferralInfoTableSeeder extends Seeder{
+class ReferralInfoTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -20,8 +21,7 @@ class ReferralInfoTableSeeder extends Seeder{
         $user_id = User::where('user_name', env('ADMIN_USERNAME'))->first()->id;
         $faucets = Faucet::all();
 
-        foreach($faucets as $faucet)
-        {
+        foreach ($faucets as $faucet) {
             DB::table('referral_info')->insert(array(
                 [
                     'faucet_id' => $faucet->id,
