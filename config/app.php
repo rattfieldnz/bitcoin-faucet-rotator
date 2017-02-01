@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'My Application',
+    'name' => 'Bitcoin Faucet Rotator',
 
     /*
 	|--------------------------------------------------------------------------
@@ -92,7 +92,7 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'cipher' => MCRYPT_RIJNDAEL_128,
+    'cipher' => 'AES-256-CBC',
 
     /*
 	|--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
         'Illuminate\Foundation\Providers\FoundationServiceProvider',
         'Illuminate\Hashing\HashServiceProvider',
         'Illuminate\Mail\MailServiceProvider',
-        Illuminate\Notifications\NotificationServiceProvider::class,
+        'Illuminate\Notifications\NotificationServiceProvider',
         'Illuminate\Pagination\PaginationServiceProvider',
         'Illuminate\Pipeline\PipelineServiceProvider',
         'Illuminate\Queue\QueueServiceProvider',
@@ -146,14 +146,14 @@ return [
         'Illuminate\Translation\TranslationServiceProvider',
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
-                'Laracasts\Generators\GeneratorsServiceProvider',
-                'Collective\Html\HtmlServiceProvider',
-                'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-                'Roumen\Sitemap\SitemapServiceProvider',
+        'Laracasts\Generators\GeneratorsServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Roumen\Sitemap\SitemapServiceProvider',
         'Roumen\Feed\FeedServiceProvider',
-                'Chromabits\Purifier\PurifierServiceProvider',
+        'Chromabits\Purifier\PurifierServiceProvider',
         'SocialEngine\SnifferRules\ServiceProvider',
-                'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider',
+        'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider',
         /*
 		 * Application Service Providers...
 		 */
@@ -161,7 +161,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         'App\Providers\ConfigServiceProvider',
         'App\Providers\EventServiceProvider',
-                'App\Providers\LogServiceProvider',
+        'App\Providers\LogServiceProvider',
         'App\Providers\RouteServiceProvider',
 
     ],
@@ -201,7 +201,7 @@ return [
         'Lang'      => 'Illuminate\Support\Facades\Lang',
         'Log'       => 'Illuminate\Support\Facades\Log',
         'Mail'      => 'Illuminate\Support\Facades\Mail',
-        'Notification' => Illuminate\Support\Facades\Notification::class,
+        'Notification' => 'Illuminate\Support\Facades\Notification',
         'Password'  => 'Illuminate\Support\Facades\Password',
         'Queue'     => 'Illuminate\Support\Facades\Queue',
         'Redirect'  => 'Illuminate\Support\Facades\Redirect',

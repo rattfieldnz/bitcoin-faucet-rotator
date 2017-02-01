@@ -163,7 +163,7 @@ class FaucetsController extends Controller
             //with the retrieved faucet bring passe in the view.
             return view('faucets.show', compact('faucet', 'slug'));
         } catch (ModelNotFoundException $e) {
-            return esponse(view('errors.404'), 404);
+            return response(view('errors.404'), 404);
         }
     }
 

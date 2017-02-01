@@ -17,7 +17,7 @@
     "require": {
         "laravel/framework": "5.3.*",
         "cviebrock/eloquent-sluggable": "3.1.4",
-        "laravelcollective/html": "~5.1",
+        "laravelcollective/html": "5.3.*",
         "guzzlehttp/guzzle": "^6.1",
         "michelf/php-markdown": "~1.5",
         "barryvdh/laravel-ide-helper": "~2.0",
@@ -40,8 +40,8 @@
         "phpspec/phpspec": "~2.1",
         "socialengine/sniffer-rules": "^2.2",
         "phpmd/phpmd": "@stable",
-        "symfony/dom-crawler": "~3.0",
-        "symfony/css-selector": "~3.0"
+        "symfony/dom-crawler": "3.1.*",
+        "symfony/css-selector": "3.1.*"
     },
     "autoload": {
         "classmap": [

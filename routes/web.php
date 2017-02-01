@@ -23,7 +23,9 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('payment_processors/{paymentProcessorSlug}/faucets', 'ApiController@paymentProcessorFaucets');
 });
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+Auth::routes();
+
+/*Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
     Route::group(['middleware' => 'guest'], function () {
         // Login
@@ -43,7 +45,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         // Logout
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
     });
-});
+});*/
 
 Route::get('/', 'RotatorController@index');
 
