@@ -6,7 +6,8 @@
  * Time: 18:56
  */
 
-class FaucetPaymentProcessorsTableSeeder extends BaseSeeder {
+class FaucetPaymentProcessorsTableSeeder extends BaseSeeder
+{
 
     /**
      * Run the database seeds.
@@ -18,5 +19,4 @@ class FaucetPaymentProcessorsTableSeeder extends BaseSeeder {
         $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/faucets_payment_processors.csv');
         $this->insert_data('faucet_payment_processor', $data);
     }
-
 }

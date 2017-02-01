@@ -16,8 +16,7 @@ class AddDisqusShortnameToMainmeta extends Migration
      */
     public function up()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->string('disqus_shortname', 100)->nullable();
         });
     }
@@ -29,7 +28,7 @@ class AddDisqusShortnameToMainmeta extends Migration
      */
     public function down()
     {
-        Schema::table('main_meta', function(Blueprint $table) {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->dropColumn('disqus_shortname');
         });
     }

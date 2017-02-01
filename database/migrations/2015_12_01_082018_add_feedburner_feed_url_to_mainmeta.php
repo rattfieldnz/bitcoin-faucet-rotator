@@ -16,8 +16,7 @@ class AddFeedburnerFeedUrlToMainmeta extends Migration
      */
     public function up()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->string('feedburner_feed_url', 255)->nullable();
         });
     }
@@ -29,7 +28,7 @@ class AddFeedburnerFeedUrlToMainmeta extends Migration
      */
     public function down()
     {
-        Schema::table('main_meta', function(Blueprint $table) {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->dropColumn('feedburner_feed_url');
         });
     }

@@ -35,14 +35,16 @@ class DownloadSpreadsheetDataController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(){
+    public function index()
+    {
         return view('download_data.index');
     }
 
     /**
      * Create and download faucets data as CSV file.
      */
-    public function getFaucetsData(){
+    public function getFaucetsData()
+    {
 
         $faucets = Faucet::all();
 
@@ -52,7 +54,8 @@ class DownloadSpreadsheetDataController extends Controller
     /**
      * Create and download payment processors data as CSV file.
      */
-    public function getPaymentProcessorsData(){
+    public function getPaymentProcessorsData()
+    {
 
         $paymentProcessors = PaymentProcessor::all();
 
@@ -62,7 +65,8 @@ class DownloadSpreadsheetDataController extends Controller
     /**
      * Create and download faucets/payment processors linking data as CSV file.
      */
-    public function getFaucetsPaymentProcessorsLinkingData(){
+    public function getFaucetsPaymentProcessorsLinkingData()
+    {
 
         $faucets = Faucet::all();
 
@@ -70,11 +74,10 @@ class DownloadSpreadsheetDataController extends Controller
 
         $csv->insertOne(Schema::getColumnListing('faucet_payment_processor'));
 
-        foreach ($faucets as $f){
-
+        foreach ($faucets as $f) {
             $paymentProcessors = $f->paymentProcessors()->get();
 
-            foreach ($paymentProcessors as $p){
+            foreach ($paymentProcessors as $p) {
                 $data = ['faucet_id' => $f->id, 'payment_processor_id' => $p->id];
                 $csv->insertOne($data);
             }
@@ -86,7 +89,8 @@ class DownloadSpreadsheetDataController extends Controller
     /**
      * Create and download ad block data as CSV file.
      */
-    public function getAdBlockData(){
+    public function getAdBlockData()
+    {
 
         $adBlock = AdBlock::all();
 
@@ -96,7 +100,8 @@ class DownloadSpreadsheetDataController extends Controller
     /**
      * Create and download main meta data as CSV file.
      */
-    public function getMainMetaData(){
+    public function getMainMetaData()
+    {
 
         $mainMeta = MainMeta::all();
 
@@ -109,17 +114,17 @@ class DownloadSpreadsheetDataController extends Controller
      * @param Collection $modelCollection
      * @param $tableName
      */
-    private function createCsv(Collection $modelCollection, $tableName){
+    private function createCsv(Collection $modelCollection, $tableName)
+    {
 
         $csv = Writer::createFromFileObject(new SplTempFileObject());
 
         $csv->insertOne(Schema::getColumnListing($tableName));
 
-        foreach ($modelCollection as $data){
+        foreach ($modelCollection as $data) {
             $csv->insertOne($data->toArray());
         }
 
         $csv->output($tableName . '.csv');
-
     }
 }

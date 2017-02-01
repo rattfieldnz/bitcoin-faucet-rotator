@@ -40,7 +40,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('send-random-tweet')
             ->hourly()
             ->environments('production');
-        
     }
 
     /**
@@ -57,4 +56,13 @@ class Kernel extends ConsoleKernel
         'Illuminate\Foundation\Bootstrap\RegisterProviders',
         'Illuminate\Foundation\Bootstrap\BootProviders',
     ];
+    /**
+     * Register the Closure based commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        require base_path('routes/console.php');
+    }
 }

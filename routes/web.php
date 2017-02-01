@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\{
     DB, Route, URL
 };
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+Auth::routes();
+
+/*Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
     Auth::routes();
 
@@ -27,8 +29,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         // Logout
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
     });
-
-});
+});*/
 
 Route::get('home', function () {
     return redirect('faucets');
@@ -155,7 +156,6 @@ Route::get('sitemap', function () {
 
     // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
     return $sitemap->render('xml');
-
 });
 
 Route::get('feed', function () {
@@ -227,7 +227,6 @@ Route::get('feed', function () {
     //}
 });
 
-Route::get('500', function()
-{
+Route::get('500', function () {
     abort(500);
 });

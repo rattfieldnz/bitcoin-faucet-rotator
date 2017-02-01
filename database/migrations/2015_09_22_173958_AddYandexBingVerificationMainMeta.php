@@ -13,8 +13,7 @@ class AddYandexBingVerificationMainMeta extends Migration
      */
     public function up()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->string('yandex_verification', 70)->nullable();
             $table->string('bing_verification', 70)->nullable();
         });
@@ -27,8 +26,7 @@ class AddYandexBingVerificationMainMeta extends Migration
      */
     public function down()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->dropColumn('yandex_verification');
             $table->dropColumn('bing_verification');
         });

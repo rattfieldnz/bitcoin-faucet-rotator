@@ -2,7 +2,19 @@
 
 return [
 
-	/*
+    /*
+    |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    */
+
+    'name' => 'Bitcoin Faucet Rotator',
+
+    /*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
 	|--------------------------------------------------------------------------
@@ -13,9 +25,9 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG'),
+    'debug' => env('APP_DEBUG'),
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Application URL
 	|--------------------------------------------------------------------------
@@ -26,9 +38,9 @@ return [
 	|
 	*/
 
-	'url' => env('ROOT_URL'),
+    'url' => env('ROOT_URL'),
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Application Timezone
 	|--------------------------------------------------------------------------
@@ -39,9 +51,9 @@ return [
 	|
 	*/
 
-	'timezone' => 'Pacific/Auckland',
+    'timezone' => 'Pacific/Auckland',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Application Locale Configuration
 	|--------------------------------------------------------------------------
@@ -52,9 +64,9 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+    'locale' => 'en',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Application Fallback Locale
 	|--------------------------------------------------------------------------
@@ -65,9 +77,9 @@ return [
 	|
 	*/
 
-	'fallback_locale' => 'en',
+    'fallback_locale' => 'en',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Encryption Key
 	|--------------------------------------------------------------------------
@@ -78,11 +90,11 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY'),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Logging Configuration
 	|--------------------------------------------------------------------------
@@ -95,9 +107,9 @@ return [
 	|
 	*/
 
-	'log' => 'single',
+    'log' => 'single',
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Autoloaded Service Providers
 	|--------------------------------------------------------------------------
@@ -108,51 +120,53 @@ return [
 	|
 	*/
 
-	'providers' => [
+    'providers' => [
 
-		/*
+        /*
 		 * Laravel Framework Service Providers...
 		 */
-		'Illuminate\Auth\AuthServiceProvider',
-		'Illuminate\Cache\CacheServiceProvider',
+        'Illuminate\Auth\AuthServiceProvider',
+        'Illuminate\Cache\CacheServiceProvider',
         'Collective\Bus\BusServiceProvider',
-		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-		'Illuminate\Cookie\CookieServiceProvider',
-		'Illuminate\Database\DatabaseServiceProvider',
-		'Illuminate\Encryption\EncryptionServiceProvider',
-		'Illuminate\Filesystem\FilesystemServiceProvider',
-		'Illuminate\Foundation\Providers\FoundationServiceProvider',
-		'Illuminate\Hashing\HashServiceProvider',
-		'Illuminate\Mail\MailServiceProvider',
-		'Illuminate\Pagination\PaginationServiceProvider',
-		'Illuminate\Pipeline\PipelineServiceProvider',
-		'Illuminate\Queue\QueueServiceProvider',
-		'Illuminate\Redis\RedisServiceProvider',
-		'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
-		'Illuminate\Session\SessionServiceProvider',
-		'Illuminate\Translation\TranslationServiceProvider',
-		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
-                'Laracasts\Generators\GeneratorsServiceProvider',
-                'Collective\Html\HtmlServiceProvider',
-                'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-                'Roumen\Sitemap\SitemapServiceProvider',
-		'Roumen\Feed\FeedServiceProvider',
-                'Chromabits\Purifier\PurifierServiceProvider',
-		'SocialEngine\SnifferRules\ServiceProvider',
-                'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider', 
-		/*
+        'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
+        'Illuminate\Cookie\CookieServiceProvider',
+        'Illuminate\Database\DatabaseServiceProvider',
+        'Illuminate\Encryption\EncryptionServiceProvider',
+        'Illuminate\Filesystem\FilesystemServiceProvider',
+        'Illuminate\Foundation\Providers\FoundationServiceProvider',
+        'Illuminate\Hashing\HashServiceProvider',
+        'Illuminate\Mail\MailServiceProvider',
+        'Illuminate\Notifications\NotificationServiceProvider',
+        'Illuminate\Pagination\PaginationServiceProvider',
+        'Illuminate\Pipeline\PipelineServiceProvider',
+        'Illuminate\Queue\QueueServiceProvider',
+        'Illuminate\Redis\RedisServiceProvider',
+        'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
+        'Illuminate\Session\SessionServiceProvider',
+        'Illuminate\Translation\TranslationServiceProvider',
+        'Illuminate\Validation\ValidationServiceProvider',
+        'Illuminate\View\ViewServiceProvider',
+        'Laracasts\Generators\GeneratorsServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Roumen\Sitemap\SitemapServiceProvider',
+        'Roumen\Feed\FeedServiceProvider',
+        'Chromabits\Purifier\PurifierServiceProvider',
+        'SocialEngine\SnifferRules\ServiceProvider',
+        'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider',
+        /*
 		 * Application Service Providers...
 		 */
-		'App\Providers\AppServiceProvider',
-		'App\Providers\ConfigServiceProvider',
-		'App\Providers\EventServiceProvider',
-                'App\Providers\LogServiceProvider',
-		'App\Providers\RouteServiceProvider',
+        'App\Providers\AppServiceProvider',
+        // App\Providers\BroadcastServiceProvider::class,
+        'App\Providers\ConfigServiceProvider',
+        'App\Providers\EventServiceProvider',
+        'App\Providers\LogServiceProvider',
+        'App\Providers\RouteServiceProvider',
 
-	],
+    ],
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Class Aliases
 	|--------------------------------------------------------------------------
@@ -163,44 +177,45 @@ return [
 	|
 	*/
 
-	'aliases' => [
+    'aliases' => [
 
-		'App'       => 'Illuminate\Support\Facades\App',
-		'Artisan'   => 'Illuminate\Support\Facades\Artisan',
-		'Auth'      => 'Illuminate\Support\Facades\Auth',
-		'Blade'     => 'Illuminate\Support\Facades\Blade',
-		'Bus'       => 'Illuminate\Support\Facades\Bus',
-		'Cache'     => 'Illuminate\Support\Facades\Cache',
-		'Config'    => 'Illuminate\Support\Facades\Config',
-		'Cookie'    => 'Illuminate\Support\Facades\Cookie',
-		'Crypt'     => 'Illuminate\Support\Facades\Crypt',
-		'DB'        => 'Illuminate\Support\Facades\DB',
-		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
-		'Event'     => 'Illuminate\Support\Facades\Event',
-		'Feed'      => 'Roumen\Feed\Feed',
-		'File'      => 'Illuminate\Support\Facades\File',
+        'App'       => 'Illuminate\Support\Facades\App',
+        'Artisan'   => 'Illuminate\Support\Facades\Artisan',
+        'Auth'      => 'Illuminate\Support\Facades\Auth',
+        'Blade'     => 'Illuminate\Support\Facades\Blade',
+        'Bus'       => 'Illuminate\Support\Facades\Bus',
+        'Cache'     => 'Illuminate\Support\Facades\Cache',
+        'Config'    => 'Illuminate\Support\Facades\Config',
+        'Cookie'    => 'Illuminate\Support\Facades\Cookie',
+        'Crypt'     => 'Illuminate\Support\Facades\Crypt',
+        'DB'        => 'Illuminate\Support\Facades\DB',
+        'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
+        'Event'     => 'Illuminate\Support\Facades\Event',
+        'Feed'      => 'Roumen\Feed\Feed',
+        'File'      => 'Illuminate\Support\Facades\File',
         'Form'      => 'Collective\Html\FormFacade',
-		'Hash'      => 'Illuminate\Support\Facades\Hash',
+        'Hash'      => 'Illuminate\Support\Facades\Hash',
         'Html'      => 'Collective\Html\HtmlFacade',
-		'Input'     => 'Illuminate\Support\Facades\Input',
-		'Inspiring' => 'Illuminate\Foundation\Inspiring',
-		'Lang'      => 'Illuminate\Support\Facades\Lang',
-		'Log'       => 'Illuminate\Support\Facades\Log',
-		'Mail'      => 'Illuminate\Support\Facades\Mail',
-		'Password'  => 'Illuminate\Support\Facades\Password',
-		'Queue'     => 'Illuminate\Support\Facades\Queue',
-		'Redirect'  => 'Illuminate\Support\Facades\Redirect',
-		'Redis'     => 'Illuminate\Support\Facades\Redis',
-		'Request'   => 'Illuminate\Support\Facades\Request',
-		'Response'  => 'Illuminate\Support\Facades\Response',
-		'Route'     => 'Illuminate\Support\Facades\Route',
-		'Schema'    => 'Illuminate\Support\Facades\Schema',
-		'Session'   => 'Illuminate\Support\Facades\Session',
-		'Storage'   => 'Illuminate\Support\Facades\Storage',
-		'URL'       => 'Illuminate\Support\Facades\URL',
-		'Validator' => 'Illuminate\Support\Facades\Validator',
-		'View'      => 'Illuminate\Support\Facades\View',
+        'Input'     => 'Illuminate\Support\Facades\Input',
+        'Inspiring' => 'Illuminate\Foundation\Inspiring',
+        'Lang'      => 'Illuminate\Support\Facades\Lang',
+        'Log'       => 'Illuminate\Support\Facades\Log',
+        'Mail'      => 'Illuminate\Support\Facades\Mail',
+        'Notification' => 'Illuminate\Support\Facades\Notification',
+        'Password'  => 'Illuminate\Support\Facades\Password',
+        'Queue'     => 'Illuminate\Support\Facades\Queue',
+        'Redirect'  => 'Illuminate\Support\Facades\Redirect',
+        'Redis'     => 'Illuminate\Support\Facades\Redis',
+        'Request'   => 'Illuminate\Support\Facades\Request',
+        'Response'  => 'Illuminate\Support\Facades\Response',
+        'Route'     => 'Illuminate\Support\Facades\Route',
+        'Schema'    => 'Illuminate\Support\Facades\Schema',
+        'Session'   => 'Illuminate\Support\Facades\Session',
+        'Storage'   => 'Illuminate\Support\Facades\Storage',
+        'URL'       => 'Illuminate\Support\Facades\URL',
+        'Validator' => 'Illuminate\Support\Facades\Validator',
+        'View'      => 'Illuminate\Support\Facades\View',
 
-	],
+    ],
 
 ];

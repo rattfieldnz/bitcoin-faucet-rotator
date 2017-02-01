@@ -1,13 +1,13 @@
 <?php namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use ErrorException;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException; 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -18,6 +18,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        \Illuminate\Auth\AuthenticationException::class,
         //'Symfony\Component\HttpKernel\Exception\HttpException'
     ];
 
@@ -67,7 +68,6 @@ class Handler extends ExceptionHandler
                 'details are as follows:\n\n' . $e->getMessage()
             );
             return response(view('errors.404'), 404);
-
         }
         if ($e instanceof NotFoundHttpException) {
             Log::useFiles(storage_path() . '/logs/laravel.log');
@@ -80,9 +80,23 @@ class Handler extends ExceptionHandler
                 'details are as follows:\n\n' . $e->getMessage()
             );
             return response(view('errors.404'), 404);
-
         }
 
         return parent::render($request, $e);
+    }
+    /**
+     * Convert an authentication exception into an unauthenticated response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $e
+     * @return \Illuminate\Http\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $e)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        } else {
+            return redirect()->guest('login');
+        }
     }
 }

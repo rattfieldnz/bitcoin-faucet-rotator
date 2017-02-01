@@ -91,7 +91,6 @@ class Faucets
             return Redirect::to('faucets/' . $faucetSlug)
                 ->withErrors(['There was a problem changing low balance status, please try again.'])
                 ->withInput(Input::get('has_low_balance'));
-
         }
     }
 }

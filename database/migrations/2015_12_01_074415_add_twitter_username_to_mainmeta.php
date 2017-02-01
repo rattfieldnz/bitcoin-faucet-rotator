@@ -16,8 +16,7 @@ class AddTwitterUsernameToMainmeta extends Migration
      */
     public function up()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->string('twitter_username', 35)->nullable();
         });
     }
@@ -29,7 +28,7 @@ class AddTwitterUsernameToMainmeta extends Migration
      */
     public function down()
     {
-        Schema::table('main_meta', function(Blueprint $table) {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->dropColumn('twitter_username');
         });
     }

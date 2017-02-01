@@ -78,8 +78,6 @@ class TwitterConfigController extends Controller
         );
 
         return Redirect::to('/admin/twitter_config');
-
-
     }
 
     /**

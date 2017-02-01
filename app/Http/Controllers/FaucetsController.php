@@ -69,7 +69,7 @@ class FaucetsController extends Controller
     {
         // Obtain current payment processors stored, from which
         // a faucet can be associated with.
-        $paymentProcessors = PaymentProcessor::lists('name', 'id');
+        $paymentProcessors = PaymentProcessor::pluck('name', 'id');
         $formHeading = "Create a new faucet";
         $submitButtonText = "Submit Faucet";
 
@@ -154,17 +154,16 @@ class FaucetsController extends Controller
             //Retrieve faucet by given id.
             //$faucet = Faucet::findOrFail($slug);
             $faucet = Faucet::findBySlugOrId($slug);
-			
-			if(!$faucet)
-			{
-                            return response(view('errors.404'), 404);	
-			}
+            
+            if (!$faucet) {
+                return response(view('errors.404'), 404);
+            }
 
             //Return the view which shows faucet details,
             //with the retrieved faucet bring passe in the view.
             return view('faucets.show', compact('faucet', 'slug'));
         } catch (ModelNotFoundException $e) {
-            return esponse(view('errors.404'), 404); 
+            return response(view('errors.404'), 404);
         }
     }
 
@@ -181,7 +180,7 @@ class FaucetsController extends Controller
             $faucet = Faucet::findBySlugOrId($slug);
 
             //Obtain payment processors associated with the faucet.
-            $paymentProcessors = PaymentProcessor::lists('name', 'id');
+            $paymentProcessors = PaymentProcessor::pluck('name', 'id');
             $faucetPaymentProcessors = $faucet->payment_processors;
 
             //Retrieve ids of associated payment processors,

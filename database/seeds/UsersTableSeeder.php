@@ -6,16 +6,18 @@ use Illuminate\Database\Seeder;
 // composer require laracasts/testdummy
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 //use Laracasts\TestDummy\Factory as TestDummy;
 
-class UsersTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder
+{
 
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('users')->truncate();
 
-        DB::table('users')->insert(array(
+        DB::table('users')->insert([
             [
                 'user_name'=>env('ADMIN_USERNAME'),
                 'first_name' =>env('ADMIN_FIRSTNAME'),
@@ -27,9 +29,8 @@ class UsersTableSeeder extends Seeder {
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
-        ));
+        ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
-
 }

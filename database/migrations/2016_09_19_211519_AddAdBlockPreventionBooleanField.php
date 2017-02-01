@@ -12,8 +12,7 @@ class AddAdBlockPreventionBooleanField extends Migration
      */
     public function up()
     {
-        Schema::table('main_meta', function(Blueprint $table)
-        {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->boolean('prevent_adblock_blocking')->default(false);
         });
     }
@@ -25,7 +24,7 @@ class AddAdBlockPreventionBooleanField extends Migration
      */
     public function down()
     {
-        Schema::table('main_meta', function(Blueprint $table) {
+        Schema::table('main_meta', function (Blueprint $table) {
             $table->dropColumn('prevent_adblock_blocking');
         });
     }

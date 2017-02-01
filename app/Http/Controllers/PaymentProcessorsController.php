@@ -190,7 +190,6 @@ class PaymentProcessorsController extends Controller
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
-
     }
 
     public function faucets($paymentProcessorSlug)
