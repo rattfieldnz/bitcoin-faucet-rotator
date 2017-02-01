@@ -22,12 +22,12 @@ class ReferralInfoTableSeeder extends Seeder
         $faucets = Faucet::all();
 
         foreach ($faucets as $faucet) {
-            DB::table('referral_info')->insert(array(
+            DB::table('referral_info')->insert([
                 [
                     'faucet_id' => $faucet->id,
                     'user_id' => $user_id
                 ]
-            ));
+            ]);
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');

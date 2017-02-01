@@ -54,7 +54,7 @@ class Twitter
      */
     public function sendTweet($message)
     {
-        $this->connection->post("statuses/update", array("status" => $message));
+        $this->connection->post("statuses/update", ["status" => $message]);
     }
 
     /**
