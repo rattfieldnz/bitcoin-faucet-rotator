@@ -25,10 +25,17 @@ class Ads
      */
     public function get()
     {
+        $adminAdBlock = null;
         if (Auth::user()) {
             $this->userId = Auth::user()->id;
-            return User::find($this->userId)->firstOrFail()->adBlock->ad_content;
+            //dd($this->userId);
+            $adminAdBlock = User::find($this->userId)->firstOrFail()->adBlock;
+            if($adminAdBlock == null){
+                return null;
+            }
         }
-        return User::where('is_admin', '=', true)->firstOrFail()->adBlock->ad_content;
+        //dd(User::where('is_admin', '=', true)->firstOrFail()->adBlock);
+        $adminAdBlock = User::where('is_admin', '=', true)->firstOrFail()->adBlock;
+        return $adminAdBlock->ad_content;
     }
 }
