@@ -69,7 +69,7 @@ class FaucetsController extends Controller
     {
         // Obtain current payment processors stored, from which
         // a faucet can be associated with.
-        $paymentProcessors = PaymentProcessor::lists('name', 'id');
+        $paymentProcessors = PaymentProcessor::pluck('name', 'id');
         $formHeading = "Create a new faucet";
         $submitButtonText = "Submit Faucet";
 
@@ -180,7 +180,7 @@ class FaucetsController extends Controller
             $faucet = Faucet::findBySlugOrId($slug);
 
             //Obtain payment processors associated with the faucet.
-            $paymentProcessors = PaymentProcessor::lists('name', 'id');
+            $paymentProcessors = PaymentProcessor::pluck('name', 'id');
             $faucetPaymentProcessors = $faucet->payment_processors;
 
             //Retrieve ids of associated payment processors,
