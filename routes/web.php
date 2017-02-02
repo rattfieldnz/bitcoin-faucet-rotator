@@ -5,31 +5,31 @@ use Illuminate\Support\Facades\{
     DB, Route, URL
 };
 
-Auth::routes();
+//Auth::routes();
 
-/*Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+Route::group(['namespace' => 'Auth'], function () {
 
-    Auth::routes();
+    //Auth::routes();
 
     Route::group(['middleware' => 'guest'], function () {
         // Login
-        Route::get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
+        Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
         Route::post('login', [
-            'as' => 'auth.login.store',
+            'as' => 'login.store',
             'before' => 'throttle:2,60',
-            'uses' => 'AuthController@postLogin'
+            'uses' => 'LoginController@login'
         ]);
 
         // Register
-        //Route::get('register', ['as' => 'auth.register', 'uses' => 'AuthController@getRegister']);
-        //Route::post('register', ['as' => 'auth.register.store', 'uses' => 'AuthController@postRegister']);
+        //Route::get('register', ['as' => 'register', 'uses' => 'AuthController@getRegister']);
+        //Route::post('register', ['as' => 'register.store', 'uses' => 'AuthController@postRegister']);
     });
 
     Route::group(['middleware' => 'auth'], function () {
         // Logout
-        Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
+        Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
     });
-});*/
+});
 
 Route::get('home', function () {
     return redirect('faucets');

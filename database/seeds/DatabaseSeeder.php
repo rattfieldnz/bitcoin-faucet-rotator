@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call('ReferralInfoTableSeeder');
         $this->call('MainMetaTableSeeder');
         $this->call('TwitterConfigTableSeeder');
+        $this->call('AdBlockSeeder');
     }
 }
