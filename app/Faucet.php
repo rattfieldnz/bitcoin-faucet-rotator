@@ -1,8 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 /**
  * Class Faucet
@@ -12,8 +11,10 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package App
  */
-class Faucet extends Model implements SluggableInterface
+class Faucet extends Model
 {
+
+	use Sluggable;
 
     /**
      * The database table used by the model.
@@ -21,12 +22,6 @@ class Faucet extends Model implements SluggableInterface
      * @var string
      */
     protected $table = 'faucets';
-    use SluggableTrait;
-
-    protected $sluggable = [
-        'build_from' => 'name',
-        'save_to'    => 'slug',
-    ];
 
     /**
      * The attributes that are mass assignable.
@@ -100,5 +95,19 @@ class Faucet extends Model implements SluggableInterface
             return 'Yes';
         }
         return 'No';
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

@@ -153,7 +153,7 @@ class FaucetsController extends Controller
         try {
             //Retrieve faucet by given id.
             //$faucet = Faucet::findOrFail($slug);
-            $faucet = Faucet::findBySlugOrId($slug);
+            $faucet = Faucet::where('slug',$slug)->first();
             
             if (!$faucet) {
                 return response(view('errors.404'), 404);
@@ -177,7 +177,7 @@ class FaucetsController extends Controller
     {
         try {
             //Grab the faucet to edit
-            $faucet = Faucet::findBySlugOrId($slug);
+            $faucet = Faucet::where('slug',$slug)->first();
 
             //Obtain payment processors associated with the faucet.
             $paymentProcessors = PaymentProcessor::pluck('name', 'id');
@@ -217,7 +217,7 @@ class FaucetsController extends Controller
     public function update($slug)
     {
         //Retrieve faucet to be updated.
-        $faucet = Faucet::findBySlugOrId($slug);
+        $faucet = Faucet::where('slug',$slug)->first();
         $id = $faucet->id;
 
         //Pass input into the validator -
@@ -285,7 +285,7 @@ class FaucetsController extends Controller
     public function destroy($slug)
     {
         try {
-            $faucet = Faucet::findBySlugOrId($slug);
+            $faucet = Faucet::where('slug',$slug)->first();
             $faucetName = $faucet->name;
             $faucetUrl = $faucet->url;
             $faucet->paymentProcessors()->detach();

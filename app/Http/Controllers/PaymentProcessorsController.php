@@ -97,7 +97,7 @@ class PaymentProcessorsController extends Controller
     public function show($slug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::findBySlug($slug);
+            $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
 
             return view('payment_processors.show', compact('paymentProcessor', 'slug'));
         } catch (ModelNotFoundException $e) {
@@ -114,7 +114,7 @@ class PaymentProcessorsController extends Controller
     public function edit($slug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::findBySlugOrId($slug);
+            $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
 
             $submitButtonText = "Submit Changes";
 
@@ -134,7 +134,7 @@ class PaymentProcessorsController extends Controller
     public function update($slug)
     {
         // Obtain payment processor tp update
-        $paymentProcessor = PaymentProcessor::findBySlug($slug);
+        $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
         $id = $paymentProcessor->id;
 
         // Create validator to validate form data used to update payment processor.
@@ -167,7 +167,7 @@ class PaymentProcessorsController extends Controller
     public function destroy($slug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::findBySlugOrId($slug);
+            $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
 
             $paymentProcessorName = $paymentProcessor->name;
             $paymentProcessorUrl = $paymentProcessor->url;
@@ -195,7 +195,7 @@ class PaymentProcessorsController extends Controller
     public function faucets($paymentProcessorSlug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::findBySlugOrId($paymentProcessorSlug);
+            $paymentProcessor = PaymentProcessor::where('slug',$paymentProcessorSlug)->first();
             $faucets = $paymentProcessor->faucets;
 
             $activeFaucets = [];

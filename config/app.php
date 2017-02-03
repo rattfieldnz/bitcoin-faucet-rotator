@@ -148,7 +148,7 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Laracasts\Generators\GeneratorsServiceProvider',
         'Collective\Html\HtmlServiceProvider',
-        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Cviebrock\EloquentSluggable\ServiceProvider',
         'Roumen\Sitemap\SitemapServiceProvider',
         'Roumen\Feed\FeedServiceProvider',
         'Chromabits\Purifier\PurifierServiceProvider',

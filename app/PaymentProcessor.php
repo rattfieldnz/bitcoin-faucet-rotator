@@ -1,15 +1,16 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 /**
  * Class PaymentProcessor
  * @package App
  */
-class PaymentProcessor extends Model implements SluggableInterface
+class PaymentProcessor extends Model
 {
+
+	use Sluggable;
 
     /**
      * The database table used by the model.
@@ -17,12 +18,6 @@ class PaymentProcessor extends Model implements SluggableInterface
      * @var string
      */
     protected $table = 'payment_processors';
-    use SluggableTrait;
-    
-    protected $sluggable = [
-        'build_from' => 'name',
-        'save_to'    => 'slug',
-    ];
 
     /**
      * The attributes that are mass assignable.
@@ -47,5 +42,19 @@ class PaymentProcessor extends Model implements SluggableInterface
     public function faucets()
     {
         return $this->belongsToMany('App\Faucet', 'faucet_payment_processor');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
