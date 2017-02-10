@@ -111,11 +111,10 @@ body, label, .checkbox label {
   }
 }
 
-#navcontainer {
+#nav-container {
+  .center-block {float: none !important}
   margin-bottom:0.5em;
-  #navlist {
-    margin: 0;
-    padding: 0;
+  #nav-list {
     text-align: center;
     li {
       display: inline;
@@ -164,4 +163,51 @@ legend.border{
 
 #main_page_content{
   margin-bottom:4em;
+}
+
+@media screen and (min-width: 20em) {
+
+  #nav-container {
+    margin-left:-3em !important;
+  }
+
+}
+
+@media screen and (min-width: 48em) {
+
+  #nav-container {
+    .btn-lg{
+      width:4em;
+    }
+  }
+
+}
+
+@media screen and (min-width: 50em) {
+
+  #nav-container {
+    .btn-lg{
+      width:4em;
+    }
+  }
+
+}
+
+@media screen and (min-width: 64em) {
+
+  #nav-container {
+    margin-right:1.6em !important;
+    .btn-lg{
+      width:6em;
+    }
+  }
+
+}
+
+@media screen and (min-width: 64.063em){
+
+  #nav-container {
+    margin-left:-1.5em !important;
+  }
+
 }
