@@ -1,74 +1,63 @@
 $(function(){
+    var currentFaucetId;
+    init();
 
-    var clickCount = 0;
-    $.ajax('/api/v1/active_faucets', {
-        success: function(data) {
-            //set first url upon first view
-            var arr = $.map(data, function(el) { return el; });
-            $('#rotator-iframe').attr('src', arr[0].url);
-            $('#current').attr('href', '/faucets/' + arr[0].slug);
-
-            //Set iframe src to first faucet in array
-            $('#first_faucet').click(function(event) {
-                event.preventDefault();
-                $('#rotator-iframe').attr('src', arr[0].url);
-                $('#current').attr('href', '/faucets/' + arr[arr.length + clickCount].slug);
-            });
-
-            $('#next_faucet').click(function(event) {
-                event.preventDefault();
-                clickCount += 1;
-
-                if(clickCount > arr.length - 1) {
-                    $('#rotator-iframe').attr('src', arr[0].url);
-                    $('#current').attr('href', '/faucets/' + arr[0].slug);
-                }
-                else{
-                    $('#rotator-iframe').attr('src', arr[clickCount].url);
-                    $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
-                }
-            });
-
-            $('#previous_faucet').click(function(event) {
-                event.preventDefault();
-                clickCount -= 1;
-
-                if(clickCount <= 0) {
-                    //If click count is negative, start at end of faucets array and
-                    //work way backwards.
-                    $('#rotator-iframe').attr('src', arr[arr.length + clickCount].url);
-                    $('#current').attr('href', '/faucets/' + arr[arr.length + clickCount].slug);
-                }else{
-                    $('#rotator-iframe').attr('src', arr[clickCount].url);
-                    $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
-                }
-            });
-
-            $('#last_faucet').click(function(event) {
-                event.preventDefault();
-                clickCount = arr.length - 1;
-                $('#rotator-iframe').attr('src', arr[clickCount].url);
-                $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
-            });
-
-            $('#reload_current').click(function(event) {
-                event.preventDefault();
-                //$('#rotator-iframe').contentWindow.location.reload(true);
-                $('#rotator-iframe').attr('src', arr[clickCount].url);
-                $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
-            });
-
-            $('#random').click(function(event) {
-                event.preventDefault();
-                var min = 0;
-                var max = arr.length - 1;
-                var randomFaucetIndex = randomInt(min, max);
-                clickCount = randomFaucetIndex;
-                $('#rotator-iframe').attr('src', arr[randomFaucetIndex].url);
-                $('#current').attr('href', '/faucets/' + arr[randomFaucetIndex].slug);
-            });
-        }
+    //Set iframe src to first faucet in array
+    $('#first_faucet').click(function(event) {
+        event.preventDefault();
+        generateFaucet('/api/v1/first_faucet', false);
     });
+
+    $('#next_faucet').click(function(event){
+        event.preventDefault();
+        generateFaucet('/api/v1/faucets/'+currentFaucetId+'/next', false);
+    });
+
+    $('#previous_faucet').click(function(event){
+        event.preventDefault();
+        generateFaucet('/api/v1/faucets/'+currentFaucetId+'/previous',false);
+    });
+
+    $('#last_faucet').click(function(event) {
+        event.preventDefault();
+        generateFaucet('/api/v1/faucets/'+currentFaucetId+'/previous',false);
+    });
+
+    $('#reload_current').click(function(event) {
+        event.preventDefault();
+        generateFaucet('/api/v1/faucets/' + currentFaucetId, false);
+    });
+
+    $('#random').click(function(event){
+        event.preventDefault();
+        generateFaucet('/api/v1/active_faucets', true);
+    });
+
+    function init(){
+        generateFaucet('/api/v1/first_faucet', false);
+    }
+
+    function generateFaucet(apiUrl, isRandom){
+        var iframeUrl;
+        var currentFaucetSlug;
+        var numberOfFaucets;
+        $.ajax(apiUrl, {
+            success: function (data) {
+                currentFaucetId = data.id;
+                if(isRandom === true && apiUrl === '/api/v1/active_faucets'){
+                    numberOfFaucets = data.length;
+                    var randomFaucetIndex = randomInt(0,numberOfFaucets);
+                    iframeUrl = data[randomFaucetIndex].url;
+                    currentFaucetSlug = data[randomFaucetIndex].slug
+                }else{
+                    iframeUrl = data.url;
+                    currentFaucetSlug = '/faucets/' + data.slug;
+                }
+                $('#rotator-iframe').attr('src', iframeUrl);
+                $('#current').attr('href', currentFaucetSlug);
+            }
+        });
+    }
 });
 
 function randomInt(min, max)

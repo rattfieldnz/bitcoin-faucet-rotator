@@ -17,6 +17,12 @@ use Illuminate\Pagination\Paginator;
  */
 class ApiController extends BaseController
 {
+    private $faucetCollection;
+
+    public function __construct()
+    {
+        $this->faucetCollection = Faucet::all()->sortBy('interval_minutes')->values();
+    }
 
     /**
      * A function used to retrieve all faucets currently stored on the system,
@@ -26,16 +32,76 @@ class ApiController extends BaseController
      */
     public function faucets()
     {
-        return Faucet::all()->sortBy('interval_minutes')->values()->all();
+        return $this->faucetCollection->all();
     }
 
-    public function faucet($slug)
+    /**
+     * @param $id
+     * @return array
+     */
+    public function faucet($id)
     {
-        $faucet = Faucet::find($slug);
+        $faucet = Faucet::find($id);
         if ($faucet == null || !$faucet) {
             return [404 => 'Not Found'];
         }
         return $faucet;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function firstFaucet(){
+        return $this->faucetCollection->get(0);
+    }
+
+    /**
+     * @param $id
+     * @return null
+     */
+    public function previousFaucet($id){
+        $array = array_column($this->faucetCollection->toArray(), 'id');
+        foreach($array as $key => $value){
+            if($value == $id){
+                // Decrement key to find previous one.
+                if($key - 1 < 0){
+                    // If subtracted value is negative,
+                    // we are at beginning of faucet collection array.
+                    // Go to last faucet in the collection.
+                    return Faucet::find($array[count($array) - 1]);
+                }
+                return Faucet::find($array[$key - 1]);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function nextFaucet($id){
+        $array = array_column($this->faucetCollection->toArray(), 'id');
+        foreach($array as $key => $value){
+            if($value == $id){
+                // Increase key to find next one.
+                if($key + 1 > count($array) - 1){
+                    // If addition is greater than number of faucets,
+                    // We are at end of the collection.
+                    // Go to first faucet in the collection.
+                    return Faucet::find($array[0]);
+                }
+                return Faucet::find($array[$key + 1]);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function lastFaucet(){
+        return $this->faucetCollection->get(count(Faucet::all()) - 1);
     }
 
     /**
@@ -80,7 +146,7 @@ class ApiController extends BaseController
 
         try {
             //Obtain payment processor by related slug.
-            $paymentProcessor = PaymentProcessor::where('slug',$paymentProcessorSlug)->first();
+            $paymentProcessor = PaymentProcessor::findBySlug($paymentProcessorSlug);
 
             // Use model relationship to obtain associated faucets
             $faucets = $paymentProcessor->faucets;

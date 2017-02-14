@@ -11179,21 +11179,6 @@ button.close {
 .fa-fonticons:before {
   content: "\f280";
 }
-/* tables */
-
-table.tablesorter thead tr th,
-table.tablesorter tfoot tr th {
-  background-color: #e6EEEE;
-  font-size: 8pt;
-  padding: 4px;
-}
-
-table.tablesorter thead tr .header {
-  background-image: url("table_sorter_themes/blue/bg.gif");
-  background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer;
-}
 /*! jQuery UI - v1.11.4 - 2015-03-11
 * http://jqueryui.com
 * Includes: core.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, draggable.css, menu.css, progressbar.css, resizable.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
@@ -15976,4 +15961,19 @@ body .ui-tooltip {
   filter: Alpha(Opacity=60);
   /* support: IE8 */
   border-radius: 8px;
+}
+/* tables */
+
+table.tablesorter thead tr th,
+table.tablesorter tfoot tr th {
+  background-color: #e6EEEE;
+  font-size: 8pt;
+  padding: 4px;
+}
+
+table.tablesorter thead tr .header {
+  background-image: url("table_sorter_themes/blue/bg.gif");
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
 }
