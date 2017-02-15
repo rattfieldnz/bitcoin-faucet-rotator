@@ -46,9 +46,9 @@ $(function(){
                 currentFaucetId = data.id;
                 if(isRandom === true && apiUrl === '/api/v1/active_faucets'){
                     numberOfFaucets = data.length;
-                    var randomFaucetIndex = randomInt(0,numberOfFaucets);
+                    var randomFaucetIndex = randomInt(0,numberOfFaucets - 1);
                     iframeUrl = data[randomFaucetIndex].url;
-                    currentFaucetSlug = data[randomFaucetIndex].slug
+                    currentFaucetSlug = '/faucets/' + data[randomFaucetIndex].slug
                 }else{
                     iframeUrl = data.url;
                     currentFaucetSlug = '/faucets/' + data.slug;
