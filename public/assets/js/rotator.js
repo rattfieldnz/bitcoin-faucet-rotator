@@ -41,22 +41,29 @@ $(function(){
         var iframeUrl;
         var currentFaucetSlug;
         var numberOfFaucets;
-        $.ajax(apiUrl, {
-            success: function (data) {
-                currentFaucetId = data.id;
-                if(isRandom === true && apiUrl === '/api/v1/active_faucets'){
+
+        if(isRandom === true && apiUrl === '/api/v1/active_faucets'){
+            $.ajax(apiUrl, {
+                success: function (data) {
                     numberOfFaucets = data.length;
                     var randomFaucetIndex = randomInt(0,numberOfFaucets - 1);
-                    iframeUrl = data[randomFaucetIndex].url;
-                    currentFaucetSlug = '/faucets/' + data[randomFaucetIndex].slug
-                }else{
+                    iframeUrl = data[randomFaucetIndex - 1].url;
+                    currentFaucetSlug = '/faucets/' + data[randomFaucetIndex - 1].slug;
+                    $('#rotator-iframe').attr('src', iframeUrl);
+                    $('#current').attr('href', currentFaucetSlug);
+                }
+            });
+        }else{
+            $.ajax(apiUrl, {
+                success: function (data) {
+                    currentFaucetId = data.id;
                     iframeUrl = data.url;
                     currentFaucetSlug = '/faucets/' + data.slug;
+                    $('#rotator-iframe').attr('src', iframeUrl);
+                    $('#current').attr('href', currentFaucetSlug);
                 }
-                $('#rotator-iframe').attr('src', iframeUrl);
-                $('#current').attr('href', currentFaucetSlug);
-            }
-        });
+            });
+        }
     }
 });
 
