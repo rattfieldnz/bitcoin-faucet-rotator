@@ -17,7 +17,7 @@
     @endif
     @include('ad_block/partials/_errors')
 
-    {!! Form::model( $adBlock, ['method' => 'PATCH', 'route' => ['admin.ad_block_config.update', $adBlock],'class' => 'form-horizontal']) !!}
+    {!! Form::model( $adBlock, ['method' => 'PATCH', 'route' => ['ad_block_config.update', $adBlock],'class' => 'form-horizontal']) !!}
     @include('ad_block/partials/_form')
     {!! Form::close() !!}
     </fieldset>

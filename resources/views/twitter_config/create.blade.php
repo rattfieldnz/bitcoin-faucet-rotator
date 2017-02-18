@@ -6,7 +6,7 @@
 
         @include('twitter_config/partials/_errors')
 
-        {!! Form::open(['route' => 'admin.twitter_config.store','class' => 'form-horizontal']) !!}
+        {!! Form::open(['route' => 'twitter_config.store','class' => 'form-horizontal']) !!}
             @include('twitter_config/partials/_form')
         {!! Form::close() !!}
     </fieldset>

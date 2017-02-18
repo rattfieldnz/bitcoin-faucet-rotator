@@ -19,7 +19,7 @@
     @endif
     @include('twitter_config/partials/_errors')
 
-    {!! Form::model( $twitterConfig, ['method' => 'PATCH', 'route' => ['admin.twitter_config.update', $twitterConfig],'class' => 'form-horizontal']) !!}
+    {!! Form::model( $twitterConfig, ['method' => 'PATCH', 'route' => ['twitter_config.update', $twitterConfig],'class' => 'form-horizontal']) !!}
     @include('twitter_config/partials/_form')
     {!! Form::close() !!}
     </fieldset>
