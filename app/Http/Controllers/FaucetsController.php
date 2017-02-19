@@ -188,8 +188,10 @@ class FaucetsController extends Controller
             //Retrieve ids of associated payment processors,
             //and putting them into an array.
             $paymentProcessorIds = [];
-            foreach ($faucetPaymentProcessors as $paymentProcessor) {
-                array_push($paymentProcessorIds, (int)$paymentProcessor->id);
+            if(count($paymentProcessorIds) >= 1){
+                foreach ($faucetPaymentProcessors as $paymentProcessor) {
+                    array_push($paymentProcessorIds, (int)$paymentProcessor->id);
+                }
             }
 
             $submitButtonText = "Submit Changes";
