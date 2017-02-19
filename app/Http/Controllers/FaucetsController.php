@@ -112,8 +112,10 @@ class FaucetsController extends Controller
         //Now we have saved a faucet, we can begin inserting associated
         //payment processors from input - in a many-many relationship.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        foreach ($paymentProcessorIds as $paymentProcessorId) {
-            $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
+        if(count($paymentProcessorIds) >= 1){
+            foreach ($paymentProcessorIds as $paymentProcessorId) {
+                $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
+            }
         }
 
         //Associated the currently logged in user with the new faucet.
@@ -153,7 +155,7 @@ class FaucetsController extends Controller
         try {
             //Retrieve faucet by given id.
             //$faucet = Faucet::findOrFail($slug);
-            $faucet = Faucet::where('slug',$slug)->first();
+            $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
             
             if (!$faucet) {
                 return response(view('errors.404'), 404);
@@ -177,7 +179,7 @@ class FaucetsController extends Controller
     {
         try {
             //Grab the faucet to edit
-            $faucet = Faucet::where('slug',$slug)->first();
+            $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
 
             //Obtain payment processors associated with the faucet.
             $paymentProcessors = PaymentProcessor::pluck('name', 'id');
@@ -217,7 +219,7 @@ class FaucetsController extends Controller
     public function update($slug)
     {
         //Retrieve faucet to be updated.
-        $faucet = Faucet::where('slug',$slug)->first();
+        $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
         $id = $faucet->id;
 
         //Pass input into the validator -
@@ -249,8 +251,11 @@ class FaucetsController extends Controller
         // the many-many table. Then foreign key checking is re-enabled.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         $faucet->paymentProcessors()->detach();
-        foreach ($paymentProcessorIds as $paymentProcessorId) {
-            $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
+
+        if(count($paymentProcessorIds) >= 1){
+            foreach ($paymentProcessorIds as $paymentProcessorId) {
+                $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
+            }
         }
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
@@ -285,7 +290,7 @@ class FaucetsController extends Controller
     public function destroy($slug)
     {
         try {
-            $faucet = Faucet::where('slug',$slug)->first();
+            $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
             $faucetName = $faucet->name;
             $faucetUrl = $faucet->url;
             $faucet->paymentProcessors()->detach();

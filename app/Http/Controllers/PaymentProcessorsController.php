@@ -97,7 +97,7 @@ class PaymentProcessorsController extends Controller
     public function show($slug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
+            $paymentProcessor = PaymentProcessor::where('slug', '=', $slug)->firstOrFail();
 
             return view('payment_processors.show', compact('paymentProcessor', 'slug'));
         } catch (ModelNotFoundException $e) {
@@ -114,7 +114,7 @@ class PaymentProcessorsController extends Controller
     public function edit($slug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
+            $paymentProcessor = PaymentProcessor::where('slug', '=', $slug)->firstOrFail();
 
             $submitButtonText = "Submit Changes";
 
@@ -134,7 +134,7 @@ class PaymentProcessorsController extends Controller
     public function update($slug)
     {
         // Obtain payment processor tp update
-        $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
+        $paymentProcessor = PaymentProcessor::where('slug', '=', $slug)->firstOrFail();
         $id = $paymentProcessor->id;
 
         // Create validator to validate form data used to update payment processor.
@@ -167,7 +167,7 @@ class PaymentProcessorsController extends Controller
     public function destroy($slug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::where('slug',$slug)->first();
+            $paymentProcessor = PaymentProcessor::where('slug', '=', $slug)->firstOrFail();
 
             $paymentProcessorName = $paymentProcessor->name;
             $paymentProcessorUrl = $paymentProcessor->url;
@@ -195,7 +195,7 @@ class PaymentProcessorsController extends Controller
     public function faucets($paymentProcessorSlug)
     {
         try {
-            $paymentProcessor = PaymentProcessor::where('slug',$paymentProcessorSlug)->first();
+            $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
             $faucets = $paymentProcessor->faucets;
 
             $activeFaucets = [];
