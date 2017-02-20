@@ -5,3 +5,4 @@ storage/cache
 storage/framework/cache
 storage/laravel.log
 public/blog
+public/.htaccess
