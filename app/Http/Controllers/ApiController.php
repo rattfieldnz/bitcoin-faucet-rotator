@@ -146,7 +146,7 @@ class ApiController extends BaseController
 
         try {
             //Obtain payment processor by related slug.
-            $paymentProcessor = PaymentProcessor::findBySlug($paymentProcessorSlug);
+            $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
 
             // Use model relationship to obtain associated faucets
             $faucets = $paymentProcessor->faucets;
@@ -166,5 +166,10 @@ class ApiController extends BaseController
         } catch (Exception $e) {
             return null;
         }
+    }
+
+    public function firstPaymentProcessorFaucet($paymentProcessorSlug)
+    {
+        return $this->paymentProcessorFaucets($paymentProcessorSlug)[0];
     }
 }

@@ -1,0 +1,38 @@
+id,title,description,keywords,google_analytics_id,created_at,updated_at,yandex_verification,bing_verification,page_main_title,page_main_content,addthisid,twitter_username,feedburner_feed_url,disqus_shortname,prevent_adblock_blocking
+1,"FreeBTC.website - Earn Free Bitcoins from our Bitcoin Faucet Rotator","Visit our bitcoin faucet rotator and earn upwards of 100,000 free satoshis per day. Intervals from every minute to every 24 hours. We welcome new faucets.","Free Bitcoins, Bitcoin Faucet Rotator, Satoshis, Free BTC Website",UA-92095913-1,"2015-09-22 19:35:19","2017-02-16 18:45:38",6bd366f4a927b8e4,01CE0CA0B4512F8EF0B231C935E124E1,"Welcome to the Bitcoin Faucet Rotator","<h2>Huh? What is this &#39;Bitcoin&#39; thing?</h2>
+<div class=""adbit-display-ad"" data-adspace-id=""0CC88EA645"">&nbsp;</div>
+
+<p>There are a wealth of resources out there on Bitcoins - how they are made, why they were made, and how they are used. Bitcoins are a form of digital currency that isn&#39;t centralised (like banks), and are created by (sometimes) powerful machines (commonly called &#39;mining rigs&#39;) that perform numerous mathematical and algorithmic calculations. Below are some resources that will explain Bitcoins:</p>
+
+<ul>
+	<li><a href=""http://bitcoin.org/en/"" target=""_blank"">The Official Bitcoin Website</a></li>
+	<li><a href=""http://www.weusecoins.com/"" target=""_blank"">What is Bitcoin? - We Use Coins</a></li>
+	<li><a href=""https://en.bitcoin.it/wiki/Main_Page"" target=""_blank"">The Bitcoin Wiki</a></li>
+	<li><a href=""https://bitcoinfoundation.org/"" target=""_blank"">The Bitcoin Foundation</a></li>
+	<li><a href=""http://bitcoin.stackexchange.com/"" target=""_blank"">Bitcoin Stack Exchange Q and A Site</a></li>
+	<li><a href=""https://bitcointalk.org/"" target=""_blank"">Bitcoin Talk Forum</a></li>
+</ul>
+
+<h2>Needing a Bitcoin Wallet?</h2>
+
+<div class=""adbit-display-ad"" data-adspace-id=""56B311B0C1"">&nbsp;</div>
+
+<p>In order to receive bitcoins, you usually need a bitcoin address for the sender to send them to. You are able to select one of the providers below to create your bitcoin wallet/address:</p>
+
+<h3>Web-based Wallet Providers</h3>
+
+<ul>
+	<li><a href=""https://coinbase.com/?r=52b3ca3962893c879300002e&amp;utm_campaign=user-referral&amp;src=referral-link"" target=""_blank"">CoinBase.com</a></li>
+	<li><a href=""https://www.microwallet.org/"" target=""_blank"">MicroWallet</a></li>
+	<li><a href=""https://blockchain.info/wallet"" target=""_blank"">BlockChain</a></li>
+	<li><a href=""https://coinkite.com/"" target=""_blank"">CoinKite</a></li>
+</ul>
+
+<h3>Bitcoin Wallet Clients - Install On Your Computer</h3>
+
+<ul>
+	<li><a href=""http://bitcoin.org/en/download"" target=""_blank"">Bitcoin Qt (the original client)</a></li>
+	<li><a href=""https://bitcoinarmory.com/"" target=""_blank"">Bitcoin Armory</a></li>
+	<li><a href=""https://multibit.org/"" target=""_blank"">MultiBit</a></li>
+</ul>
+",ra-50b996b14942b1fb,FreeBTCWebsite,http://feeds.feedburner.com/freebtcwebsitefeed,freebtcwebsite,1
