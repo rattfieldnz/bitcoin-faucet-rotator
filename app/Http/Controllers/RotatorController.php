@@ -27,6 +27,7 @@ class RotatorController extends Controller
     public function index()
     {
         $mainMeta = MainMeta::firstOrFail() != null ? MainMeta::firstOrFail() : null;
-        return view('rotator.index', compact('mainMeta'));
+        $paymentProcessorSlug = null;
+        return view('rotator.index', compact('mainMeta', 'paymentProcessorSlug'));
     }
 }

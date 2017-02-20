@@ -36,11 +36,20 @@
                     <span class="glyphicon glyphicon-random"></span>
                 </a>
             </li>
+            @if($paymentProcessorSlug === null)
             <li>
                 <a class="btn btn-primary btn-lg" id="list_of_faucets" href="/faucets" title="List of Faucets" role="button">
                     <span class="glyphicon glyphicon-list"></span>
                 </a>
             </li>
+            @else
+            <li>
+                <a class="btn btn-primary btn-lg" id="list_of_faucets" href="/payment_processors/{{$paymentProcessorSlug}}" title="List of Faucets" role="button">
+                    <span class="glyphicon glyphicon-list"></span>
+                </a>
+            </li>
+                @endif
+
         </ul>
     </nav>
 </div>
