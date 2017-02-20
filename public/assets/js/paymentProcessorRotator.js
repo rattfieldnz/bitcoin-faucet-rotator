@@ -1,76 +1,75 @@
-/**
- * Created by robattfield on 28-Aug-2015.
- */
 $(function(){
-
-    var clickCount = 0;
+    var currentFaucetId;
     var slug = $("#faucet_slug").attr('property');
+    init();
 
-    $.ajax('/api/v1/payment_processors/' + slug + '/faucets', {
-        success: function(data) {
-            //set first url upon first view
-            var arr = $.map(data, function(el) { return el; });
-            $('#rotator-iframe').attr('src', arr[0].url);
-            $('#current').attr('href', '/faucets/' + arr[0].slug);
+    //Set iframe src to first faucet in array
+    $('#first_faucet').click(function(event) {
+        event.preventDefault();
 
-            //Set iframe src to first faucet in array
-            $('#first_faucet').click(function(event) {
-                event.preventDefault();
-                $('#rotator-iframe').attr('src', arr[0].url);
-                $('#current').attr('href', '/faucets/' + arr[arr.length + clickCount].slug);
-            });
+        generateFaucet('/api/v1/payment_processors/' + slug + '/first_faucet', false);
+    });
 
-            $('#next_faucet').click(function(event) {
-                event.preventDefault();
-                clickCount += 1;
+    $('#next_faucet').click(function(event){
+        event.preventDefault();
+        generateFaucet('/api/v1/payment_processors/'+slug+'/faucets/'+currentFaucetId+'/next', false);
+    });
 
-                if(clickCount > arr.length - 1) {
-                    $('#rotator-iframe').attr('src', arr[0].url);
-                    $('#current').attr('href', '/faucets/' + arr[0].slug);
+    $('#previous_faucet').click(function(event){
+        event.preventDefault();
+        generateFaucet('/api/v1/payment_processors/'+slug+'/faucets/'+currentFaucetId+'/previous',false);
+    });
+
+    $('#last_faucet').click(function(event) {
+        event.preventDefault();
+        generateFaucet('/api/v1/payment_processors/'+slug+'/last_faucet',false);
+    });
+
+    $('#reload_current').click(function(event) {
+        event.preventDefault();
+        generateFaucet('/api/v1/faucets/' + currentFaucetId, false);
+    });
+
+    $('#random').click(function(event){
+        event.preventDefault();
+        generateFaucet('/api/v1/payment_processors/'+slug+'/active_faucets', true);
+    });
+
+    function init(){
+        slug = $("#faucet_slug").attr('property');
+        generateFaucet('/api/v1/payment_processors/'+slug+'/first_faucet', false);
+    }
+
+    function generateFaucet(apiUrl, isRandom){
+        var iframeUrl;
+        var currentFaucetSlug;
+        var numberOfFaucets;
+
+        slug = $("#faucet_slug").attr('property');
+
+        if(isRandom === true && apiUrl === '/api/v1/payment_processors/'+slug+'/active_faucets'){
+            $.ajax(apiUrl, {
+                success: function (data) {
+                    numberOfFaucets = data.length;
+                    var randomFaucetIndex = randomInt(0,numberOfFaucets - 1);
+                    iframeUrl = data[randomFaucetIndex - 1].url;
+                    currentFaucetSlug = '/faucets/' + data[randomFaucetIndex - 1].slug;
+                    $('#rotator-iframe').attr('src', iframeUrl);
+                    $('#current').attr('href', currentFaucetSlug);
                 }
-                else{
-                    $('#rotator-iframe').attr('src', arr[clickCount].url);
-                    $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
+            });
+        }else{
+            $.ajax(apiUrl, {
+                success: function (data) {
+                    currentFaucetId = data.id;
+                    iframeUrl = data.url;
+                    currentFaucetSlug = '/faucets/' + data.slug;
+                    $('#rotator-iframe').attr('src', iframeUrl);
+                    $('#current').attr('href', currentFaucetSlug);
                 }
-            });
-
-            $('#previous_faucet').click(function(event) {
-                event.preventDefault();
-                clickCount -= 1;
-
-                if(clickCount <= 0) {
-                    //If click count is negative, start at end of faucets array and
-                    //work way backwards.
-                    $('#rotator-iframe').attr('src', arr[arr.length + clickCount].url);
-                    $('#current').attr('href', '/faucets/' + arr[arr.length + clickCount].slug);
-                }else{
-                    $('#rotator-iframe').attr('src', arr[clickCount].url);
-                    $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
-                }
-            });
-
-            $('#last_faucet').click(function(event) {
-                event.preventDefault();
-                clickCount = arr.length - 1;
-                $('#rotator-iframe').attr('src', arr[clickCount].url);
-                $('#current').attr('href', '/faucets/' + arr[clickCount].slug);
-            });
-
-            $('#reload_current').click(function(event) {
-                event.preventDefault();
-                //$('#rotator-iframe').contentWindow.location.reload(true);
-                $('#rotator-iframe').attr('src', arr[clickCount].url);
-            });
-
-            $('#random').click(function(event) {
-                event.preventDefault();
-                var min = 0;
-                var max = arr.length - 1;
-                var randomFaucetIndex = randomInt(min, max);
-                $('#rotator-iframe').attr('src', arr[randomFaucetIndex].url);
             });
         }
-    });
+    }
 });
 
 function randomInt(min, max)

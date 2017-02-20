@@ -135,6 +135,24 @@ class ApiController extends BaseController
     }
 
     /**
+     * @param $id
+     * @return array
+     */
+    public function paymentProcessorFaucet($paymentProcessorSlug, $faucetId)
+    {
+        //Obtain payment processor by related slug.
+        $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
+
+        // Use model relationship to obtain associated faucets
+        $faucets = $paymentProcessor->faucets;
+        $faucet = $faucets->where('id', '=', $faucetId)->first();
+        if ($faucet == null || !$faucet) {
+            return [404 => 'Not Found'];
+        }
+        return $faucet;
+    }
+
+    /**
      * A function to retrieve all faucets associated with a
      * payment processor.
      *
@@ -171,5 +189,84 @@ class ApiController extends BaseController
     public function firstPaymentProcessorFaucet($paymentProcessorSlug)
     {
         return $this->paymentProcessorFaucets($paymentProcessorSlug)[0];
+    }
+
+    public function previousPaymentProcessorFaucet($paymentProcessorSlug, $faucetId){
+        //Obtain payment processor by related slug.
+        $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
+
+        // Use model relationship to obtain associated faucets
+        $faucets = $paymentProcessor->faucets;
+
+        $array = array_column($faucets->toArray(), 'id');
+        foreach($array as $key => $value){
+            if($value == $faucetId){
+                // Increase key to find next one.
+                if($key - 1 > count($array) - 1){
+                    // If addition is greater than number of faucets,
+                    // We are at end of the collection.
+                    // Go to first faucet in the collection.
+                    return Faucet::find($array[0]);
+                }
+                return Faucet::find($array[$key + 1]);
+            }
+        }
+        return null;
+    }
+
+    public function nextPaymentProcessorFaucet($paymentProcessorSlug, $faucetId){
+        //Obtain payment processor by related slug.
+        $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
+
+        // Use model relationship to obtain associated faucets
+        $faucets = $paymentProcessor->faucets;
+
+        $array = array_column($faucets->toArray(), 'id');
+        foreach($array as $key => $value){
+            if($value == $faucetId){
+                // Increase key to find next one.
+                if($key + 1 > count($array) - 1){
+                    // If addition is greater than number of faucets,
+                    // We are at end of the collection.
+                    // Go to first faucet in the collection.
+                    return Faucet::find($array[0]);
+                }
+                return Faucet::find($array[$key + 1]);
+            }
+        }
+        return null;
+    }
+
+    public function lastPaymentProcessorFaucet($paymentProcessorSlug){
+
+        $faucets = $this->paymentProcessorFaucets($paymentProcessorSlug);
+        return $this->paymentProcessorFaucets($paymentProcessorSlug)[count($faucets) - 1];
+    }
+
+    public function activePaymentProcessorFaucets($paymentProcessorSlug, $hasLowBalance = false)
+    {
+        try {
+
+            $activeFaucets = [];
+            //Obtain payment processor by related slug.
+            $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->first();
+
+            // Use model relationship to obtain associated faucets
+            $faucets = $paymentProcessor->faucets;
+
+            //Iterate over all faucets, check their low-balance and active/pause status,
+            //then put desired faucets in separate faucets array.
+            foreach ($faucets as $f) {
+                if ($f->is_paused == false &&
+                    $f->has_low_balance == $hasLowBalance) {
+                    array_push($activeFaucets, $f);
+                }
+            }
+
+            //Return active faucets.
+            return $activeFaucets;
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }
