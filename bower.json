@@ -10,7 +10,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "~3.3.5",
-    "font-awesome": "~4.4.0"
+    "bootstrap-sass-official": "~3.3.7",
+    "font-awesome": "~4.7.0"
   }
 }

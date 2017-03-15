@@ -37,4 +37,8 @@ class PasswordController extends Controller
 
         $this->middleware('guest');
     }
+
+    public function getEmail(){
+        return redirect()->to('register');
+    }
 }

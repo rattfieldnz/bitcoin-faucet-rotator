@@ -5,34 +5,19 @@ use Illuminate\Support\Facades\{
     DB, Route, URL
 };
 
-//Auth::routes();
+Auth::routes();
 
-Route::group(['namespace' => 'Auth'], function () {
-
-    //Auth::routes();
-
-    Route::group(['middleware' => 'guest'], function () {
-        // Login
-        Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
-        Route::post('login', [
-            'as' => 'login.store',
-            'before' => 'throttle:2,60',
-            'uses' => 'LoginController@login'
-        ]);
-
-        // Register
-        //Route::get('register', ['as' => 'register', 'uses' => 'AuthController@getRegister']);
-        //Route::post('register', ['as' => 'register.store', 'uses' => 'AuthController@postRegister']);
+/*
+ * Use this route to test your MailGun settings.
+ *
+ * If the settings are correct, you should receive an email (sometimes delayed slightly) to your specified 'ADMIN_EMAIL'
+ * (defined in the .env file).
+ */
+Route::get('send_test_email', function(){
+    Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+    {
+        $message->to(env('ADMIN_EMAIL'));
     });
-
-    Route::group(['middleware' => 'auth'], function () {
-        // Logout
-        Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
-    });
-});
-
-Route::get('home', function () {
-    return redirect('faucets');
 });
 
 Route::get('/', 'RotatorController@index');
@@ -48,6 +33,11 @@ Route::get('faucets/progress', 'FaucetsController@progress');
 Route::get('/admin/faucets/create', 'FaucetsController@create');
 Route::get('/admin/faucets/{slug}/edit', 'FaucetsController@edit');
 Route::resource('faucets', 'FaucetsController');
+Route::get('users/{userSlug}/faucets', 'FaucetsController@generalUsersIndex');
+Route::get('users/{userSlug}/faucets/create', 'FaucetsController@createGeneralUserFaucets');
+Route::get('users/{userSlug}/faucets/{faucetSlug}', 'FaucetsController@showGeneralUserFaucet');
+Route::get('users/{userSlug}/faucets/{faucetSlug}/edit', 'FaucetsController@editGeneralUserFaucet');
+Route::delete('users/{userSlug}/faucets/{faucetSlug}', 'FaucetsController@destroyGeneralUserFaucet');
 
 Route::resource('payment_processors', 'PaymentProcessorsController');
 Route::get('/payment_processors', ['as' => 'payment_processors', 'uses' => 'PaymentProcessorsController@index']);
@@ -230,3 +220,7 @@ Route::get('feed', function () {
 Route::get('500', function () {
     abort(500);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
