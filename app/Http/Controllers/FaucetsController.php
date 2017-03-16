@@ -182,17 +182,23 @@ class FaucetsController extends Controller
             $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
 
             //Obtain payment processors associated with the faucet.
-            $paymentProcessors = PaymentProcessor::pluck('name', 'id');
-            $faucetPaymentProcessors = $faucet->payment_processors;
+            $paymentProcessors = PaymentProcessor::orderBy('name', 'asc')->get();
+            $faucetPaymentProcessors = $faucet->paymentProcessors;
 
             //Retrieve ids of associated payment processors,
             //and putting them into an array.
             $paymentProcessorIds = [];
-            if(count($paymentProcessorIds) >= 1){
+
+            foreach($faucet->paymentProcessors->pluck('id')->toArray() as $key => $value){
+                array_push($paymentProcessorIds, $value);
+            }
+
+            /*if(count($paymentProcessorIds) >= 1){
                 foreach ($faucetPaymentProcessors as $paymentProcessor) {
                     array_push($paymentProcessorIds, (int)$paymentProcessor->id);
                 }
-            }
+            }*/
+            //dd($paymentProcessorIds);
 
             $submitButtonText = "Submit Changes";
 

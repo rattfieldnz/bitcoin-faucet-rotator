@@ -1,8 +1,14 @@
 /vendor
 /node_modules
+bootstrap/cache/
+.env.*.php
+.env.php
 .env
-storage/cache
-storage/framework/cache
+storage/framework/views
+storage/framework/sessions
+storage/logs
 storage/laravel.log
 public/blog
 public/.htaccess
+_ide_helper.php
+/.idea

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings />
-      <phpunit_by_interpreter interpreter_id="c733da11-a038-40b5-a66a-72fa042c00ce" interpreter_name="Remote PHP 5.6" />
-    </phpunit_settings>
-  </component>
-</project>
