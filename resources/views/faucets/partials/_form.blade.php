@@ -55,9 +55,9 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('payment_processors', 'Payment Processor/s', ['class' => 'col-lg-2 control-label'] ) !!}
+    {!! Form::label('payment_processors[]', 'Payment Processor/s', ['class' => 'col-lg-2 control-label'] ) !!}
     <div class="col-lg-10">
-        {!! Form::select('payment_processors', $paymentProcessors->pluck('name', 'id'),
+        {!! Form::select('payment_processors[]', $paymentProcessors->pluck('name', 'id'),
         $paymentProcessorIds,
         ['class' => 'form-control',
         'multiple' => 'multiple'])

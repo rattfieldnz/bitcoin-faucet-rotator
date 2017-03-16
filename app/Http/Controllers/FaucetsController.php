@@ -69,12 +69,14 @@ class FaucetsController extends Controller
     {
         // Obtain current payment processors stored, from which
         // a faucet can be associated with.
-        $paymentProcessors = PaymentProcessor::pluck('name', 'id');
+        $paymentProcessors = PaymentProcessor::orderBy('name', 'asc');
+        //dd($paymentProcessors);
+        $paymentProcessorIds = null;
         $formHeading = "Create a new faucet";
         $submitButtonText = "Submit Faucet";
 
         // Return the form for which a faucet can be added.
-        return view('faucets.create', compact('paymentProcessors', 'formHeading', 'submitButtonText'));
+        return view('faucets.create', compact('paymentProcessors','paymentProcessorIds', 'formHeading', 'submitButtonText'));
     }
 
     /**
@@ -101,10 +103,10 @@ class FaucetsController extends Controller
 
         //Assign input from the form to the faucet's properties -
         //except payment processors as this needs to be done separately.
-        $faucet->fill(Input::except('faucet_payment_processors', 'send_tweet'));
+        $faucet->fill(Input::except('payment_processors', 'send_tweet'));
 
         //Retrieve payment processor ids from multi-select dropdown
-        $paymentProcessorIds = Input::get('faucet_payment_processors');
+        $paymentProcessorIds = Input::get('payment_processors');
 
         //Save the faucet, with the filled-in data.
         $faucet->save();
@@ -113,9 +115,10 @@ class FaucetsController extends Controller
         //payment processors from input - in a many-many relationship.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         if(count($paymentProcessorIds) >= 1){
-            foreach ($paymentProcessorIds as $paymentProcessorId) {
+            $faucet->paymentProcessors()->sync($paymentProcessorIds);
+            /*foreach ($paymentProcessorIds as $paymentProcessorId) {
                 $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
-            }
+            }*/
         }
 
         //Associated the currently logged in user with the new faucet.
@@ -248,8 +251,14 @@ class FaucetsController extends Controller
         //data.
         $faucet->fill(Input::except('send_tweet'));
 
-        //Retrieve payment processor ids from update.
-        $paymentProcessorIds = Input::get('faucet_payment_processors');
+        $paymentProcessorIds = Input::get('payment_processors');
+        $paymentProcessors = PaymentProcessor::whereIn('id', $paymentProcessorIds);
+
+        $toAddPaymentProcressorIds = [];
+
+        foreach($paymentProcessors->pluck('id')->toArray() as $key => $value){
+            array_push($toAddPaymentProcressorIds, (int)$value);
+        }
 
         //Below logic disables foreign key checking before
         //updating many-to-many table (faucet_payment_processor)
@@ -258,12 +267,10 @@ class FaucetsController extends Controller
         //iterated through, then synced with the current faucet in
         // the many-many table. Then foreign key checking is re-enabled.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        $faucet->paymentProcessors()->detach();
+        //$faucet->paymentProcessors()->detach();
 
-        if(count($paymentProcessorIds) >= 1){
-            foreach ($paymentProcessorIds as $paymentProcessorId) {
-                $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
-            }
+        if(count($toAddPaymentProcressorIds) >= 1){
+            $faucet->paymentProcessors()->sync($toAddPaymentProcressorIds);
         }
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 

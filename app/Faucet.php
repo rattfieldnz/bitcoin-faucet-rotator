@@ -50,7 +50,7 @@ class Faucet extends Model
      */
     public function paymentProcessors()
     {
-        return $this->belongsToMany('App\PaymentProcessor', 'faucet_payment_processor');
+        return $this->belongsToMany('App\PaymentProcessor', 'faucet_payment_processor')->orderBy('name');
     }
 
     /**
