@@ -27,7 +27,7 @@
         "roumen/sitemap": "dev-master",
         "abraham/twitteroauth": "^0.5.3",
         "roumen/feed": "^2.9",
-        "chromabits/purifier": "^2.1",
+        "mews/purifier": "~2.0",
         "laracasts/generators": "~1.0",
         "laravelcollective/bus": "^5.2.0",
         "league/csv": "^8.1",

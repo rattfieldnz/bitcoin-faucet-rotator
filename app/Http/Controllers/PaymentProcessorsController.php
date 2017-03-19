@@ -7,6 +7,7 @@ use App\PaymentProcessor;
 use Exception;
 use Helpers\Transformers\PaymentProcessorTransformer;
 use Helpers\Validators\PaymentProcessorValidator;
+use Http\Controllers\IController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Mews\Purifier\Facades\Purifier;
 
 /**
  * Class PaymentProcessorsController
@@ -24,7 +26,7 @@ use Illuminate\Support\Facades\Validator;
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package App\Http\Controllers
  */
-class PaymentProcessorsController extends Controller
+class PaymentProcessorsController extends Controller implements IController
 {
 
     /**
@@ -66,21 +68,22 @@ class PaymentProcessorsController extends Controller
      */
     public function store()
     {
+        $input = self::cleanInput(Input::all());
         //Validate form input used for creating payment processor.
-        $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesNew());
+        $validator = Validator::make($input, PaymentProcessorValidator::validationRulesNew());
 
         // Redirect to pre-populated form if validation failed.
         if ($validator->fails()) {
             return Redirect::to('/admin/payment_processors/create')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput($input);
         }
 
         // If validation passes, use form data to store
         // payment processor.
         $paymentProcessor = new PaymentProcessor;
 
-        $paymentProcessor->fill(Input::all());
+        $paymentProcessor->fill($input);
 
         $paymentProcessor->save();
 
@@ -133,23 +136,24 @@ class PaymentProcessorsController extends Controller
      */
     public function update($slug)
     {
+        $input = self::cleanInput(Input::all());
         // Obtain payment processor tp update
         $paymentProcessor = PaymentProcessor::where('slug', '=', $slug)->firstOrFail();
         $id = $paymentProcessor->id;
 
         // Create validator to validate form data used to update payment processor.
-        $validator = Validator::make(Input::all(), PaymentProcessorValidator::validationRulesEdit($id));
+        $validator = Validator::make($input, PaymentProcessorValidator::validationRulesEdit($id));
 
         // If validation fails, redirect to pre-populated form.
         if ($validator->fails()) {
             return Redirect::to('/admin/payment_processors/' . $slug . '/edit')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput($input);
         }
 
         // If validation passes, store updated details for
         // payment processor into database.
-        $paymentProcessor->fill(Input::all());
+        $paymentProcessor->fill($input);
 
         $paymentProcessor->save();
 
@@ -214,5 +218,20 @@ class PaymentProcessorsController extends Controller
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
+    }
+
+    /**
+     * @param array $input
+     * @return array
+     */
+    static function cleanInput(array $input)
+    {
+        $input['name'] = Purifier::clean($input['name'], 'generalFields');
+        $input['url'] = Purifier::clean($input['url'], 'generalFields');
+        $input['meta_title'] = Purifier::clean($input['meta_title'], 'generalFields');
+        $input['meta_description'] = Purifier::clean($input['meta_description'], 'generalFields');
+        $input['meta_keywords'] = Purifier::clean($input['meta_keywords'], 'generalFields');
+
+        return $input;
     }
 }

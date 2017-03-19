@@ -151,7 +151,7 @@ return [
         'Cviebrock\EloquentSluggable\ServiceProvider',
         'Roumen\Sitemap\SitemapServiceProvider',
         'Roumen\Feed\FeedServiceProvider',
-        'Chromabits\Purifier\PurifierServiceProvider',
+        'Mews\Purifier\PurifierServiceProvider',
         'SocialEngine\SnifferRules\ServiceProvider',
         'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider',
         /*
@@ -203,6 +203,7 @@ return [
         'Mail'      => 'Illuminate\Support\Facades\Mail',
         'Notification' => 'Illuminate\Support\Facades\Notification',
         'Password'  => 'Illuminate\Support\Facades\Password',
+        'Purifier' => 'Mews\Purifier\Facades\Purifier',
         'Queue'     => 'Illuminate\Support\Facades\Queue',
         'Redirect'  => 'Illuminate\Support\Facades\Redirect',
         'Redis'     => 'Illuminate\Support\Facades\Redis',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\TwitterConfig;
 use App\User;
 use Helpers\Validators\TwitterConfigValidator;
+use Http\Controllers\IController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Mews\Purifier\Facades\Purifier;
 
 /**
  * Class TwitterConfigController
@@ -23,7 +25,7 @@ use Illuminate\Support\Facades\Validator;
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package App\Http\Controllers
  */
-class TwitterConfigController extends Controller
+class TwitterConfigController extends Controller implements IController
 {
 
     /**
@@ -59,7 +61,7 @@ class TwitterConfigController extends Controller
     public function store()
     {
         //Create the validator to process input for validation.
-        $input = Input::except('_token');
+        $input = self::cleanInput(Input::except('_token'));
         $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
         if ($validator->fails()) {
@@ -89,7 +91,7 @@ class TwitterConfigController extends Controller
     public function update(TwitterConfig $twitterConfig)
     {
         $twitterConfig = $twitterConfig::firstOrFail();
-        $input = Input::except('_token');
+        $input = self::cleanInput(Input::except('_token'));
         $validator = Validator::make($input, TwitterConfigValidator::validationRules());
 
         if ($validator->fails()) {
@@ -104,5 +106,20 @@ class TwitterConfigController extends Controller
         Session::flash('success_message_update', 'The Twitter configuration has successfully been updated!');
 
         return Redirect::to('admin/twitter_config');
+    }
+
+    /**
+     * @param array $input
+     * @return array
+     */
+    static function cleanInput(array $input)
+    {
+        $input['consumer_key'] = Purifier::clean($input['consumer_key'], 'generalFields');
+        $input['consumer_key_secret'] = Purifier::clean($input['consumer_key_secret'], 'generalFields');
+        $input['access_token'] = Purifier::clean($input['access_token'], 'generalFields');
+        $input['access_token_secret'] = Purifier::clean($input['access_token_secret'], 'generalFields');
+        $input['user_id'] = Purifier::clean($input['user_id'], 'generalFields');
+
+        return $input;
     }
 }

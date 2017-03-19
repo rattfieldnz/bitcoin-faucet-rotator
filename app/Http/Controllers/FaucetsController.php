@@ -8,6 +8,7 @@ use App\PaymentProcessor;
 use App\User;
 use Exception;
 use Helpers\Validators\FaucetValidator;
+use Http\Controllers\IController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Mews\Purifier\Facades\Purifier;
 use RattfieldNz\UrlValidation\UrlValidation;
 
 /**
@@ -28,7 +30,7 @@ use RattfieldNz\UrlValidation\UrlValidation;
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package App\Http\Controllers
  */
-class FaucetsController extends Controller
+class FaucetsController extends Controller implements IController
 {
 
     private $faucetsUserId;
@@ -88,7 +90,7 @@ class FaucetsController extends Controller
     public function store()
     {
         //Create the validator to process input for validation.
-        $validator = Validator::make(Input::except('send_tweet'), FaucetValidator::validationRulesNew());
+        $validator = Validator::make(self::cleanInput(Input::except('send_tweet')), FaucetValidator::validationRulesNew());
 
         //If validator fails, return to the create page -
         //with input still in form, and accompanied with
@@ -101,9 +103,10 @@ class FaucetsController extends Controller
         //Declare and instantiate a new faucet.
         $faucet = new Faucet;
 
+        $input = self::cleanInput(Input::except('payment_processors', 'send_tweet'));
         //Assign input from the form to the faucet's properties -
         //except payment processors as this needs to be done separately.
-        $faucet->fill(Input::except('payment_processors', 'send_tweet'));
+        $faucet->fill($input);
 
         //Retrieve payment processor ids from multi-select dropdown
         $paymentProcessorIds = Input::get('payment_processors');
@@ -116,9 +119,6 @@ class FaucetsController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         if(count($paymentProcessorIds) >= 1){
             $faucet->paymentProcessors()->sync($paymentProcessorIds);
-            /*foreach ($paymentProcessorIds as $paymentProcessorId) {
-                $faucet->paymentProcessors()->attach((int)$paymentProcessorId);
-            }*/
         }
 
         //Associated the currently logged in user with the new faucet.
@@ -131,7 +131,7 @@ class FaucetsController extends Controller
         //Redirect to the faucet's page, with a success message.
         Session::flash('success_message', 'The faucet has successfully been created and stored!');
 
-        if (Input::get('send_tweet') == 1) {
+        if (self::cleanInput(Input::get('send_tweet')) == 1) {
             $faucetUrl = url('/faucets/' . $faucet->slug);
 
             $user = User::find(Auth::user()->id);
@@ -186,7 +186,6 @@ class FaucetsController extends Controller
 
             //Obtain payment processors associated with the faucet.
             $paymentProcessors = PaymentProcessor::orderBy('name', 'asc')->get();
-            $faucetPaymentProcessors = $faucet->paymentProcessors;
 
             //Retrieve ids of associated payment processors,
             //and putting them into an array.
@@ -195,13 +194,6 @@ class FaucetsController extends Controller
             foreach($faucet->paymentProcessors->pluck('id')->toArray() as $key => $value){
                 array_push($paymentProcessorIds, $value);
             }
-
-            /*if(count($paymentProcessorIds) >= 1){
-                foreach ($faucetPaymentProcessors as $paymentProcessor) {
-                    array_push($paymentProcessorIds, (int)$paymentProcessor->id);
-                }
-            }*/
-            //dd($paymentProcessorIds);
 
             $submitButtonText = "Submit Changes";
 
@@ -237,7 +229,8 @@ class FaucetsController extends Controller
         //with current faucet id, so
         //'not unique' errors won't be displayed
         //when updating.
-        $validator = Validator::make(Input::except('send_tweet'), FaucetValidator::validationRulesEdit($id));
+        $input = self::cleanInput(Input::except('send_tweet'));
+        $validator = Validator::make($input, FaucetValidator::validationRulesEdit($id));
 
         //If validation fails, redirect back to the
         //editing page - with input and relevant errors.
@@ -249,7 +242,7 @@ class FaucetsController extends Controller
         //Get all input from edit/update request,
         //then populate the faucet with the given
         //data.
-        $faucet->fill(Input::except('send_tweet'));
+        $faucet->fill($input);
 
         $paymentProcessorIds = Input::get('payment_processors');
         $paymentProcessors = PaymentProcessor::whereIn('id', $paymentProcessorIds);
@@ -334,5 +327,28 @@ class FaucetsController extends Controller
     public function faucetLowBalance($slug)
     {
         Faucets::lowBalance($slug);
+    }
+
+    /**
+     * @param array $input
+     * @return array
+     */
+    static function cleanInput(array $input)
+    {
+        $input['name'] = Purifier::clean($input['name'], 'generalFields');
+        $input['url'] = Purifier::clean($input['url'], 'generalFields');
+        $input['interval_minutes'] = Purifier::clean($input['interval_minutes'], 'generalFields');
+        $input['min_payout'] = Purifier::clean($input['min_payout'], 'generalFields');
+        $input['max_payout'] = Purifier::clean($input['max_payout'], 'generalFields');
+        $input['has_ref_program'] = Purifier::clean($input['has_ref_program'], 'generalFields');
+        $input['ref_payout_percent'] = Purifier::clean($input['ref_payout_percent'], 'generalFields');
+        $input['comments'] = Purifier::clean($input['comments'], 'generalFields');
+        $input['is_paused'] = Purifier::clean($input['is_paused'], 'generalFields');
+        $input['meta_title'] = Purifier::clean($input['meta_title'], 'generalFields');
+        $input['meta_description'] = Purifier::clean($input['meta_description'], 'generalFields');
+        $input['meta_keywords'] = Purifier::clean($input['meta_keywords'], 'generalFields');
+        $input['has_low_balance'] = Purifier::clean($input['has_low_balance'], 'generalFields');
+
+        return $input;
     }
 }

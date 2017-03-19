@@ -3,6 +3,7 @@
 use App\AdBlock;
 use App\User;
 use Helpers\Validators\AdBlockValidator;
+use Http\Controllers\IController;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -12,8 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Chromabits\Purifier\Contracts\Purifier;
-use HTMLPurifier_Config;
+use Mews\Purifier\Facades\Purifier;
 
 /**
  * Class AdBlockController
@@ -24,7 +24,7 @@ use HTMLPurifier_Config;
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package App\Http\Controllers
  */
-class AdBlockController extends Controller
+class AdBlockController extends Controller implements IController
 {
     /**
      * @var Purifier
@@ -76,7 +76,7 @@ class AdBlockController extends Controller
     public function store()
     {
         //Create the validator to process input for validation.
-        $input = $this->purifier->clean(Input::except('_token'));
+        $input = self::cleanInput(Input::except('_token'));
 
         $validator = Validator::make($input, AdBlockValidator::validationRules());
 
@@ -105,7 +105,7 @@ class AdBlockController extends Controller
     public function update(AdBlock $adBlock)
     {
         $adBlock = $adBlock::firstOrFail();
-        $input = Input::except('_token');
+        $input = self::cleanInput(Input::except('_token'));
         $validator = Validator::make($input, AdBlockValidator::validationRules());
 
         if ($validator->fails()) {
@@ -121,5 +121,17 @@ class AdBlockController extends Controller
         Session::flash('success_message_update', 'The Ad Block has successfully been updated!');
 
         return Redirect::to('admin/ad_block_config');
+    }
+
+    /**
+     * @param array $input
+     * @return mixed
+     */
+    static function cleanInput(array $input)
+    {
+        $input['ad_content'] = Purifier::clean($input['ad_content']);
+        $input['user_id'] = Purifier::clean($input['user_id'], 'generalFields');
+
+        return $input;
     }
 }
