@@ -15,9 +15,9 @@ class AddMetaToPaymentProcessors extends Migration
     public function up()
     {
         Schema::table('payment_processors', function (Blueprint $table) {
-            $table->string('meta_title', 70)->nullable();
-            $table->string('meta_description', 160)->nullable();
-            $table->string('meta_keywords', 255)->nullable();
+            $table->string('meta_title', 70)->nullable()->default("");
+            $table->string('meta_description', 160)->nullable()->default("");
+            $table->string('meta_keywords', 255)->nullable()->default("");
         });
     }
 

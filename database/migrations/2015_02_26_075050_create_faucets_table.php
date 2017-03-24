@@ -25,7 +25,7 @@ class CreateFaucetsTable extends Migration
             $table->smallInteger('ref_payout_percent')->default(0);
             $table->text('comments')->nullable();
             $table->boolean('is_paused')->default(0);
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

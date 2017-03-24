@@ -118,7 +118,7 @@ class FaucetsController extends Controller implements IController
         //payment processors from input - in a many-many relationship.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         if(count($paymentProcessorIds) >= 1){
-            $faucet->paymentProcessors()->sync($paymentProcessorIds);
+            $faucet->paymentProcessors->sync($paymentProcessorIds);
         }
 
         //Associated the currently logged in user with the new faucet.
@@ -260,10 +260,9 @@ class FaucetsController extends Controller implements IController
         //iterated through, then synced with the current faucet in
         // the many-many table. Then foreign key checking is re-enabled.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        //$faucet->paymentProcessors()->detach();
 
         if(count($toAddPaymentProcressorIds) >= 1){
-            $faucet->paymentProcessors()->sync($toAddPaymentProcressorIds);
+            $faucet->paymentProcessors->sync($toAddPaymentProcressorIds);
         }
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
@@ -301,7 +300,7 @@ class FaucetsController extends Controller implements IController
             $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
             $faucetName = $faucet->name;
             $faucetUrl = $faucet->url;
-            $faucet->paymentProcessors()->detach();
+            $faucet->paymentProcessors->detach();
             $faucet->users()->detach();
             $faucet->delete();
 

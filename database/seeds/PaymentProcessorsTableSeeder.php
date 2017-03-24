@@ -22,20 +22,18 @@ class PaymentProcessorsTableSeeder extends BaseSeeder
         $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/payment_processors.csv');
 
         foreach ($data as $d) {
-            $url = $d['url'];
             try {
-                $meta = new WebsiteMeta($url);
                 $payment_processor = new PaymentProcessor([
                     'name' => $d['name'],
-                    'url' => $url,
-                    'meta_title' => $meta->title(),
-                    'meta_description' => $meta->description(),
-                    'meta_keywords' => $meta->keywords(),
+                    'url' => $d['url'],
+                    'meta_title' => $d['meta_title'],
+                    'meta_description' => $d['meta_description'],
+                    'meta_keywords' => $d['meta_keywords']
                 ]);
 
                 $payment_processor->save();
             } catch (Exception $e) {
-                error_log($e->getMessage() . "<br>" . 'The URL "' . $url . '" does not exist or is experiencing technical issues.');
+                error_log($e->getMessage());
             }
         }
     }

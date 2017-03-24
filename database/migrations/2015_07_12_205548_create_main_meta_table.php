@@ -20,7 +20,7 @@ class CreateMainMetaTable extends Migration
             $table->string('description', 160)->nullable();
             $table->string('keywords', 255)->nullable();
             $table->string('google_analytics_id', 50)->nullable();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

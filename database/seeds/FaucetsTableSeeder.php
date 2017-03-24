@@ -24,26 +24,25 @@ class FaucetsTableSeeder extends BaseSeeder
         foreach ($data as $d) {
             $url = $d['url'];
             try {
-                $meta = new WebsiteMeta($url);
                 $faucet = new Faucet([
                     'name' => $d['name'],
                     'url' => $url,
                     'interval_minutes' => (int)$d['interval_minutes'],
                     'min_payout' => (int)$d['min_payout'],
                     'max_payout' => (int)$d['max_payout'],
-                    'has_ref_program' => $d['has_ref_program'],
+                    'has_ref_program' => (int)$d['has_ref_program'],
                     'ref_payout_percent' => (int)$d['ref_payout_percent'],
                     'comments' => $d['comments'],
-                    'is_paused' => $d['comments'],
-                    'meta_title' => $meta->title(),
-                    'meta_description' => $meta->description(),
-                    'meta_keywords' => $meta->keywords(),
-                    'has_low_balance' => false
+                    'is_paused' => (int)$d['is_paused'],
+                    'meta_title' => $d['meta_title'],
+                    'meta_description' => $d['meta_description'],
+                    'meta_keywords' => $d['meta_keywords'],
+                    'has_low_balance' => (int)$d['has_low_balance'],
                 ]);
 
                 $faucet->save();
             } catch (Exception $e) {
-                error_log($e->getMessage() . "<br>" . 'The URL "' . $url . '" does not exist or is experiencing technical issues.');
+                error_log($e->getMessage());
             }
         }
     }

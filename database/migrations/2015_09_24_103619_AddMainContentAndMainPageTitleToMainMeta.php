@@ -14,7 +14,7 @@ class AddMainContentAndMainPageTitleToMainMeta extends Migration
     public function up()
     {
         Schema::table('main_meta', function (Blueprint $table) {
-            $table->string('page_main_title', 100);
+            $table->string('page_main_title', 100)->nullable();
             $table->text('page_main_content')->nullable();
         });
     }

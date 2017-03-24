@@ -15,7 +15,7 @@ class AddTimestampsToPaymentProcessors extends Migration
     public function up()
     {
         Schema::table('payment_processors', function (Blueprint $table) {
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

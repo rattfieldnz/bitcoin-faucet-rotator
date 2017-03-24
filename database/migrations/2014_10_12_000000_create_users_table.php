@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('bitcoin_address')->unique();
             $table->boolean('is_admin')->default(0);
             $table->rememberToken();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

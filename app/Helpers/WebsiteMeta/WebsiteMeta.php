@@ -17,6 +17,8 @@ class WebsiteMeta
 {
 
     private $url;
+    private $urlMetaUrl = 'https://api.urlmeta.org?url=';
+    private $urlContents;
 
     /**
      * WebsiteMeta constructor.
@@ -25,11 +27,9 @@ class WebsiteMeta
      */
     public function __construct($url)
     {
-        if (UrlValidation::urlExists($url) == true) {
-            $this->url = $url;
-        } else {
-            throw new Exception('The URL does not exist or is experiencing technical issues.');
-        }
+        ini_set("allow_url_fopen", 1);
+            $this->url = $this->urlMetaUrl . $url;
+            $this->contents = $this->getUrlContents($this->url);
     }
 
     /**
@@ -40,11 +40,11 @@ class WebsiteMeta
      */
     public function title()
     {
-        $title = $this->meta()->getTitle();
-        if ($title != false) {
-            return $title;
+        try {
+            return $this->contents->meta->title != null ? $this->contents->meta->title : "";
+        } catch(Exception $e){
+            return "";
         }
-        return null;
     }
 
     /**
@@ -55,17 +55,11 @@ class WebsiteMeta
      */
     public function keywords()
     {
-        $keywordsArray = $this->meta()->getKeywords();
-        $keywordsString = '';
-        if (count($keywordsArray) > 0) {
-            for ($i = 0; $i < count($keywordsArray); $i++) {
-                if ($i == count($keywordsArray) - 1) {
-                    $keywordsString .= $keywordsArray[$i];
-                }
-                $keywordsString .= $keywordsArray[$i] . ', ';
-            }
+        try {
+            return $this->contents->meta->keywords != null ? $this->contents->meta->keywords : "";
+        } catch(Exception $e){
+            return "";
         }
-        return $keywordsString;
     }
 
     /**
@@ -76,26 +70,11 @@ class WebsiteMeta
      */
     public function description()
     {
-        $description = $this->meta()->getDescription();
-
-        if ($description != false) {
-            return $description;
+        try {
+            return $this->contents->meta->description != null ? $this->contents->meta->description : "";
+        } catch(Exception $e){
+            return "";
         }
-        return null;
-    }
-
-    /**
-     * A function used to return a MetaParser object
-     * which is then used to handle HTML retrieval.
-     *
-     * @return MetaParser
-     */
-    public function meta()
-    {
-        $curler = (new Curler());
-        $body = $curler->get($this->url);
-        $parser = (new MetaParser($body, $this->url));
-        return $parser;
     }
 
     /**
@@ -146,5 +125,10 @@ class WebsiteMeta
     public static function activatedAdBlockBlocking()
     {
         return MainMeta::firstOrFail()->prevent_adblock_blocking;
+    }
+
+    private function getUrlContents($url){
+        $content = file_get_contents($url);
+        return json_decode($content);
     }
 }
