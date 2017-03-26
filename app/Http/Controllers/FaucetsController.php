@@ -300,7 +300,7 @@ class FaucetsController extends Controller implements IController
             $faucet = Faucet::where('slug', '=', $slug)->firstOrFail();
             $faucetName = $faucet->name;
             $faucetUrl = $faucet->url;
-            $faucet->paymentProcessors->detach();
+            $faucet->paymentProcessors()->detach();
             $faucet->users()->detach();
             $faucet->delete();
 
