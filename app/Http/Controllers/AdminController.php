@@ -3,8 +3,14 @@
 use App\Http\Requests;
 use App\User;
 use Helpers\Transformers\UserTransformer;
+use Helpers\Validators\AdminValidator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Mews\Purifier\Facades\Purifier;
 
 /**
  * Class AdminController
@@ -44,6 +50,67 @@ class AdminController extends Controller
         $user = Auth::user();
 
         return view('admin.index', compact('user'));
+    }
+
+    public function edit(){
+        $user = Auth::user()
+            ->where('is_admin', true)
+            ->first();
+        return view('admin.edit', compact('user'));
+
+    }
+
+    public function update(){
+        $user = Auth::user()
+            ->where('is_admin', true)
+            ->first();
+
+        $input = Input::all();
+
+        $rules = AdminValidator::validationRulesEdit($user->id);
+
+        //dd(empty(Input::get('password')));
+
+        if (empty(Input::get('password')) || Input::get('password') == "" || Input::get('password') == null) {
+            $rules['password'] = [
+            ];
+            $rules['password_confirmation'] = [
+            ];
+        }
+
+        $validator = Validator::make($input, $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('/admin/edit')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+
+        $user->fill(self::cleanInput($input));
+        $user->save();
+
+
+        Session::flash('success_message_edit_admin_details', 'The admin user details has successfully been updated!');
+
+        //Redirect to the faucet's page
+        return Redirect::to('/admin/admin');
+
+
+    }
+
+    static function cleanInput(array $data)
+    {
+        $data['user_name'] = Purifier::clean($data['user_name'], 'generalFields');
+        $data['first_name'] = Purifier::clean($data['first_name'], 'generalFields');
+        $data['last_name'] = Purifier::clean($data['last_name'], 'generalFields');
+        $data['email'] = Purifier::clean($data['email'], 'generalFields');
+        if(isset($data['password']) && isset($data['password_confirmation'])){
+            $data['password'] = Purifier::clean(bcrypt($data['password']), 'generalFields');
+        }
+        $data['bitcoin_address'] = Purifier::clean($data['bitcoin_address'], 'generalFields');
+        $data['is_admin'] = Purifier::clean($data['is_admin'], 'generalFields');
+
+        return $data;
     }
 
     /**

@@ -9,19 +9,6 @@ Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-/*
- * Use this route to test your MailGun settings.
- *
- * If the settings are correct, you should receive an email (sometimes delayed slightly) to your specified 'ADMIN_EMAIL'
- * (defined in the .env file).
- */
-Route::get('send_test_email', function(){
-    Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-    {
-        $message->to(env('ADMIN_EMAIL'));
-    });
-});
-
 Route::get('/', 'RotatorController@index');
 
 Route::patch('faucets/checkFaucetsStatus', [
@@ -57,7 +44,9 @@ Route::get('/admin/twitter_config', 'TwitterConfigController@index');
 Route::resource('admin/ad_block_config', 'AdBlockController');
 Route::get('/admin/ad_block_config', 'AdBlockController@index');
 
-Route::get('admin/admin', 'AdminController@index');
+Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
+Route::get('admin/edit', ['as' => 'admin.edit', 'uses' => 'AdminController@edit']);
+Route::patch('admin/update', ['as' => 'admin.update', 'uses' => 'AdminController@update']);
 Route::get('admin/overview', 'AdminController@overview');
 
 Route::get('data/download', 'DownloadSpreadsheetDataController@index');

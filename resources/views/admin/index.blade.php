@@ -3,12 +3,15 @@
 @section('content')
         <h1 class="page-heading">Admin Account Details</h1>
         <br>
-        @if (Session::has('success_message_edit'))
-            <div class="alert alert-success">
-                <span class="fa fa-thumbs-o-up fa-2x space-right"></span>
-                {{ Session::get('success_message_edit') }}
-            </div>
+        @if(Auth::user() != null)
+            @if(Auth::user()->is_admin == true)
+                <h1 class="pull-right">
+                    <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.edit') !!}">Edit Details</a>
+                </h1>
+                <div class="clearfix"></div>
+            @endif
         @endif
+        @include('admin/partials/_session_messages')
         <div class="table-responsive">
             <table class="table bordered admin-details">
                 <tr>
