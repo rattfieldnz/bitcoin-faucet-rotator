@@ -76,6 +76,7 @@ class AdminController extends Controller
             ];
             $rules['password_confirmation'] = [
             ];
+            $input = Input::except('password', 'password_confirmation');
         }
 
         $validator = Validator::make($input, $rules);
