@@ -92,8 +92,7 @@ class AdminController extends Controller
 
         Session::flash('success_message_edit_admin_details', 'The admin user details has successfully been updated!');
 
-        //Redirect to the faucet's page
-        return Redirect::to('/admin/admin');
+        return Redirect::to(route('admin'));
 
 
     }
