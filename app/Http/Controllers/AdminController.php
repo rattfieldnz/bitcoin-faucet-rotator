@@ -91,7 +91,7 @@ class AdminController extends Controller
         $user->save();
 
 
-        Session::flash('success_message_edit_admin_details', 'The admin user details has successfully been updated!');
+        Session::flash('success_message_edit_admin_details', 'The admin user details has successfully been updated! If the password was changed, the updated password will be needed on next login.');
 
         return Redirect::to(route('admin'));
 

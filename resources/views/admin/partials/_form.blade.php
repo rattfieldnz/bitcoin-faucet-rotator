@@ -43,6 +43,7 @@
 
 <div class="form-group">
     <div class="col-lg-10 pull-right">
+        <p><strong>If you do not wish to update your password, please leave the password fields <em>blank</em>.</strong></p>
         <p>The password must be at least 10 and no more than 20 characters in length.</p>
         <p>The password must also pass the following rules:</p>
         <ul>

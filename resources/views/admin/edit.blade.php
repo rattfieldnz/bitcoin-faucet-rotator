@@ -11,7 +11,6 @@
             <div class="clearfix"></div>
         @endif
     @endif
-
     @include('faucets/partials/_errors')
 
     {!! Form::model( $user, ['method' => 'PATCH', 'route' => ['admin.update', $user->id],'class' => 'form-horizontal']) !!}
