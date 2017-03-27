@@ -262,7 +262,7 @@ class FaucetsController extends Controller implements IController
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
         if(count($toAddPaymentProcressorIds) >= 1){
-            $faucet->paymentProcessors->sync($toAddPaymentProcressorIds);
+            $faucet->paymentProcessors()->sync($toAddPaymentProcressorIds);
         }
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
