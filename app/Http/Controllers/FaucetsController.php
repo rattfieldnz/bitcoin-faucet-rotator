@@ -3,14 +3,11 @@
 use App\Faucet;
 use App\Helpers\Functions\Faucets;
 use App\Helpers\Social\Twitter;
-use App\Http\Requests;
 use App\PaymentProcessor;
 use App\User;
-use Exception;
 use Helpers\Validators\FaucetValidator;
 use Http\Controllers\IController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -19,7 +16,6 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Mews\Purifier\Facades\Purifier;
-use RattfieldNz\UrlValidation\UrlValidation;
 
 /**
  * Class FaucetsController
@@ -85,7 +81,6 @@ class FaucetsController extends Controller implements IController
      * Store a newly created faucet in storage.
      *
      * @return Response
-     * @internal param Request $request
      */
     public function store()
     {
@@ -118,7 +113,7 @@ class FaucetsController extends Controller implements IController
         //payment processors from input - in a many-many relationship.
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         if(count($paymentProcessorIds) >= 1){
-            $faucet->paymentProcessors->sync($paymentProcessorIds);
+            $faucet->paymentProcessors()->sync($paymentProcessorIds);
         }
 
         //Associated the currently logged in user with the new faucet.
@@ -131,7 +126,7 @@ class FaucetsController extends Controller implements IController
         //Redirect to the faucet's page, with a success message.
         Session::flash('success_message', 'The faucet has successfully been created and stored!');
 
-        if (self::cleanInput(Input::get('send_tweet')) == 1) {
+        if (Input::get('send_tweet') == 1) {
             $faucetUrl = url('/faucets/' . $faucet->slug);
 
             $user = User::find(Auth::user()->id);
@@ -151,7 +146,6 @@ class FaucetsController extends Controller implements IController
      *
      * @param $slug
      * @return Response
-     * @internal param int $id
      */
     public function show($slug)
     {
@@ -292,7 +286,6 @@ class FaucetsController extends Controller implements IController
      *
      * @param $slug
      * @return Response
-     * @internal param int $id
      */
     public function destroy($slug)
     {
