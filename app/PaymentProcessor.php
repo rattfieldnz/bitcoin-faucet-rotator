@@ -45,6 +45,16 @@ class PaymentProcessor extends Model
     }
 
     /**
+     * Get linked keywords.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function keywords()
+    {
+        return $this->hasMany(Keyword::class, 'keywords_payment_processors');
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

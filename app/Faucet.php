@@ -63,6 +63,16 @@ class Faucet extends Model
     }
 
     /**
+     * Get linked keywords.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function keywords()
+    {
+        return $this->hasMany(Keyword::class, 'faucets_keywords');
+    }
+
+    /**
      * A method to tell user if a faucet
      * has a referral program or not, in
      * a readable format.
