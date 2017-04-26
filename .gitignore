@@ -12,3 +12,4 @@ public/blog
 public/.htaccess
 _ide_helper.php
 /.idea
+/nbproject

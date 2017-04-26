@@ -154,6 +154,7 @@ return [
         'Mews\Purifier\PurifierServiceProvider',
         'SocialEngine\SnifferRules\ServiceProvider',
         'MicheleCurletta\LaravelScheduleOverview\ScheduleOverviewServiceProvider',
+        'Laravel\Scout\ScoutServiceProvider',
         /*
 		 * Application Service Providers...
 		 */
