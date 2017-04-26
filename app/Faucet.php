@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Faucet
@@ -14,7 +15,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Faucet extends Model
 {
 
-	use Sluggable;
+	use Sluggable, Searchable;
 
     /**
      * The database table used by the model.

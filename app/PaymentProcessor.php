@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Laravel\Scout\Searchable;
 
 /**
  * Class PaymentProcessor
@@ -10,7 +11,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class PaymentProcessor extends Model
 {
 
-	use Sluggable;
+    use Sluggable, Searchable;
 
     /**
      * The database table used by the model.

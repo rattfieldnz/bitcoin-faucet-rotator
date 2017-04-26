@@ -4,6 +4,7 @@ namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Keyword
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Keyword extends Model
 {
 
-    use Sluggable;
+    use Sluggable, Searchable;
 
     /**
      * The database table used by the model.

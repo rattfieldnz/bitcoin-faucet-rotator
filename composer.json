@@ -33,7 +33,9 @@
         "league/csv": "^8.1",
         "michelecurletta/laravel-schedule-overview": "^0.0.2",
         "predis/predis": "1.1.*",
-        "php": ">=5.6.4"
+        "laravel/scout" : "^2.0",
+        "php": ">=5.6.4",
+        "algolia/algoliasearch-client-php": "^1.17"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.0",
