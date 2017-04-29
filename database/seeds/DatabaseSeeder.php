@@ -3,6 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class DatabaseSeeder
+ */
 class DatabaseSeeder extends Seeder
 {
 
@@ -15,13 +18,16 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call('FaucetsTableSeeder');
-        $this->call('PaymentProcessorsTableSeeder');
-        $this->call('FaucetPaymentProcessorsTableSeeder');
-        $this->call('UsersTableSeeder');
-        $this->call('ReferralInfoTableSeeder');
-        $this->call('MainMetaTableSeeder');
-        $this->call('TwitterConfigTableSeeder');
-        $this->call('AdBlockSeeder');
+        $this->call(FaucetsTableSeeder::class);
+        $this->call(PaymentProcessorsTableSeeder::class);
+        $this->call(FaucetPaymentProcessorsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(ReferralInfoTableSeeder::class);
+        $this->call(MainMetaTableSeeder::class);
+        $this->call(TwitterConfigTableSeeder::class);
+        $this->call(AdBlockSeeder::class);
+        $this->call(KeywordTableSeeder::class);
+
+        Model::reguard();
     }
 }

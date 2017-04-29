@@ -48,11 +48,11 @@ class PaymentProcessor extends Model
     /**
      * Get linked keywords.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function keywords()
     {
-        return $this->hasMany(Keyword::class, 'keywords_payment_processors');
+        return $this->belongsToMany(Keyword::class, 'keywords_payment_processors');
     }
 
     /**

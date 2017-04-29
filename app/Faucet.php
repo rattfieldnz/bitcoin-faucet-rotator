@@ -67,11 +67,11 @@ class Faucet extends Model
     /**
      * Get linked keywords.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function keywords()
     {
-        return $this->hasMany(Keyword::class, 'faucets_keywords');
+        return $this->belongsToMany(Keyword::class, 'faucets_keywords');
     }
 
     /**

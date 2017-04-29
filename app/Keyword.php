@@ -37,10 +37,10 @@ class Keyword extends Model
     /**
      * Get linked faucets.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function faucets(){
-        return $this->hasMany(Faucet::class, 'faucets_keywords');
+        return $this->belongsToMany(Faucet::class, 'faucets_keywords');
     }
 
     /**
@@ -59,6 +59,10 @@ class Keyword extends Model
      */
     public function sluggable()
     {
-        // TODO: Implement sluggable() method.
+        return [
+            'slug' => [
+                'source' => 'keyword'
+            ]
+        ];
     }
 }

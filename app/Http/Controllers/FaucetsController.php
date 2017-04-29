@@ -30,13 +30,16 @@ class FaucetsController extends Controller implements IController
 {
 
     private $faucetsUserId;
+    private $faucetFunctions;
 
     /**
      * FaucetsController constructor.
+     * @param Faucets $faucetFunctions
      */
-    public function __construct()
+    public function __construct(Faucets $faucetFunctions)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->faucetFunctions = $faucetFunctions;
     }
     /**
      * Display a listing of all faucets currently in the system.
@@ -118,6 +121,10 @@ class FaucetsController extends Controller implements IController
 
         //Associated the currently logged in user with the new faucet.
         $faucet->users()->attach(Auth::user()->id);
+
+        $keywords = explode(',', $input['meta_keywords']);
+        $this->faucetFunctions->attachKeywords($faucet, $keywords);
+
 
         // Re-enable foreign key checks after inserting
         //many-many records.
@@ -258,6 +265,10 @@ class FaucetsController extends Controller implements IController
         if(count($toAddPaymentProcressorIds) >= 1){
             $faucet->paymentProcessors()->sync($toAddPaymentProcressorIds);
         }
+
+        $keywords = explode(',', $input['meta_keywords']);
+        $this->faucetFunctions->attachKeywords($faucet, $keywords);
+
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         //Save the changes made to the faucet.
