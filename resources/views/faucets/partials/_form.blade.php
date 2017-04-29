@@ -29,7 +29,7 @@
 <div class="form-group">
     {!! Form::label('meta_keywords', 'Faucet Meta Keywords (comma separated):', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-10">
-        {!! Form::text('meta_keywords', null, ['class' => 'form-control']) !!}
+        {!! Form::text('meta_keywords', null, ['class' => 'form-control', 'data-role' => 'tagsinput']) !!}
     </div>
 </div>
 

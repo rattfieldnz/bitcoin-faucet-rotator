@@ -64,6 +64,13 @@ gulp.task("copyfiles", function() {
     gulp.src("vendor/bower_components/ckeditor/**")
         .pipe(gulp.dest("public/assets/js/ckeditor"));
 
+    // Bootstrap Tags Input
+    gulp.src('vendor/bower_components/bootstrap-tagsinput/src/*.css')
+        .pipe(gulp.dest('resources/assets/css/bootstrap-tagsinput'));
+
+    gulp.src('vendor/bower_components/bootstrap-tagsinput/src/bootstrap-tagsinput.js')
+        .pipe(gulp.dest('resources/assets/js/bootstrap-tagsinput'));
+
 });
 
 /**
@@ -76,6 +83,7 @@ elixir(function(mix) {
             'js/jquery/jquery.js',
             'js/jquery-ui/jquery-ui.js',
             'js/bootstrap-sass-official/bootstrap.js',
+            'js/bootstrap-tagsinput/bootstrap-tagsinput.js',
             'js/blockadblock/blockadblock.js',
             'js/custom/jquery.simplemodal-1.4.4.js',
             'js/custom/jquery.tablesorter.js',

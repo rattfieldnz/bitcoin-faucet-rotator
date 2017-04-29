@@ -7,6 +7,7 @@ use Laravel\Scout\Searchable;
 /**
  * Class Faucet
  *
+ *
  * A model class for a faucet.
  *
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
