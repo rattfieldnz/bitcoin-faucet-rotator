@@ -51,7 +51,7 @@ class Faucet extends Model
      */
     public function paymentProcessors()
     {
-        return $this->belongsToMany('App\PaymentProcessor', 'faucet_payment_processor')->orderBy('name');
+        return $this->belongsToMany(PaymentProcessor::class, 'faucet_payment_processor')->orderBy('name');
     }
 
     /**
@@ -60,7 +60,7 @@ class Faucet extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\User', 'referral_info');
+        return $this->belongsToMany(User::class, 'referral_info');
     }
 
     /**

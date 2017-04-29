@@ -24,6 +24,6 @@ class TwitterConfig extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 }

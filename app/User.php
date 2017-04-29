@@ -49,16 +49,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function faucets()
     {
-        return $this->belongsToMany('App\Faucet', 'referral_info')->orderBy('interval_minutes', 'asc');
+        return $this->belongsToMany(Faucet::class, 'referral_info')->orderBy('interval_minutes', 'asc');
     }
 
     public function twitterConfig()
     {
-        return $this->hasOne('App\TwitterConfig', 'user_id');
+        return $this->hasOne(TwitterConfig::class, 'user_id');
     }
 
     public function adBlock()
     {
-        return $this->hasOne('App\AdBlock', 'user_id');
+        return $this->hasOne(AdBlock::class, 'user_id');
     }
 }
