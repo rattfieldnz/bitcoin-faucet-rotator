@@ -3,6 +3,9 @@
 use App\MainMeta;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class MainMetaTableSeeder
+ */
 class MainMetaTableSeeder extends BaseSeeder
 {
     public function run()

@@ -1,5 +1,6 @@
 <?php
 use App\Faucet;
+use App\Helpers\Functions\Faucets;
 use App\Helpers\WebsiteMeta\WebsiteMeta;
 
 /**
@@ -12,6 +13,17 @@ use App\Helpers\WebsiteMeta\WebsiteMeta;
 class FaucetsTableSeeder extends BaseSeeder
 {
 
+    private $faucetFunctions;
+
+    /**
+     * FaucetsTableSeeder constructor.
+     * @param Faucets $faucetFunctions
+     */
+    public function __construct(Faucets $faucetFunctions)
+    {
+        $this->faucetFunctions = $faucetFunctions;
+    }
+
     /**
      * Run the database seeds.
      *
@@ -19,6 +31,7 @@ class FaucetsTableSeeder extends BaseSeeder
      */
     public function run()
     {
+
         $data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/faucets.csv');
 
         foreach ($data as $d) {
@@ -41,6 +54,10 @@ class FaucetsTableSeeder extends BaseSeeder
                 ]);
 
                 $faucet->save();
+
+                $keywords = explode(',', $d['meta_keywords']);
+                $this->faucetFunctions->attachKeywords($faucet, $keywords);
+
             } catch (Exception $e) {
                 error_log($e->getMessage());
             }

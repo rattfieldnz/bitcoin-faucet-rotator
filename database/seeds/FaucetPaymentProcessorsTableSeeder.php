@@ -20,7 +20,6 @@ class FaucetPaymentProcessorsTableSeeder extends BaseSeeder
     public function run()
     {
         $paymentProcessors = PaymentProcessor::all();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         foreach($paymentProcessors as $paymentProcessor){
             switch($paymentProcessor->name){
                 case 'CoinBase':
@@ -151,8 +150,5 @@ class FaucetPaymentProcessorsTableSeeder extends BaseSeeder
                     break;
             }
         }
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        //$data = $this->csv_to_array(base_path() . '/database/seeds/csv_files/faucets_payment_processors.csv');
-        //$this->insert_data('faucet_payment_processor', $data);
     }
 }

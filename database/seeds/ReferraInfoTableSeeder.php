@@ -10,26 +10,28 @@ use App\Faucet;
 use App\User;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class ReferralInfoTableSeeder
+ */
 class ReferralInfoTableSeeder extends Seeder
 {
 
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        DB::table('referral_info')->truncate();
+        try {
+            $user_id = User::where('user_name', env('ADMIN_USERNAME'))->first()->id;
+            $faucets = Faucet::all();
 
-        $user_id = User::where('user_name', env('ADMIN_USERNAME'))->first()->id;
-        $faucets = Faucet::all();
-
-        foreach ($faucets as $faucet) {
-            DB::table('referral_info')->insert([
-                [
-                    'faucet_id' => $faucet->id,
-                    'user_id' => $user_id
-                ]
-            ]);
+            foreach ($faucets as $faucet) {
+                DB::table('referral_info')->insert([
+                    [
+                        'faucet_id' => $faucet->id,
+                        'user_id' => $user_id
+                    ]
+                ]);
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage());
         }
-
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

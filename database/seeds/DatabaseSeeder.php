@@ -18,6 +18,19 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        // Truncate all tables before seeding.
+        $database = DB::select('SELECT DATABASE() AS name');
+
+        $col = 'Tables_in_' . $database[0]->name;
+
+        $tables = array_except(DB::select('SHOW TABLES'), ['migrations']);
+
+        foreach ($tables as $table) {
+            DB::table($table->$col)->truncate();
+        }
+
         $this->call(FaucetsTableSeeder::class);
         $this->call(PaymentProcessorsTableSeeder::class);
         $this->call(FaucetPaymentProcessorsTableSeeder::class);
@@ -26,8 +39,10 @@ class DatabaseSeeder extends Seeder
         $this->call(MainMetaTableSeeder::class);
         $this->call(TwitterConfigTableSeeder::class);
         $this->call(AdBlockSeeder::class);
-        $this->call(KeywordTableSeeder::class);
+        //$this->call(KeywordTableSeeder::class);
 
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         Model::reguard();
     }
 }

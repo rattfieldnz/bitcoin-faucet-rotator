@@ -4,6 +4,9 @@ use App\AdBlock;
 use App\User;
 use Illuminate\Database\Seeder;;
 
+/**
+ * Class AdBlockSeeder
+ */
 class AdBlockSeeder extends BaseSeeder
 {
     public function run()
