@@ -20,16 +20,18 @@ class DatabaseSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
-        // Truncate all tables before seeding.
-        $database = DB::select('SELECT DATABASE() AS name');
+        DB::table('ad_block')->truncate();
+        DB::table('twitter_config')->truncate();
+        DB::table('main_meta')->truncate();
+        DB::table('referral_info')->truncate();
+        DB::table('users')->truncate();
+        DB::table('faucet_payment_processor')->truncate();
+        DB::table('payment_processors')->truncate();
+        DB::table('keywords')->truncate();
+        DB::table('faucets_keywords')->truncate();
+        DB::table('keywords_payment_processors')->truncate();
+        DB::table('faucets')->truncate();
 
-        $col = 'Tables_in_' . $database[0]->name;
-
-        $tables = array_except(DB::select('SHOW TABLES'), ['migrations']);
-
-        foreach ($tables as $table) {
-            DB::table($table->$col)->truncate();
-        }
 
         $this->call(FaucetsTableSeeder::class);
         $this->call(PaymentProcessorsTableSeeder::class);
