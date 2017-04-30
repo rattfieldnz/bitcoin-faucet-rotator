@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
  * Class PaymentProcessor
  * @package App
  */
-class PaymentProcessor extends Model
+class PaymentProcessor extends AppModel
 {
 
     use Sluggable, Searchable;

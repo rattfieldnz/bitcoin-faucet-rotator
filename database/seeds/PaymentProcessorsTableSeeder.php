@@ -32,6 +32,14 @@ class PaymentProcessorsTableSeeder extends BaseSeeder
                 ]);
 
                 $payment_processor->save();
+
+                $keywords = explode(',', $d['meta_keywords']);
+                $payment_processor->attachKeywords(
+                    $payment_processor,
+                    'meta_keywords',
+                    'keywords',
+                    $keywords
+                );
             } catch (Exception $e) {
                 error_log($e->getMessage());
             }

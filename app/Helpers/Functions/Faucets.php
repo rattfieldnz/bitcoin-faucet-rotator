@@ -94,37 +94,4 @@ class Faucets
                 ->withInput(Input::get('has_low_balance'));
         }
     }
-
-    /**
-     * @param Faucet $faucet
-     * @param array $keywords
-     */
-    public function attachKeywords(Faucet $faucet, array $keywords){
-        for($i = 0; $i < count($keywords); $i++){
-            if(!empty($keywords[$i])){
-                if(
-                    empty(Keyword::where('keyword', trim($keywords[$i]))->first()) &&
-                    empty(Keyword::where('keyword', ucfirst(trim($keywords[$i])))->first()) &&
-                    empty(Keyword::where('keyword', lcfirst(trim($keywords[$i])))->first()) &&
-                    empty(Keyword::where('keyword', ucwords(trim($keywords[$i])))->first()) &&
-                    empty(Keyword::where('keyword', strtolower(trim($keywords[$i])))->first())
-                ){
-                    $keyword = new Keyword;
-                    $keyword->keyword = trim($keywords[$i]);
-                    $keyword->save();
-
-                    if(empty($faucet->keywords()->where('keyword_id', '=', $keyword->id)->first())){
-                        $faucet->keywords()->attach($keyword->id);
-                    }
-                }
-                else {
-                    $keyword = Keyword::where('keyword', trim($keywords[$i]))->first();
-
-                    if(empty($faucet->keywords()->where('keyword_id', '=', $keyword->id)->first())){
-                        $faucet->keywords()->attach($keyword->id);
-                    }
-                }
-            }
-        }
-    }
 }

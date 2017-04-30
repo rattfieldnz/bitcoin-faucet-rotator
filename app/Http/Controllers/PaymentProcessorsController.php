@@ -10,6 +10,7 @@ use Helpers\Validators\PaymentProcessorValidator;
 use Http\Controllers\IController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
@@ -87,6 +88,16 @@ class PaymentProcessorsController extends Controller implements IController
 
         $paymentProcessor->save();
 
+        $keywords = explode(',', $input['meta_keywords']);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        $paymentProcessor->attachKeywords(
+            $paymentProcessor,
+            'meta_keywords',
+            'keywords',
+            $keywords
+        );
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         Session::flash('success_message', 'The payment processor has successfully been created and stored!');
         return Redirect::to('/payment_processors/' . $paymentProcessor->slug);
     }
@@ -156,6 +167,16 @@ class PaymentProcessorsController extends Controller implements IController
         $paymentProcessor->fill($input);
 
         $paymentProcessor->save();
+
+        $keywords = explode(',', $input['meta_keywords']);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        $paymentProcessor->attachKeywords(
+            $paymentProcessor,
+            'meta_keywords',
+            'keywords',
+            $keywords
+        );
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         Session::flash('success_message', 'The payment processor has successfully been updated!');
 

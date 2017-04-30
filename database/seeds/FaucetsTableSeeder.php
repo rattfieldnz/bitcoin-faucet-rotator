@@ -56,7 +56,7 @@ class FaucetsTableSeeder extends BaseSeeder
                 $faucet->save();
 
                 $keywords = explode(',', $d['meta_keywords']);
-                $this->faucetFunctions->attachKeywords($faucet, $keywords);
+                $faucet->attachKeywords($faucet, 'meta_keywords', 'keywords', $keywords);
 
             } catch (Exception $e) {
                 error_log($e->getMessage());

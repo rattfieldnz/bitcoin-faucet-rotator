@@ -123,7 +123,7 @@ class FaucetsController extends Controller implements IController
         $faucet->users()->attach(Auth::user()->id);
 
         $keywords = explode(',', $input['meta_keywords']);
-        $this->faucetFunctions->attachKeywords($faucet, $keywords);
+        $faucet->attachKeywords($faucet, 'meta_keywords', 'keywords', $keywords);
 
 
         // Re-enable foreign key checks after inserting
@@ -267,7 +267,7 @@ class FaucetsController extends Controller implements IController
         }
 
         $keywords = explode(',', $input['meta_keywords']);
-        $this->faucetFunctions->attachKeywords($faucet, $keywords);
+        $faucet->attachKeywords($faucet, 'meta_keywords', 'keywords', $keywords);
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 

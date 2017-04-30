@@ -1,6 +1,5 @@
 <?php namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Laravel\Scout\Searchable;
 
@@ -13,7 +12,7 @@ use Laravel\Scout\Searchable;
  * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  * @package App
  */
-class Faucet extends Model
+class Faucet extends AppModel
 {
 
 	use Sluggable, Searchable;
