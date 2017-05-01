@@ -2,12 +2,14 @@
 
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	background-color: #e6EEEE;
-	font-size: 8pt;
+	font-size: 0.9em;
 	padding: 4px;
+	width: calc(100%/8);
 }
 table.tablesorter thead tr .header {
 	background-image: url('bg.gif');
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
+	font-size: 0.9em;
 }

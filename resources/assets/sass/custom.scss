@@ -103,12 +103,30 @@ body, label, .checkbox label {
     th {
       height: 4em !important;
       padding-bottom: 1.25em !important;
+      font-size: 0.9em;
       .headerSortDown {
         background-image: url('../table_sorter_themes/blue/desc.gif');
       }
       .headerSortUp {
         background-image: url('../table_sorter_themes/blue/asc.gif');
       }
+    }
+    td{
+      border-right: 1px solid black !important;
+    }
+  }
+}
+
+#tags-table{
+  thead {
+    border:1px solid #ddd;
+    th {
+      height: 4em !important;
+      padding-bottom: 1.25em !important;
+      font-size: 0.9em;
+    }
+    td{
+      border-right: 1px solid black !important;
     }
   }
 }
@@ -165,6 +183,18 @@ legend.border{
 
 #main_page_content{
   margin-bottom:4em;
+}
+
+table.tablesorter-no-sort thead tr th, table.tablesorter-no-sort tfoot tr th {
+  background-color: #e6EEEE;
+  font-size: 8pt;
+  padding: 4px;
+}
+table.tablesorter-no-sort thead tr .header {
+  background-image: url('bg.gif');
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 20em) {

@@ -13,26 +13,10 @@
     @endif
     @include('partials.ads')
     @include('faucets/partials/_session_messages')
-
     @if(Auth::check())
-
-        {!! Form::open(
-            [
-                'route' => 'checkFaucetsStatus',
-                'method' => 'PATCH',
-                'class' => 'form-horizontal',
-                'id' => 'check_faucets_status'
-            ]
-        ) !!}
-        <div class="form-group">
-            <div class="col-lg-12">
-                <p>
-                    {!! Form::submit("Check Faucets", ['class' => 'btn btn-lg btn-primary'] ) !!}
-                    (If faucet URLs are problematic, or report errors, they will be paused.)
-                </p>
-            </div>
+        <div class="alert alert-info">
+            <p><i class="fa fa-info-circle fa-2x space-right"></i>Tags are created when creating and editing faucets.</p>
         </div>
-        {!! Form::close() !!}
     @endif
     <div class="table-responsive">
         <table class="table table-striped bordered tablesorter" id="faucets_table">
@@ -44,8 +28,7 @@
                 <th>Payment Processor/s</th>
                 <th>Referral Program?</th>
                 <th>Ref. Payout %</th>
-                <th>Status</th>
-                <th>Balance < 10K SAT</th>
+                <th>Tags</th>
             </thead>
             <tbody>
             @foreach($faucets as $faucet)
@@ -56,7 +39,7 @@
                             <br><a class="btn btn-primary btn-width-small" href="/faucets/{{ $faucet->slug}}/edit/">
                                 <span class="button-font-small">Edit</span>
                             </a>
-
+                            <br><br>
                             <a class="btn btn-primary btn-width-small" id="confirm" data-toggle="modal" href="#" data-target="#delFaucet{{ $faucet->slug}}" data-id="{{ $faucet->slug }}">
                                 <span class="button-font-small">Delete</span>
                             </a>
@@ -77,8 +60,21 @@
                     </td>
                     <td>{{ $faucet->hasRefProgram() }}</td>
                     <td>{{ $faucet->ref_payout_percent }}</td>
-                    <td>{{ $faucet->status() }}</td>
-                    <td>{{ $faucet->lowBalanceStatus() }}</td>
+                    <td>
+                        @if(count($faucet->keywords()->get()) > 0)
+                            <ul>
+                                @foreach($faucet->keywords()->orderBy('keyword')->get() as $tag)
+                                    <li>
+                                        {!! link_to_route('tags.show', $tag->keyword, ['slug' => $tag->slug]) !!}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <ul>
+                                <li>There are no tags for this faucet.</li>
+                            </ul>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

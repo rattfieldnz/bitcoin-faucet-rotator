@@ -19,6 +19,9 @@ class ApiController extends BaseController
 {
     private $faucetCollection;
 
+    /**
+     * ApiController constructor.
+     */
     public function __construct()
     {
         $this->faucetCollection = Faucet::all()->sortBy('interval_minutes')->values();
@@ -32,16 +35,22 @@ class ApiController extends BaseController
      */
     public function faucets()
     {
-        return $this->faucetCollection->all();
+        $faucets = collect();
+        $faucetCollection = $this->faucetCollection->all();
+        for($i = 0; $i < count($faucetCollection); $i++){
+            $faucet = Faucet::with('keywords')->findOrFail($faucetCollection[$i]->id);
+            $faucets->push($faucet);
+        }
+        return $faucets;
     }
 
     /**
      * @param $id
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function faucet($id)
     {
-        $faucet = Faucet::find($id);
+        $faucet = Faucet::with('keywords')->findOrFail($id);
         if ($faucet == null || !$faucet) {
             return [404 => 'Not Found'];
         }
@@ -52,7 +61,7 @@ class ApiController extends BaseController
      * @return mixed
      */
     public function firstFaucet(){
-        return $this->faucetCollection->get(0);
+        return $this->faucets()[0];
     }
 
     /**
@@ -68,9 +77,9 @@ class ApiController extends BaseController
                     // If subtracted value is negative,
                     // we are at beginning of faucet collection array.
                     // Go to last faucet in the collection.
-                    return Faucet::find($array[count($array) - 1]);
+                    return Faucet::with('keywords')->findOrFail($array[count($array) - 1]);
                 }
-                return Faucet::find($array[$key - 1]);
+                return Faucet::with('keywords')->findOrFail($array[$key - 1]);
             }
         }
         return null;
@@ -89,9 +98,9 @@ class ApiController extends BaseController
                     // If addition is greater than number of faucets,
                     // We are at end of the collection.
                     // Go to first faucet in the collection.
-                    return Faucet::find($array[0]);
+                    return Faucet::with('keywords')->findOrFail($array[0]);
                 }
-                return Faucet::find($array[$key + 1]);
+                return Faucet::with('keywords')->findOrFail($array[$key + 1]);
             }
         }
         return null;
@@ -101,7 +110,7 @@ class ApiController extends BaseController
      * @return mixed
      */
     public function lastFaucet(){
-        return $this->faucetCollection->get(count(Faucet::all()) - 1);
+        return $this->faucets()[count(Faucet::all()) - 1];
     }
 
     /**
@@ -123,7 +132,7 @@ class ApiController extends BaseController
             foreach ($faucets as $f) {
                 if ($f->is_paused == false &&
                     $f->has_low_balance == $hasLowBalance) {
-                    array_push($activeFaucets, $f);
+                    array_push($activeFaucets, $this->faucet($f->id));
                 }
             }
 
@@ -136,7 +145,7 @@ class ApiController extends BaseController
 
     /**
      * @param $id
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function paymentProcessorFaucet($paymentProcessorSlug, $faucetId)
     {
@@ -149,7 +158,7 @@ class ApiController extends BaseController
         if ($faucet == null || !$faucet) {
             return [404 => 'Not Found'];
         }
-        return $faucet;
+        return $this->faucet($faucet->id);
     }
 
     /**
@@ -177,7 +186,7 @@ class ApiController extends BaseController
                 if ($f->is_paused == false &&
                     $f->has_low_balance == false
                 ) {
-                    array_push($activeFaucets, $f);
+                    array_push($activeFaucets, $this->faucet($f->id));
                 }
             }
             return $activeFaucets;
@@ -186,11 +195,20 @@ class ApiController extends BaseController
         }
     }
 
+    /**
+     * @param $paymentProcessorSlug
+     * @return mixed
+     */
     public function firstPaymentProcessorFaucet($paymentProcessorSlug)
     {
         return $this->paymentProcessorFaucets($paymentProcessorSlug)[0];
     }
 
+    /**
+     * @param $paymentProcessorSlug
+     * @param $faucetId
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
     public function previousPaymentProcessorFaucet($paymentProcessorSlug, $faucetId){
         //Obtain payment processor by related slug.
         $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
@@ -206,14 +224,19 @@ class ApiController extends BaseController
                     // If addition is greater than number of faucets,
                     // We are at end of the collection.
                     // Go to first faucet in the collection.
-                    return Faucet::find($array[0]);
+                    return Faucet::with('keywords')->findOrFail($array[0]);
                 }
-                return Faucet::find($array[$key + 1]);
+                return Faucet::with('keywords')->findOrFail($array[$key + 1]);
             }
         }
         return null;
     }
 
+    /**
+     * @param $paymentProcessorSlug
+     * @param $faucetId
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
     public function nextPaymentProcessorFaucet($paymentProcessorSlug, $faucetId){
         //Obtain payment processor by related slug.
         $paymentProcessor = PaymentProcessor::where('slug', '=', $paymentProcessorSlug)->firstOrFail();
@@ -229,20 +252,29 @@ class ApiController extends BaseController
                     // If addition is greater than number of faucets,
                     // We are at end of the collection.
                     // Go to first faucet in the collection.
-                    return Faucet::find($array[0]);
+                    return Faucet::with('keywords')->findOrFail($array[0]);
                 }
-                return Faucet::find($array[$key + 1]);
+                return Faucet::with('keywords')->findOrFail($array[$key + 1]);
             }
         }
         return null;
     }
 
+    /**
+     * @param $paymentProcessorSlug
+     * @return mixed
+     */
     public function lastPaymentProcessorFaucet($paymentProcessorSlug){
 
         $faucets = $this->paymentProcessorFaucets($paymentProcessorSlug);
         return $this->paymentProcessorFaucets($paymentProcessorSlug)[count($faucets) - 1];
     }
 
+    /**
+     * @param $paymentProcessorSlug
+     * @param bool $hasLowBalance
+     * @return array|null
+     */
     public function activePaymentProcessorFaucets($paymentProcessorSlug, $hasLowBalance = false)
     {
         try {
@@ -259,7 +291,7 @@ class ApiController extends BaseController
             foreach ($faucets as $f) {
                 if ($f->is_paused == false &&
                     $f->has_low_balance == $hasLowBalance) {
-                    array_push($activeFaucets, $f);
+                    array_push($activeFaucets, $this->faucet($f->id));
                 }
             }
 

@@ -32,6 +32,7 @@
                             <li><a href="/admin/payment_processors/create">Add New Payment Processor</a></li>
                         </ul>
                     </li>
+                    <li><a href="/tags">Tags</a> </li>
                     <li>
                         <a href="/admin/main_meta">Manage Main Meta</a>
                     </li>
@@ -47,6 +48,7 @@
                 @else
                     <li><a href="/faucets">Faucets</a></li>
                     <li><a href="/payment_processors">Payment Processors</a></li>
+                    <li><a href="/tags">Tags</a> </li>
                     <li><a href="/blog" title="FreeBTC Bitcoin News Blog" target="_blank">News Blog</a></li>
                     @if(\App\Helpers\WebsiteMeta\WebsiteMeta::twitterUsername())
                         <li style="margin-top:0.70em;">

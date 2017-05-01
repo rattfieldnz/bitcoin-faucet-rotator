@@ -17,6 +17,7 @@ class FaucetTransformer extends Transformer
      */
     public function transform($faucet)
     {
+        $tags = \App\Faucet::where('name', $faucet['name'])->first()->tags()->orderBy('keyword')->get();
         return [
             'id' => (int)$faucet['id'],
             'name' => $faucet['name'],
@@ -27,7 +28,8 @@ class FaucetTransformer extends Transformer
             'has_ref_program' => (boolean)$faucet['has_ref_program'],
             'ref_payout_percent' => (double)$faucet['ref_payout_percent'],
             'comments' => $faucet['comments'],
-            'is_paused' => (boolean)$faucet['is_paused']
+            'is_paused' => (boolean)$faucet['is_paused'],
+            'tags' => $tags
         ];
     }
 }

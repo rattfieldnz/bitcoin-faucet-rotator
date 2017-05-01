@@ -27,18 +27,45 @@
         </div>
     @endif
     @include('partials.ads')
+    @if(Auth::check())
+        <div class="alert alert-info">
+            <p><i class="fa fa-info-circle fa-2x space-right"></i>Tags are created when creating and editing payment processors.</p>
+        </div>
+    @endif
     <div class="table-responsive">
 
         <table class="table table-striped bordered tablesorter" id="payment_processors_table">
             <thead>
             <th>Payment Processor Name</th>
+            <th>Tags</th>
             <th>Associated Faucet Rotator</th>
             </thead>
             <tbody>
             @foreach($paymentProcessors as $paymentProcessor)
                 <tr>
                     <td>{!! link_to_route('payment_processors.show', $paymentProcessor->name, array($paymentProcessor->slug), ['title' => $paymentProcessor->name]) !!}</td>
-                    <td><a class="btn btn-primary btn-lg" href="{!! URL::to('/payment_processors/' . $paymentProcessor->slug . '/rotator/') !!}" title="Surf {{ $paymentProcessor->name }} Faucets" role="button">Surf {{ $paymentProcessor->name }} Faucets</a></td>
+                    <td>
+                        @if(count($paymentProcessor->keywords()->get()) > 0)
+                            <ul>
+                                @foreach($paymentProcessor->keywords()->orderBy('keyword')->get() as $tag)
+                                    <li>
+                                        {!! link_to_route('tags.show', $tag->keyword, ['slug' => $tag->slug]) !!}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <ul>
+                                <li>There are no tags for this payment processor.</li>
+                            </ul>
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($paymentProcessor->faucets()->get()) > 0)
+                            <a class="btn btn-primary btn-lg" href="{!! URL::to('/payment_processors/' . $paymentProcessor->slug . '/rotator/') !!}" title="Surf {{ $paymentProcessor->name }} Faucets" role="button">Surf {{ $paymentProcessor->name }} Faucets</a>
+                        @else
+                            There are no faucets that use this payment processor.
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

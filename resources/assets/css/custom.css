@@ -99,6 +99,7 @@ body, label, .checkbox label {
 #faucets_table thead th, #payment_processors_table thead th {
   height: 4em !important;
   padding-bottom: 1.25em !important;
+  font-size: 0.9em;
 }
 
 #faucets_table thead th .headerSortDown, #payment_processors_table thead th .headerSortDown {
@@ -107,6 +108,24 @@ body, label, .checkbox label {
 
 #faucets_table thead th .headerSortUp, #payment_processors_table thead th .headerSortUp {
   background-image: url("../table_sorter_themes/blue/asc.gif");
+}
+
+#faucets_table thead td, #payment_processors_table thead td {
+  border-right: 1px solid black !important;
+}
+
+#tags-table thead {
+  border: 1px solid #ddd;
+}
+
+#tags-table thead th {
+  height: 4em !important;
+  padding-bottom: 1.25em !important;
+  font-size: 0.9em;
+}
+
+#tags-table thead td {
+  border-right: 1px solid black !important;
 }
 
 #nav-container {
@@ -161,6 +180,19 @@ legend.border {
 
 #main_page_content {
   margin-bottom: 4em;
+}
+
+table.tablesorter-no-sort thead tr th, table.tablesorter-no-sort tfoot tr th {
+  background-color: #e6EEEE;
+  font-size: 8pt;
+  padding: 4px;
+}
+
+table.tablesorter-no-sort thead tr .header {
+  background-image: url("bg.gif");
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 20em) {

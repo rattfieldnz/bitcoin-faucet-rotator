@@ -1,5 +1,6 @@
 <?php
 
+use App\Keyword;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\{
     DB, Route, URL
@@ -48,6 +49,9 @@ Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
 Route::get('admin/edit', ['as' => 'admin.edit', 'uses' => 'AdminController@edit']);
 Route::patch('admin/update', ['as' => 'admin.update', 'uses' => 'AdminController@update']);
 Route::get('admin/overview', 'AdminController@overview');
+
+Route::get('tags', ['as' => 'tags.index', 'uses' => 'KeywordsController@index']);
+Route::get('tags/{slug}', ['as' => 'tags.show', 'uses' => 'KeywordsController@show']);
 
 Route::get('data/download', 'DownloadSpreadsheetDataController@index');
 
@@ -133,6 +137,17 @@ Route::get('sitemap', function () {
             $rotator = URL::to("/payment_processors/" . $p->slug . '/rotator');
             $sitemap->add($rotator, $p->updated_at, '1.0', 'daily');
         }
+
+        $tags = Keyword::orderBy('keyword', 'asc')->get();
+
+        foreach($tags as $t){
+            $sitemap->add(
+                URL::to('/tags/' . $t->slug),
+                $t->updated_at,
+                '1.0',
+                'daily'
+            );
+        }
     }
 
     // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
@@ -199,6 +214,21 @@ Route::get('feed', function () {
             $p->created_at,
             $p->name . ' Faucet Rotator',
             'Earn free bitcoins from faucets that use "' . $p->name . '" as a payment processor.'
+        );
+    }
+
+    $tags = Keyword::orderBy('keyword', 'asc')->get();
+
+    foreach($tags as $t){
+        $feed->add(
+            'Tag - ' . $t->keyword,
+            $t->keyword,
+            URL::to('/tags/' . $t->slug),
+            $t->created_at,
+            'Tag - ' . $t->keyword . ' | FreeBTC.website',
+            'This page shows information about the "' . $t->keyword . '" tag. There are ' .
+            count($t->faucets()->get()) . ' faucets, and ' . count($t->paymentProcessors()->get()) .
+            ' payment processors, that use this tag.'
         );
     }
 

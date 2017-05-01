@@ -90,6 +90,18 @@
             </tbody>
         </table>
     </div>
+    <div>
+        @if(count($faucet->keywords()->get()) > 0)
+        <p>Tags:
+            @for($i = 0; $i < count($faucet->keywords()->get()); $i++)
+                {!!
+                    link_to_route('tags.show', $faucet->keywords()->get()[$i]->keyword, [$faucet->keywords()->get()[$i]->slug]) .
+                    ($i != count($faucet->keywords()->get()) - 1 ? ", " : ".")
+                !!}
+            @endfor
+        </p>
+        @endif
+    </div>
     @if($faucet->is_paused == false)
         <iframe sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin" src="{{ $faucet->url }}" id="faucet-iframe"></iframe>
     @else
