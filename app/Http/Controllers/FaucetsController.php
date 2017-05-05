@@ -306,6 +306,7 @@ class FaucetsController extends Controller implements IController
             $faucetUrl = $faucet->url;
             $faucet->paymentProcessors()->detach();
             $faucet->users()->detach();
+            $faucet->keywords()->detach();
             $faucet->delete();
 
             Session::flash(

@@ -198,6 +198,7 @@ class PaymentProcessorsController extends Controller implements IController
             $paymentProcessorUrl = $paymentProcessor->url;
 
             $paymentProcessor->faucets()->detach();
+            $paymentProcessor->keywords()->detach();
             $paymentProcessor->delete();
 
             Session::flash(
