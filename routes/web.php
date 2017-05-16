@@ -1,10 +1,11 @@
 <?php
 
 use App\Keyword;
+use App\Faucet;
+use App\PaymentProcessor;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\{
-    DB, Route, URL
-};
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 Auth::routes();
 
@@ -120,7 +121,7 @@ Route::get('sitemap', function () {
         $sitemap->add(URL::to('/payment_processors'), Carbon::now(), '1.0', 'daily');
 
         // get all faucets from db
-        $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
+        $faucets = Faucet::orderBy('name', 'asc')->get();
 
         // add every post to the sitemap
         foreach ($faucets as $f) {
@@ -128,7 +129,8 @@ Route::get('sitemap', function () {
             $sitemap->add($url, $f->updated_at, '1.0', 'daily');
         }
 
-        $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
+        $payment_processors = PaymentProcessor::orderBy('name', 'asc')->get();
+
 
         foreach ($payment_processors as $p) {
             $url = URL::to("/payment_processors/" . $p->slug);
@@ -165,7 +167,7 @@ Route::get('feed', function () {
     // check if there is cached feed and build new only if is not
     //if (!$feed->isCached()) {
     // creating rss feed with our most recent 20 posts
-    $faucets = DB::table('faucets')->orderBy('name', 'asc')->get();
+    $faucets =  $faucets = Faucet::orderBy('name', 'asc')->get();
 
     // set your feed's title, description, link, pubdate and language
     $feed->title = 'FreeBTC.Website Bitcoin Faucet Rotator Feed';
@@ -191,7 +193,7 @@ Route::get('feed', function () {
         );
     }
 
-    $payment_processors = DB::table('payment_processors')->orderBy('name', 'asc')->get();
+    $payment_processors = PaymentProcessor::orderBy('name', 'asc')->get();
 
     foreach ($payment_processors as $p) {
         $title = isset($p->meta_title) == true ? $p->meta_title : $p->name;
@@ -241,7 +243,3 @@ Route::get('feed', function () {
 Route::get('500', function () {
     abort(500);
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
