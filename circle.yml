@@ -1,0 +1,5 @@
+machine:
+  php:
+    version: 5.4.5
+  services:
+    - redis  
