@@ -1,7 +1,5 @@
 machine:
-  pre:
-    - sudo echo | sudo add-apt-repository ppa:ondrej/php; sudo apt-get update; USE_PRECOMPILE=true sudo -E circleci-install php 7.0.19
   php:
-    version: 7.0.19
+    version: 7.0.17
   services:
     - redis  
