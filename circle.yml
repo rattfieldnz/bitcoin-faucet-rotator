@@ -1,5 +1,5 @@
 machine:
   php:
-    version: 5.4.5
+    version: 7.0.19
   services:
     - redis  
