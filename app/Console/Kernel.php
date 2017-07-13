@@ -29,13 +29,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $schedule->command('inspire')
-                 ->hourly();
+        //$schedule->command('inspire')
+        //         ->hourly();
 
         // Check the statuses of each faucet every hour.
-        $schedule->call(function () {
-            Faucets::checkUpdateStatuses();
-        })->hourly()->environments('production');
+        //$schedule->call(function () {
+        //    Faucets::checkUpdateStatuses();
+        //})->hourly()->environments('production');
 
         $schedule->command('send-random-tweet')
             ->hourly()
